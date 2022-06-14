@@ -20,7 +20,7 @@ struct CookedPrefabData : CResource
 
     DynArray<RaRef<CResource>> precookedDependencies; // 40
     DynArray<Ref<CResource>> dependencies; // 50
-    uint8_t unk60[0x70 - 0x60]; // 60
+    DynArray<void*> unk60; // 60
 };
 RED4EXT_ASSERT_SIZE(CookedPrefabData, 0x70);
 } // namespace world

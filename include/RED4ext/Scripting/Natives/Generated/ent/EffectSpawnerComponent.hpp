@@ -19,7 +19,9 @@ struct EffectSpawnerComponent : ent::IVisualComponent
     static constexpr const char* ALIAS = NAME;
 
     DynArray<Handle<ent::EffectDesc>> effectDescs; // 140
-    uint8_t unk150[0x220 - 0x150]; // 150
+    DynArray<void *> activeEffects; // 150
+    DynArray<Handle<ResourceWrapper<world::Effect>>> resources; // 160
+    uint8_t unk150[0x220 - 0x170]; // 170
 };
 RED4EXT_ASSERT_SIZE(EffectSpawnerComponent, 0x220);
 } // namespace ent

@@ -44,7 +44,7 @@ struct IScriptable : ISerializable
         return ExecuteFunctionImpl<void>(aFunc, nullptr, std::forward<Args>(aArgs)...);
     }
 
-    CClass* unk30;     // 30
+    CClass* unk30;     // 30, parentType
     void* valueHolder; // 38
 
 protected:

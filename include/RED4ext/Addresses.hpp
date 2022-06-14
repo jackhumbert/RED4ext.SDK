@@ -101,6 +101,7 @@ constexpr uintptr_t CStack_ctor = 0x1402455B0 - ImageBase; // 48 89 5C 24 08 48 
 constexpr uintptr_t CString_ctor = 0x1401A0170 - ImageBase; // 48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 33 FF, expected: 19, index: 0
 constexpr uintptr_t CString_copy = 0x1401A05A0 - ImageBase; // 40 53 48 83 EC 20 48 8B D9 48 3B CA, expected: 7, index: 0
 constexpr uintptr_t CString_dtor = 0x1401A0450 - ImageBase; // 40 53 48 83 EC 20 48 8B D9 8B 49 14 8B C1 C1 E8, expected: 1, index: 0
+constexpr uintptr_t CString_Initialize = 0x1401A0440 - ImageBase;
 #pragma endregion
 
 #pragma region DynArray
@@ -156,4 +157,13 @@ constexpr uintptr_t TweakDB_FlatInt32ValueVftable = 0x140F0FE89 - ImageBase; // 
 constexpr uintptr_t TweakDB_FlatArrayInt32ValueVftable = 0x140F0FEE1 - ImageBase; // 48 8D 05 ? ? ? ? 48 8D 4C 24 48 48 89 06, expected: 17, index: 0
 constexpr uintptr_t TweakDB_CreateRecord = 0x140FABA00 - ImageBase; // 48 89 5C 24 08 ? 89 ? 24 18 57 48 83 EC 30 8B C2, expected: 1, index: 0
 #pragma endregion
+
+#pragma region UpdateDefinition
+constexpr uintptr_t UpdateDefinition_CreateFromParent = 0x140A77D30 - ImageBase; // 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 41 56 41 57 48 81 EC C0 00 00 00 48 8B BC 24 00
+#pragma endregion
+
+constexpr uintptr_t CopyInstance = 0x1401ABD00 - ImageBase;
+constexpr uintptr_t Init_thread_header = 0x142A06830 - ImageBase;
+constexpr uintptr_t Init_thread_footer = 0x142A067D0 - ImageBase;
+
 } // namespace RED4ext::Addresses

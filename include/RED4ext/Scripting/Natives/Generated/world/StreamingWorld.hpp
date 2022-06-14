@@ -27,7 +27,7 @@ struct StreamingWorld : CResource
     uint8_t unk44[0x50 - 0x44]; // 44
     Box worldBoundingBox; // 50
     DynArray<Ref<world::StreamingBlock>> blockRefs; // 70
-    uint8_t unk80[0x90 - 0x80]; // 80
+    DynArray<Ref<world::StreamingBlock>> unk80; // 80
     Ref<world::EnvironmentDefinition> environmentDefinition; // 90
     Ref<CResource> persistentStateData; // A8
     Ref<CResource> deviceResource; // C0
@@ -49,7 +49,13 @@ struct StreamingWorld : CResource
     RaRef<CResource> trafficNullAreaCollisionResource; // 1C0
     RaRef<CResource> smartObjectCompiledRootResource; // 1C8
     RaRef<world::StreamingQueryDataResource> streamingQueryDataResource; // 1D0
-    uint8_t unk1D8[0x208 - 0x1D8]; // 1D8
+    uint64_t unk1D8; // 1D8
+    uint64_t unk1E0; // 1E0
+    uint64_t unk1E8; // 1E8
+    uint64_t unk1F0; // 1F0
+    uint32_t unk1F8; // 1F8
+    uint32_t unk1FC; // 1FC
+    uint32_t unk200; // 200
     bool wasBuiltForSceneRecording; // 208
     uint8_t unk209[0x210 - 0x209]; // 209
 };

@@ -7,6 +7,7 @@
 #include <RED4ext/CName.hpp>
 #include <RED4ext/NativeTypes.hpp>
 #include <RED4ext/Scripting/IScriptable.hpp>
+#include <RED4ext/Scripting/Natives/Generated/ent/Entity.hpp>
 
 namespace RED4ext
 {
@@ -17,7 +18,8 @@ struct IComponent : IScriptable
     static constexpr const char* ALIAS = "IComponent";
 
     CName name; // 40
-    uint8_t unk48[0x60 - 0x48]; // 48
+    uint8_t unk48[0x50 - 0x48]; // 48
+    Handle<ent::Entity> entity; // 50
     CRUID id; // 60
     uint8_t unk68[0x8B - 0x68]; // 68
     bool isEnabled; // 8B

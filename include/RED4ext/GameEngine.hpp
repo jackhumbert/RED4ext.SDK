@@ -187,9 +187,18 @@ struct GameInstance
     virtual void Unk_68() = 0;                                        // 68
 
     HashMap<CBaseRTTIType*, Handle<IScriptable>> unk08; // 08
-    DynArray<Handle<IScriptable>> unk38;                // 38
+    DynArray<Handle<IScriptable>> gameSystems;                // 38
     HashMap<CBaseRTTIType*, CBaseRTTIType*> unk48;      // 48
-    uintptr_t unk78[(0x138 - 0x78) >> 3];               // 78
+    uintptr_t unk78[(0x138 - 0x78) >> 3];                     // 78
+    //world::RuntimeSystemHandles * runtimeSystemHandles; // 78
+    //world::RuntimeInfo runtimeInfo; // 80
+    //int64_t unk100; // 100
+    //GameInstance* gameInstancePtr; // 108
+    //DynArray<Handle<IScriptable>>* gameSystemsPtr; // 110
+    //Handle<game::GameFeatureManager> gameFeatureManager; // 118
+    //int64_t unk128; // 128
+    //int64_t unk130; // 130
+    //int64_t unk138; // 138
 };
 RED4EXT_ASSERT_SIZE(GameInstance, 0x138);
 

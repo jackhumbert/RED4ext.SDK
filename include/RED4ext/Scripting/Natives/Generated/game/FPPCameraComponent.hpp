@@ -26,7 +26,20 @@ struct FPPCameraComponent : game::CameraComponent
     float sensitivityMultY; // 468
     uint8_t unk46C[0x478 - 0x46C]; // 46C
     CName timeDilationCurveName; // 478
-    uint8_t unk480[0x4D0 - 0x480]; // 480
+    float unk480;
+    float unk484;
+    uint8_t unk488;
+    uint8_t unk489[3];
+    float yawOffset;
+    float unk490;
+    float unk494[3];
+    uint8_t unk4A0;
+    uint8_t unk4A1[7];
+    float unk4A8;
+    float yawInput;
+    float pitchInput;
+    float unk4B4;
+    uint32_t unk4B8[6];
 };
 RED4EXT_ASSERT_SIZE(FPPCameraComponent, 0x4D0);
 } // namespace game

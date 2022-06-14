@@ -200,7 +200,7 @@ RED4EXT_ASSERT_SIZE(RuntimeEntityRef, 0x8);
 template<typename T>
 struct ResourceAsyncReference
 {
-    T* ref; // 00
+    uint64_t ref; // 00
 };
 RED4EXT_ASSERT_SIZE(ResourceAsyncReference<void>, 0x8);
 
@@ -208,11 +208,40 @@ template<typename T>
 using RaRef = ResourceAsyncReference<T>;
 
 template<typename T>
+struct ResourceWrapper;
+
+template<typename T>
+struct ResourceHandle
+{
+    ResourceWrapper<T> * wrapper;
+    RefCnt* refCount;
+};
+RED4EXT_ASSERT_SIZE(ResourceHandle<void>, 0x10);
+
+template<typename T>
+struct ResourceWrapper
+{
+    ResourceHandle<T> self; // 00
+    DynArray<void*> externalResources;
+    uintptr_t unk20;
+    Handle<T> resource;
+    void * unk38;
+    void * unk40;
+    uint64_t hash;
+    void * unk50;
+    uint32_t unk58;
+    uint8_t unk5C;
+    uint8_t unk5D;
+    uint8_t unk5E;
+    uint8_t unk5F;
+};
+RED4EXT_ASSERT_SIZE(ResourceWrapper<void>, 0x60);
+
+template<typename T>
 struct ResourceReference
 {
-    T* ref;          // 00
-    uintptr_t unk08; // 08
-    uintptr_t unk10; // 10
+    uint64_t hash;          // 00
+    ResourceHandle<T> handle; // 08
 };
 RED4EXT_ASSERT_SIZE(ResourceReference<void>, 0x18);
 

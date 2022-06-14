@@ -19,7 +19,13 @@ struct SlotComponent : ent::IPlacedComponent
 
     DynArray<ent::Slot> slots; // 120
     DynArray<ent::FallbackSlot> fallbackSlots; // 130
-    uint8_t unk140[0x1A0 - 0x140]; // 140
+    DynArray<uintptr_t> unk140;
+    HashMap<CName, uint64_t> slotIndexLookup;
+    uint64_t unk180;
+    uint64_t unk188;
+    uintptr_t unk190;
+    uint8_t unk198;
+    uint8_t unk199[7];
 };
 RED4EXT_ASSERT_SIZE(SlotComponent, 0x1A0);
 } // namespace ent

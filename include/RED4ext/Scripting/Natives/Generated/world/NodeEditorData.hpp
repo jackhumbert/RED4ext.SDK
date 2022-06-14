@@ -9,6 +9,7 @@
 #include <RED4ext/NativeTypes.hpp>
 #include <RED4ext/Scripting/Natives/Generated/Transform.hpp>
 #include <RED4ext/Scripting/Natives/Generated/world/NodeTransform.hpp>
+#include <RED4ext/Scripting/Natives/Generated/world/Prefab.hpp>
 #include <RED4ext/Scripting/Natives/Generated/world/ProxyMeshDependencyMode.hpp>
 
 namespace RED4ext
@@ -19,7 +20,7 @@ struct NodeEditorData : ISerializable
     static constexpr const char* NAME = "worldNodeEditorData";
     static constexpr const char* ALIAS = NAME;
 
-    uint8_t unk30[0x40 - 0x30]; // 30
+    Handle<void *> unk30; // 30
     uint64_t id; // 40
     CName name; // 48
     uint8_t unk50[0x58 - 0x50]; // 50

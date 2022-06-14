@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/IEffectSystem.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/EffectSet.hpp>
+#include <RED4ext/NativeTypes.hpp>
 
 namespace RED4ext
 {
@@ -14,7 +16,14 @@ struct EffectSystem : game::IEffectSystem
     static constexpr const char* NAME = "gameEffectSystem";
     static constexpr const char* ALIAS = "EffectSystem";
 
-    uint8_t unk48[0xF8 - 0x48]; // 48
+    uintptr_t unk48[7];
+    DynArray<uint64_t> effectNameHashes;
+    DynArray<ResourceHandle<EffectSet>> effectResources;
+    uint32_t unkA0;
+    uint32_t unkA4;
+    DynArray<uintptr_t> unkA8;
+    uintptr_t unkB8[8];
+
 };
 RED4EXT_ASSERT_SIZE(EffectSystem, 0xF8);
 } // namespace game

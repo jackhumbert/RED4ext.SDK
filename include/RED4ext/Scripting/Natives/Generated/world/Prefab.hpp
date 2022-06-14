@@ -48,7 +48,13 @@ struct Prefab : res::StreamedResource
     RaRef<CMesh> customProxyMeshHelper; // 88
     Handle<world::PrefabVariantsList> defaultVariants; // 90
     Handle<world::NodesGroup> mainGroup; // A0
-    uint8_t unkB0[0xE0 - 0xB0]; // B0
+    uint64_t unkB0; // B0
+    uint32_t unkB8; // B8
+    uint32_t unkBC; // BC
+    uint64_t unkC0; // C0
+    uint64_t unkC8; // C8
+    uint64_t unkD0; // D0
+    uint16_t unkD8; // D8
     world::ProxyMeshBuildParams proxyMeshBuildParams; // E0
     world::PrefabOwnership teamOwnership; // 1C8
     world::PrefabStreamingOcclusion streamingOcclusion; // 1C9
@@ -69,7 +75,14 @@ struct Prefab : res::StreamedResource
     world::PrefabInteriorMapContribution interiorMapContribution; // 1F9
     uint8_t unk1FA[0x210 - 0x1FA]; // 1FA
     CRUID prefabUniqueId; // 210
-    uint8_t unk218[0x2B0 - 0x218]; // 218
+    uint8_t unk218[0x230 - 0x218]; // 218
+    DynArray<void *> unk230; // 230
+    DynArray<void *> unk240; // 240
+    DynArray<void *> unk250; // 250
+    DynArray<void *> unk260; // 260
+    DynArray<void *> unk270; // 270
+    DynArray<void *> unk280; // 280
+    uint8_t unk290[0x2B0 - 0x290]; // 290
     DynArray<Handle<world::PrefabMetadata>> metadataArray; // 2B0
 };
 RED4EXT_ASSERT_SIZE(Prefab, 0x2C0);

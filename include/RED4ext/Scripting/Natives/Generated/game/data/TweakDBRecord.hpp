@@ -11,6 +11,10 @@ namespace RED4ext
 namespace game::data { 
 struct TweakDBRecord : IScriptable
 {
+
+    virtual void sub_110();                      // 110
+    virtual void GetTypeHash();                  // 118
+
     static constexpr const char* NAME = "gamedataTweakDBRecord";
     static constexpr const char* ALIAS = "TweakDBRecord";
 
