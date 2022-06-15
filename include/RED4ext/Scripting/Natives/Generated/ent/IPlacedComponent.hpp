@@ -21,7 +21,7 @@ struct IPlacedComponent : ent::IComponent
 
     Handle<ent::ITransformBinding> parentTransform; // 90
     uint8_t unkA0[0xC0 - 0xA0]; // A0
-    float unkC0[8]; // C0
+    WorldTransform worldTransform;
     WorldTransform localTransform;// E0
     Box bounds; // 100
 };

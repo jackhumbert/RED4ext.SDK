@@ -10,8 +10,10 @@
 
 namespace RED4ext
 {
-namespace ent {
+namespace ent
+{
 struct IComponent;
+struct PlaceholderComponent;
 struct Entity : IScriptable
 {
     static constexpr const char* NAME = "entEntity";
@@ -31,7 +33,8 @@ struct Entity : IScriptable
     void* unk78[4];
     uint64_t unk98;
     DynArray<Handle<ent::IComponent>> components;
-    Handle<ent::Entity> parent;
+    PlaceholderComponent* placeholder;
+    void* unkB8;
     void* unkC0;
     uint64_t unkC8[2];
     void* eventList;
