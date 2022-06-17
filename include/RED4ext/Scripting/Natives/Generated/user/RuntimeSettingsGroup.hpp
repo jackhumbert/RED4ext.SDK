@@ -8,7 +8,7 @@ namespace RED4ext
 namespace user
 {
 
-class RuntimeSettingsGroup
+struct RuntimeSettingsGroup
 {
     CName parentPath;
     CName path;

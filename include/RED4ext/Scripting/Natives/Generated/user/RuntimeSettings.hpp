@@ -8,20 +8,20 @@ namespace RED4ext
 namespace user
 {
 
-class RuntimeSettingsGroup;
+struct RuntimeSettingsGroup;
 
-class RuntimeSettings
+struct RuntimeSettings
 {
     CName unk00;
-    HashMap<CName, RuntimeSettingsGroup> m_registry;
+    HashMap<CName, RuntimeSettingsGroup*> m_registry;
     uint64_t unk38;
     HashMap<uint64_t, uint64_t> unk40;
     DynArray<void*> unk70;
     HashMap<uint64_t, uint64_t> unk80;
     DynArray<void*> unkB0;
-    HashMap<CString, uint32_t> updatePolicyOptions;
+    HashMap<CString, uint32_t> updatePolicyMapping;
     HashMap<CString, uint32_t> importPolicyMapping;
-    HashMap<CString, uint32_t> typeOptions;
+    HashMap<CString, uint32_t> typeMapping;
     uint64_t unk150[8];
     uint8_t updatingSettingsVar;
     uint8_t unk191;

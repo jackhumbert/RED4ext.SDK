@@ -50,7 +50,7 @@ enum ConfigVarImportPolicy
     Ignore = 0x1 // ignore
 };
 
-class RuntimeSettingsVar
+struct RuntimeSettingsVar
 {
     virtual void* __fastcall sub_00(RuntimeSettingsVar*);
     virtual void __fastcall Deinitialize(RuntimeSettingsVar*, uint64_t);
