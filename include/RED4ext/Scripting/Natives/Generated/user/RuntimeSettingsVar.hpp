@@ -8,7 +8,7 @@ namespace RED4ext
 namespace user
 {
 
-enum RuntimeSettingsVarBitfield
+enum RuntimeSettingsVarBitfield : uint32_t
 {
     isInPreGame = 0x1,
     isInGame = 0x2,
@@ -23,7 +23,7 @@ enum RuntimeSettingsVarBitfield
     isDisabled = 0x800,
 };
 
-enum ConfigVarType
+enum ConfigVarType : uint8_t
 {
     Bool = 0, // bool
     Int = 1, // int
@@ -35,7 +35,7 @@ enum ConfigVarType
     NameList = 7, // name_list
 };
 
-enum ConfigVarUpdatePolicy
+enum ConfigVarUpdatePolicy : uint8_t
 {
     Disabled = 0, // update_disabled
     Immediately = 1, // immediately
@@ -44,12 +44,22 @@ enum ConfigVarUpdatePolicy
     LoadLastCheckpointRequired = 4, // require_load_last_checkpoint
 };
 
-enum ConfigVarImportPolicy
+enum ConfigVarImportPolicy : uint8_t
 {
     ReadValue = 0x0, // read_value
-    Ignore = 0x1 // ignore
+    Ignore = 0x1     // ignore
 };
 
+enum ConfigVarUnk : uint16_t
+{
+    Unk0000 = 0x0000, 
+    Backend1 = 0x0001,
+    Scripts = 0x0002,
+    Backend3 = 0x0003,
+    Default = 0xFFFF
+};
+
+#pragma pack(push, 1)
 struct RuntimeSettingsVar
 {
     virtual void* __fastcall sub_00(RuntimeSettingsVar*);
@@ -74,34 +84,39 @@ struct RuntimeSettingsVar
     ConfigVarImportPolicy importPolicy;
     uint8_t unk3B;
     RuntimeSettingsVarBitfield bitfield;
-    int32_t order;
-    uint8_t unk44;
-    uint8_t unk45;
+    uint32_t order;
+    ConfigVarUnk setSource;
     uint8_t unk46;
     uint8_t unk47;
 };
+RED4EXT_ASSERT_SIZE(RuntimeSettingsVar, 0x48);
+//char (*__kaboom)[sizeof(RuntimeSettingsVar)] = 1;
 
-class RuntimeSettingsVarBool : RuntimeSettingsVar
+struct RuntimeSettingsVarBool : RuntimeSettingsVar
 {
     bool value;
     bool defaultValue;
     bool value2;
     bool value3;
+    uint32_t unk4C;
 };
+RED4EXT_ASSERT_SIZE(RuntimeSettingsVarBool, 0x50);
+//char (*__kaboom)[sizeof(RuntimeSettingsVarBool)] = 1;
 
-class RuntimeSettingsVarFloat : RuntimeSettingsVar
+struct RuntimeSettingsVarFloat : RuntimeSettingsVar
 {
     float value;
-    uint32_t defaultValue;
-    uint32_t value2;
-    uint32_t value3;
-    uint32_t minValue;
-    uint32_t maxValue;
-    uint32_t stepValue;
+    float defaultValue;
+    float value2;
+    float value3;
+    float minValue;
+    float maxValue;
+    float stepValue;
     uint32_t unk64;
 };
+RED4EXT_ASSERT_SIZE(RuntimeSettingsVarFloat, 0x68);
 
-class RuntimeSettingsVarFloatList : RuntimeSettingsVar
+struct RuntimeSettingsVarFloatList : RuntimeSettingsVar
 {
     uint32_t unk48;
     uint32_t index;
@@ -113,7 +128,7 @@ class RuntimeSettingsVarFloatList : RuntimeSettingsVar
     DynArray<float> displayValues;
 };
 
-class RuntimeSettingsVarInt : RuntimeSettingsVar
+struct RuntimeSettingsVarInt : RuntimeSettingsVar
 {
     uint32_t value;
     uint32_t defaultValue;
@@ -125,7 +140,7 @@ class RuntimeSettingsVarInt : RuntimeSettingsVar
     uint32_t unk64;
 };
 
-class RuntimeSettingsVarIntList : RuntimeSettingsVar
+struct RuntimeSettingsVarIntList : RuntimeSettingsVar
 {
     uint32_t unk48;
     uint32_t index;
@@ -137,7 +152,7 @@ class RuntimeSettingsVarIntList : RuntimeSettingsVar
     DynArray<int32_t> displayValues;
 };
 
-class RuntimeSettingsVarName : RuntimeSettingsVar
+struct RuntimeSettingsVarName : RuntimeSettingsVar
 {
     CName value;
     uint64_t defaultValue;
@@ -145,7 +160,7 @@ class RuntimeSettingsVarName : RuntimeSettingsVar
     CName value3;
 };
 
-class RuntimeSettingsVarNameList : RuntimeSettingsVar
+struct RuntimeSettingsVarNameList : RuntimeSettingsVar
 {
     CName value;
     uint32_t index;
@@ -156,7 +171,7 @@ class RuntimeSettingsVarNameList : RuntimeSettingsVar
     DynArray<CName> displayValues;
 };
 
-class RuntimeSettingsVarStringList : RuntimeSettingsVar
+struct RuntimeSettingsVarStringList : RuntimeSettingsVar
 {
     CString value;
     uint32_t index;
@@ -166,6 +181,6 @@ class RuntimeSettingsVarStringList : RuntimeSettingsVar
     DynArray<CString> values;
     DynArray<CString> displayValues;
 };
-
+#pragma pack(pop)
 } // namespace user
 } // namespace RED4ext
