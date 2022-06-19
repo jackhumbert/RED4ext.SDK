@@ -28,7 +28,7 @@ struct RuntimeSettings
     HashMap<CName, RuntimeSettingsGroup*> m_registry;
     uint8_t updatingValidators;
     uint8_t validatorsPadding[7];
-    HashMap<uint64_t, uint64_t> m_validators;
+    HashMap<uint64_t, DynArray<void*>> m_validators;
     DynArray<void*> unk70;
     HashMap<uint64_t, uint64_t> unk80;
     DynArray<void*> unkB0;
@@ -54,7 +54,7 @@ struct RuntimeSettings
     uint8_t updatingDelayedChanges;
     uint8_t unk210padding[7];
     DynArray<RuntimeSettingsVar*> delayedChanges;
-    DynArray<void*> unk220;
+    DynArray<RuntimeSettingsVar*> unk220;
     DynArray<void*> unk230;
     uint64_t unk240[4];
     SettingsLoadStatus loadStatus;
