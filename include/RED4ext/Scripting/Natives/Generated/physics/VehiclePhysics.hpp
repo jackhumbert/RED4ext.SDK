@@ -143,7 +143,13 @@ struct VehiclePhysics
     RED4ext::Vector4 unkD28;
     RED4ext::Vector4 unkD38;
     RED4ext::Vector4 unkD48;
-    RED4ext::Vector4 unkD58;
+    uint32_t unkD58;
+    uint32_t unkD5C;
+    uint8_t tiltControlEnabled;
+    uint8_t unkD61;
+    uint8_t unkD62;
+    uint8_t unkD63;
+    float customTiltTarget;
 
     // Car
 };
