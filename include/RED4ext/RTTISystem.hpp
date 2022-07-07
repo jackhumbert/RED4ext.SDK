@@ -23,7 +23,7 @@ struct IRTTISystem
     virtual CBitfield* GetBitfield(CName aName) = 0;                                             // 20
     virtual void sub_28() = 0;                                                                   // 28
     virtual CGlobalFunction* GetFunction(CName aName) = 0;                                       // 30
-    virtual void sub_38() = 0;                                                                   // 38
+    virtual uint32_t GetAsyncIdByType(CBaseRTTIType* aType) = 0;                                 // 38
     virtual void GetNativeTypes(DynArray<CBaseRTTIType*>& aTypes) = 0;                           // 40
     virtual void GetGlobalFunctions(DynArray<CBaseFunction*>& aFunctions) = 0;                   // 48
     virtual void sub_50() = 0;                                                                   // 50
@@ -77,7 +77,7 @@ struct CRTTISystem : IRTTISystem
     HashMap<CName, uint32_t> typeAsyncIds;            // 70
     HashMap<CName, CGlobalFunction*> funcs;           // A0
     HashMap<uint64_t, CGlobalFunction*> funcsByHash;  // D0
-    HashMap<void*, void*> unkF8;                      // F8
+    HashMap<void*, void*> unk100;                      // 100
     DynArray<void*> unk130;                           // 130
     DynArray<void*> unk140;                           // 140
     HashMap<CName, CName> scriptToNative;             // 150
