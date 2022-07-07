@@ -43,7 +43,9 @@ struct CProperty
         uint64_t b31 : 1;          // 1F
         uint64_t b32 : 1;          // 20
         uint64_t isSavable : 1;    // 21
-        uint64_t b34 : 30;
+        uint64_t b34 : 1;          // 22
+        uint64_t b35 : 1;          // 23
+        uint64_t b36 : 1;          // 24
     };
     RED4EXT_ASSERT_SIZE(Flags, 0x8);
 
