@@ -9,9 +9,9 @@
 
 namespace RED4ext
 {
-namespace game { struct ItemObject; }
-
-namespace game { 
+namespace game {     
+struct ItemObject;
+namespace data { struct AttachmentSlot_Record; }
 struct AttachmentSlotData
 {
     static constexpr const char* NAME = "gameAttachmentSlotData";
@@ -22,7 +22,10 @@ struct AttachmentSlotData
     uint8_t unk18[0x28 - 0x18]; // 18
     ItemID activeItemID; // 28
     ItemID prevItemID; // 38
-    uint8_t unk48[0x80 - 0x48]; // 48
+    uint64_t unk48[2];
+    Handle<data::AttachmentSlot_Record> record;
+    uint64_t unk68;
+    DynArray<void*> unk70;
 };
 RED4EXT_ASSERT_SIZE(AttachmentSlotData, 0x80);
 } // namespace game

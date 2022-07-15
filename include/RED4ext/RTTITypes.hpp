@@ -127,6 +127,15 @@ struct CClass : CBaseRTTIType
     };
     RED4EXT_ASSERT_SIZE(CClass::Flags, 0x4);
 
+    struct DefaultValue
+    {
+        bool isPointer : 1;
+        //CBaseRTTIType* type : 63;  // actual type
+        uint64_t type : 63;
+        uint64_t value;
+    };
+
+
     CClass(CName aName, uint32_t aSize, Flags aFlags);
 
     CName GetName() const final;                                                               // 08
@@ -193,8 +202,8 @@ struct CClass : CBaseRTTIType
     DynArray<void*> unk128;                      // 128
     DynArray<CProperty*> unk138;                 // 138 - Only RT_Class types?
     DynArray<void*> unk148;                      // 148
-    DynArray<CProperty*> unk158;                 // 158 - Scripted props?
-    DynArray<void*> unk168;                      // 168
+    DynArray<CName> propertiesWithDefaults;      // 158
+    DynArray<DefaultValue> defaultValues;        // 168
     int64_t unk178;                              // 178
     HashMap<void*, void*> unk180;                // 180
     DynArray<void*> unk1B0;                      // 1B0
@@ -295,9 +304,9 @@ struct CEnum : CBaseRTTIType
     uint8_t actualSize;             // 20
     Flags flags;                    // 21
     DynArray<CName> hashList;       // 28
-    DynArray<CName> valueList;      // 38
+    DynArray<uint64_t> valueList;      // 38
     DynArray<CName> aliasList;      // 48
-    DynArray<CName> aliasValueList; // 58
+    DynArray<uint64_t> aliasValueList; // 58
 };
 RED4EXT_ASSERT_SIZE(CEnum, 0x68);
 RED4EXT_ASSERT_OFFSET(CEnum, name, 0x10);
