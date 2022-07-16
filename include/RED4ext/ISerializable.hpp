@@ -38,7 +38,7 @@ struct ISerializable
     virtual void sub_88();                                                              // 88
     virtual bool sub_90();                                                              // 90
     virtual bool sub_98();                                                              // 98
-    virtual void* sub_A0();                                                             // A0
+    virtual void* sub_A0();                                                    // A0
     virtual CClass* sub_A8();                                                           // A8
     virtual void sub_B0(void* a1);                                                      // B0
     virtual CString sub_B8();                                                           // B8

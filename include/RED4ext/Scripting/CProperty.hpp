@@ -55,12 +55,13 @@ struct CProperty
     static CProperty* Create(CBaseRTTIType* aType, const char* aName, CClass* aParent = nullptr,
                              uint32_t aValueOffset = 0, const char* aGroup = nullptr, Flags aFlags = {});
 
-    CBaseRTTIType* type;  // 00
-    CName name;           // 08
-    CName group;          // 10
-    CClass* parent;       // 18
-    uint32_t valueOffset; // 20
-    Flags flags;          // 28
+    CBaseRTTIType* type;            // 00
+    CName name;                     // 08
+    CName group;                    // 10
+    CClass* parent;                 // 18
+    uint32_t valueOffset;           // 20
+    uint32_t scriptRefValueOffset;  // 24
+    Flags flags;                    // 28
 
     template<typename T>
     bool IsEqual(ScriptInstance aInstance, T aValue, uint32_t a3 = 0) const

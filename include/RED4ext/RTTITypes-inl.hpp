@@ -189,20 +189,20 @@ RED4EXT_INLINE RED4ext::CClass::CClass(CName aName, uint32_t aSize, Flags aFlags
     , unkA8(Memory::RTTIAllocator::Get())
     , unkD8(0)
     , unkE0(0)
-    , unkE8(Memory::RTTIAllocator::Get())
-    , unk118(Memory::RTTIAllocator::Get())
-    , unk128(Memory::RTTIAllocator::Get())
-    , unk138(Memory::RTTIAllocator::Get())
-    , unk148(Memory::RTTIAllocator::Get())
+    , propertiesByName(Memory::RTTIAllocator::Get())
+    , allProperties(Memory::RTTIAllocator::Get())
+    , persistentProperties(Memory::RTTIAllocator::Get())
+    , referenceProperties(Memory::RTTIAllocator::Get())
+    , referencePropertyTypes(Memory::RTTIAllocator::Get())
     , propertiesWithDefaults(Memory::ScriptAllocator::Get())
     , defaultValues(Memory::ScriptAllocator::Get())
     , unk180(Memory::RTTIAllocator::Get())
-    , unk1B0(Memory::RTTIAllocator::Get())
+    , callbacks(Memory::RTTIAllocator::Get())
     , unk2C0(-1)
     , unk2C4(-1)
     , unk2C9(0xE6)
 {
-    std::memset(unk1C0, 0, sizeof(unk1C0));
+    std::memset(callbackIdStorage, 0, sizeof(callbackIdStorage));
 }
 
 RED4EXT_INLINE RED4ext::CName RED4ext::CClass::GetName() const
@@ -385,6 +385,11 @@ RED4EXT_INLINE void RED4ext::CClass::RegisterFunction(CClassFunction* aFunc)
     {
         funcs.PushBack(aFunc);
     }
+}
+
+RED4EXT_INLINE void RED4ext::CFundamentalRTTITypeFloat::Assign(RED4ext::ScriptInstance aLhs, const RED4ext::ScriptInstance aRhs) const
+{
+    *(float*)aLhs = *(float*)aRhs;
 }
 
 RED4EXT_INLINE RED4ext::CEnum::CEnum(CName aName, int8_t aActualSize, Flags aFlags)

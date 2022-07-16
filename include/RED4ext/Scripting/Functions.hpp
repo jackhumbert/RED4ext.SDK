@@ -84,7 +84,7 @@ struct CBaseFunction : IFunction
     HashMap<uint64_t, void*> unk48; // 48
     CCompiledCode bytecode;         // 78
     Flags flags;                    // A8
-    int32_t unkAC;                  // AC
+    int32_t stackSize;              // AC
 
 private:
 

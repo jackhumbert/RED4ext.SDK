@@ -107,10 +107,12 @@ struct RuntimeSettingsVar
     virtual void __fastcall UpdateValue(void* value) = 0;
     virtual void __fastcall ApplyChange() = 0;
     virtual void __fastcall RevertChange() = 0;
-    virtual void __fastcall WriteChangeForLater() = 0;
+    virtual void __fastcall ChangeWasWritten() = 0;
     virtual void __fastcall UpdateAll(void* value) = 0;
-    virtual void __fastcall GetValueToWrite(char* value) = 0;
 
+    // custom
+    virtual void __fastcall GetValueToWrite(char* value) = 0;
+    virtual ScriptInstance* __fastcall GetValuePtr() = 0;
 
     CName name;
     CName groupPath;
@@ -230,7 +232,7 @@ struct RuntimeSettingsVarBool : public RuntimeSettingsVar
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall WriteChangeForLater() override
+    virtual void __fastcall ChangeWasWritten() override
     {
         valueWrittenToFile = valueValidated;
     }
@@ -245,6 +247,11 @@ struct RuntimeSettingsVarBool : public RuntimeSettingsVar
     virtual void __fastcall GetValueToWrite(char* value) override
     {
         sprintf(value, "%d", valueValidated);
+    }
+
+    virtual ScriptInstance* __fastcall GetValuePtr()
+    {
+        return (ScriptInstance*)&valueValidated;
     }
     
     uint8_t valueValidated;
@@ -355,7 +362,7 @@ struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall WriteChangeForLater() override
+    virtual void __fastcall ChangeWasWritten() override
     {
         valueWrittenToFile = valueValidated;
     }
@@ -370,6 +377,11 @@ struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
     virtual void __fastcall GetValueToWrite(char* value) override
     {
         sprintf(value, "%f", valueValidated);
+    }
+
+    virtual ScriptInstance* __fastcall GetValuePtr()
+    {
+        return (ScriptInstance*)&valueValidated;
     }
 
     float valueValidated;
@@ -495,7 +507,7 @@ struct RuntimeSettingsVarInt : public RuntimeSettingsVar
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall WriteChangeForLater() override
+    virtual void __fastcall ChangeWasWritten() override
     {
         valueWrittenToFile = valueValidated;
     }
@@ -510,6 +522,11 @@ struct RuntimeSettingsVarInt : public RuntimeSettingsVar
     virtual void __fastcall GetValueToWrite(char* value) override
     {
         sprintf(value, "%d", valueValidated);
+    }
+
+    virtual ScriptInstance* __fastcall GetValuePtr()
+    {
+        return (ScriptInstance*)&valueValidated;
     }
 
     int32_t valueValidated;
@@ -640,7 +657,7 @@ struct RuntimeSettingsVarIntList : public RuntimeSettingsVar
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall WriteChangeForLater() override
+    virtual void __fastcall ChangeWasWritten() override
     {
         valueWrittenToFile = valueValidated;
     }
@@ -655,6 +672,11 @@ struct RuntimeSettingsVarIntList : public RuntimeSettingsVar
     virtual void __fastcall GetValueToWrite(char* value) override
     {
         sprintf(value, "%d", valueValidated);
+    }
+
+    virtual ScriptInstance* __fastcall GetValuePtr()
+    {
+        return (ScriptInstance*)&valueValidated;
     }
 
     uint32_t unk48;
@@ -793,7 +815,7 @@ struct RuntimeSettingsVarNameList : RuntimeSettingsVar
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall WriteChangeForLater() override
+    virtual void __fastcall ChangeWasWritten() override
     {
         valueWrittenToFile = valueValidated;
     }
@@ -808,6 +830,11 @@ struct RuntimeSettingsVarNameList : RuntimeSettingsVar
     virtual void __fastcall GetValueToWrite(char* value) override
     {
         sprintf(value, "%d", valueValidated);
+    }
+
+    virtual ScriptInstance* __fastcall GetValuePtr()
+    {
+        return (ScriptInstance *) & valueValidated;
     }
 
     CName value;

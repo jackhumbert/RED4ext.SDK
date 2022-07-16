@@ -129,12 +129,9 @@ struct CClass : CBaseRTTIType
 
     struct DefaultValue
     {
-        bool isPointer : 1;
-        //CBaseRTTIType* type : 63;  // actual type
-        uint64_t type : 63;
+        uint64_t type;
         uint64_t value;
     };
-
 
     CClass(CName aName, uint32_t aSize, Flags aFlags);
 
@@ -197,17 +194,17 @@ struct CClass : CBaseRTTIType
     HashMap<void*, void*> unkA8;                 // A8
     int64_t unkD8;                               // D8
     int64_t unkE0;                               // E0
-    HashMap<CName, CProperty*> unkE8;            // E8
-    DynArray<CProperty*> unk118;                 // 118 - More entries than 0x28, will contain native props
-    DynArray<void*> unk128;                      // 128
-    DynArray<CProperty*> unk138;                 // 138 - Only RT_Class types?
-    DynArray<void*> unk148;                      // 148
+    HashMap<CName, CProperty*> propertiesByName; // E8
+    DynArray<CProperty*> allProperties;          // 118 - More entries than 0x28, will contain native props
+    DynArray<CProperty*> persistentProperties;   // 128
+    DynArray<CProperty*> referenceProperties;    // 138
+    DynArray<void*> referencePropertyTypes;      // 148 - CBaseRTTIType* with an unknown uint32_t value at 0x0C
     DynArray<CName> propertiesWithDefaults;      // 158
-    DynArray<DefaultValue> defaultValues;        // 168
+    DynArray<DefaultValue*> defaultValues;       // 168
     int64_t unk178;                              // 178
     HashMap<void*, void*> unk180;                // 180
-    DynArray<void*> unk1B0;                      // 1B0
-    int8_t unk1C0[256];                          // 1C0
+    DynArray<void*> callbacks;                   // 1B0
+    int32_t callbackIdStorage[64];               // 1C0
     int16_t unk2C0;                              // 2C0
     int32_t unk2C4;                              // 2C4
     SharedMutex unk2C8;                          // 2C8
@@ -367,7 +364,10 @@ using CFundamentalRTTITypeInt32 = CBaseRTTIType;
 using CFundamentalRTTITypeUint32 = CBaseRTTIType;
 using CFundamentalRTTITypeInt64 = CBaseRTTIType;
 using CFundamentalRTTITypeUint64 = CBaseRTTIType;
-using CFundamentalRTTITypeFloat = CBaseRTTIType;
+struct CFundamentalRTTITypeFloat : CBaseRTTIType
+{
+    void Assign(ScriptInstance aLhs, const ScriptInstance aRhs) const final;
+};
 using CFundamentalRTTITypeDouble = CBaseRTTIType;
 #pragma endregion
 
