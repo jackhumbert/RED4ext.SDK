@@ -14,9 +14,9 @@ struct CProperty
 {
     struct Flags
     {
-        uint64_t b0 : 1;             // 00
-        uint64_t b1 : 1;             // 01
-        uint64_t b2 : 1;             // 02
+        uint64_t isEditable : 1;     // 00
+        uint64_t isNotSerializable : 1; // 01
+        uint64_t isInline : 1;       // 02
         uint64_t b3 : 1;             // 03
         uint64_t b4 : 1;             // 04
         uint64_t hasDefault : 1;     // 05
@@ -35,17 +35,18 @@ struct CProperty
         uint64_t isPublic : 1;       // 12
         uint64_t b19 : 2;            // 13
         uint64_t hasValueHolder : 1; // 15 - When true, acquire value from holder (isScripted?)
-        uint64_t b22 : 5;            // 16
+        uint64_t arrayRelated : 5;   // 16
         uint64_t isHandle : 1;       // 1B
         uint64_t isPersistent : 1;   // 1C
         uint64_t b29 : 1;            // 1D
-        uint64_t b30 : 1;            // 1E
-        uint64_t b31 : 1;            // 1F
-        uint64_t b32 : 1;            // 20
+        uint64_t hasHint : 1;        // 1E
+        uint64_t hasInnerType : 1;   // 1F
+        uint64_t isNotPersistent : 1;// 20
         uint64_t isSavable : 1;      // 21
         uint64_t b34 : 1;            // 22
-        uint64_t b35 : 1;            // 23
+        uint64_t arrayRelated2 : 1;  // 23
         uint64_t b36 : 1;            // 24
+        uint64_t isNotSavable : 1;   // 25
     };
     RED4EXT_ASSERT_SIZE(Flags, 0x8);
 
