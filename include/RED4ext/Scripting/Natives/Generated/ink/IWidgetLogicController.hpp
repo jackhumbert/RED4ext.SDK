@@ -15,7 +15,9 @@ struct IWidgetLogicController : IScriptable
     static constexpr const char* NAME = "inkIWidgetLogicController";
     static constexpr const char* ALIAS = "inkILogicController";
 
-    uint8_t unk40[0x70 - 0x40]; // 40
+    Handle<void*> unk40;
+    Handle<void*> unk50;
+    Handle<void*> unk60;
     CName audioMetadataName; // 70
 };
 RED4EXT_ASSERT_SIZE(IWidgetLogicController, 0x78);
