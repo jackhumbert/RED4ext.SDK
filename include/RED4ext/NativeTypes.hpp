@@ -203,16 +203,6 @@ struct RuntimeEntityRef
 RED4EXT_ASSERT_SIZE(RuntimeEntityRef, 0x8);
 
 template<typename T>
-struct ResourceAsyncReference
-{
-    uint64_t ref; // 00
-};
-RED4EXT_ASSERT_SIZE(ResourceAsyncReference<void>, 0x8);
-
-template<typename T>
-using RaRef = ResourceAsyncReference<T>;
-
-template<typename T>
 struct ResourceWrapper;
 
 template<typename T>
@@ -241,17 +231,6 @@ struct ResourceWrapper
     uint8_t unk5F;
 };
 RED4EXT_ASSERT_SIZE(ResourceWrapper<void>, 0x60);
-
-template<typename T>
-struct ResourceReference
-{
-    uint64_t hash;          // 00
-    ResourceHandle<T> handle; // 08
-};
-RED4EXT_ASSERT_SIZE(ResourceReference<void>, 0x18);
-
-template<typename T>
-using Ref = ResourceReference<T>;
 
 template<typename T, uint32_t MAX_LEN>
 struct StaticArray
