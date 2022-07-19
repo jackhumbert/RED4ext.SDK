@@ -9,6 +9,7 @@
 #include <RED4ext/Common.hpp>
 #include <RED4ext/HashMap.hpp>
 #include <RED4ext/InstanceType.hpp>
+#include <RED4ext/ResourceReference.hpp>
 #include <RED4ext/Unks.hpp>
 
 namespace RED4ext
@@ -101,7 +102,7 @@ struct Variant
 
     static constexpr uintptr_t InlineFlag = 1;
     static constexpr uintptr_t TypeMask = ~InlineFlag;
- 
+
     Variant() noexcept = default;
     Variant(const CBaseRTTIType* aType);
     Variant(const CBaseRTTIType* aType, const ScriptInstance aData);
@@ -111,10 +112,10 @@ struct Variant
 
     bool IsEmpty() const noexcept;
     bool IsInlined() const noexcept;
-    
+
     CBaseRTTIType* GetType() const noexcept;
     ScriptInstance GetDataPtr() const noexcept;
-    
+
     bool Init(const CBaseRTTIType* aType);
     bool Fill(const CBaseRTTIType* aType, const ScriptInstance aData);
     bool Extract(ScriptInstance aBuffer);
@@ -168,7 +169,11 @@ RED4EXT_ASSERT_SIZE(DeferredDataBuffer, 0x58);
 
 struct gamedataLocKeyWrapper
 {
-    int64_t unk00; // 00
+    gamedataLocKeyWrapper() noexcept;
+    gamedataLocKeyWrapper(uint64_t aPrimaryKey) noexcept;
+    gamedataLocKeyWrapper(const char* aSecondaryKey) noexcept;
+
+    uint64_t primaryKey; // 00
 };
 RED4EXT_ASSERT_SIZE(gamedataLocKeyWrapper, 0x8);
 
