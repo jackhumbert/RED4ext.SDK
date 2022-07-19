@@ -79,15 +79,9 @@ struct RuntimeSettingsVar
     RuntimeSettingsVar()
     {
         displayNameKeys = RED4ext::DynArray<RED4ext::CName>(new RED4ext::Memory::DefaultAllocator());
-        updatePolicy = RED4ext::user::EConfigVarUpdatePolicy::Immediately;
         unk44 = 0xFF;
         unk45 = 0xFF;
-        bitfield.isInPreGame = true;
-        bitfield.isInGame = true;
-        bitfield.isVisible = true;
-        bitfield.isInitialized = true;
-        bitfield.isDisabled = false;
-        bitfield.canBeRestoredToDefault = true;
+        bitfield = (EConfigVarFlags)0ui32;
     }
 
     virtual RED4ext::Memory::IAllocator* __fastcall GetAllocator(RuntimeSettingsVar*)
@@ -110,18 +104,14 @@ struct RuntimeSettingsVar
     virtual void __fastcall ChangeWasWritten() = 0;
     virtual void __fastcall UpdateAll(void* value) = 0;
 
-    // custom
-    virtual void __fastcall GetValueToWrite(char* value) = 0;
-    virtual ScriptInstance* __fastcall GetValuePtr() = 0;
-
-    CName name;
-    CName groupPath;
-    CName displayName;
+    CName name = CName();
+    CName groupPath = CName();
+    CName displayName = CName();
     DynArray<CName> displayNameKeys;
-    CName description;
+    CName description = CName();
     EConfigVarType type;
-    EConfigVarUpdatePolicy updatePolicy;
-    EConfigVarImportPolicy importPolicy;
+    EConfigVarUpdatePolicy updatePolicy = EConfigVarUpdatePolicy::Immediately;
+    EConfigVarImportPolicy importPolicy = EConfigVarImportPolicy::ReadValue;
     uint8_t unk3B;
     EConfigVarFlags bitfield;
     uint32_t order;
@@ -244,16 +234,6 @@ struct RuntimeSettingsVarBool : public RuntimeSettingsVar
         valueValidated = *(uint8_t*)value;
     }
 
-    virtual void __fastcall GetValueToWrite(char* value) override
-    {
-        sprintf(value, "%d", valueValidated);
-    }
-
-    virtual ScriptInstance* __fastcall GetValuePtr()
-    {
-        return (ScriptInstance*)&valueValidated;
-    }
-    
     uint8_t valueValidated;
     uint8_t defaultValue;
     uint8_t valueInput;
@@ -261,14 +241,15 @@ struct RuntimeSettingsVarBool : public RuntimeSettingsVar
     uint32_t unk4C;
 };
 RED4EXT_ASSERT_SIZE(RuntimeSettingsVarBool, 0x50);
-//char (*__kaboom)[sizeof(RuntimeSettingsVarBool)] = 1;
+// char (*__kaboom)[sizeof(RuntimeSettingsVarBool)] = 1;
 
 struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
 {
-    //static constexpr const uintptr_t VFT = 0x35E6D08 + 0xC00;
+    // static constexpr const uintptr_t VFT = 0x35E6D08 + 0xC00;
 
-    RuntimeSettingsVarFloat() : RuntimeSettingsVar() {
-
+    RuntimeSettingsVarFloat()
+        : RuntimeSettingsVar()
+    {
     }
 
     virtual bool __fastcall WasModifiedSinceLastSave() override
@@ -287,7 +268,8 @@ struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
         if (HasChange())
         {
             value = valueInput;
-        } else
+        }
+        else
         {
             value = valueValidated;
         }
@@ -300,49 +282,50 @@ struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
         if (wasDefault)
             return !wasDefault;
         unk44 = a1;
-        if (((a1 - 2) & 0xFD) != 0) {
+        if (((a1 - 2) & 0xFD) != 0)
+        {
             if (((a1 - 1) & 0xFD) != 0)
             {
                 if (!a1)
                 {
                     UpdateValue((int*)&defaultValue);
-                    //UserSettings = GetUserSettings();
-                    //AddSettingsDataToSettings(UserSettings, a1);
+                    // UserSettings = GetUserSettings();
+                    // AddSettingsDataToSettings(UserSettings, a1);
                 }
                 return !wasDefault;
             }
         UpdateImmediately:
             UpdateValue((int*)&defaultValue);
-            //v9 = GetUserSettings();
-            //sub_7FF62769C390(v9, a1);
+            // v9 = GetUserSettings();
+            // sub_7FF62769C390(v9, a1);
             return !wasDefault;
         }
         switch (updatePolicy)
         {
-            case RED4ext::user::EConfigVarUpdatePolicy::Disabled:
-                return !wasDefault;
-            case RED4ext::user::EConfigVarUpdatePolicy::Immediately:
-                goto UpdateImmediately;
-            case RED4ext::user::EConfigVarUpdatePolicy::ConfirmationRequired:
-                UpdateValue((int*)&defaultValue);
-                //v8 = GetUserSettings();
-                //SettingsConfirmChange_0(v8, a1);
-                break;
-            case RED4ext::user::EConfigVarUpdatePolicy::RestartRequired:
-                UpdateValue((int*)&defaultValue);
-                //v7 = GetUserSettings();
-                //SettingsRestartRequired_0(v7, a1);
-                break;
-            case RED4ext::user::EConfigVarUpdatePolicy::LoadLastCheckpointRequired:
-                UpdateValue((int*)&defaultValue);
-                //v6 = GetUserSettings();
-                //SettingsLoadLastCheckpoint_0(v6, a1);
-                break;
-            default:
-                //LogError_f("E:\\R6.Release\\dev\\src\\common\\redConfig\\include\\inGameConfigVar.hpp", 44, line,
-                //           "Unknown in-game config var update policy (%d)", (unsigned __int8)a1->updatePolicy);
-                //__debugbreak();
-                break;
+        case RED4ext::user::EConfigVarUpdatePolicy::Disabled:
+            return !wasDefault;
+        case RED4ext::user::EConfigVarUpdatePolicy::Immediately:
+            goto UpdateImmediately;
+        case RED4ext::user::EConfigVarUpdatePolicy::ConfirmationRequired:
+            UpdateValue((int*)&defaultValue);
+            // v8 = GetUserSettings();
+            // SettingsConfirmChange_0(v8, a1);
+            break;
+        case RED4ext::user::EConfigVarUpdatePolicy::RestartRequired:
+            UpdateValue((int*)&defaultValue);
+            // v7 = GetUserSettings();
+            // SettingsRestartRequired_0(v7, a1);
+            break;
+        case RED4ext::user::EConfigVarUpdatePolicy::LoadLastCheckpointRequired:
+            UpdateValue((int*)&defaultValue);
+            // v6 = GetUserSettings();
+            // SettingsLoadLastCheckpoint_0(v6, a1);
+            break;
+        default:
+            // LogError_f("E:\\R6.Release\\dev\\src\\common\\redConfig\\include\\inGameConfigVar.hpp", 44, line,
+            //            "Unknown in-game config var update policy (%d)", (unsigned __int8)a1->updatePolicy);
+            //__debugbreak();
+            break;
         }
         return !wasDefault;
     }
@@ -374,16 +357,6 @@ struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
         valueValidated = *(float*)value;
     }
 
-    virtual void __fastcall GetValueToWrite(char* value) override
-    {
-        sprintf(value, "%f", valueValidated);
-    }
-
-    virtual ScriptInstance* __fastcall GetValuePtr()
-    {
-        return (ScriptInstance*)&valueValidated;
-    }
-
     float valueValidated;
     float defaultValue;
     float valueInput;
@@ -409,8 +382,9 @@ struct RuntimeSettingsVarFloatList : public RuntimeSettingsVar
 
 struct RuntimeSettingsVarInt : public RuntimeSettingsVar
 {
-    //static constexpr const uintptr_t VFT = 0x35E6CB0 + 0xC00;
-    RuntimeSettingsVarInt() : RuntimeSettingsVar()
+    // static constexpr const uintptr_t VFT = 0x35E6CB0 + 0xC00;
+    RuntimeSettingsVarInt()
+        : RuntimeSettingsVar()
     {
     }
 
@@ -519,16 +493,6 @@ struct RuntimeSettingsVarInt : public RuntimeSettingsVar
         valueValidated = *(int32_t*)value;
     }
 
-    virtual void __fastcall GetValueToWrite(char* value) override
-    {
-        sprintf(value, "%d", valueValidated);
-    }
-
-    virtual ScriptInstance* __fastcall GetValuePtr()
-    {
-        return (ScriptInstance*)&valueValidated;
-    }
-
     int32_t valueValidated;
     int32_t defaultValue;
     int32_t valueInput;
@@ -541,7 +505,8 @@ struct RuntimeSettingsVarInt : public RuntimeSettingsVar
 
 struct RuntimeSettingsVarIntList : public RuntimeSettingsVar
 {
-    RuntimeSettingsVarIntList() : RuntimeSettingsVar()
+    RuntimeSettingsVarIntList()
+        : RuntimeSettingsVar()
     {
         values = RED4ext::DynArray<int32_t>(new Memory::DefaultAllocator());
     }
@@ -667,16 +632,6 @@ struct RuntimeSettingsVarIntList : public RuntimeSettingsVar
         valueWrittenToFile = *(uint32_t*)value;
         valueInput = *(uint32_t*)value;
         valueValidated = *(uint32_t*)value;
-    }
-
-    virtual void __fastcall GetValueToWrite(char* value) override
-    {
-        sprintf(value, "%d", valueValidated);
-    }
-
-    virtual ScriptInstance* __fastcall GetValuePtr()
-    {
-        return (ScriptInstance*)&valueValidated;
     }
 
     uint32_t unk48;
@@ -825,16 +780,6 @@ struct RuntimeSettingsVarNameList : RuntimeSettingsVar
         valueWrittenToFile = *(uint32_t*)value;
         valueInput = *(uint32_t*)value;
         valueValidated = *(uint32_t*)value;
-    }
-
-    virtual void __fastcall GetValueToWrite(char* value) override
-    {
-        sprintf(value, "%d", valueValidated);
-    }
-
-    virtual ScriptInstance* __fastcall GetValuePtr()
-    {
-        return (ScriptInstance *) & valueValidated;
     }
 
     CName value;
