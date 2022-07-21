@@ -20,7 +20,7 @@ struct EffectSpawnerComponent : ent::IVisualComponent
 
     DynArray<Handle<ent::EffectDesc>> effectDescs; // 140
     DynArray<void *> activeEffects; // 150
-    DynArray<Handle<ResourceWrapper<world::Effect>>> resources; // 160
+    DynArray<RaRef<world::Effect>> resources; // 160
     uint8_t unk150[0x220 - 0x170]; // 170
 };
 RED4EXT_ASSERT_SIZE(EffectSpawnerComponent, 0x220);

@@ -18,7 +18,7 @@ struct EffectSystem : game::IEffectSystem
 
     uintptr_t unk48[7];
     DynArray<uint64_t> effectNameHashes;
-    DynArray<ResourceHandle<EffectSet>> effectResources;
+    DynArray<RaRef<EffectSet>> effectResources;
     uint32_t unkA0;
     uint32_t unkA4;
     DynArray<uintptr_t> unkA8;

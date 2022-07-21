@@ -202,36 +202,6 @@ struct RuntimeEntityRef
 };
 RED4EXT_ASSERT_SIZE(RuntimeEntityRef, 0x8);
 
-template<typename T>
-struct ResourceWrapper;
-
-template<typename T>
-struct ResourceHandle
-{
-    ResourceWrapper<T> * wrapper;
-    RefCnt* refCount;
-};
-RED4EXT_ASSERT_SIZE(ResourceHandle<void>, 0x10);
-
-template<typename T>
-struct ResourceWrapper
-{
-    ResourceHandle<T> self; // 00
-    DynArray<void*> externalResources;
-    uintptr_t unk20;
-    Handle<T> resource;
-    void * unk38;
-    void * unk40;
-    uint64_t hash;
-    void * unk50;
-    uint32_t unk58;
-    uint8_t unk5C;
-    uint8_t unk5D;
-    uint8_t unk5E;
-    uint8_t unk5F;
-};
-RED4EXT_ASSERT_SIZE(ResourceWrapper<void>, 0x60);
-
 template<typename T, uint32_t MAX_LEN>
 struct StaticArray
 {
