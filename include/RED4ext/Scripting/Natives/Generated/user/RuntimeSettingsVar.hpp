@@ -86,13 +86,19 @@ struct RuntimeSettingsVar
 
     virtual RED4ext::Memory::IAllocator* __fastcall GetAllocator(RuntimeSettingsVar*)
     {
-        return Memory::DefaultAllocator::Get();
+        return new Memory::DefaultAllocator();
     }
-    virtual void __fastcall Deinitialize(uint64_t) {
-        //if (displayNameKeys.size)
-        //{
-        //    displayNameKeys.Clear();
-        //}
+    virtual RuntimeSettingsVar * __fastcall Deinitialize(char shouldFree)
+    {
+        if (displayNameKeys.capacity)
+        {
+            displayNameKeys.Clear();
+        }
+        if ((shouldFree & 1) != 0)
+        {
+            // idk
+        }
+        return this;
     }
     virtual bool __fastcall WasModifiedSinceLastSave() = 0;
     virtual bool __fastcall HasChange() = 0;
@@ -104,12 +110,12 @@ struct RuntimeSettingsVar
     virtual void __fastcall ChangeWasWritten() = 0;
     virtual void __fastcall UpdateAll(void* value) = 0;
 
-    CName name = CName();
-    CName groupPath = CName();
-    CName displayName = CName();
-    DynArray<CName> displayNameKeys;
-    CName description = CName();
-    EConfigVarType type;
+    CName name = CName();               // 08
+    CName groupPath = CName();          // 10
+    CName displayName = CName();        // 18
+    DynArray<CName> displayNameKeys;    // 20
+    CName description = CName();        // 30
+    EConfigVarType type;                // 38
     EConfigVarUpdatePolicy updatePolicy = EConfigVarUpdatePolicy::Immediately;
     EConfigVarImportPolicy importPolicy = EConfigVarImportPolicy::ReadValue;
     uint8_t unk3B;
