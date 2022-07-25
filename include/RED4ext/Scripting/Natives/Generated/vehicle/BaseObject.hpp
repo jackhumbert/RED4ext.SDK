@@ -11,9 +11,11 @@
 #include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsStruct.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/VehicleBaseObjectAirControl.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/ChassisComponent.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/data/Vehicle_Record.hpp>
 
 namespace RED4ext
 {
+namespace weapon { struct Object; }
 namespace AI { struct Archetype; }
 namespace world
 {
@@ -92,14 +94,59 @@ struct BaseObject : game::Object
     // Raytraces, decides isOnGround, physics sub_C0
     virtual void __fastcall sub_2C8();
 
-    // Empty function
+    // Empty function, calls physics sub_118
     virtual void __fastcall sub_2D0();
 
-    // Empty function
+    // Empty function, calls physics sub_120
     virtual void __fastcall sub_2D8();
 
-    // Something with the entity stored separately flag
+    // Something with the entity stored separately flag, maybe mounting related, calls sub_310
     virtual uint64_t __fastcall sub_2E0();
+
+    virtual uint64_t __fastcall sub_2E8();
+
+    virtual uint64_t __fastcall sub_2F0();
+
+    // updates wheel positions, calls sub_310
+    virtual uint64_t __fastcall sub_2F8();
+
+    // Get vehicle record handle
+    virtual Handle<game::data::Vehicle_Record> * __fastcall sub_300(Handle<game::data::Vehicle_Record>*);
+
+    // Get unk tweak record/hash
+    virtual uint64_t __fastcall sub_308(uint64_t *);
+
+    // mount/engine related
+    virtual uint64_t __fastcall sub_310();
+
+    // checks something in engine data
+    virtual uint64_t __fastcall sub_318();
+
+    // some physics & wheel stuff
+    virtual uint64_t __fastcall sub_320();
+    virtual uint64_t __fastcall sub_328();
+    virtual uint64_t __fastcall sub_330();
+    virtual uint64_t __fastcall sub_338();
+    virtual uint64_t __fastcall sub_340();
+    virtual uint64_t __fastcall sub_348();
+
+    // Something wheels
+    virtual uint64_t __fastcall sub_350();
+
+    // Something vehicle audio
+    virtual uint64_t __fastcall sub_358();
+
+    // Process vehicle weapons
+    virtual void __fastcall sub_360(float, uint32_t index);
+
+    // Fire vehicle weapon, calls generic weapon shoot
+    virtual uint64_t __fastcall sub_368(weapon::Object *weaponObject, Vector4 *weaponPosition, Vector4 *offset, Vector4 *tracePosition, float range, __int64 numProjectiles, __int64 a8, __int64 a9, __int64 a10);
+
+    // Get Aim Trace Position
+    virtual Vector3* __fastcall sub_370(Vector3*);
+
+    // Get shoot value for index
+    virtual uint8_t __fastcall sub_378(int);
 
 
     //virtual void __fastcall VehicleWheelRuntimeStuff();
