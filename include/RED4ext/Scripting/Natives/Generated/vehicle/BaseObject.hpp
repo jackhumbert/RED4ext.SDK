@@ -6,6 +6,7 @@
 #include <RED4ext/Common.hpp>
 #include <RED4ext/NativeTypes.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/Object.hpp>
+#include <RED4ext/Scripting/Natives/Generated/WorldTransform.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysics.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsStruct.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/VehicleBaseObjectAirControl.hpp>
@@ -37,6 +38,99 @@ struct BaseObject : game::Object
     static constexpr const char* NAME = "vehicleBaseObject";
     static constexpr const char* ALIAS = "VehicleObject";
 
+// overridden member functions
+
+    virtual CString* __fastcall sub_1C0(CString*) override;
+
+    // Looks at unk580, sub_1D0
+    virtual RED4ext::CName* __fastcall GetAudioResourceName(RED4ext::CName*) override;
+
+    // Somethign with unk388 & vehicle controller, sub_1F8
+    virtual uint64_t __fastcall OnTakeControl(uintptr_t) override; 
+
+    // Also sends out some red event
+    virtual uint64_t __fastcall sub_218(WorldTransform*) override;
+
+// new member functions
+
+    // Loads some vehicle tweaks and sets things up
+    virtual void __fastcall sub_268();
+
+    // Loads more tweaks and vehicle weapons
+    virtual void __fastcall sub_270();
+
+    // Returns 0.0
+    virtual double __fastcall sub_278();
+
+    // Updates physics World Transform, creates physicsStruct, engine data
+    virtual int32_t __fastcall sub_280();
+
+    // Calls physics sub_80
+    virtual uint64_t __fastcall sub_288();
+
+    // Calls physics sub_88
+    virtual uint64_t __fastcall sub_290();
+
+    // Returns 45.0
+    virtual float __fastcall sub_298();
+
+    // Empty function
+    virtual void __fastcall sub_2A0();
+
+    // Something with blackboard and effect data
+    virtual uint64_t __fastcall sub_2A8();
+
+    // Empty function
+    virtual void __fastcall sub_2B0();
+
+    // Call physics sub_58, runs update with chassis
+    virtual void __fastcall sub_2B8(uint64_t, uint64_t);
+
+    // Empty function
+    virtual void __fastcall sub_2C0();
+
+    // Raytraces, decides isOnGround, physics sub_C0
+    virtual void __fastcall sub_2C8();
+
+    // Empty function
+    virtual void __fastcall sub_2D0();
+
+    // Empty function
+    virtual void __fastcall sub_2D8();
+
+    // Something with the entity stored separately flag
+    virtual uint64_t __fastcall sub_2E0();
+
+
+    //virtual void __fastcall VehicleWheelRuntimeStuff();
+    //virtual void __fastcall Return1();
+    //virtual void __fastcall VehicleUpdateSomePositionsStuff();
+    //virtual void __fastcall GetVehicleRecord();
+    //virtual void __fastcall GetVehicleUnkTweakRecord();
+    //virtual void __fastcall MountVehicleStartMaybe();
+    //virtual void __fastcall ReturnZero();
+    //virtual void __fastcall EmptyFunctionWithUnk568();
+    //virtual void __fastcall ReleaseHandle();
+    //virtual void __fastcall ReleaseHandle();
+    //virtual void __fastcall ReleaseHandle();
+    //virtual void __fastcall ReleaseHandle();
+    //virtual void __fastcall Return1();
+    //virtual void __fastcall EmptyFunction();
+    //virtual void __fastcall EmptyFunction();
+    //virtual void __fastcall j_VehicleProcessWeapons();
+    //virtual void __fastcall VehicleFireWeapon();
+    //virtual void __fastcall EmptyFunction();
+    //virtual void __fastcall GetTracePosition();
+    //virtual void __fastcall GetShootValueForIndexBasic();
+
+    struct Interface : game::Object::Interface
+    {
+        virtual uint64_t __fastcall Destruct(char a1) override; // 00
+
+        // Returns 0
+        virtual uint64_t __fastcall sub_08() override;
+    };
+
     world::RuntimeSystemPhysics* physicsSystem;
     float unk248;
     bool isOnGround;
@@ -47,7 +141,7 @@ struct BaseObject : game::Object
     float handbrake;
     float strafeY;
     float strafeX;
-    float unk268;
+    float turnInput;
     float leanFB;
     float rockFB;
     uint8_t shootPrimary;

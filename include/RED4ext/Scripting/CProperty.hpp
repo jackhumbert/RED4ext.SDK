@@ -38,7 +38,7 @@ struct CProperty
         uint64_t arrayRelated : 5;   // 16
         uint64_t isHandle : 1;       // 1B
         uint64_t isPersistent : 1;   // 1C
-        uint64_t b29 : 1;            // 1D
+        uint64_t b29 : 1;            // 1D - set on some DynArray<Handle>
         uint64_t hasHint : 1;        // 1E
         uint64_t hasInnerType : 1;   // 1F
         uint64_t isNotPersistent : 1;// 20
@@ -129,6 +129,100 @@ RED4EXT_ASSERT_OFFSET(CProperty, name, 0x8);
 RED4EXT_ASSERT_OFFSET(CProperty, parent, 0x18);
 RED4EXT_ASSERT_OFFSET(CProperty, valueOffset, 0x20);
 RED4EXT_ASSERT_OFFSET(CProperty, flags, 0x28);
+
+struct CPropertyStruct
+{
+    CName name;
+    CName group;
+    void* parent;
+    void* type;
+    uint64_t valueOffset;
+    RED4ext::CProperty::Flags flags;
+    CString tooltip;
+    CString unk50;
+    uint8_t unk70;
+    uint8_t unk71;
+    uint8_t unk72;
+    uint8_t unk73;
+    uint32_t unk74;
+    uint32_t unk78;
+    uint32_t unk7C;
+    uint32_t unk80;
+    uint32_t unk84;
+    uint32_t unk88;
+    uint32_t unk8C;
+    uint64_t unk90;
+    CString unk98;
+    DynArray<void*> unkB8;
+    uint32_t unkC8;
+    uint32_t unkCC;
+    uint8_t moreFlags;
+    uint8_t unkD1;
+    uint8_t unkD2;
+    uint8_t unkD3;
+    uint32_t unkD4;
+    uint64_t unkD8;
+    uint8_t unkE0;
+    uint8_t unkE1;
+    uint8_t unkE2;
+    uint8_t unkE3;
+    uint32_t unkE4;
+    uint64_t unkE8;
+};
+
+struct CPropertyUnk
+{
+    CBaseRTTIType* parent;
+    CName name;
+    CString tooltip;
+    CProperty::Flags flags;
+    uint32_t unk38;
+};
+
+struct CGroup
+{
+    uint8_t byteStorage[0x40];
+
+    // This is used instead of a string
+    RED4ext::DynArray<char> bytes;
+};
+
+struct CallbackStorage
+{
+    CName fullName;
+    uint64_t unk08;
+    void* callbackStruct;
+    CName actionType;
+    uint16_t asyncID;
+    uint8_t unk22;
+};
+
+struct CallbackDefinition;
+
+struct CallbackStruct
+{
+    // Calls the OnEvent with the instance + offset & event
+    void (__fastcall* FireCallback)(CallbackDefinition* definition, IScriptable* instance, void* event);
+
+    // Copy the definition into storage
+    void (__fastcall* StoreDefinition)(CallbackStorage*, CallbackDefinition*);
+
+    // Copy the storage struct
+    void (__fastcall* CopyStorage)(CallbackStorage*, CallbackStorage*);
+
+    // CallbackDefinition is also passed into this
+    void (__fastcall* Initialize)(CallbackStorage*);
+};
+
+struct CallbackDefinition
+{
+    uint64_t (__fastcall* OnEvent)(RED4ext::IScriptable*, void*);
+    uint32_t instanceOffset;
+    uint32_t unk0C;
+    RED4ext::CallbackStruct* callbackStruct;
+};
+
+
 } // namespace RED4ext
 
 #ifdef RED4EXT_HEADER_ONLY

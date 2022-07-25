@@ -200,7 +200,7 @@ RED4EXT_INLINE RED4ext::CClass::CClass(CName aName, uint32_t aSize, Flags aFlags
     , callbacks(Memory::RTTIAllocator::Get())
     , unk2C0(-1)
     , unk2C4(-1)
-    , unk2C9(0xE6)
+    , classSetupState(0xE6)
 {
     std::memset(callbackIdStorage, 0, sizeof(callbackIdStorage));
 }

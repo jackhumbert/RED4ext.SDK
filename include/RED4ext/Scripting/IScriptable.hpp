@@ -13,7 +13,7 @@ namespace RED4ext
 struct CBaseFunction;
 struct IScriptable : ISerializable
 {
-    virtual CClass* GetType();
+    virtual CClass* GetType() override;
 
     virtual void sub_D8(int64_t a1, int64_t a2); // D8
     virtual void sub_E0();                       // E0

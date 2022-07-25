@@ -10,6 +10,7 @@
 #include <RED4ext/Scripting/Natives/Generated/Matrix.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsInsert1.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsInsert2.hpp>
+#include <RED4ext/Scripting/Natives/Generated/vehicle/PID.hpp>
 
 namespace RED4ext
 {
@@ -64,7 +65,7 @@ struct VehiclePhysics
     // Wheeled
     uint32_t unkD0;
     RED4ext::Vector4 unkD4Position;
-    float unkE4;
+    float turnRate;
     uint32_t unkE8;
     uint32_t unkEC;
     float wheelTurningThing;
@@ -140,24 +141,73 @@ struct VehiclePhysics
     float* transformStruct;
     uint64_t unkD18;
     RED4ext::vehicle::BaseObject* parent3;
-    RED4ext::Vector4 unkD28;
-    RED4ext::Vector4 unkD38;
-    RED4ext::Vector4 unkD48;
-    uint32_t unkD58;
-    uint32_t unkD5C;
-    uint8_t tiltControlEnabled;
-    uint8_t unkD61;
-    uint8_t unkD62;
-    uint8_t unkD63;
-    float customTiltTarget;
-
-    // Car
 };
 #pragma pack(pop)
 //char (*__kaboom)[sizeof(VehiclePhysics)] = 1;
 //char (*__kaboom2)[offsetof(VehiclePhysics, unkD4Position)] = 1;
 RED4EXT_ASSERT_OFFSET(VehiclePhysics, driveHelpers, 0xCE8);
-RED4EXT_ASSERT_SIZE(VehiclePhysics, 0xD68);
+RED4EXT_ASSERT_SIZE(VehiclePhysics, 0xD28);
+
+struct VehiclePhysicsCar : VehiclePhysics
+{
+    static constexpr const char* NAME = "physicsVehiclePhysicsCar";
+    static constexpr const char* ALIAS = NAME;
+
+    vehicle::PID bankBodyFBPID;
+    vehicle::PID bankBodyLRPID;
+    float bankBodyFBTanMultiplier;
+    float bankBodyLRTanMultiplier;
+    float differentialOvershootFactor;
+    float perfectSteeringFactor;
+    float affectsTurnX;
+    float affectsTurnX_asWell;
+    float veh_curr_turn_rate;
+    float veh_curr_turn_input;
+    float veh_bank_body_f_b;
+    float veh_bank_body_l_r;
+    float unkD90;
+    float minLongSlipRatioMaybe;
+    float unkD98[3];
+    float swaybarLengthScalarMaybe;
+    float minLongFrictionCoefMaybe;
+    float unkDAC[5];
+    WorldTransform wt1;
+    WorldTransform wt2;
+    WorldTransform wt3;
+    WorldTransform wt4;
+    Quaternion unkE40;
+    Quaternion unkE50;
+    float unkE60_V568_E8;
+    float unkE64;
+    float unkE68;
+    float unkE6C;
+    uint8_t unkE70;
+    uint8_t unkE71;
+    uint8_t unkE72;
+    uint8_t unkE73;
+    uint8_t positionNeedsUpdate;
+    uint8_t unkE75[3];
+    uint64_t unkE78;
+};
+RED4EXT_ASSERT_OFFSET(VehiclePhysicsCar, unkE78, 0xE78);
+
+struct VehiclePhysicsBike : VehiclePhysics
+{
+    static constexpr const char* NAME = "physicsVehiclePhysicsBike";
+    static constexpr const char* ALIAS = NAME;
+
+    Handle<void*> unkD28;
+    vehicle::PID tiltPID;
+    Handle<void*> unkD58;
+    float unkD68;
+    float unkD6C;
+    float bikeTiltSpeed;
+    float bikeTiltReturnSpeed;
+    float bikeTiltCustomSpeed;
+    float bikeMaxTilt;
+};
+RED4EXT_ASSERT_OFFSET(VehiclePhysicsBike, unkD28, 0xD28);
+
 } // namespace physics
 } // namespace RED4ext
 

@@ -208,8 +208,8 @@ struct CClass : CBaseRTTIType
     int32_t callbackIdStorage[64];               // 1C0
     int16_t unk2C0;                              // 2C0
     int32_t unk2C4;                              // 2C4
-    SharedMutex unk2C8;                          // 2C8
-    uint8_t unk2C9;                              // 2C9
+    SharedMutex propertiesLock;                  // 2C8
+    uint8_t classSetupState;                     // 2C9
 };
 RED4EXT_ASSERT_SIZE(CClass, 0x2D0);
 RED4EXT_ASSERT_OFFSET(CClass, parent, 0x10);
