@@ -19,6 +19,11 @@ struct IPlacedComponent : ent::IComponent
     static constexpr const char* NAME = "entIPlacedComponent";
     static constexpr const char* ALIAS = "IPlacedComponent";
 
+    virtual void sub_238();
+    virtual void sub_240();
+    virtual void sub_248();
+    virtual void GetFlags();
+
     Handle<ent::ITransformBinding> parentTransform; // 90
     uint8_t unkA0[0xC0 - 0xA0]; // A0
     WorldTransform worldTransform;

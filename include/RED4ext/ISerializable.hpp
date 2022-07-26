@@ -18,6 +18,8 @@ struct CString;
 
 struct ISerializable
 {
+    static constexpr const uintptr_t VFT_RVA = 0x30774C8 + 0x1800;
+
     virtual CClass* GetNativeType() = 0;                                                // 00
     virtual CClass* GetType();                                                          // 08
     virtual Memory::IAllocator* GetAllocator();                                         // 10

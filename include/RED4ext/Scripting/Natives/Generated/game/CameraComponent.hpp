@@ -10,12 +10,18 @@
 namespace RED4ext
 {
 namespace game { 
-struct CameraComponent : ent::BaseCameraComponent
+
+struct WorldPositionInterface {
+    virtual void sub_00();
+    virtual void sub_08();
+};
+
+struct CameraComponent : ent::BaseCameraComponent, WorldPositionInterface
 {
     static constexpr const char* NAME = "gameCameraComponent";
     static constexpr const char* ALIAS = "CameraComponent";
+    static constexpr const uintptr_t VFT_RVA = 0x330DB00 + 0x1800;
 
-    uint8_t unk1D0[0x1D8 - 0x1D0]; // 1D0
     CName animParamFovOverrideWeight; // 1D8
     CName animParamFovOverrideValue; // 1E0
     CName animParamZoomOverrideWeight; // 1E8

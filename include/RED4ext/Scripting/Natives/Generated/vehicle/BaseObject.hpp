@@ -34,11 +34,21 @@ struct Entity;
 namespace vehicle
 {
 struct Weapon;
+
+//struct Interface : game::Object::Interface
+//{
+//    virtual uint64_t __fastcall Destruct(char a1) override; // 00
+//
+//    // Returns 0
+//    virtual uint64_t __fastcall sub_08() override;
+//};
+
 #pragma pack(push, 1)
 struct BaseObject : game::Object
 {
     static constexpr const char* NAME = "vehicleBaseObject";
     static constexpr const char* ALIAS = "VehicleObject";
+    static constexpr const uintptr_t VFT_RVA = 0x341BB90 + 0x1800;
 
 // overridden member functions
 
@@ -142,11 +152,14 @@ struct BaseObject : game::Object
     // Fire vehicle weapon, calls generic weapon shoot
     virtual uint64_t __fastcall sub_368(weapon::Object *weaponObject, Vector4 *weaponPosition, Vector4 *offset, Vector4 *tracePosition, float range, __int64 numProjectiles, __int64 a8, __int64 a9, __int64 a10);
 
+    // Empty Function
+    virtual void __fastcall sub_370();
+
     // Get Aim Trace Position
-    virtual Vector3* __fastcall sub_370(Vector3*);
+    virtual Vector3* __fastcall sub_378(Vector3*);
 
     // Get shoot value for index
-    virtual uint8_t __fastcall sub_378(int);
+    virtual uint8_t __fastcall sub_380(int);
 
 
     //virtual void __fastcall VehicleWheelRuntimeStuff();
@@ -170,13 +183,6 @@ struct BaseObject : game::Object
     //virtual void __fastcall GetTracePosition();
     //virtual void __fastcall GetShootValueForIndexBasic();
 
-    struct Interface : game::Object::Interface
-    {
-        virtual uint64_t __fastcall Destruct(char a1) override; // 00
-
-        // Returns 0
-        virtual uint64_t __fastcall sub_08() override;
-    };
 
     world::RuntimeSystemPhysics* physicsSystem;
     float unk248;

@@ -12,17 +12,28 @@
 #include <RED4ext/Scripting/Natives/Generated/game/PlayerSocket.hpp>
 #include <RED4ext/Scripting/Natives/Generated/red/TagList.hpp>
 #include <RED4ext/Scripting/Natives/Generated/WorldTransform.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/PersistentState.hpp>
 
 namespace RED4ext
 {
 namespace ent { struct SlotComponent; }
-namespace game { struct PersistentState; }
 
-namespace game { 
-struct Object : ent::GameEntity
+namespace game {
+struct PersistentState;
+// game::Object interface, accepts instance - 0x160 shift
+struct PSInterface
+{
+    virtual uint64_t __fastcall Destruct(char a1); // 00
+    virtual uint64_t __fastcall sub_08();          // 08
+
+    Handle<PersistentState> persistentState; // 168
+};
+
+struct Object : ent::GameEntity, PSInterface
 {
     static constexpr const char* NAME = "gameObject";
     static constexpr const char* ALIAS = "GameObject";
+    static constexpr const uintptr_t VFT_RVA = 0x3313EC0 + 0x1800;
     
     virtual void __fastcall sub_1C8() { };
     virtual RED4ext::CName* __fastcall GetAudioResourceName(RED4ext::CName*); // 1D0
@@ -61,12 +72,6 @@ struct Object : ent::GameEntity
     // Called by ReplicateInputVector
     virtual void __fastcall sub_260(Handle<IScriptable>* obj, CName inputName, Vector4 value){};
 
-    // game::Object interface, accepts instance - 0x160 shift
-    struct Interface
-    {
-        virtual uint64_t __fastcall Destruct(char a1); // 00
-        virtual uint64_t __fastcall sub_08();           // 08
-    };
 
     struct Flags
     {
@@ -76,8 +81,8 @@ struct Object : ent::GameEntity
         uint8_t EnabledTransformUpdates : 1;
     };
 
-    Interface gameObjectInterface; // 160
-    Handle<game::PersistentState> persistentState; // 168
+    //Interface gameObjectInterface; // 160
+    //Handle<game::PersistentState> persistentState; // 168
     LocalizationString displayName; // 178
     LocalizationString displayDescription; // 1A0
     CName audioResourceName; // 1C8
@@ -92,6 +97,7 @@ struct Object : ent::GameEntity
     red::TagList tags; // 230
 };
 RED4EXT_ASSERT_SIZE(Object, 0x240);
+RED4EXT_ASSERT_OFFSET(Object, persistentState, 0x168);
 } // namespace game
 using GameObject = game::Object;
 } // namespace RED4ext

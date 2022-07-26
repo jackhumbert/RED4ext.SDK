@@ -25,7 +25,7 @@ struct Entity : IScriptable
     virtual void __fastcall sub_128();
     virtual bool __fastcall sub_130();
     virtual void __fastcall sub_138() { };
-    virtual void __fastcall sub_140() { };
+    virtual void __fastcall sub_140(Handle<void*>*, int64_t*) { };
     virtual void __fastcall sub_148() { };
     virtual void __fastcall sub_150() { };
     virtual void __fastcall sub_158() { };
