@@ -11,7 +11,13 @@
 #include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsStruct.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/VehicleBaseObjectAirControl.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/ChassisComponent.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/OccupantSlotComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/data/Vehicle_Record.hpp>
+#include <RED4ext/Scripting/Natives/Generated/vehicle/Controller.hpp>
+#include <RED4ext/Scripting/Natives/Generated/vehicle/CameraManager.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/interactions/Component.hpp>
+#include <RED4ext/Scripting/Natives/Generated/AI/CAgent.hpp>
+#include <RED4ext/Scripting/Natives/Generated/move/Component.hpp>
 
 namespace RED4ext
 {
@@ -52,13 +58,17 @@ struct BaseObject : game::Object
 
 // overridden member functions
 
+    virtual CClass* __fastcall GetNativeType() override;
+
+    virtual void __fastcall OnRequestComponents(char *) override;
+
     virtual CString* __fastcall sub_1C0(CString*) override;
 
     // Looks at unk580, sub_1D0
     virtual RED4ext::CName* __fastcall GetAudioResourceName(RED4ext::CName*) override;
 
     // Somethign with unk388 & vehicle controller, sub_1F8
-    virtual uint64_t __fastcall OnTakeControl(uintptr_t) override; 
+    virtual uint64_t __fastcall OnTakeControl(game::ComponentHelper*) override; 
 
     // Also sends out some red event
     virtual uint64_t __fastcall sub_218(WorldTransform*) override;
@@ -121,7 +131,7 @@ struct BaseObject : game::Object
     virtual uint64_t __fastcall sub_2F8();
 
     // Get vehicle record handle
-    virtual Handle<game::data::Vehicle_Record> * __fastcall sub_300(Handle<game::data::Vehicle_Record>*);
+    virtual Handle<game::data::Vehicle_Record> * __fastcall GetRecord(Handle<game::data::Vehicle_Record>*);
 
     // Get unk tweak record/hash
     virtual uint64_t __fastcall sub_308(uint64_t *);
@@ -221,7 +231,7 @@ struct BaseObject : game::Object
     physics::VehiclePhysics* physics;             // 2B0
     physics::VehiclePhysicsStruct* physicsStruct; // 2B8
     Handle<void> curveSetData;
-    Handle<void> chassis;
+    Handle<ChassisComponent> chassis;
     float unk2E0[16];
     uint64_t chassisType;
     uint64_t unk328;
@@ -233,10 +243,8 @@ struct BaseObject : game::Object
     uint8_t unk362;
     uint8_t unk363;
     float unk364;
-    float unk368;
-    uint32_t unk36C;
-    DynArray<void*> archetype;
-    uint64_t unk380;
+    Handle<AI::CAgent> aiComponent;
+    Handle<move::Component> moveComponent;
     void* someAction;
     DynArray<void*> unk390;
     DynArray<void*> unk3A0;
@@ -247,10 +255,11 @@ struct BaseObject : game::Object
     DynArray<void*> unk3E0;
     void* unk3F0[17];
     Handle<void> baseDrivingParams[4];
-    void* unk388[4];
-    Handle<void> vehicleController;
+    Handle<game::interactions::Component> interactionsComponent;
+    Handle<game::interactions::Component> passengerInteractions;
+    Handle<Controller> vehicleController;
     Handle<void> wheelRuntimePSData;
-    Handle<void> cameraManager;
+    Handle<CameraManager> cameraManager;
     world::RuntimeSystemPhysics* vehicleSystem;
     Handle<void> blackboard;
     Handle<void> blackboard2;
@@ -271,9 +280,9 @@ struct BaseObject : game::Object
     float turnXRelated2;
     float turnXRelated;
     float deltaTurnX;
-    Handle<void> slotComponent;
+    Handle<game::OccupantSlotComponent> occupantSlotComponent;
     uint64_t unkTweakRecord;
-    Handle<void> vehicleRecord;
+    Handle<game::data::Vehicle_Record> vehicleRecord;
     float unk5E8;
     float unk5EC;
     float unk5F0;

@@ -18,7 +18,7 @@ RED4EXT_INLINE RED4ext::Memory::IAllocator* RED4ext::ISerializable::GetAllocator
     return Memory::ScriptAllocator::Get();
 }
 
-RED4EXT_INLINE void RED4ext::ISerializable::sub_20()
+RED4EXT_INLINE void RED4ext::ISerializable::sub_20(Handle<ISerializable>* a1)
 {
 }
 

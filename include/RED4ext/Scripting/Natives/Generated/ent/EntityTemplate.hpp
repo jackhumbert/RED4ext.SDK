@@ -25,6 +25,10 @@ struct EntityTemplate : res::StreamedResource
 {
     static constexpr const char* NAME = "entEntityTemplate";
     static constexpr const char* ALIAS = NAME;
+    static constexpr const uintptr_t VFT_RVA = 0x32A2E58;
+
+    virtual void sub_20(Handle<ISerializable>*) override;
+    virtual void sub_28() override;
 
     DynArray<ent::TemplateInclude> includes; // 40
     DynArray<ent::TemplateAppearance> appearances; // 50

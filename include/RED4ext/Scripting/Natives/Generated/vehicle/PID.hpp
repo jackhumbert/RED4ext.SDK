@@ -11,6 +11,9 @@ namespace vehicle
 {
 struct PID
 {
+    /// @pattern 33 C0 F3 0F 11 49 0C 48 89 01 48 89 41 18 F3 0F 11 51 10 F3 0F 11 59 14 C3
+    void __fastcall Setup(float P, float I, float D);
+
     float integral;
     float lastError;
     float correction;

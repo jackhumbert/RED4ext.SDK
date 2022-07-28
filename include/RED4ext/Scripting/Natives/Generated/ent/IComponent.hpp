@@ -11,11 +11,17 @@
 
 namespace RED4ext
 {
-namespace ent { 
+namespace ent {
+struct Entity;
 struct IComponent : IScriptable
 {
     static constexpr const char* NAME = "entIComponent";
     static constexpr const char* ALIAS = "IComponent";
+
+    virtual CClass* GetNativeType() override
+    {
+
+    }
 
     virtual void sub_110();
     virtual void sub_118();
@@ -27,10 +33,12 @@ struct IComponent : IScriptable
     virtual void sub_148();
     virtual void sub_150();
     virtual void sub_158();
-    virtual void sub_160();
+    // called on initialize components
+    virtual bool sub_160();
     virtual void sub_168();
     virtual void sub_170();
-    virtual void sub_178();
+    // called on initialize components
+    virtual uint64_t sub_178(uint64_t);
     virtual void sub_180();
     virtual void OnRequestComponents();
     virtual void sub_190();
@@ -45,7 +53,8 @@ struct IComponent : IScriptable
     virtual void sub_1D8();
     virtual void sub_1E0();
     virtual void sub_1E8();
-    virtual void sub_1F0();
+    // called on gather event listeners
+    virtual void sub_1F0(uint64_t);
     virtual void sub_1F8();
     virtual void sub_200();
     virtual void sub_208();
@@ -53,11 +62,12 @@ struct IComponent : IScriptable
     virtual void sub_218();
     virtual void sub_220();
     virtual void sub_228();
-    virtual void sub_230();
+    // called on initialize components
+    virtual uint32_t sub_230();
 
     CName name; // 40
     uint8_t unk48[0x50 - 0x48]; // 48
-    Handle<ent::Entity> entity; // 50
+    Handle<Entity> entity; // 50
     CRUID id; // 60
     uint8_t unk68[0x8B - 0x68]; // 68
     bool isEnabled; // 8B

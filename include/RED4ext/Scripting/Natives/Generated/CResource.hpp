@@ -13,6 +13,7 @@ struct CResource : ISerializable
 {
     static constexpr const char* NAME = "CResource";
     static constexpr const char* ALIAS = NAME;
+    static constexpr const uintptr_t VFT_RVA = 0x307E448;
 
     uint8_t unk30[0x38 - 0x30]; // 30
     ECookingPlatform cookingPlatform; // 38

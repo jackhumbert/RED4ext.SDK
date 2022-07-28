@@ -10,6 +10,7 @@
 #include <RED4ext/Scripting/Natives/Generated/Matrix.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsInsert1.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsInsert2.hpp>
+#include <RED4ext/Scripting/Natives/Generated/vehicle/BaseObject.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/PID.hpp>
 
 namespace RED4ext
@@ -26,9 +27,63 @@ struct VehiclePhysics
 {
     static constexpr const char* NAME = "physicsVehiclePhysics";
     static constexpr const char* ALIAS = NAME;
+    static constexpr const uintptr_t VFT_RVA = 0x34316C8;
+
+    virtual uint64_t Destruct(char);
+    virtual uint64_t Create(vehicle::BaseObject *);
+    virtual uint64_t sub_10();
+    virtual uint64_t sub_18();
+    virtual uint64_t VehiclePhysicsUnkChassisComponent_0();
+    virtual uint64_t j_VP_UpdateWorldTransform();
+    virtual uint64_t sub_30();
+    virtual void sub_38();
+    virtual void j_SomethingLimitToPointZeroTwo();
+    virtual uint64_t FixedUpdate_PreSolve(uint64_t, float);
+    virtual uint64_t sub_50();
+    virtual uint64_t j_SomethingLimitToPointZeroTwo2();
+    // empty
+    virtual void sub_60();
+    virtual uint64_t sub_68(float);
+    virtual uint64_t sub_70(int, char);
+    virtual uint64_t UpdatePhysicsWT2();
+    // empty
+    virtual void sub_80();
+    // empty
+    virtual void sub_88();
+    virtual void SetUnk70To1();
+    // empty
+    virtual void sub_98();
+    // empty
+    virtual uint64_t sub_A0(uint64_t);
+    virtual uint64_t IntializeVectorQuaternion(uint64_t);
+    virtual uint64_t sub_B0(int, float);
+    virtual bool UpdatePhysicsStuff();
+    virtual bool IsInAirFromVehicle();
+    virtual bool SomethingOrientationIsInAir();
+    // return 0
+    virtual void sub_D0();
+    virtual void sub_D8(char);
+    virtual double Return1D();
+    virtual float Return1F();
+    // empty
+    virtual void sub_F0();
+    // empty
+    virtual void sub_F8();
+    // empty
+    virtual void sub_100();
+    // empty
+    virtual void sub_108();
+    // empty
+    virtual void sub_110();
+    // empty
+    virtual void sub_118();
+    virtual uint64_t UpdatePhysicsWT3();
+    virtual uint64_t sub_128();
+    virtual void sub_130();
+    virtual uint64_t sub_138();
+    virtual void LoadSomeVehiclePhysicsStuff(void *);
 
     // Base
-    uintptr_t __vftable;
     uint64_t unk08;
     RED4ext::Vector3 velocity;
     uint32_t unk10;

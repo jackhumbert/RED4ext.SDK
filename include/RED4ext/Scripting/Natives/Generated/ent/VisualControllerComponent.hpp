@@ -24,7 +24,9 @@ struct VisualControllerComponent : ent::IComponent
     Ref<CMesh> meshProxy; // 90
     DynArray<ent::VisualControllerDependency> appearanceDependency; // A8
     RaRef<appearance::CookedAppearanceData> cookedAppearanceData; // B8
-    uint8_t unkC0[0xF0 - 0xC0]; // C0
+    uint8_t unkC0[0xC8 - 0xC0]; // C0
+    DynArray<ResourcePath> resourcePaths; // C8
+    uint8_t unkD8[0xF0 - 0xD8]; // D8
     ent::ForcedLodDistance forcedLodDistance; // F0
     uint8_t unkF1[0x128 - 0xF1]; // F1
 };

@@ -29,6 +29,43 @@ struct PSInterface
     Handle<PersistentState> persistentState; // 168
 };
 
+struct IComponentHelper {
+    static constexpr const uintptr_t VFT_RVA = 0x30DF830;
+
+    virtual void * Destruct(uint8_t);
+    virtual bool HasComponent(uint64_t name);
+    virtual Handle<IComponent> * GetComponent(Handle<IComponent> * componentHandle, uint64_t name);
+};
+
+struct ComponentLookup {
+    RED4ext::DynArray<uint64_t> names;
+    RED4ext::DynArray<Handle<IComponent>> handles;
+    uint32_t unk28;
+    uint32_t unk2C;
+};
+
+struct ComponentHelper : IComponentHelper, ComponentLookup
+{
+    static constexpr const uintptr_t VFT_RVA = 0x32CED50;
+
+    virtual void * Destruct(uint8_t) override;
+    virtual bool HasComponent(uint64_t name) override;
+    virtual Handle<IComponent> * GetComponent(Handle<IComponent> * componentHandle, uint64_t name) override;
+
+    RED4ext::DynArray<Handle<IComponent>> handles2;
+};
+
+struct EntityComponentHelper : IComponentHelper, ComponentLookup
+{
+    static constexpr const uintptr_t VFT_RVA = 0x329FDF8;
+
+    virtual void * Destruct(uint8_t) override;
+    virtual bool HasComponent(uint64_t name) override;
+    virtual Handle<IComponent> * GetComponent(Handle<IComponent> * componentHandle, uint64_t name) override;
+
+    RED4ext::DynArray<Handle<IComponent>> handles2;
+};
+
 struct Object : ent::GameEntity, PSInterface
 {
     static constexpr const char* NAME = "gameObject";
@@ -41,7 +78,7 @@ struct Object : ent::GameEntity, PSInterface
     virtual bool __fastcall OnControlReleased(); // 1E0
     virtual void __fastcall OnTransformUpdated(); // 1E8
     virtual void __fastcall sub_1F0() { };
-    virtual uint64_t __fastcall OnTakeControl(uintptr_t); // 1F8
+    virtual uint64_t __fastcall OnTakeControl(ComponentHelper *); // 1F8
     virtual uint64_t __fastcall OnReleaseControl(); // 200
     virtual void __fastcall sub_208() { };
     virtual void __fastcall sub_210() { };
@@ -93,7 +130,7 @@ struct Object : ent::GameEntity, PSInterface
     RED4ext::HandleBase owner;
     uint64_t unk210; // 210
     Handle<ent::SlotComponent> uiSlotComponent; // 218
-    uint8_t unk228[0x230 - 0x228]; // 228
+    GameInstance * gameInstance; // 228
     red::TagList tags; // 230
 };
 RED4EXT_ASSERT_SIZE(Object, 0x240);

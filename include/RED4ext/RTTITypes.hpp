@@ -39,6 +39,8 @@ enum class ERTTIType : uint8_t
 
 struct CBaseRTTIType
 {
+    static constexpr const uintptr_t VFT_RVA = 0x30807E0;
+    
     CBaseRTTIType();
     virtual ~CBaseRTTIType() = default; // 00
 
@@ -111,6 +113,8 @@ RED4EXT_ASSERT_SIZE(CBaseRTTIType, 0x10);
 
 struct CClass : CBaseRTTIType
 {
+    static constexpr const uintptr_t VFT_RVA = 0x30805D0;
+
     struct Flags
     {
         uint32_t isAbstract : 1;                      // 00
@@ -136,21 +140,21 @@ struct CClass : CBaseRTTIType
 
     CClass(CName aName, uint32_t aSize, Flags aFlags);
 
-    CName GetName() const final override;                                                               // 08
-    uint32_t GetSize() const final override;                                                            // 10
-    uint32_t GetAlignment() const final override;                                                       // 18
-    ERTTIType GetType() const final override;                                                           // 20
-    CName GetComputedName() const final override;                                                       // 30
-    void Construct(ScriptInstance aMemory) const final override;                                        // 38
-    void Destruct(ScriptInstance aMemory) const final override;                                         // 40
-    bool Unserialize(BaseStream* aStream, ScriptInstance aInstance, int64_t a3) const final override;   // 60
-    bool ToString(const ScriptInstance aInstance, CString& aOut) const final override;                  // 68
-    bool sub_80(int64_t a1, ScriptInstance aInstance) final override;                                   // 80
-    bool sub_88(int64_t a1, ScriptInstance aInstance) final override;                                   // 88
-    bool sub_90(int64_t a1, ScriptInstance aInstance, CString& a3, int64_t a4) final override;          // 90
-    bool sub_98(int64_t a1, ScriptInstance aInstance, CString& a3, int64_t a4, bool a5) final override; // 98
-    bool sub_A0(int64_t a1, CString& a2, bool a3) final override;                                       // A0
-    void sub_B0(int64_t a1, int64_t a2) final override;                                                 // B0
+    CName GetName() const final;                                                               // 08
+    uint32_t GetSize() const final;                                                            // 10
+    uint32_t GetAlignment() const final;                                                       // 18
+    ERTTIType GetType() const final;                                                           // 20
+    CName GetComputedName() const final;                                                       // 30
+    void Construct(ScriptInstance aMemory) const final;                                        // 38
+    void Destruct(ScriptInstance aMemory) const final;                                         // 40
+    bool Unserialize(BaseStream* aStream, ScriptInstance aInstance, int64_t a3) const final;   // 60
+    bool ToString(const ScriptInstance aInstance, CString& aOut) const final;                  // 68
+    bool sub_80(int64_t a1, ScriptInstance aInstance) final;                                   // 80
+    bool sub_88(int64_t a1, ScriptInstance aInstance) final;                                   // 88
+    bool sub_90(int64_t a1, ScriptInstance aInstance, CString& a3, int64_t a4) final;          // 90
+    bool sub_98(int64_t a1, ScriptInstance aInstance, CString& a3, int64_t a4, bool a5) final; // 98
+    bool sub_A0(int64_t a1, CString& a2, bool a3) final;                                       // A0
+    void sub_B0(int64_t a1, int64_t a2) final;                                                 // B0
 
     virtual void sub_C0();                                       // C0
     virtual uint32_t GetMaxAlignment() const;                    // C8
