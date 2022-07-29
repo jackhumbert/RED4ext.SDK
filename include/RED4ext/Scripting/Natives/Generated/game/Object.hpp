@@ -72,10 +72,48 @@ struct Object : ent::GameEntity, PSInterface
     static constexpr const char* ALIAS = "GameObject";
     static constexpr const uintptr_t VFT_RVA = 0x3313EC0 + 0x1800;
     
+// overridden virtuals
+
+    virtual void __fastcall sub_110() override { 
+        RelocVirtualFunc<decltype(&Object::sub_110)> call(VFT_RVA, 0x110);
+        return (this->*call)();
+    };
+
+    virtual void __fastcall sub_148(uintptr_t a1) override { 
+        RelocVirtualFunc<decltype(&Object::sub_148)> call(VFT_RVA, 0x148);
+        return (this->*call)(a1);
+    };
+
+    virtual void __fastcall sub_150() override { 
+        RelocVirtualFunc<decltype(&Object::sub_150)> call(VFT_RVA, 0x148);
+        return (this->*call)();
+    };
+
+    virtual void __fastcall Attach() override { 
+        RelocVirtualFunc<decltype(&Object::Attach)> call(VFT_RVA, 0x150);
+        return (this->*call)();
+    };
+
+    virtual uintptr_t __fastcall Detach() override { 
+        RelocVirtualFunc<decltype(&Object::Detach)> call(VFT_RVA, 0x158);
+        return (this->*call)();
+    };
+
+// new virtuals
+
     virtual void __fastcall sub_1C8() { };
     virtual RED4ext::CName* __fastcall GetAudioResourceName(RED4ext::CName*); // 1D0
-    virtual bool __fastcall OnControlTaken(); // 1D8
-    virtual bool __fastcall OnControlReleased(); // 1E0
+
+    virtual bool __fastcall OnControlTaken() { 
+        RelocVirtualFunc<decltype(&Object::OnControlTaken)> call(VFT_RVA, 0x1D8);
+        return (this->*call)();
+    };
+
+    virtual bool __fastcall OnControlReleased() { 
+        RelocVirtualFunc<decltype(&Object::OnControlReleased)> call(VFT_RVA, 0x1E0);
+        return (this->*call)();
+    };
+
     virtual void __fastcall OnTransformUpdated(); // 1E8
     virtual void __fastcall sub_1F0() { };
     virtual uint64_t __fastcall OnTakeControl(ComponentHelper *); // 1F8
@@ -109,10 +147,13 @@ struct Object : ent::GameEntity, PSInterface
     // Called by ReplicateInputVector
     virtual void __fastcall sub_260(Handle<IScriptable>* obj, CName inputName, Vector4 value){};
 
+    // 1.52 RVA: 0x13ECC30 / 20892720
+    /// @pattern 48 89 4C 24 08 55 56 57 48 81 EC 90 00 00 00 48 8D 6C 24 30 41 83 78 08 01 48 8D 8D 80 00 00 00
+    bool __fastcall CallScriptFunction(void * a1, uintptr_t a2, char a3);
 
     struct Flags
     {
-        uint8_t Unk1 : 1;
+        uint8_t IsAttached : 1;
         uint8_t Unk2 : 1;
         uint8_t IsPlayerController : 1;
         uint8_t EnabledTransformUpdates : 1;
@@ -130,11 +171,13 @@ struct Object : ent::GameEntity, PSInterface
     RED4ext::HandleBase owner;
     uint64_t unk210; // 210
     Handle<ent::SlotComponent> uiSlotComponent; // 218
-    GameInstance * gameInstance; // 228
+    GameInstance * gameInstance2; // 228
     red::TagList tags; // 230
 };
 RED4EXT_ASSERT_SIZE(Object, 0x240);
+ //char (*__kaboom)[sizeof(Object)] = 1;
 RED4EXT_ASSERT_OFFSET(Object, persistentState, 0x168);
-} // namespace game
+ //char (*__kaboom)[offsetof(Object, persistentState)] = 1;
+ } // namespace game
 using GameObject = game::Object;
 } // namespace RED4ext

@@ -6,6 +6,7 @@
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/data/SpawnableObject_Record.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/data/VehicleDriveModelData_Record.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/data/VehicleCameraManager_Record.hpp>
 
 namespace RED4ext
 {
@@ -21,7 +22,11 @@ struct Vehicle_Record : game::data::SpawnableObject_Record
 
     /// @pattern 48 89 5C 24 10 57 48 83 EC 40 0F B7 81 D8 00 00 00 4C 8B C9 4C 8B 05 3D 9E 65 03 48 8B DA 0F B6
     Handle<VehicleDriveModelData_Record> * __fastcall GetVehDriveModelDataHandle(Handle<VehicleDriveModelData_Record> *);
-    
+
+    // 1.52 RVA: 0xC0E9C0 / 12642752
+    /// @pattern 40 55 53 57 48 8B EC 48 83 EC 60 0F B7 81 E1 00 00 00 48 8B FA 44 0F B6 89 E3 00 00 00 48 8B D1
+    Handle<VehicleCameraManager_Record> * __fastcall GetVehicleCameraManagerHandle(Handle<VehicleCameraManager_Record> *);
+
     uint8_t traffic_audio_resource[3];
     uint8_t player_audio_resource[3];
     uint8_t vehPassL_ProceduralFPPCameraParams[3];

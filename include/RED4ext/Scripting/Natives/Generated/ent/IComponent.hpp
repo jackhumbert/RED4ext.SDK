@@ -18,10 +18,10 @@ struct IComponent : IScriptable
     static constexpr const char* NAME = "entIComponent";
     static constexpr const char* ALIAS = "IComponent";
 
-    virtual CClass* GetNativeType() override
-    {
+    //virtual CClass* GetNativeType() override
+    //{
 
-    }
+    //}
 
     virtual void sub_110();
     virtual void sub_118();
@@ -66,15 +66,22 @@ struct IComponent : IScriptable
     virtual uint32_t sub_230();
 
     CName name; // 40
-    uint8_t unk48[0x50 - 0x48]; // 48
+    CName owner; // 48 "player"
     Handle<Entity> entity; // 50
     CRUID id; // 60
-    uint8_t unk68[0x8B - 0x68]; // 68
+    uint64_t unk68;
+    void *unk70;
+    uint64_t unk78;
+    uint64_t unk80;
+    uint8_t unk88;
+    uint8_t unk89;
+    uint8_t unk8A;
     bool isEnabled; // 8B
     bool isReplicable; // 8C
     uint8_t unk8D[0x90 - 0x8D]; // 8D
 };
 RED4EXT_ASSERT_SIZE(IComponent, 0x90);
+ //char (*__kaboom)[sizeof(IComponent)] = 1;
 } // namespace ent
 using IComponent = ent::IComponent;
 } // namespace RED4ext

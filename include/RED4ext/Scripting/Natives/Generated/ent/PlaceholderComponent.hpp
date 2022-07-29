@@ -8,8 +8,8 @@
 
 namespace RED4ext
 {
-namespace ent { 
-struct PlaceholderComponent : ent::IPlacedComponent
+namespace ent {
+struct PlaceholderComponent : IPlacedComponent
 {
     static constexpr const char* NAME = "entPlaceholderComponent";
     static constexpr const char* ALIAS = NAME;

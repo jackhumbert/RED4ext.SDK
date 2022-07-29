@@ -5,6 +5,7 @@
 #include <RED4ext/Common.hpp>
 #include <cstdint>
 #include <RED4ext/Scripting/Natives/Generated/ent/EntityInstanceData.hpp>
+#include <RED4ext/ResourcePath.hpp>
 
 namespace RED4ext
 {
@@ -16,7 +17,7 @@ struct EntityDefinition
     static constexpr const char* NAME = "entEntityDefinition";
     static constexpr const char* ALIAS = "EntityDefinition";
 
-    CName resourceMaybe;
+    ResourcePath resource;
     CName appearance;
     uint64_t unk10;
     DynArray<EntityInstanceData> unk18;
@@ -26,7 +27,7 @@ struct EntityDefinition
     void* unk40;
     uint32_t unk48;
     uint32_t unk4C;
-    DynArray<void*> components;
+    DynArray<Handle<IComponent>> components;
     DynArray<void*> effects;
 };
 RED4EXT_ASSERT_SIZE(EntityDefinition, 0x70);

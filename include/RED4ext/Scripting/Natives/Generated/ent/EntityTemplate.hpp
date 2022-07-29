@@ -28,6 +28,8 @@ struct EntityTemplate : res::StreamedResource
     static constexpr const uintptr_t VFT_RVA = 0x32A2E58;
 
     virtual void sub_20(Handle<ISerializable>*) override;
+
+    // read from redpackage, maybe
     virtual void sub_28() override;
 
     DynArray<ent::TemplateInclude> includes; // 40
@@ -41,7 +43,17 @@ struct EntityTemplate : res::StreamedResource
     DataBuffer localData; // 118
     uint8_t unk140[0x1B0 - 0x140]; // 140
     DataBuffer includeInstanceBuffer; // 1B0
-    uint8_t unk1D8[0x248 - 0x1D8]; // 1D8
+    uint64_t unk1D8;
+    void * version;
+    void * unk1E8;
+    uint32_t unk1F0;
+    uint32_t unk1F4;
+    void * unk1F8[5];
+    void * name;
+    void * unk228;
+    void * dependencyNames;
+    void * unk238;
+    uint64_t datasize;
     DataBuffer compiledData; // 248
     DynArray<RaRef<CResource>> resolvedDependencies; // 270
     DynArray<Ref<CResource>> inplaceResources; // 280
