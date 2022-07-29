@@ -8,6 +8,7 @@
 #include <RED4ext/HashMap.hpp>
 #include <RED4ext/InstanceType.hpp>
 #include <RED4ext/Utils.hpp>
+#include <RED4ext/Scripting/Natives/Callbacks.hpp>
 
 namespace RED4ext
 {
@@ -184,6 +185,10 @@ struct CClass : CBaseRTTIType
         DestructCls(aMemory);
     }
 
+    // 1.52 RVA: 0x1F4BD0 / 2051024
+    /// @pattern 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 48 83 EC 20 48 8B F2 48 8B E9 66 0F 1F 44 00 00
+    __int64 __fastcall AddCallback(ent::EntityCallback *a2);
+
     CClass* parent;                              // 10
     CName name;                                  // 18
     CName computedName;                          // 20
@@ -208,7 +213,7 @@ struct CClass : CBaseRTTIType
     DynArray<DefaultValue*> defaultValues;       // 168
     int64_t unk178;                              // 178
     HashMap<void*, void*> unk180;                // 180
-    DynArray<void*> callbacks;                   // 1B0
+    DynArray<CallbackStorage> callbacks;         // 1B0
     int32_t callbackIdStorage[64];               // 1C0
     int16_t unk2C0;                              // 2C0
     int32_t unk2C4;                              // 2C4

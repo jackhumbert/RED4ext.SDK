@@ -187,42 +187,6 @@ struct CGroup
     RED4ext::DynArray<char> bytes;
 };
 
-struct CallbackStorage
-{
-    CName fullName;
-    uint64_t unk08;
-    void* callbackStruct;
-    CName actionType;
-    uint16_t asyncID;
-    uint8_t unk22;
-};
-
-struct CallbackDefinition;
-
-struct CallbackStruct
-{
-    // Calls the OnEvent with the instance + offset & event
-    void (__fastcall* FireCallback)(CallbackDefinition* definition, IScriptable* instance, void* event);
-
-    // Copy the definition into storage
-    void (__fastcall* StoreDefinition)(CallbackStorage*, CallbackDefinition*);
-
-    // Copy the storage struct
-    void (__fastcall* CopyStorage)(CallbackStorage*, CallbackStorage*);
-
-    // CallbackDefinition is also passed into this
-    void (__fastcall* Initialize)(CallbackStorage*);
-};
-
-struct CallbackDefinition
-{
-    uint64_t (__fastcall* OnEvent)(RED4ext::IScriptable*, void*);
-    uint32_t instanceOffset;
-    uint32_t unk0C;
-    RED4ext::CallbackStruct* callbackStruct;
-};
-
-
 } // namespace RED4ext
 
 #ifdef RED4EXT_HEADER_ONLY
