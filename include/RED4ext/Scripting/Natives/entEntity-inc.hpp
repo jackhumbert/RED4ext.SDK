@@ -11,7 +11,7 @@ namespace ent
 
 RED4EXT_INLINE uintptr_t Entity::CopyComponentsToStorage(EntityDefinition* definition, void* a2)
 {
-    RED4ext::RelocVirtualFunc<decltype(&Entity::CopyComponentsToStorage)> call(VFT_RVA, 0x1A8);
+    RelocVirtualFunc<decltype(&Entity::CopyComponentsToStorage)> call(VFT_RVA, 0x1A8);
     (this->*call)(definition, a2);
 }
 
