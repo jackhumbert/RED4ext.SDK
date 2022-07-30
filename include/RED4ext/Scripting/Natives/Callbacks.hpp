@@ -23,15 +23,23 @@ struct CallbackDefinition : CallbackId
 };
 
 struct CallbackInstance : CallbackDefinition {
-    uint16_t listenerIndex;
-    uint32_t unk1A;
-    uint16_t id;
+    union Type {
+        CName name;
+        struct Details {
+            uint16_t listenerIndex;
+            uint16_t unk1A;
+            uint16_t unk1C;
+            uint16_t id;
+        };
+    } type;
 };
 
 struct CallbackStorage : CallbackInstance
 {
-    uint16_t asyncID;
-    uint8_t hasAction;
+    uint16_t typeId;
+    uint8_t isScripted;
+    uint8_t unk23;
+    uint32_t unk24;
 };
 
 struct CallbackStruct
@@ -49,10 +57,9 @@ struct CallbackStruct
     void (__fastcall* Initialize)(CallbackStorage*);
 };
 
-namespace ent {
 struct CallbackManager
 {
-    static constexpr const char* NAME = "entCallbackManager";
+    static constexpr const char* NAME = "CallbackManager";
     static constexpr const char* ALIAS = NAME;
 
     // 1.52 RVA: 0x2BC1C80 / 45882496
@@ -80,9 +87,9 @@ struct CallbackManager
 };
 // ASSERT 0x60 etc
 
-struct EntityCallback
+struct Callback
 {
-    static constexpr const char* NAME = "entEntityCallback";
+    static constexpr const char* NAME = "Callback";
     static constexpr const char* ALIAS = NAME;
     static constexpr const uintptr_t VFT_RVA = 0x35EB980;
 
@@ -96,8 +103,6 @@ struct EntityCallback
     CallbackId ids[512];
     uint32_t numIds;
 };
-
-} // namespace ent
 
 // struct CallbackDefinition
 // {

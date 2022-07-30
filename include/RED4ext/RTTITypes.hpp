@@ -189,6 +189,14 @@ struct CClass : CBaseRTTIType
     /// @pattern 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 48 83 EC 20 48 8B F2 48 8B E9 66 0F 1F 44 00 00
     __int64 __fastcall AddCallback(ent::EntityCallback *a2);
 
+    // 1.52 RVA: 0x1F4C80 / 2051200
+    /// @pattern 48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 50 41 0F B7 B8 C0 02 00 00 48 8B DA 48 8B F1 66 83 FF
+    uint32_t __fastcall AddEventCallbackType(CName actionType, CClass *eventType, CallbackDefinition *definition);
+
+    // 1.52 RVA: 0x1F4D60 / 2051424
+    /// @pattern 4C 8B DC 53 56 41 56 48 83 EC 60 48 8B 59 48 4C 8B F1 8B 41 54 48 8D 34 C3 48 3B DE 0F 84 9A 01
+    uint32_t __fastcall SetupScriptCallbacks();
+
     CClass* parent;                              // 10
     CName name;                                  // 18
     CName computedName;                          // 20
@@ -204,20 +212,20 @@ struct CClass : CBaseRTTIType
     HashMap<void*, void*> unkA8;                 // A8
     int64_t unkD8;                               // D8
     int64_t unkE0;                               // E0
-    HashMap<CName, CProperty*> propertiesByName; // E8
-    DynArray<CProperty*> allProperties;          // 118 - More entries than 0x28, will contain native props
-    DynArray<CProperty*> persistentProperties;   // 128
-    DynArray<CProperty*> referenceProperties;    // 138
+    HashMap<CName, CProperty*> propsByName;      // E8
+    DynArray<CProperty*> allProps;               // 118 - More entries than 0x28, will contain native props
+    DynArray<CProperty*> persistentProps;        // 128
+    DynArray<CProperty*> referenceProps;         // 138
     DynArray<void*> referencePropertyTypes;      // 148 - CBaseRTTIType* with an unknown uint32_t value at 0x0C
-    DynArray<CName> propertiesWithDefaults;      // 158
+    DynArray<CName> propsWithDefaults;           // 158
     DynArray<DefaultValue*> defaultValues;       // 168
     int64_t unk178;                              // 178
     HashMap<void*, void*> unk180;                // 180
     DynArray<CallbackStorage> callbacks;         // 1B0
-    int32_t callbackIdStorage[64];               // 1C0
-    int16_t unk2C0;                              // 2C0
+    int32_t callbackTypes[64];                   // 1C0 - Bits are toggled here if a type's id is supported in a callback
+    int16_t callbackTypeId;                      // 2C0 - Types used in callbacks get assigned one at runtime
     int32_t unk2C4;                              // 2C4
-    SharedMutex propertiesLock;                  // 2C8
+    SharedMutex propsLock;                       // 2C8
     uint8_t classSetupState;                     // 2C9
 };
 RED4EXT_ASSERT_SIZE(CClass, 0x2D0);

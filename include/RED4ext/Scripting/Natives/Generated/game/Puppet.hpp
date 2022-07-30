@@ -15,6 +15,7 @@ struct Puppet : game::PuppetBase
     static constexpr const char* ALIAS = NAME;
 
     uint8_t unk268[0x588 - 0x268]; // 268
+    // ActionInterface 0x2F8
 };
 RED4EXT_ASSERT_SIZE(Puppet, 0x588);
 } // namespace game

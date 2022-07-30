@@ -18,6 +18,7 @@
 #include <RED4ext/Scripting/Natives/Generated/game/interactions/Component.hpp>
 #include <RED4ext/Scripting/Natives/Generated/AI/CAgent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/move/Component.hpp>
+#include <RED4ext/Scripting/Natives/ActionInterface.hpp>
 
 namespace RED4ext
 {
@@ -171,6 +172,8 @@ struct BaseObject : game::Object
     // Get shoot value for index
     virtual uint8_t __fastcall sub_380(int);
 
+// non-virtual methods
+
     // 1.52 RVA: 0x1C4D3A0 / 29676448
     /// @pattern 48 8B 81 B8 02 00 00 F3 0F 10 80 BC 01 00 00 C3
     float __fastcall GetTotalMass();
@@ -195,6 +198,22 @@ struct BaseObject : game::Object
     /// @pattern 48 89 5C 24 10 48 89 6C 24 18 48 89 74 24 20 57 48 83 EC 30 48 8B 99 C0 02 00 00 48 8B FA 48 8B
     Handle<void> *__fastcall GetCurveSetData(Handle<void> *);
 
+    // 1.52 RVA: 0x1C4D7B0 / 29677488
+    /// @pattern 48 8B 81 08 05 00 00 C3
+    world::RuntimeSystemPhysics *__fastcall GetVehicleSystem();
+
+    // 1.52 RVA: 0x1C4D7E0 / 29677536
+    /// @pattern 40 53 48 83 EC 20 48 8B DA 44 3B 81 4C 09 00 00 73 2A 41 8B C0 4C 8D 04 40 48 8B 81 40 09 00 00
+    Quaternion *__fastcall GetWeaponOrientation(Quaternion *, uint32_t index);
+
+    // 1.52 RVA: 0x1C4E190 / 29680016
+    /// @pattern 40 55 56 57 48 8D 6C 24 B9 48 81 EC F0 00 00 00 48 8D B1 28 09 00 00 0F 29 B4 24 D0 00 00 00 48
+    void __fastcall HornForDuration();
+
+    // 1.52 RVA: 0x1C4E3F0 / 29680624
+    /// @pattern 48 8B C4 55 56 57 48 8D 68 A1 48 81 EC F0 00 00 00 0F 29 70 D8 48 8D B1 20 09 00 00 48 8B F9 0F
+    void __fastcall HornForDurationDelayed(float xmm1_4_0);
+
     // 1.52 RVA: 0x1C49080 / 29659264
     /// @pattern 48 83 EC 48 48 89 5C 24 50 48 8B D9 48 89 74 24 60 48 8D 4A 20 4C 89 74 24 38 48 8B F2 E8 8E 52
     void __fastcall ClearFinishMountingDelay(void *);
@@ -206,6 +225,10 @@ struct BaseObject : game::Object
     // 1.52 RVA: 0x1C492A0 / 29659808
     /// @pattern 48 8D 81 E0 08 00 00 C3
     void *__fastcall GetUnk8E0();
+
+    // 1.52 RVA: 0x126CE00 / 19320320
+    /// @pattern 48 8D 81 88 03 00 00 C3
+    Interface *__fastcall GetInterface();
 
     world::RuntimeSystemPhysics* physicsSystem;
     float unk248;
@@ -258,15 +281,7 @@ struct BaseObject : game::Object
     float unk364;
     Handle<AI::CAgent> aiComponent;
     Handle<move::Component> moveComponent;
-    void* someAction;
-    DynArray<void*> unk390;
-    DynArray<void*> unk3A0;
-    void* unk3B0;
-    DynArray<void*> unk3B8;
-    DynArray<void*> unk3C8;
-    void* unk3D8;
-    DynArray<void*> unk3E0;
-    void* unk3F0[17];
+    ActionInterface actionInterface; // 388
     Handle<void> baseDrivingParams[4];
     Handle<game::interactions::Component> interactionsComponent;
     Handle<game::interactions::Component> passengerInteractions;
@@ -274,12 +289,12 @@ struct BaseObject : game::Object
     Handle<void> wheelRuntimePSData;
     Handle<CameraManager> cameraManager;
     world::RuntimeSystemPhysics* vehicleSystem;
-    Handle<void> blackboard;
+    Handle<IBlackboard> blackboard;
     Handle<void> blackboard2;
     Handle<void> controllerMaybe;
     uint64_t unk540;
-    Handle<void> drivingPuppet;
-    Handle<void> mountedPuppet;
+    Handle<game::Puppet> drivingPuppet;
+    Handle<game::Puppet> mountedPuppet;
     void*unk568;
     void* unk570;
     physics::VehicleBaseObjectAirControl* airControl; // 578
@@ -299,7 +314,16 @@ struct BaseObject : game::Object
     float unk5E8;
     float unk5EC;
     float unk5F0;
-    float unk5F4[7];
+    float unk5F4;
+    float unk5F8;
+    uint8_t unk5FC;
+    uint8_t unk5FD;
+    uint8_t unk5FE;
+    uint8_t unk5FF;
+    float unk600;
+    float unk604;
+    float unk608;
+    float unk60C;
     uint8_t important;
     uint8_t ignoreImpulses;
     uint8_t unk612;
@@ -315,13 +339,26 @@ struct BaseObject : game::Object
     void* unk760;
     uint64_t unk768[4];
     uint32_t unk788[2];
-    uint64_t unk790[11];
+    uint64_t unk790;
+    uint64_t unk798;
+    uint64_t unk7A0;
+    uint64_t unk7A8;
+    uint64_t targetToReach;
+    uint64_t unk7B8;
+    uint64_t targetToFollow;
+    uint64_t unk7C8;
+    uint64_t splineToFollow;
+    uint64_t splineBackwardToFollow;
+    uint64_t unk7E0;
     void* unk7E8;
     uint64_t unk7F0[3];
     Box bounds;
     Handle<void> unk828;
     Vector4 unk838;
-    uint32_t unk848[17];
+    uint8_t unk848;
+    float unk84C;
+    float unk850;
+    uint32_t unk854[14];
     uint32_t unk88C;
     uint32_t unk890[2];
     Handle<void> vehicleAudio;
