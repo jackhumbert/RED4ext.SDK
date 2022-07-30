@@ -20,6 +20,26 @@ struct PhysicsData
     static constexpr const char* NAME = "vehiclePhysicsData";
     static constexpr const char* ALIAS = NAME;
 
+    // 1.52 RVA: 0x1CE1550 / 30283088
+    /// @pattern 0F B6 81 B8 01 00 00 C3
+    bool __fastcall UsesAlternativeChassisMass();
+
+    // 1.52 RVA: 0x1CE2020 / 30285856
+    /// @pattern 40 53 48 83 EC 20 F2 0F 10 02 48 8B D9 F2 0F 11 81 50 01 00 00 8B 42 08 89 81 58 01 00 00 0F 10
+    double __fastcall ResetWithWorldTransform(WorldTransform* worldTransform);
+
+    // 1.52 RVA: 0x1CE1560 / 30283104
+    /// @pattern 48 8D 81 B4 01 00 00 48 8D 54 24 08 48 3B D0 74 08 F3 0F 11 08 C6 40 04 01 E9 D2 F6 FF FF
+    void __fastcall SetUsesAlternativeChassisMass(float);
+
+    // 1.52 RVA: 0x1CE0F90 / 30281616
+    /// @pattern C6 81 B8 01 00 00 00 E9 B4 FC FF FF
+    void __fastcall vehiclePhysicsData_SetUsesNormalChassisMass();
+
+    // 1.52 RVA: 0x1CE0C50 / 30280784
+    /// @pattern 48 83 EC 38 4C 8B 81 80 01 00 00 0F 57 C0 F3 0F 7F 44 24 20 49 8B 80 D8 02 00 00 48 85 C0 0F 84
+    void __fastcall UpdateChassis();
+
     Vector3 force;
     Vector3 torque;
     Vector3 velocity;
@@ -36,8 +56,12 @@ struct PhysicsData
     BaseObject* vehicle;
     uint64_t unk188;
     Box bounds;
-    uint64_t unk1B0;
-    float unk1B8;
+    uint32_t unk1B0;
+    uint32_t unk1B4;
+    uint8_t usesAlternativeChassisMass;
+    uint8_t unk1B9;
+    uint8_t unk1BA;
+    uint8_t unk1BB;
     float total_mass;
     float chassis_mass;
     uint8_t usesInertiaTensor;
