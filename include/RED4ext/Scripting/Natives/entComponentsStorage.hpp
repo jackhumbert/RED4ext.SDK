@@ -19,10 +19,10 @@ struct ComponentsStorage : ISerializable
     static constexpr const char* NAME = "entComponentsStorage";
     static constexpr const char* ALIAS = NAME;
 
-    virtual CClass* GetNativeType() override
-    {
+    //virtual CClass* GetNativeType() override
+    //{
 
-    }
+    //}
 
     // 1.52 RVA: 0x103FAD0 / 17038032
     /// @pattern 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 41 56 41 57 48 83 EC 30 4C 8B 41 30 4C 8D 71 30

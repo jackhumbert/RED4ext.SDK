@@ -187,7 +187,7 @@ struct CClass : CBaseRTTIType
 
     // 1.52 RVA: 0x1F4BD0 / 2051024
     /// @pattern 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 48 83 EC 20 48 8B F2 48 8B E9 66 0F 1F 44 00 00
-    __int64 __fastcall AddCallback(ent::EntityCallback *a2);
+    __int64 __fastcall AddCallback(Callback *a2);
 
     // 1.52 RVA: 0x1F4C80 / 2051200
     /// @pattern 48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 50 41 0F B7 B8 C0 02 00 00 48 8B DA 48 8B F1 66 83 FF
@@ -216,7 +216,7 @@ struct CClass : CBaseRTTIType
     DynArray<CProperty*> allProps;               // 118 - More entries than 0x28, will contain native props
     DynArray<CProperty*> persistentProps;        // 128
     DynArray<CProperty*> referenceProps;         // 138
-    DynArray<void*> referencePropertyTypes;      // 148 - CBaseRTTIType* with an unknown uint32_t value at 0x0C
+    DynArray<void*> referencePropTypes;      // 148 - CBaseRTTIType* with an unknown uint32_t value at 0x0C
     DynArray<CName> propsWithDefaults;           // 158
     DynArray<DefaultValue*> defaultValues;       // 168
     int64_t unk178;                              // 178

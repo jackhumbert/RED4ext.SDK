@@ -4,6 +4,7 @@
 
 #include <cstdint>
 #include <RED4ext/Common.hpp>
+#include <RED4ext/Scripting/Natives/vehicleBaseObject.hpp>
 
 namespace RED4ext
 {
@@ -23,10 +24,10 @@ struct ActionInterface {
     uint32_t handleCount;
     uint32_t unk24;
     uint64_t unk28;
-    __int128 unk30[2];
+    uint64_t unk30[4];
     uint64_t unk50;
-    BaseObject *thisVehicle;
-    BaseObject *unk60[16];
+    vehicle::BaseObject *thisVehicle;
+    vehicle::BaseObject *unk60[16];
     uint32_t unk60count;
     uint32_t unkE4;
     SharedMutex unk08Mutex;
@@ -35,5 +36,5 @@ struct ActionInterface {
     uint8_t unkEB;
     uint32_t unkEC;
 };
-RED4EXT_ASSERT_SIZE(ActionInterface, 0x90);
+RED4EXT_ASSERT_SIZE(ActionInterface, 0xF0);
 } // namespace RED4ext

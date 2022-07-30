@@ -8,7 +8,7 @@
 #include <RED4ext/Scripting/IScriptable.hpp>
 #include <RED4ext/Scripting/Natives/Generated/ECustomCameraTarget.hpp>
 #include <RED4ext/Scripting/Natives/Generated/RenderSceneLayerMask.hpp>
-#include <RED4ext/Scripting/Natives/Generated/ent/ComponentsStorage.hpp>
+#include <RED4ext/Scripting/Natives/entComponentsStorage.hpp>
 //#include <RED4ext/Scripting/Natives/Generated/ent/PlaceholderComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/ent/EntityDefinition.hpp>
 #include <RED4ext/ResourcePath.hpp>
@@ -19,9 +19,20 @@ namespace RED4ext
 {
 namespace ent
 {
+struct SpawnableObject
+{
+    uint32_t unk40;
+    uint32_t unk44;
+    uint64_t tweakRecord;
+    CName currentAppearance;
+    uint64_t unk58;
+    ResourcePath resource; // 60
+    uint64_t unk68;
+};
+
 //struct ComponentsStorage;
 //struct PlaceholderComponent;
-struct Entity : IScriptable
+struct Entity : IScriptable, public SpawnableObject, public ComponentsStorage
 {
     static constexpr const char* NAME = "entEntity";
     static constexpr const char* ALIAS = "Entity";
@@ -29,7 +40,7 @@ struct Entity : IScriptable
     
     virtual void __fastcall sub_110() { }
     virtual float __fastcall sub_118();
-    virtual Vector2 * __fastcall sub_120;
+    virtual Vector2* __fastcall sub_120(Vector2* a1, Vector2* a2);
     virtual void __fastcall sub_128();
     virtual bool __fastcall sub_130();
     virtual void sub_138();
@@ -76,7 +87,7 @@ struct Entity : IScriptable
 
     // 1.52 RVA: 0x1035260 / 16994912
     /// @pattern 48 89 5C 24 08 57 48 83 EC 30 48 8B 02 48 8B D9 48 89 44 24 20 48 8D 4C 24 20 48 8B 42 08 48 8B
-    void __fastcall RegisterComponentListeners(Handle<IComponent> *a2);
+    void __fastcall RegisterComponentListeners2(Handle<IComponent> *a2);
     
     enum Flags : uint8_t {
         Unk1 = 0x1,
@@ -84,14 +95,6 @@ struct Entity : IScriptable
         hasVisualControllerComponent = 0x4
     };
 
-    uint32_t unk40;
-    uint32_t unk44;
-    uint64_t tweakRecord;
-    CName currentAppearance;
-    uint64_t unk58;
-    ResourcePath resource; // 60
-    uint64_t unk68;
-    ComponentsStorage componentsStorage; // 70
     void* placeholder; // B0
     void* runtime; // B8
     GameInstance** gameInstance_p; // C0
@@ -116,5 +119,5 @@ struct Entity : IScriptable
 } // namespace RED4ext
 
 #ifdef RED4EXT_HEADER_ONLY
-#include <RED4ext/Scripting/Natives/Entity-inl.hpp>
+#include <RED4ext/Scripting/Natives/entEntity-inc.hpp>
 #endif

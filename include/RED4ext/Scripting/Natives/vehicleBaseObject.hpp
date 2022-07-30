@@ -9,13 +9,15 @@
 #include <RED4ext/Scripting/Natives/Generated/WorldTransform.hpp>
 #include <RED4ext/Scripting/Natives/vehiclePhysics.hpp>
 #include <RED4ext/Scripting/Natives/vehiclePhysicsData.hpp>
-#include <RED4ext/Scripting/Natives/vehicleBaseObjectAirControl.hpp>
+#include <RED4ext/Scripting/Natives/vehicleAirControl.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/ChassisComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/OccupantSlotComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/data/Vehicle_Record.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/Controller.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/CameraManager.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/interactions/Component.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/Puppet.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/IBlackboard.hpp>
 #include <RED4ext/Scripting/Natives/Generated/AI/CAgent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/move/Component.hpp>
 #include <RED4ext/Scripting/Natives/ActionInterface.hpp>
@@ -225,7 +227,7 @@ struct BaseObject : game::Object
 
     // 1.52 RVA: 0x126CE00 / 19320320
     /// @pattern 48 8D 81 88 03 00 00 C3
-    Interface *__fastcall GetInterface();
+    ActionInterface *__fastcall GetInterface();
 
     // 1.52 RVA: 0x72FE70 / 7536240
     /// @pattern 48 8B 81 B8 02 00 00 C3
@@ -294,7 +296,7 @@ struct BaseObject : game::Object
     Handle<void> wheelRuntimePSData;
     Handle<CameraManager> cameraManager;
     world::RuntimeSystemPhysics* vehicleSystem;
-    Handle<IBlackboard> blackboard;
+    Handle<game::IBlackboard> blackboard;
     Handle<void> blackboard2;
     Handle<void> controllerMaybe;
     uint64_t unk540;
@@ -361,6 +363,9 @@ struct BaseObject : game::Object
     Handle<void> unk828;
     Vector4 unk838;
     uint8_t unk848;
+    uint8_t unk849;
+    uint8_t unk84A;
+    uint8_t unk84B;
     float unk84C;
     float unk850;
     uint32_t unk854[14];
@@ -404,7 +409,7 @@ struct BaseObject : game::Object
 RED4EXT_ASSERT_SIZE(BaseObject, 0x980);
 RED4EXT_ASSERT_OFFSET(BaseObject, weapons, 0x940);
 //char (*__kaboom)[sizeof(BaseObject)] = 1;
-//char (*__kaboom)[offsetof(BaseObject, weapons)] = 1;
+//char (*__kaboom2)[offsetof(BaseObject, unk7E0)] = 1;
 } // namespace vehicle
 using VehicleObject = vehicle::BaseObject;
 } // namespace RED4ext

@@ -9,7 +9,7 @@
 #include <RED4ext/Scripting/IScriptable.hpp>
 #include <RED4ext/Scripting/Natives/Generated/ent/Entity.hpp>
 
-#include <RED4ext/Scripting/Natives/entEntity.hpp>
+#include <RED4ext/Scripting/Natives/entIComponent.hpp>
 
 namespace RED4ext
 {

@@ -12,6 +12,7 @@
 #include <RED4ext/Scripting/Natives/vehiclePhysicsInsert2.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/BaseObject.hpp>
 #include <RED4ext/Scripting/Natives/vehiclePID.hpp>
+#include <RED4ext/Scripting/Natives/vehiclePhysicsData.hpp>
 
 namespace RED4ext
 {

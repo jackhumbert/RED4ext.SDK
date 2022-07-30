@@ -17,6 +17,7 @@ namespace RED4ext
 {
 namespace vehicle {
 
+struct BaseObject;
 struct TPPCameraPreset
 {
     Vector3 lookAtOffset;

@@ -8,6 +8,7 @@
 #include <RED4ext/NativeTypes.hpp>
 #include <RED4ext/Scripting/IScriptable.hpp>
 #include <RED4ext/Scripting/Natives/entEntity.hpp>
+#include <RED4ext/Scripting/Natives/Callbacks.hpp>
 
 namespace RED4ext
 {

@@ -1,8 +1,14 @@
 #pragma once
 
-#include <RED4ext/RTTITypes.hpp>
+//#include <RED4ext/NativeTypes.hpp>
+//#include <RED4ext/Scripting/Natives/Generated/ent/IComponent.hpp>
+
 namespace RED4ext {
 
+//namespace ent
+//{
+//struct IComponent;
+//}
 struct CallbackStruct;
 
 struct CallbackId {
@@ -68,7 +74,7 @@ struct CallbackManager
 
     // 1.52 RVA: 0x2BC1E70 / 45882992
     /// @pattern 40 55 56 57 48 8D AC 24 70 E0 FF FF B8 90 20 00 00 E8 CA 4A E4 FF 48 2B E0 48 8B 42 08 0F 57 C0
-    void __fastcall RegisterComponentToListeners(Handle<IComponent> *componentHandle);
+    void __fastcall RegisterComponentToListeners(Handle<IScriptable>* componentHandle);
 
     // 1.52 RVA: 0x2BC2740 / 45885248
     /// @pattern 48 89 5C 24 08 57 48 83 EC 30 48 8D 59 5B 48 8B F9 48 8B CB E8 C7 8C F7 FF 8B 57 44 48 8D 4F 38

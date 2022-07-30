@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/WheeledBaseObject.hpp>
-#include <RED4ext/Scripting/Natives/Generated/vehicle/PID.hpp>
+#include <RED4ext/Scripting/Natives/vehiclePID.hpp>
 
 namespace RED4ext
 {

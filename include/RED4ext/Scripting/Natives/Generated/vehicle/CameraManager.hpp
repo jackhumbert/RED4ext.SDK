@@ -11,13 +11,14 @@
 #include <RED4ext/Scripting/Natives/Generated/ent/Entity.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/data/Vehicle_Record.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/TPPCameraComponent.hpp>
+#include <RED4ext/Scripting/Natives/Generated/vehicle/BaseObject.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/FPPCameraComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/CameraComponent.hpp>
 
 namespace RED4ext
 {
 namespace vehicle {
-
+struct BaseObject;
 struct TPPCameraComponent;
 struct CameraManager : IScriptable
 {
