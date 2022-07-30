@@ -11,6 +11,7 @@
 #include <RED4ext/Scripting/Natives/entComponentsStorage.hpp>
 //#include <RED4ext/Scripting/Natives/Generated/ent/PlaceholderComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/ent/EntityDefinition.hpp>
+#include <RED4ext/Scripting/Natives/ScriptGameInstance.hpp>
 #include <RED4ext/ResourcePath.hpp>
 #include <RED4ext/GameEngine.hpp>
 #include <RED4ext/Scripting/Natives/Callbacks.hpp>
@@ -19,20 +20,9 @@ namespace RED4ext
 {
 namespace ent
 {
-struct SpawnableObject
-{
-    uint32_t unk40;
-    uint32_t unk44;
-    uint64_t tweakRecord;
-    CName currentAppearance;
-    uint64_t unk58;
-    ResourcePath resource; // 60
-    uint64_t unk68;
-};
-
 //struct ComponentsStorage;
 //struct PlaceholderComponent;
-struct Entity : IScriptable, public SpawnableObject, public ComponentsStorage
+struct Entity : IScriptable
 {
     static constexpr const char* NAME = "entEntity";
     static constexpr const char* ALIAS = "Entity";
@@ -83,21 +73,33 @@ struct Entity : IScriptable, public SpawnableObject, public ComponentsStorage
 
     // 1.52 RVA: 0x1037B30 / 17005360
     /// @pattern 40 56 48 83 EC 50 48 89 5C 24 68 48 8B F1 48 89 7C 24 48 48 8B DA 8B BA 00 01 00 00 48 C1 E7 04
-    __int64 __fastcall RegisterComponentListeners(Handle<IComponent> *a2);
+    __int64 __fastcall SomethingListeners(Handle<IScriptable> *a2);
 
     // 1.52 RVA: 0x1035260 / 16994912
     /// @pattern 48 89 5C 24 08 57 48 83 EC 30 48 8B 02 48 8B D9 48 89 44 24 20 48 8D 4C 24 20 48 8B 42 08 48 8B
-    void __fastcall RegisterComponentListeners2(Handle<IComponent> *a2);
-    
+    void __fastcall SomethingListeners2(Handle<IScriptable> *a2);
+
+    // 1.52 RVA: 0x1035300 / 16995072
+    /// @pattern 48 83 C1 70 E9 77 26 40 FF
+    DynArray<Handle<IComponent>> *__fastcall GetComponents();
+
     enum Flags : uint8_t {
         Unk1 = 0x1,
         hasAnimatedComponent = 0x2,
         hasVisualControllerComponent = 0x4
     };
 
+    uint32_t unk40;
+    uint32_t unk44;
+    uint64_t tweakRecord;
+    CName currentAppearance;
+    uint64_t unk58;
+    ResourcePath resource; // 60
+    uint64_t unk68;
+    ComponentsStorage componentsStorage;
     void* placeholder; // B0
     void* runtime; // B8
-    GameInstance** gameInstance_p; // C0
+    ScriptGameInstance* scriptGameInstance; // C0
     Handle<void> unkC8;
     CallbackManager callbackManager; // D8
     DynArray<void*> effects;
