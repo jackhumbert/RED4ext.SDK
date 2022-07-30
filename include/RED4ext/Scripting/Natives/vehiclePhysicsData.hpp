@@ -13,11 +13,11 @@
 
 namespace RED4ext
 {
-namespace vehicle { struct BaseObject; }
-namespace physics { 
-struct VehiclePhysicsStruct
+namespace vehicle { 
+struct BaseObject;
+struct PhysicsData
 {
-    static constexpr const char* NAME = "physicsVehiclePhysicsStruct";
+    static constexpr const char* NAME = "vehiclePhysicsData";
     static constexpr const char* ALIAS = NAME;
 
     Vector3 force;
@@ -33,7 +33,7 @@ struct VehiclePhysicsStruct
     Matrix invertedWorldInertiaTensor;
     WorldTransform currentTransform;
     Vector4 worldPosition;
-    vehicle::BaseObject* vehicle;
+    BaseObject* vehicle;
     uint64_t unk188;
     Box bounds;
     uint64_t unk1B0;
@@ -47,6 +47,6 @@ struct VehiclePhysicsStruct
     Vector3 momentOfInertiaScale;
     Vector3 centerOfMass;
 };
-RED4EXT_ASSERT_SIZE(VehiclePhysicsStruct, 0x1E0);
-} // namespace physics
+RED4EXT_ASSERT_SIZE(PhysicsData, 0x1E0);
+} // namespace vehicle
 } // namespace RED4ext

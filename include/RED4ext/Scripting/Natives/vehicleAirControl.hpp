@@ -6,24 +6,24 @@
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Scripting/Natives/Generated/Vector3.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/BaseObject.hpp>
-#include <RED4ext/Scripting/Natives/Generated/physics/VehicleBaseObjectAirControlAxis.hpp>
+#include <RED4ext/Scripting/Natives/vehicleAirControlAxis.hpp>
 
 namespace RED4ext
 {
-namespace vehicle { struct BaseObject; }
-namespace physics
-{
+namespace vehicle { 
+struct BaseObject;
+
 #pragma pack(push, 1)
-struct VehicleBaseObjectAirControl
+struct AirControl
 {
-    static constexpr const char* NAME = "physicsVehicleBaseObjectAirControl";
+    static constexpr const char* NAME = "vehicleAirControl";
     static constexpr const char* ALIAS = NAME;
 
-    vehicle::BaseObject * vehicle;
+    BaseObject * vehicle;
     float unk08;
-    VehicleBaseObjectAirControlAxis pitch;
-    VehicleBaseObjectAirControlAxis yaw;
-    VehicleBaseObjectAirControlAxis roll;
+    AirControlAxis pitch;
+    AirControlAxis yaw;
+    AirControlAxis roll;
     Vector3 anglePID;
     Vector3 velocityPID;
     Vector3 flippedOverRecoveryPID;
@@ -31,6 +31,6 @@ struct VehicleBaseObjectAirControl
     float unk244;
 };
 #pragma pack(pop)
-RED4EXT_ASSERT_SIZE(VehicleBaseObjectAirControl, 0x248);
-} // namespace physics
+RED4EXT_ASSERT_SIZE(AirControl, 0x248);
+} // namespace vehicle
 } // namespace RED4ext

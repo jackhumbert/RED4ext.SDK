@@ -7,12 +7,12 @@
 
 namespace RED4ext
 {
-namespace physics
+namespace vehicle
 {
 #pragma pack(push, 1)
-struct VehicleBaseObjectAirControlAxis
+struct AirControlAxis
 {
-    static constexpr const char* NAME = "physicsVehicleBaseObjectAirControlAxis";
+    static constexpr const char* NAME = "vehicleAirControlAxis";
     static constexpr const char* ALIAS = NAME;
 
     uint32_t unk00;
@@ -42,6 +42,6 @@ struct VehicleBaseObjectAirControlAxis
     float unk5C[12];
 };
 #pragma pack(pop)
-RED4EXT_ASSERT_SIZE(VehicleBaseObjectAirControlAxis, 0xB0);
-} // namespace physics
+RED4EXT_ASSERT_SIZE(AirControlAxis, 0xB0);
+} // namespace vehicle
 } // namespace RED4ext

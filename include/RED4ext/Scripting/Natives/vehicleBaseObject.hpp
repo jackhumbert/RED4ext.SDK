@@ -7,9 +7,9 @@
 #include <RED4ext/NativeTypes.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/Object.hpp>
 #include <RED4ext/Scripting/Natives/Generated/WorldTransform.hpp>
-#include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysics.hpp>
-#include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsStruct.hpp>
-#include <RED4ext/Scripting/Natives/Generated/physics/VehicleBaseObjectAirControl.hpp>
+#include <RED4ext/Scripting/Natives/vehiclePhysics.hpp>
+#include <RED4ext/Scripting/Natives/vehiclePhysicsData.hpp>
+#include <RED4ext/Scripting/Natives/vehicleBaseObjectAirControl.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/ChassisComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/OccupantSlotComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/data/Vehicle_Record.hpp>
@@ -28,18 +28,15 @@ namespace world
 {
 struct RuntimeSystemPhysics;
 }
-namespace physics
-{
-struct VehiclePhysics;
-struct VehiclePhysicsStruct;
-struct VehicleBaseObjectAirControl;
-} // namespace physics
 namespace ent
 {
 struct Entity;
 }
 namespace vehicle
 {
+struct Physics;
+struct PhysicsData;
+struct AirControl;
 struct Weapon;
 
 //struct Interface : game::Object::Interface
@@ -85,7 +82,7 @@ struct BaseObject : game::Object
     // Returns 0.0
     virtual double __fastcall sub_278();
 
-    // Updates physics World Transform, creates physicsStruct, engine data
+    // Updates physics World Transform, creates physicsData, engine data
     virtual int32_t __fastcall sub_280();
 
     // Calls physics sub_80
@@ -230,6 +227,14 @@ struct BaseObject : game::Object
     /// @pattern 48 8D 81 88 03 00 00 C3
     Interface *__fastcall GetInterface();
 
+    // 1.52 RVA: 0x72FE70 / 7536240
+    /// @pattern 48 8B 81 B8 02 00 00 C3
+    PhysicsData *__fastcall GetPhysicsData();
+
+    // 1.52 RVA: 0x72FE80 / 7536256
+    /// @pattern F2 0F 10 81 58 02 00 00 C3
+    double __fastcall GetDeceleration();
+
     world::RuntimeSystemPhysics* physicsSystem;
     float unk248;
     bool isOnGround;
@@ -264,8 +269,8 @@ struct BaseObject : game::Object
     float unk2B4;
     float unk2B8;
     float unk2BC;
-    physics::VehiclePhysics* physics;             // 2B0
-    physics::VehiclePhysicsStruct* physicsStruct; // 2B8
+    Physics* physics;             // 2B0
+    PhysicsData* physicsData; // 2B8
     Handle<void> curveSetData;
     Handle<ChassisComponent> chassis;
     float unk2E0[16];
@@ -297,7 +302,7 @@ struct BaseObject : game::Object
     Handle<game::Puppet> mountedPuppet;
     void*unk568;
     void* unk570;
-    physics::VehicleBaseObjectAirControl* airControl; // 578
+    AirControl* airControl; // 578
     void* unk580;
     void* unk588;
     void* unk590;

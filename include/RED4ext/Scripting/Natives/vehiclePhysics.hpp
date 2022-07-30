@@ -8,10 +8,10 @@
 #include <RED4ext/Scripting/Natives/Generated/WorldTransform.hpp>
 #include <RED4ext/Scripting/Natives/Generated/Vector3.hpp>
 #include <RED4ext/Scripting/Natives/Generated/Matrix.hpp>
-#include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsInsert1.hpp>
-#include <RED4ext/Scripting/Natives/Generated/physics/VehiclePhysicsInsert2.hpp>
+#include <RED4ext/Scripting/Natives/vehiclePhysicsInsert1.hpp>
+#include <RED4ext/Scripting/Natives/vehiclePhysicsInsert2.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/BaseObject.hpp>
-#include <RED4ext/Scripting/Natives/Generated/vehicle/PID.hpp>
+#include <RED4ext/Scripting/Natives/vehiclePID.hpp>
 
 namespace RED4ext
 {
@@ -19,13 +19,11 @@ namespace RED4ext
 namespace vehicle
 {
 struct BaseObject;
-}
 
-namespace physics {
 #pragma pack(push, 1)
-struct VehiclePhysics
+struct Physics
 {
-    static constexpr const char* NAME = "physicsVehiclePhysics";
+    static constexpr const char* NAME = "vehiclePhysics";
     static constexpr const char* ALIAS = NAME;
     static constexpr const uintptr_t VFT_RVA = 0x34316C8;
 
@@ -83,23 +81,22 @@ struct VehiclePhysics
     virtual uint64_t sub_138();
     virtual void LoadSomeVehiclePhysicsStuff(void *);
 
-    // Base
     uint64_t unk08;
-    RED4ext::Vector3 velocity;
+    Vector3 velocity;
     uint32_t unk10;
     uint8_t unk20;
     uint8_t unk21[7];
     uint64_t unk28;
-    RED4ext::WorldTransform worldTransform;
+    WorldTransform worldTransform;
     uint8_t unk50;
     uint8_t unk51[7];
     uint64_t unk58;
-    RED4ext::vehicle::BaseObject* parent;
+    BaseObject* parent;
     uintptr_t waterParams;
     uint8_t unk70;
     uint8_t unk71[7];
     uint64_t unk78;
-    RED4ext::WorldTransform worldTransform2;
+    WorldTransform worldTransform2;
     float unkA0;
     float unkA4;
     float setTo0point5;
@@ -116,10 +113,16 @@ struct VehiclePhysics
     float has_been_flipped_over_for_some_time_delay;
     float unkC4;
     uintptr_t physicsBaseStruct2;
+};
+//char (*__kaboom)[sizeof(VehiclePhysics)] = 1;
+//char (*__kaboom2)[offsetof(VehiclePhysics, unkD4Position)] = 1;
 
-    // Wheeled
+struct WheeledPhysics : Physics {
+    static constexpr const char* NAME = "vehicleWheeledPhysics";
+    static constexpr const char* ALIAS = NAME;
+
     uint32_t unkD0;
-    RED4ext::Vector4 unkD4Position;
+    Vector4 unkD4Position;
     float turnRate;
     uint32_t unkE8;
     uint32_t unkEC;
@@ -128,17 +131,17 @@ struct VehiclePhysics
     uint8_t unkF5;
     uint8_t unkF6;
     uint8_t unkF7;
-    RED4ext::vehicle::BaseObject* parent2;
-    RED4ext::physics::VehiclePhysicsInsert1 wheel1;
-    RED4ext::physics::VehiclePhysicsInsert1 wheel2;
-    RED4ext::physics::VehiclePhysicsInsert1 wheel3;
-    RED4ext::physics::VehiclePhysicsInsert1 wheel4;
+    vehicle::BaseObject* parent2;
+    physics::VehiclePhysicsInsert1 wheel1;
+    physics::VehiclePhysicsInsert1 wheel2;
+    physics::VehiclePhysicsInsert1 wheel3;
+    physics::VehiclePhysicsInsert1 wheel4;
     uint32_t wheelCount;
     uint32_t unk5C4[3];
-    RED4ext::physics::VehiclePhysicsInsert2 insert1;
-    RED4ext::physics::VehiclePhysicsInsert2 insert2;
-    RED4ext::physics::VehiclePhysicsInsert2 insert3;
-    RED4ext::physics::VehiclePhysicsInsert2 insert4;
+    physics::VehiclePhysicsInsert2 insert1;
+    physics::VehiclePhysicsInsert2 insert2;
+    physics::VehiclePhysicsInsert2 insert3;
+    physics::VehiclePhysicsInsert2 insert4;
     uint8_t insertCount;
     uint8_t unkB91;
     uint8_t unkB92;
@@ -184,32 +187,30 @@ struct VehiclePhysics
     float slopeTractionReductionFactor;
     float unkC38;
     float unkC3C;
-    RED4ext::Vector4 unkC40;
-    RED4ext::Matrix unkC50;
-    RED4ext::Matrix unkC90;
+    Vector4 unkC40;
+    Matrix unkC50;
+    Matrix unkC90;
     uint32_t unkCD0[4];
     uint32_t wheelsNeedUpdate;
     uint32_t unkCE4;
     DynArray<uintptr_t> driveHelpers;
-    RED4ext::Handle<void> curveSet;
+    Handle<void> curveSet;
     uint64_t stuckTimeout;
     float* transformStruct;
     uint64_t unkD18;
-    RED4ext::vehicle::BaseObject* parent3;
+    BaseObject* parent3;
 };
 #pragma pack(pop)
-//char (*__kaboom)[sizeof(VehiclePhysics)] = 1;
-//char (*__kaboom2)[offsetof(VehiclePhysics, unkD4Position)] = 1;
-RED4EXT_ASSERT_OFFSET(VehiclePhysics, driveHelpers, 0xCE8);
-RED4EXT_ASSERT_SIZE(VehiclePhysics, 0xD28);
+RED4EXT_ASSERT_OFFSET(WheeledPhysics, driveHelpers, 0xCE8);
+RED4EXT_ASSERT_SIZE(WheeledPhysics, 0xD28);
 
-struct VehiclePhysicsCar : VehiclePhysics
+struct CarPhysics : WheeledPhysics
 {
-    static constexpr const char* NAME = "physicsVehiclePhysicsCar";
+    static constexpr const char* NAME = "vehicleCarPhysics";
     static constexpr const char* ALIAS = NAME;
 
-    vehicle::PID bankBodyFBPID;
-    vehicle::PID bankBodyLRPID;
+    PID bankBodyFBPID;
+    PID bankBodyLRPID;
     float bankBodyFBTanMultiplier;
     float bankBodyLRTanMultiplier;
     float differentialOvershootFactor;
@@ -244,16 +245,16 @@ struct VehiclePhysicsCar : VehiclePhysics
     uint8_t unkE75[3];
     uint64_t unkE78;
 };
-RED4EXT_ASSERT_OFFSET(VehiclePhysicsCar, unkE78, 0xE78);
+RED4EXT_ASSERT_OFFSET(CarPhysics, unkE78, 0xE78);
 
-struct VehiclePhysicsBike : VehiclePhysics
+struct BikePhysics : WheeledPhysics
 {
-    static constexpr const char* NAME = "physicsVehiclePhysicsBike";
+    static constexpr const char* NAME = "vehicleBikePhysics";
     static constexpr const char* ALIAS = NAME;
 
-    Handle<void*> unkD28;
-    vehicle::PID tiltPID;
-    Handle<void*> unkD58;
+    Handle<void> unkD28;
+    PID tiltPID;
+    Handle<void> unkD58;
     float unkD68;
     float unkD6C;
     float bikeTiltSpeed;
@@ -261,7 +262,7 @@ struct VehiclePhysicsBike : VehiclePhysics
     float bikeTiltCustomSpeed;
     float bikeMaxTilt;
 };
-RED4EXT_ASSERT_OFFSET(VehiclePhysicsBike, unkD28, 0xD28);
+RED4EXT_ASSERT_OFFSET(BikePhysics, unkD28, 0xD28);
 
 } // namespace physics
 } // namespace RED4ext
