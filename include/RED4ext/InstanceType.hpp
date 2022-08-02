@@ -5,12 +5,13 @@
 #include <RED4ext/Common.hpp>
 #include <RED4ext/DynArray.hpp>
 #include <RED4ext/Handle.hpp>
+#include <RED4ext/Scripting/IScriptable.hpp>
 
 namespace RED4ext
 {
 struct CString;
 struct ISerializable;
-struct IScriptable;
+ struct IScriptable;
 struct TweakDBID;
 struct ItemID;
 

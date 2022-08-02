@@ -8,7 +8,7 @@
 #include <RED4ext/HashMap.hpp>
 #include <RED4ext/InstanceType.hpp>
 #include <RED4ext/Utils.hpp>
-#include <RED4ext/Scripting/Natives/Callbacks.hpp>
+#include <RED4ext/Callbacks.hpp>
 
 namespace RED4ext
 {

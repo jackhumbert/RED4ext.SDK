@@ -7,7 +7,7 @@
 #include <RED4ext/DynArray.hpp>
 #include <RED4ext/Handle.hpp>
 #include <RED4ext/ISerializable.hpp>
-#include <RED4ext/Scripting/Natives/Generated/ent/IComponent.hpp>
+// #include <RED4ext/Scripting/Natives/Generated/ent/IComponent.hpp>
 
 #include <RED4ext/Scripting/Natives/entComponentsStorage.hpp>
 

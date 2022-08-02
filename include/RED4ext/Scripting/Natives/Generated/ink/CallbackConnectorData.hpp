@@ -9,7 +9,7 @@
 
 namespace RED4ext
 {
-struct IScriptable;
+// struct IScriptable;
 
 namespace ink { 
 struct CallbackConnectorData : IScriptable

@@ -90,7 +90,7 @@ inline void IGameSystem::sub_170()
 inline uintptr_t IGameSystem::sub_178(uintptr_t a1)
 {
     RelocVirtualFunc<decltype(&IGameSystem::sub_178)> call(VFT_RVA, 0x178);
-    return (this->*call)(a1, a2);
+    return (this->*call)(a1);
 }
 
 inline void IGameSystem::sub_180()

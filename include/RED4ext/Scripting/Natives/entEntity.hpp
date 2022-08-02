@@ -4,17 +4,17 @@
 
 #include <cstdint>
 #include <RED4ext/Common.hpp>
-#include <RED4ext/Scripting/Natives/Generated/Vector2.hpp>
+#include <RED4ext/ResourcePath.hpp>
+#include <RED4ext/GameEngine.hpp>
+#include <RED4ext/Callbacks.hpp>
 #include <RED4ext/Scripting/IScriptable.hpp>
+#include <RED4ext/Scripting/Natives/Generated/Vector2.hpp>
 #include <RED4ext/Scripting/Natives/Generated/ECustomCameraTarget.hpp>
 #include <RED4ext/Scripting/Natives/Generated/RenderSceneLayerMask.hpp>
 #include <RED4ext/Scripting/Natives/entComponentsStorage.hpp>
 //#include <RED4ext/Scripting/Natives/Generated/ent/PlaceholderComponent.hpp>
 #include <RED4ext/Scripting/Natives/entEntityDefinition.hpp>
 #include <RED4ext/Scripting/Natives/ScriptGameInstance.hpp>
-#include <RED4ext/ResourcePath.hpp>
-#include <RED4ext/GameEngine.hpp>
-#include <RED4ext/Scripting/Natives/Callbacks.hpp>
 
 namespace RED4ext
 {

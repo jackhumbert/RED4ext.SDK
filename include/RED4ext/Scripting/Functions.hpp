@@ -5,8 +5,9 @@
 #include <RED4ext/DynArray.hpp>
 #include <RED4ext/HashMap.hpp>
 #include <RED4ext/Memory/Allocators.hpp>
-#include <RED4ext/InstanceType.hpp>
-#include <RED4ext/Scripting/Script.hpp>
+// #include <RED4ext/InstanceType.hpp>
+// #include <RED4ext/Scripting/Script.hpp>
+// #include <RED4ext/Scripting/IScriptable.hpp>
 
 namespace RED4ext
 {

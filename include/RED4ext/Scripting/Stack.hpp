@@ -17,7 +17,7 @@ namespace RED4ext
  */
 struct CBaseRTTIType;
 struct CBaseFunction;
-struct IScriptable;
+// struct IScriptable;
 
 struct CStackType
 {
@@ -48,7 +48,7 @@ struct CBaseStack : IStack
     virtual void GenerateCode(char* aCode) {}   // 28
     // clang-format on
 
-    RED4ext::IScriptable* GetContext() const;
+    IScriptable* GetContext() const;
 
     int64_t unk08;          // 08
     void* unk10;            // 10
