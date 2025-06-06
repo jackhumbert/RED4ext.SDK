@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ent { 
-enum class EntitySpawnPriority : uint8_t
+namespace ent {
+enum class EntitySpawnPriority : int8_t
 {
     Background = 0,
     Normal = 1,

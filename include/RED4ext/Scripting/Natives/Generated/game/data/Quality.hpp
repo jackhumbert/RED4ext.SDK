@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class Quality : uint32_t
+namespace game::data {
+enum class Quality : int32_t
 {
     Common = 0,
     CommonPlus = 1,

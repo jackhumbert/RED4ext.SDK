@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class JournalEntryUserState : uint8_t
+namespace game {
+enum class JournalEntryUserState : int8_t
 {
     Undefined = 0,
     Inactive = 1,

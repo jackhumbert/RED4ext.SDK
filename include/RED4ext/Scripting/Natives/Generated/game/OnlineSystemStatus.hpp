@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class OnlineSystemStatus : uint32_t
+namespace game {
+enum class OnlineSystemStatus : int32_t
 {
     Uninitialized = 0,
     GeneratingCPID = 1,

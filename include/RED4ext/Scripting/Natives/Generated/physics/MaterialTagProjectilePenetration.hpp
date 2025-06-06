@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace physics { 
-enum class MaterialTagProjectilePenetration : uint8_t
+namespace physics {
+enum class MaterialTagProjectilePenetration : int8_t
 {
     TechOnly = 0,
     Any = 1,

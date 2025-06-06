@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::ui::arcade { 
-enum class ArcadeParallaxPlaneControllerLoopType : uint32_t
+namespace game::ui::arcade {
+enum class ArcadeParallaxPlaneControllerLoopType : int32_t
 {
     None = 0,
     Repeat = 1,

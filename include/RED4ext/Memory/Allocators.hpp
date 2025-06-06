@@ -1,12 +1,16 @@
+// Disable ReSharper virtual destructor check, as the Allocators are just structs with pointers to functions which are
+// copied around.
+// ReSharper disable CppPolymorphicClassWithNonVirtualPublicDestructor
+
 #pragma once
+
+#include <RED4ext/Common.hpp>
+#include <RED4ext/Detail/AddressHashes.hpp>
+#include <RED4ext/Memory/Pools.hpp>
+#include <RED4ext/Relocation.hpp>
 
 #include <cstdint>
 #include <type_traits>
-
-#include <RED4ext/Detail/AddressHashes.hpp>
-#include <RED4ext/Common.hpp>
-#include <RED4ext/Memory/Pools.hpp>
-#include <RED4ext/Relocation.hpp>
 
 namespace RED4ext
 {
@@ -21,14 +25,14 @@ RED4EXT_ASSERT_SIZE(AllocationResult, 0x10);
 
 struct IAllocator
 {
-    virtual AllocationResult Alloc(uint32_t aSize) = 0;                                  // 00
-    virtual AllocationResult AllocAligned(uint32_t aSize, uint32_t aAlignment) = 0;      // 08
-    virtual AllocationResult Realloc(AllocationResult& aAllocation, uint32_t aSize) = 0; // 10
+    virtual AllocationResult Alloc(uint32_t aSize) const = 0;                                  // 00
+    virtual AllocationResult AllocAligned(uint32_t aSize, uint32_t aAlignment) const = 0;      // 08
+    virtual AllocationResult Realloc(AllocationResult& aAllocation, uint32_t aSize) const = 0; // 10
     virtual AllocationResult ReallocAligned(AllocationResult& aAllocation, uint32_t aSize,
-                                            uint32_t aAlignment) = 0; // 16
-    virtual void Free(AllocationResult& aAllocation) = 0;             // 20
-    virtual void sub_28(void* a1) = 0;                                // 28
-    virtual const uint32_t GetHandle() const = 0;                     // 30
+                                            uint32_t aAlignment) const = 0; // 16
+    virtual void Free(AllocationResult& aAllocation) const = 0;             // 20
+    virtual void sub_28(void* a1) const = 0;                                // 28
+    virtual const uint32_t GetHandle() const = 0;                           // 30
 
     [[deprecated("Use 'GetHandle()' instead.")]] const uint32_t GetId() const
     {
@@ -36,13 +40,13 @@ struct IAllocator
     }
 
     template<typename T, typename = std::enable_if_t<!std::is_pointer_v<T>, T*>>
-    [[nodiscard]] T* Alloc()
+    [[nodiscard]] T* Alloc() const
     {
         auto result = Alloc(sizeof(T));
         return static_cast<T*>(result.memory);
     }
 
-    void Free(void* aMemory)
+    void Free(void* aMemory) const
     {
         AllocationResult allocation;
         allocation.memory = aMemory;
@@ -75,15 +79,15 @@ struct Allocator : IAllocator
      * doing something else the calls will be ill-formed.
      */
 
-    virtual AllocationResult Alloc(uint32_t aSize) override
+    virtual AllocationResult Alloc(uint32_t aSize) const override
     {
         using alloc_t = void(__fastcall*)(Vault*, AllocationResult*, uint32_t);
         static UniversalRelocFunc<alloc_t> alloc(Detail::AddressHashes::Memory_Vault_Alloc);
 
         auto pool = T::Get();
-        auto storage = pool->storage->GetAllocatorStorage<Vault>();
+        auto storage = pool->storage->template GetAllocatorStorage<Vault>();
 
-        AllocationResult result;
+        AllocationResult result = {};
         alloc(storage, &result, aSize);
         if (!result.memory)
         {
@@ -93,15 +97,15 @@ struct Allocator : IAllocator
         return result;
     }
 
-    virtual AllocationResult AllocAligned(uint32_t aSize, uint32_t aAlignment) override
+    virtual AllocationResult AllocAligned(uint32_t aSize, uint32_t aAlignment) const override
     {
         using alloc_t = void (*)(Vault*, AllocationResult*, uint32_t, uint32_t);
         static UniversalRelocFunc<alloc_t> alloc(Detail::AddressHashes::Memory_Vault_AllocAligned);
 
         auto pool = T::Get();
-        auto storage = pool->storage->GetAllocatorStorage<Vault>();
+        auto storage = pool->storage->template GetAllocatorStorage<Vault>();
 
-        AllocationResult result;
+        AllocationResult result = {};
         alloc(storage, &result, aSize, aAlignment);
         if (!result.memory)
         {
@@ -111,15 +115,15 @@ struct Allocator : IAllocator
         return result;
     }
 
-    virtual AllocationResult Realloc(AllocationResult& aAllocation, uint32_t aSize) override
+    virtual AllocationResult Realloc(AllocationResult& aAllocation, uint32_t aSize) const override
     {
         using realloc_t = void (*)(Vault*, AllocationResult*, AllocationResult&, uint32_t);
         static UniversalRelocFunc<realloc_t> realloc(Detail::AddressHashes::Memory_Vault_Realloc);
 
         auto pool = T::Get();
-        auto storage = pool->storage->GetAllocatorStorage<Vault>();
+        auto storage = pool->storage->template GetAllocatorStorage<Vault>();
 
-        AllocationResult result;
+        AllocationResult result = {};
         realloc(storage, &result, aAllocation, aSize);
         if (!result.memory && aSize)
         {
@@ -129,15 +133,16 @@ struct Allocator : IAllocator
         return result;
     }
 
-    virtual AllocationResult ReallocAligned(AllocationResult& aAllocation, uint32_t aSize, uint32_t aAlignment) override
+    virtual AllocationResult ReallocAligned(AllocationResult& aAllocation, uint32_t aSize,
+                                            uint32_t aAlignment) const override
     {
         using realloc_t = void (*)(Vault*, AllocationResult*, AllocationResult&, uint32_t, uint32_t);
         static UniversalRelocFunc<realloc_t> realloc(Detail::AddressHashes::Memory_Vault_ReallocAligned);
 
         auto pool = T::Get();
-        auto storage = pool->storage->GetAllocatorStorage<Vault>();
+        auto storage = pool->storage->template GetAllocatorStorage<Vault>();
 
-        AllocationResult result;
+        AllocationResult result = {};
         realloc(storage, &result, aAllocation, aSize, aAlignment);
         if (!result.memory && aSize)
         {
@@ -147,23 +152,23 @@ struct Allocator : IAllocator
         return result;
     }
 
-    virtual void Free(AllocationResult& aAllocation) override
+    virtual void Free(AllocationResult& aAllocation) const override
     {
         using func_t = void (*)(Vault*, AllocationResult&);
         static UniversalRelocFunc<func_t> func(Detail::AddressHashes::Memory_Vault_Free);
 
         auto pool = T::Get();
-        auto storage = pool->storage->GetAllocatorStorage<Vault>();
+        auto storage = pool->storage->template GetAllocatorStorage<Vault>();
         func(storage, aAllocation);
     }
 
-    virtual void sub_28(void* a2) override
+    virtual void sub_28(void* a2) const override
     {
         using func_t = void (*)(Vault*, void*);
         static UniversalRelocFunc<func_t> func(Detail::AddressHashes::Memory_Vault_Unk1);
 
         auto pool = T::Get();
-        auto storage = pool->storage->GetAllocatorStorage<Vault>();
+        auto storage = pool->storage->template GetAllocatorStorage<Vault>();
         func(storage, a2);
     }
 
@@ -181,7 +186,7 @@ protected:
     ~Allocator() = default;
 
 private:
-    inline void OOM(uint32_t aSize, uint32_t aAlignment)
+    inline void OOM(uint32_t aSize, uint32_t aAlignment) const
     {
         using oom_t = AllocationResult (*)(PoolStorage*, uint32_t, uint32_t);
         static UniversalRelocFunc<oom_t> oom(Detail::AddressHashes::Memory_PoolStorage_OOM);
@@ -2711,14 +2716,4 @@ struct GPUM_Buffer_MorphTargetsAllocator : Allocator<GPUM_Buffer_MorphTargets>
 {
 };
 } // namespace Memory
-
-struct [[deprecated("Use 'Memory::IAllocator' instead.")]] IMemoryAllocator : Memory::IAllocator
-{
-    struct [[deprecated("Use 'Memory::AllocationResult' instead.")]] Result : Memory::AllocationResult{};
-};
-
-struct [[deprecated("Use 'Memory::EngineAllocator' instead.")]] EngineAllocator : Memory::EngineAllocator{};
-struct [[deprecated("Use 'Memory::RTTIAllocator' instead.")]] RTTIAllocator : Memory::RTTIAllocator{};
-struct [[deprecated("Use 'Memory::RTTIFunctionAllocator' instead.")]] RTTIFunctionAllocator
-    : Memory::RTTIFunctionAllocator{};
 } // namespace RED4ext

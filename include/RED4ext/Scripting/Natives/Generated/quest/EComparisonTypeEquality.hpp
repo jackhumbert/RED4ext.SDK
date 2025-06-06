@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class EComparisonTypeEquality : uint32_t
+namespace quest {
+enum class EComparisonTypeEquality : int32_t
 {
     Equal = 0,
     NotEqual = 1,

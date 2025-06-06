@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class Regular1v1FinisherScenarioPivotSetting : uint8_t
+namespace game {
+enum class Regular1v1FinisherScenarioPivotSetting : int8_t
 {
     AttackerSlidesAndRotates_TargetStandsStill = 0,
     AttackerStandsStill_TargetSlidesAndRotates = 1,

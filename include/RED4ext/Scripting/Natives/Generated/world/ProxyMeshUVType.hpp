@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class ProxyMeshUVType : uint8_t
+namespace world {
+enum class ProxyMeshUVType : int8_t
 {
     UvUseExisting = 0,
     UvGenerateNew = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn::fpp { 
-enum class BlendOverride : uint32_t
+namespace scn::fpp {
+enum class BlendOverride : int32_t
 {
     Centering = 0,
     CopyPitch_CenteringYaw = 1,

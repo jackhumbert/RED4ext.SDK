@@ -39,8 +39,7 @@ struct HashMapHash<T, std::enable_if_t<std::is_same_v<T, uint64_t>>>
 {
     uint32_t operator()(const T& aKey) const noexcept
     {
-        // Not 100% sure if this is correct, but checking quickly seems to be the case for 64bit integers.
-        return static_cast<uint32_t>(aKey) ^ ((aKey >> 32) & 0xFFFFFFFF);
+        return FNV1a32(reinterpret_cast<const uint8_t*>(&aKey), sizeof(uint64_t));
     }
 };
 
@@ -209,6 +208,11 @@ struct HashMap
         return nullptr;
     }
 
+    bool Contains(const K& aKey)
+    {
+        return Get(aKey) != nullptr;
+    }
+
     bool Remove(const K& aKey)
     {
         if (size == 0)
@@ -373,52 +377,9 @@ struct HashMap
         nodeList = newNodeList;
     }
 
-    
-#pragma region Iterator
-    Node* Begin()
+    const Memory::IAllocator* GetAllocator() const
     {
-        return nodeList.nodes;
-    }
-
-    const Node* Begin() const
-    {
-        return nodeList.nodes;
-    }
-
-    Node* begin()
-    {
-        return Begin();
-    }
-
-    const Node* begin() const
-    {
-        return Begin();
-    }
-
-    Node* End()
-    {
-        return nodeList.nodes + nodeList.size;
-    }
-
-    const Node* End() const
-    {
-        return nodeList.nodes + nodeList.size;
-    }
-
-    Node* end()
-    {
-        return End();
-    }
-
-    const Node* end() const
-    {
-        return End();
-    }
-#pragma endregion
-
-    Memory::IAllocator* GetAllocator()
-    {
-        return reinterpret_cast<Memory::IAllocator*>(&allocator);
+        return reinterpret_cast<const Memory::IAllocator*>(&allocator);
     }
 
     void CopyFrom(const HashMap& aOther)

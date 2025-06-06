@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class WardrobeClothingSetIndex : uint32_t
+namespace game {
+enum class WardrobeClothingSetIndex : int32_t
 {
     Slot1 = 0,
     Slot2 = 1,

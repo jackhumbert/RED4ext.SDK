@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class GradientMode : uint8_t
+namespace ink {
+enum class GradientMode : int8_t
 {
     Linear = 0,
     Rectangular = 1,

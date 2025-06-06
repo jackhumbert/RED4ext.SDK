@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class WidgetResourceVersion : uint8_t
+namespace ink {
+enum class WidgetResourceVersion : int8_t
 {
     Default = 0,
     BrushToAtlas = 1,

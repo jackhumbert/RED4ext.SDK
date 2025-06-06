@@ -19,11 +19,29 @@
 #include <RED4ext/Scripting/Natives/Generated/ent/EntityID.hpp>
 #include <RED4ext/Scripting/Natives/worldRuntimeScene.hpp>
 
+#include <RED4ext/Scripting/Natives/Generated/ent/IComponent.hpp>
+#include <RED4ext/Scripting/Natives/Generated/red/TagList.hpp>
+#include <RED4ext/Scripting/Natives/ScriptGameInstance.hpp>
+
 namespace RED4ext
 {
 namespace world { struct RuntimeScene; }
+
+enum class EntityStatus : uint8_t
+{
+    Undefined = 0,
+    Initializing = 1,
+    Detached = 2,
+    Attaching = 3,
+    Attached = 4,
+    Detaching = 5,
+    Uninitializing = 6,
+    Uninitialized = 7,
+};
+
 namespace ent
 {
+struct IPlacedComponent;
 //struct ComponentsStorage;
 //struct PlaceholderComponent;
 struct Entity : IScriptable
@@ -146,23 +164,24 @@ struct Entity : IScriptable
         // components need initialized?
         unk20 = 0x20
     };
-    enum class EntityState : uint8_t {
-        Detached = 2,
-        WillAttach = 3,
-        Attached = 4,
-        WillDetach = 5,
-        Preuninitialize = 6,
-        Uninitialized = 7,
-    };
+
+    // enum class EntityState : uint8_t {
+    //     Detached = 2,
+    //     WillAttach = 3,
+    //     Attached = 4,
+    //     WillDetach = 5,
+    //     Preuninitialize = 6,
+    //     Uninitialized = 7,
+    // };
 
     uint32_t unk40;
     // related to entity system - id?
     uint32_t unk44;
     EntityID entityID;
-    CName currentAppearance;
+    CName currentAppearance; // appearanceName
     // maybe ProxyCacheID?
     uint64_t unk58;
-    ResourcePath resource;                      // 60
+    ResourcePath resource;                      // 60 templatePath
     uint64_t unk68;
     ComponentsStorage componentsStorage;        // 70
     void* placeholder;                          // B0
@@ -170,13 +189,13 @@ struct Entity : IScriptable
     ScriptGameInstance* scriptGameInstance;     // C0
     Handle<void> unkC8;                         // C8
     CallbackManager callbackManager;            // D8
-    red::TagList entityTags;                    // 138
+    red::TagList entityTags;                    // 138 visualTags
     // isReplicated = unk148 != 0
     void * unk148;                              // 148 net::IEntityState* ?
     float updatingTransform;                    // 150
-    uint8_t customCameraTarget = 0;             // 154
+    ECustomCameraTarget customCameraTarget = 0; // 154
     int8_t controllingPeerID = -1;              // 155
-    EntityState entityState;                    // 156
+    EntityStatus status;                        // 156 prev EntityState
     uint8_t unk157;                             // 157
     uint16_t unk158 = 0;                        // 158 used in another component initialize
     // factoryID
@@ -199,3 +218,4 @@ RED4EXT_ASSERT_OFFSET(Entity, entityTags, 0x138);
 #ifdef RED4EXT_HEADER_ONLY
 #include <RED4ext/Scripting/Natives/entEntity-inl.hpp>
 #endif
+

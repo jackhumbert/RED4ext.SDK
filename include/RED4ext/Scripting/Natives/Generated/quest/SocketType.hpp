@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class SocketType : uint8_t
+namespace quest {
+enum class SocketType : int8_t
 {
     Undefined = 0,
     Input = 1,

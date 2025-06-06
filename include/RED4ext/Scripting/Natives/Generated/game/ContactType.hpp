@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class ContactType : uint32_t
+namespace game {
+enum class ContactType : int32_t
 {
     Caller = 0,
     Texter = 1,

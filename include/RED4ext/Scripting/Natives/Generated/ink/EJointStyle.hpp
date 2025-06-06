@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class EJointStyle : uint32_t
+namespace ink {
+enum class EJointStyle : int32_t
 {
     MITER = 0,
     BEVEL = 1,

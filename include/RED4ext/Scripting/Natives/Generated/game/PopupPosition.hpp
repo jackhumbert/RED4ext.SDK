@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class PopupPosition : uint32_t
+namespace game {
+enum class PopupPosition : int32_t
 {
     Undefined = 0,
     UpperRight = 1,

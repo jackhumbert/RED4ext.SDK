@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::interactions { 
-enum class ReactionState : uint32_t
+namespace game::interactions {
+enum class ReactionState : int32_t
 {
     Idle = 0,
     Starting = 1,

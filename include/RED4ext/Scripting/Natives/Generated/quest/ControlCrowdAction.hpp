@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class ControlCrowdAction : uint8_t
+namespace quest {
+enum class ControlCrowdAction : int8_t
 {
     Disable = 0,
     Enable = 1,

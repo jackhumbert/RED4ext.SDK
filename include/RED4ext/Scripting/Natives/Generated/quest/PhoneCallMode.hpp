@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class PhoneCallMode : uint32_t
+namespace quest {
+enum class PhoneCallMode : int32_t
 {
     Undefined = 0,
     Audio = 1,

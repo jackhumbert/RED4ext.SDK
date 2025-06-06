@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class StatPoolDataStatPoolModificationStatus : uint8_t
+namespace game {
+enum class StatPoolDataStatPoolModificationStatus : int8_t
 {
     Regeneration = 0,
     Decay = 1,

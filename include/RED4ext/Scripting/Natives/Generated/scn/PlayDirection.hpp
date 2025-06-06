@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class PlayDirection : uint32_t
+namespace scn {
+enum class PlayDirection : int32_t
 {
     Forward = 0,
     Backward = 1,

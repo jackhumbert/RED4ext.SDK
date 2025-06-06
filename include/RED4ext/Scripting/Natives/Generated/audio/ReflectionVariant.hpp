@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class ReflectionVariant : uint32_t
+namespace audio {
+enum class ReflectionVariant : int32_t
 {
     WorldSpaceFixedDrections = 0,
     LocalSpaceFixedDirections = 1,

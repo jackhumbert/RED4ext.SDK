@@ -80,7 +80,10 @@ struct Widget : IScriptable
     uint8_t unk1B0[0x1E0 - 0x1B0];                                // 1B0
     HDRColor tintColor;                                           // 1E0
     float opacity;                                                // 1F0
-    uint8_t unk1F4[0x1F8 - 0x1F4];                                // 1F4
+    SharedSpinLock parentLock;                                    // 1F4
+    SharedSpinLock unk1F5;                                        // 1F5
+    SharedSpinLock unk1F6;                                        // 1F6
+    SharedSpinLock userDataLock;                                  // 1F7
     bool visible;                                                 // 1F8
     bool canSupportFocus;                                         // 1F9
     bool fitToContent;                                            // 1FA

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class PoliceStrategy : uint8_t
+namespace vehicle {
+enum class PoliceStrategy : int8_t
 {
     None = 0,
     DriveTowardsPlayer = 1,

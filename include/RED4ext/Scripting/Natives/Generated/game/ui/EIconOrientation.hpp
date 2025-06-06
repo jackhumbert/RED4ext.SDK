@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::ui { 
-enum class EIconOrientation : uint32_t
+namespace game::ui {
+enum class EIconOrientation : int32_t
 {
     Upright = 0,
     Entity = 1,

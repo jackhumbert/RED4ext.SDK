@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace text { 
-enum class LetterCase : uint8_t
+namespace text {
+enum class LetterCase : int8_t
 {
     OriginalCase = 0,
     UpperCase = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::ui::arcade { 
-enum class ShooterAIType : uint32_t
+namespace game::ui::arcade {
+enum class ShooterAIType : int32_t
 {
     MELEE = 0,
     RANGESHOOTER = 1,

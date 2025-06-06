@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class VehicleNetrunnerQuickhackType : uint32_t
+namespace vehicle {
+enum class VehicleNetrunnerQuickhackType : int32_t
 {
     ForceBrakes = 0,
     Explode = 1,

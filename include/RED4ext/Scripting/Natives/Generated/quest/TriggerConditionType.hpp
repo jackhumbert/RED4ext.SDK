@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class TriggerConditionType : uint8_t
+namespace quest {
+enum class TriggerConditionType : int8_t
 {
     Undefined = 0,
     Entered = 1,

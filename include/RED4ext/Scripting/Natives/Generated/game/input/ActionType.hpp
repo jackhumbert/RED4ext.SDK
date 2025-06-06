@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::input { 
-enum class ActionType : uint32_t
+namespace game::input {
+enum class ActionType : int32_t
 {
     BUTTON_PRESSED = 0,
     BUTTON_RELEASED = 1,

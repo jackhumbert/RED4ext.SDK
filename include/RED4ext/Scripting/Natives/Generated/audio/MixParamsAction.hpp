@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class MixParamsAction : uint32_t
+namespace audio {
+enum class MixParamsAction : int32_t
 {
     Mull = 0,
     MullPercent = 1,

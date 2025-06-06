@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class InventoryItemShape : uint8_t
+namespace game {
+enum class InventoryItemShape : int8_t
 {
     SingleSlot = 0,
     DoubleSlot = 1,

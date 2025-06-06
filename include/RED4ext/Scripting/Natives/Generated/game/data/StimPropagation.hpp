@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class StimPropagation : uint32_t
+namespace game::data {
+enum class StimPropagation : int32_t
 {
     Audio = 0,
     Visual = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace input { 
-enum class EInputScheme : uint8_t
+namespace input {
+enum class EInputScheme : int8_t
 {
     LEGACY = 0,
     AGILE = 1,

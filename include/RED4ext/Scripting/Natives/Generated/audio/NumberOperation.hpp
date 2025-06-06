@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class NumberOperation : uint8_t
+namespace audio {
+enum class NumberOperation : int8_t
 {
     SetEqual = 0,
     Add = 1,

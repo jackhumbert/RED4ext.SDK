@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class AggregationType : uint32_t
+namespace game {
+enum class AggregationType : int32_t
 {
     AND = 0,
     OR = 1,

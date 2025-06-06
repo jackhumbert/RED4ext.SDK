@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn::events { 
-enum class RidCameraPlacement : uint32_t
+namespace scn::events {
+enum class RidCameraPlacement : int32_t
 {
     SceneOrigin = 0,
     Actual = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class ScanningState : uint32_t
+namespace quest {
+enum class ScanningState : int32_t
 {
     NotScanned = 0,
     Scanned = 1,

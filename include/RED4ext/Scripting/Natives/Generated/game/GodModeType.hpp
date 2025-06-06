@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class GodModeType : uint32_t
+namespace game {
+enum class GodModeType : int32_t
 {
     Invulnerable = 0,
     Immortal = 1,

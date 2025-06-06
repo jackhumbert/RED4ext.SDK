@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class GlobalTierSubtype : uint8_t
+namespace game {
+enum class GlobalTierSubtype : int8_t
 {
     Quest = 0,
     Supervisor = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class ComparisonType : uint32_t
+namespace game {
+enum class ComparisonType : int32_t
 {
     EQUAL = 0,
     NOT_EQUAL = 1,

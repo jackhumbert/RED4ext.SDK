@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class MovingPlatformMovementInitializationType : uint32_t
+namespace game {
+enum class MovingPlatformMovementInitializationType : int32_t
 {
     Time = 0,
     Speed = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class InputHintHoldIndicationType : uint8_t
+namespace ink {
+enum class InputHintHoldIndicationType : int8_t
 {
     FromInputConfig = 0,
     Press = 1,

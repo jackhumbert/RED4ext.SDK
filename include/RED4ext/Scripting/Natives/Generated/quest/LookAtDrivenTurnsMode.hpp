@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class LookAtDrivenTurnsMode : uint32_t
+namespace quest {
+enum class LookAtDrivenTurnsMode : int32_t
 {
     Start = 0,
     Pause = 1,

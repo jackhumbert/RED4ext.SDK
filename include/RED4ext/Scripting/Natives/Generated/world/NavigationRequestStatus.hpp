@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class NavigationRequestStatus : uint32_t
+namespace world {
+enum class NavigationRequestStatus : int32_t
 {
     OK = 0,
     InvalidStartingPosition = 1,

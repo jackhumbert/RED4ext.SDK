@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class Elevator_ManageNPCAttachment_NodeTypeParamsAction : uint32_t
+namespace quest {
+enum class Elevator_ManageNPCAttachment_NodeTypeParamsAction : int32_t
 {
     Attach = 0,
     Detach = 1,

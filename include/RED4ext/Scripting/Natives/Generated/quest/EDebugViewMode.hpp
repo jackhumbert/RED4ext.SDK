@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class EDebugViewMode : uint32_t
+namespace quest {
+enum class EDebugViewMode : int32_t
 {
     NONE = 0,
     CLAY = 1,

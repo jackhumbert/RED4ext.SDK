@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class CoverState : uint32_t
+namespace anim {
+enum class CoverState : int32_t
 {
     LowCover = 1,
     HighCover = 2,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::interactions { 
-enum class BumpLocation : uint32_t
+namespace game::interactions {
+enum class BumpLocation : int32_t
 {
     Invalid = 0,
     Front = 1,

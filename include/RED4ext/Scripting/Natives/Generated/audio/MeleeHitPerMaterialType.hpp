@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class MeleeHitPerMaterialType : uint32_t
+namespace audio {
+enum class MeleeHitPerMaterialType : int32_t
 {
     Light = 0,
     Light_Hard = 1,

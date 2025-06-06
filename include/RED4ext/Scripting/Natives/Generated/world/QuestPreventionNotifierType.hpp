@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class QuestPreventionNotifierType : uint8_t
+namespace world {
+enum class QuestPreventionNotifierType : int8_t
 {
     Deescalation = 0,
     Clear = 1,

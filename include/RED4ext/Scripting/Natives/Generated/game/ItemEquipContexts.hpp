@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class ItemEquipContexts : uint32_t
+namespace game {
+enum class ItemEquipContexts : int32_t
 {
     LastWeaponEquipped = 0,
     LastUsedMeleeWeapon = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class EBlendTracksMode : uint32_t
+namespace anim {
+enum class EBlendTracksMode : int32_t
 {
     AGBT_BasePose = 0,
     AGBT_Interpolate = 1,

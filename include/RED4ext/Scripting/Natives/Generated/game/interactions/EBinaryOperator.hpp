@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::interactions { 
-enum class EBinaryOperator : uint32_t
+namespace game::interactions {
+enum class EBinaryOperator : int32_t
 {
     EBinaryOperator_and = 0,
     EBinaryOperator_or = 1,

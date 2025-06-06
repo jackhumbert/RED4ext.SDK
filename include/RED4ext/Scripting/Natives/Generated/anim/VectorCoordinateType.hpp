@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class VectorCoordinateType : uint32_t
+namespace anim {
+enum class VectorCoordinateType : int32_t
 {
     X = 0,
     Y = 1,

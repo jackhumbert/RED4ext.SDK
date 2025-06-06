@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class VoCpoCharacter : uint32_t
+namespace audio {
+enum class VoCpoCharacter : int32_t
 {
     None = 0,
     Solo = 1,

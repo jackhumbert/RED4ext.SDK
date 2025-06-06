@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace shared { 
-enum class CommandResult : uint32_t
+namespace shared {
+enum class CommandResult : int32_t
 {
     Success = 0,
     NeedOptions = 1,

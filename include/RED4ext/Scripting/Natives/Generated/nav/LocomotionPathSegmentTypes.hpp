@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace nav { 
-enum class LocomotionPathSegmentTypes : uint8_t
+namespace nav {
+enum class LocomotionPathSegmentTypes : int8_t
 {
     Invalid = 0,
     Spline = 1,

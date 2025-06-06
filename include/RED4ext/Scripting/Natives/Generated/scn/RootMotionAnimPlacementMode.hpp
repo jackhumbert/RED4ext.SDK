@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class RootMotionAnimPlacementMode : uint32_t
+namespace scn {
+enum class RootMotionAnimPlacementMode : int32_t
 {
     Blend = 0,
     TeleportToStart = 1,

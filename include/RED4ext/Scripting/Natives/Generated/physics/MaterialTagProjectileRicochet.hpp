@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace physics { 
-enum class MaterialTagProjectileRicochet : uint8_t
+namespace physics {
+enum class MaterialTagProjectileRicochet : int8_t
 {
     Default = 0,
     Always = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class JournalAlignmentEventType : uint32_t
+namespace quest {
+enum class JournalAlignmentEventType : int32_t
 {
     Left = 0,
     Center = 1,

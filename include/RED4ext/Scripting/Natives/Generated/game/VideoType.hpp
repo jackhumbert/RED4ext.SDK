@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class VideoType : uint8_t
+namespace game {
+enum class VideoType : int8_t
 {
     Tutorial_720x405 = 0,
     Tutorial_1024x576 = 1,

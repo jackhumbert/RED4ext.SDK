@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class InputHintKeyCombinationType : uint32_t
+namespace ink {
+enum class InputHintKeyCombinationType : int32_t
 {
     Or = 0,
     And = 1,

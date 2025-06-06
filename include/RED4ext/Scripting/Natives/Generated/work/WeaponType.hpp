@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace work { 
-enum class WeaponType : uint32_t
+namespace work {
+enum class WeaponType : int32_t
 {
     Any = 0,
     Ranged = 1,

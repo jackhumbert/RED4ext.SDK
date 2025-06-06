@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class InjectLootOperationType : uint32_t
+namespace quest {
+enum class InjectLootOperationType : int32_t
 {
     Inject = 0,
     Remove = 1,

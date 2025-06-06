@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class EContinuousMode : uint32_t
+namespace game {
+enum class EContinuousMode : int32_t
 {
     None = 0,
     Start = 1,

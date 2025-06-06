@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::projectile { 
-enum class ELaunchMode : uint32_t
+namespace game::projectile {
+enum class ELaunchMode : int32_t
 {
     Default = 0,
     FromLogic = 1,

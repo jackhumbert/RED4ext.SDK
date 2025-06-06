@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class VehicleDoorInteractionState : uint32_t
+namespace vehicle {
+enum class VehicleDoorInteractionState : int32_t
 {
     Available = 0,
     Locked = 1,

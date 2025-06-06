@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class EVehicleSpeedConditionType : uint32_t
+namespace vehicle {
+enum class EVehicleSpeedConditionType : int32_t
 {
     CT_EQUAL = 0,
     CT_NOT_EQUAL = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class CameraPlanesPreset : uint8_t
+namespace quest {
+enum class CameraPlanesPreset : int8_t
 {
     Undefined = 0,
     VeryNear = 1,

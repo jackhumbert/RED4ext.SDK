@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class SimpleMessageType : uint32_t
+namespace game {
+enum class SimpleMessageType : int32_t
 {
     Undefined = 0,
     Negative = 1,
@@ -19,6 +19,8 @@ enum class SimpleMessageType : uint32_t
     Money = 6,
     Reveal = 7,
     Boss = 8,
+    Twintone = 9,
+    Police = 10,
 };
 } // namespace game
 using gameSimpleMessageType = game::SimpleMessageType;

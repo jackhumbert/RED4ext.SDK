@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class AIRingType : uint32_t
+namespace game::data {
+enum class AIRingType : int32_t
 {
     Approach = 0,
     Close = 1,

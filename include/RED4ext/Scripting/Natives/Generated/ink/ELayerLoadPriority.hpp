@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class ELayerLoadPriority : uint8_t
+namespace ink {
+enum class ELayerLoadPriority : int8_t
 {
     Normal = 0,
     High = 1,

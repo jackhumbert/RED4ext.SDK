@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace community { 
-enum class ESquadType : uint8_t
+namespace community {
+enum class ESquadType : int8_t
 {
     Global = 0,
     Community = 1,

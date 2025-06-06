@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::ui { 
-enum class CharacterCustomizationPart : uint32_t
+namespace game::ui {
+enum class CharacterCustomizationPart : int32_t
 {
     Head = 0,
     Body = 1,

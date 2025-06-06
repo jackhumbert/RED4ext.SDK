@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class UICondition : uint32_t
+namespace game::data {
+enum class UICondition : int32_t
 {
     InEyesSubMenu = 0,
     InHandsSubMenu = 1,

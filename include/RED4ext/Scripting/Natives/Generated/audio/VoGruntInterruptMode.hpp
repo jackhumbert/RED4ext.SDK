@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class VoGruntInterruptMode : uint32_t
+namespace audio {
+enum class VoGruntInterruptMode : int32_t
 {
     DontInterrupt = 0,
     PlayOnlyOnInterrupt = 1,

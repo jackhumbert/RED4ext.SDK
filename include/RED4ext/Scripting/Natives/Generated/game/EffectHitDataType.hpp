@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class EffectHitDataType : uint8_t
+namespace game {
+enum class EffectHitDataType : int8_t
 {
     Entity = 0,
     Node = 1,

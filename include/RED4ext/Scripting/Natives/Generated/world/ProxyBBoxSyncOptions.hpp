@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class ProxyBBoxSyncOptions : uint8_t
+namespace world {
+enum class ProxyBBoxSyncOptions : int8_t
 {
     Do_Nothing = 0,
     Pull = 1,

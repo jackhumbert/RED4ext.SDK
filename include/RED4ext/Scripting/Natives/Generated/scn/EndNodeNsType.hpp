@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class EndNodeNsType : uint8_t
+namespace scn {
+enum class EndNodeNsType : int8_t
 {
     Terminating = 0,
     NonTerminating = 1,

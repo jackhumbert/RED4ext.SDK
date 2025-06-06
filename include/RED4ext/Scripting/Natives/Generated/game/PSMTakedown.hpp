@@ -7,15 +7,15 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class PSMTakedown : uint32_t
+namespace game {
+enum class PSMTakedown : int32_t
 {
+    Any = -1,
     Default = 0,
     EnteringGrapple = 1,
     Grapple = 2,
     Leap = 3,
     Takedown = 4,
-    Any = 4294967295,
 };
 } // namespace game
 using gamePSMTakedown = game::PSMTakedown;

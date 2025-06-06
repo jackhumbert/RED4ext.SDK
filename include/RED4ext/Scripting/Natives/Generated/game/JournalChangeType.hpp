@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class JournalChangeType : uint32_t
+namespace game {
+enum class JournalChangeType : int32_t
 {
     Undefined = 0,
     Direct = 1,

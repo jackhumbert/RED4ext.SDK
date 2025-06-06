@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace work { 
-enum class LogicalOperation : uint8_t
+namespace work {
+enum class LogicalOperation : int8_t
 {
     AND = 0,
     OR = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace grs { 
-enum class DeathmatchStatus : uint32_t
+namespace grs {
+enum class DeathmatchStatus : int32_t
 {
     Waiting = 0,
     AdditionalWaiting = 1,

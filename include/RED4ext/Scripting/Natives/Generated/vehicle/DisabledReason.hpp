@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class DisabledReason : uint32_t
+namespace vehicle {
+enum class DisabledReason : int32_t
 {
     FrontTire = 0,
     RearTire = 1,

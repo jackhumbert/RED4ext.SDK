@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class ScanningMode : uint32_t
+namespace game {
+enum class ScanningMode : int32_t
 {
     Inactive = 0,
     Light = 1,

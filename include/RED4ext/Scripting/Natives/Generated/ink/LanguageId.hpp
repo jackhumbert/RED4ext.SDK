@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class LanguageId : uint32_t
+namespace ink {
+enum class LanguageId : int32_t
 {
     EN = 0,
     PL = 1,

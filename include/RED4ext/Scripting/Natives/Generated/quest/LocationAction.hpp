@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class LocationAction : uint32_t
+namespace quest {
+enum class LocationAction : int32_t
 {
     Entered = 0,
     Exited = 1,

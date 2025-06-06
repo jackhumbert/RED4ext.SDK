@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class InterruptReturnLinesBehavior : uint8_t
+namespace scn {
+enum class InterruptReturnLinesBehavior : int8_t
 {
     Default = 0,
     Vehicle = 1,

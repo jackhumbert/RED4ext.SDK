@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class PuppetVehicleState : uint32_t
+namespace game {
+enum class PuppetVehicleState : int32_t
 {
     IdleMounted = 0,
     IdleStand = 1,

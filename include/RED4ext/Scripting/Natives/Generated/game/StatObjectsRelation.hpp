@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class StatObjectsRelation : uint32_t
+namespace game {
+enum class StatObjectsRelation : int32_t
 {
     Self = 0,
     Owner = 1,

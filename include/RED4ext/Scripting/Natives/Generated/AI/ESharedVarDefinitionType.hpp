@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace AI { 
-enum class ESharedVarDefinitionType : uint32_t
+namespace AI {
+enum class ESharedVarDefinitionType : int32_t
 {
     SVInt = 0,
     SVFloat = 1,

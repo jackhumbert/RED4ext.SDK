@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class SceneCategoryTag : uint8_t
+namespace scn {
+enum class SceneCategoryTag : int8_t
 {
     voiceset = 0,
     mainQuests = 1,

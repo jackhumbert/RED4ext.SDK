@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class VehicleCameraType : uint8_t
+namespace quest {
+enum class VehicleCameraType : int8_t
 {
     Undefined = 0,
     PuppetFPP = 1,

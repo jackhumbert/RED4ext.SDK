@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::interactions { 
-enum class BumpIntensity : uint32_t
+namespace game::interactions {
+enum class BumpIntensity : int32_t
 {
     Invalid = 0,
     Light = 1,

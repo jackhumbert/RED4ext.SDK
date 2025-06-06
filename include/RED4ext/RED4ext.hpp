@@ -17,6 +17,7 @@
 #include <RED4ext/Hashing/Murmur3.hpp>
 #include <RED4ext/Memory/Allocators.hpp>
 #include <RED4ext/Memory/SharedPtr.hpp>
+#include <RED4ext/Memory/UniquePtr.hpp>
 
 #include <RED4ext/IO/BaseStream.hpp>
 
@@ -30,7 +31,9 @@
 #include <RED4ext/Scripting/Stack.hpp>
 #include <RED4ext/Scripting/Utils.hpp>
 
+#include <RED4ext/Mutex.hpp>
 #include <RED4ext/SharedMutex.hpp>
+#include <RED4ext/SharedSpinLock.hpp>
 #include <RED4ext/TweakDB.hpp>
 
 #include <RED4ext/InstanceType.hpp>

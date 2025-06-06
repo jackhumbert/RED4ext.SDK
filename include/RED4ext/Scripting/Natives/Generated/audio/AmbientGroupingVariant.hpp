@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class AmbientGroupingVariant : uint32_t
+namespace audio {
+enum class AmbientGroupingVariant : int32_t
 {
     AllEntities = 0,
     IndoorEntities = 1,

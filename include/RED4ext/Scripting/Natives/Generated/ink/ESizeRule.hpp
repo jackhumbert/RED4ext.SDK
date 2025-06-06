@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class ESizeRule : uint8_t
+namespace ink {
+enum class ESizeRule : int8_t
 {
     Fixed = 0,
     Stretch = 1,

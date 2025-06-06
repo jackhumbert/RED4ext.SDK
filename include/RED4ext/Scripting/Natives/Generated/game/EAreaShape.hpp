@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class EAreaShape : uint16_t
+namespace game {
+enum class EAreaShape : int16_t
 {
     NONE = 0,
     SPHERE = 1,

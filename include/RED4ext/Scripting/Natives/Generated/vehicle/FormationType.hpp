@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class FormationType : uint8_t
+namespace vehicle {
+enum class FormationType : int8_t
 {
     FORMATION_TRIANGLE = 0,
     FORMATION_TURTLE = 1,

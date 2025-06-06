@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ent { 
-enum class VisibilityParamSource : uint8_t
+namespace ent {
+enum class VisibilityParamSource : int8_t
 {
     PhantomEntitySystem = 7,
 };

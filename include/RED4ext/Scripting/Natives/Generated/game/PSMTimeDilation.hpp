@@ -7,12 +7,12 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class PSMTimeDilation : uint32_t
+namespace game {
+enum class PSMTimeDilation : int32_t
 {
+    Any = -1,
     Default = 0,
     Sandevistan = 1,
-    Any = 4294967295,
 };
 } // namespace game
 using gamePSMTimeDilation = game::PSMTimeDilation;

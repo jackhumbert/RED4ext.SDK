@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class ETextDirection : uint32_t
+namespace ink {
+enum class ETextDirection : int32_t
 {
     LeftToRight = 0,
     RightToLeft = 1,

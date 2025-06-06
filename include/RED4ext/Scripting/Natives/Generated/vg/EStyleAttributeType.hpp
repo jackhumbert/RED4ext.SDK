@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vg { 
-enum class EStyleAttributeType : uint32_t
+namespace vg {
+enum class EStyleAttributeType : int32_t
 {
     FillColor = 0,
     StrokeColor = 1,

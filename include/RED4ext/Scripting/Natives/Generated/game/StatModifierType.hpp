@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class StatModifierType : uint32_t
+namespace game {
+enum class StatModifierType : int32_t
 {
     Additive = 0,
     AdditiveMultiplier = 1,

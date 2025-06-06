@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class VehicleWeaponQuestID : uint8_t
+namespace quest {
+enum class VehicleWeaponQuestID : int8_t
 {
     Primary = 0,
     Secondary = 1,

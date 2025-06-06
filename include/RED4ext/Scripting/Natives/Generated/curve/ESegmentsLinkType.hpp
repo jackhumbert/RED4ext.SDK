@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace curve { 
-enum class ESegmentsLinkType : uint8_t
+namespace curve {
+enum class ESegmentsLinkType : int8_t
 {
     ESLT_Normal = 0,
     ESLT_Smooth = 1,

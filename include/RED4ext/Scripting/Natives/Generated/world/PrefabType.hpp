@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class PrefabType : uint8_t
+namespace world {
+enum class PrefabType : int8_t
 {
     Regular = 0,
     Area = 1,

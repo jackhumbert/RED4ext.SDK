@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ent { 
-enum class RepellingShape : uint32_t
+namespace ent {
+enum class RepellingShape : int32_t
 {
     Sphere = 0,
     Capsule = 1,

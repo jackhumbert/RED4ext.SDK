@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class ParentStaticSwitchBranch : uint32_t
+namespace anim {
+enum class ParentStaticSwitchBranch : int32_t
 {
     None = 0,
     TrueBranch = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class EventType : uint32_t
+namespace scn {
+enum class EventType : int32_t
 {
 };
 } // namespace scn

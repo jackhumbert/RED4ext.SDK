@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class VoBarkType : uint32_t
+namespace audio {
+enum class VoBarkType : int32_t
 {
     None = 0,
     Curse = 1,

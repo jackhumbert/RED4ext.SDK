@@ -28,11 +28,10 @@ using TypeChecker = std::function<bool(const RED4ext::CBaseRTTIType*)>;
 using FixedTypeMapping = std::unordered_map<RED4ext::CName, std::string, RED4ext::CName>;
 
 static constexpr const char* INVALID_CHARACTERS = R"(-|'|\(|\)|\]|\[|/|\.|\s|:)";
+// small conflicts with windows macro
+// Plane conflicts with itself as a type name
 static constexpr const char* INVALID_KEYWORDS =
-    R"(\bregister\b|\bbool\b|\bint\b|\btemplate\b|\btrue\b|\bfalse\b|\bsmall\b|\bPlane\b)"; // small conflicts with
-                                                                                            // windows macro, Plane
-                                                                                            // conflicts with itself as
-                                                                                            // a type name
+    R"(\bregister\b|\bbool\b|\bint\b|\btemplate\b|\bdefault\b|\btrue\b|\bfalse\b|\bsmall\b|\bswitch\b|\bPlane\b)";
 
 struct ClassFileDescriptor
 {
@@ -79,7 +78,7 @@ struct EnumFileDescriptor
     std::string alias;
     std::string directory;
     size_t size = 0;
-    std::map<uint64_t, std::string> enumMap;
+    std::map<int64_t, std::string> enumMap;
     std::map<std::string, uint64_t> enumAlias;
 
     void EmitFile(std::filesystem::path aOutPath, NameSantizer aSanitizer);

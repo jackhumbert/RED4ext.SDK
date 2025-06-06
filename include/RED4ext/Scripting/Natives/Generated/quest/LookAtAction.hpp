@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class LookAtAction : uint32_t
+namespace quest {
+enum class LookAtAction : int32_t
 {
     Nothing = 0,
     Reset = 1,

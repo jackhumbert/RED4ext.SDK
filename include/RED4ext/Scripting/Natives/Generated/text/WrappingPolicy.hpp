@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace text { 
-enum class WrappingPolicy : uint8_t
+namespace text {
+enum class WrappingPolicy : int8_t
 {
     Default = 0,
     PerCharacter = 1,

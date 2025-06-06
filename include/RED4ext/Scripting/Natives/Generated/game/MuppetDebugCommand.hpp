@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class MuppetDebugCommand : uint32_t
+namespace game {
+enum class MuppetDebugCommand : int32_t
 {
     None = 0,
     Kill = 1,

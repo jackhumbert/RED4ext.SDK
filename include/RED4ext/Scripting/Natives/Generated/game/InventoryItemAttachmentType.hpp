@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class InventoryItemAttachmentType : uint32_t
+namespace game {
+enum class InventoryItemAttachmentType : int32_t
 {
     Generic = 0,
     Dedicated = 1,

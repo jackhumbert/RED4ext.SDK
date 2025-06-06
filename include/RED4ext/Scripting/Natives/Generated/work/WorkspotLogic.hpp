@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace work { 
-enum class WorkspotLogic : uint32_t
+namespace work {
+enum class WorkspotLogic : int32_t
 {
     Allow = 0,
     Deny = 1,

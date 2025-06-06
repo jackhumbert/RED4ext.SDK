@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class TransformChannel : uint32_t
+namespace anim {
+enum class TransformChannel : int32_t
 {
     PosX = 0,
     PosY = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class KillType : uint32_t
+namespace game {
+enum class KillType : int32_t
 {
     Normal = 0,
     Defeat = 1,

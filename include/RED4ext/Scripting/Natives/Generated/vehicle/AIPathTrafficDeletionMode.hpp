@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class AIPathTrafficDeletionMode : uint32_t
+namespace vehicle {
+enum class AIPathTrafficDeletionMode : int32_t
 {
     INSTANT = 0,
     OUT_OF_VIEW = 1,

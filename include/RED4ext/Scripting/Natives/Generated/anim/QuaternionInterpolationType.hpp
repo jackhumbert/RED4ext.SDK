@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class QuaternionInterpolationType : uint32_t
+namespace anim {
+enum class QuaternionInterpolationType : int32_t
 {
     Linear = 0,
     Spherical = 1,

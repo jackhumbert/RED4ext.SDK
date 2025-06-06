@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class GroupNodeInheritanceState : uint32_t
+namespace game::data {
+enum class GroupNodeInheritanceState : int32_t
 {
     Unresolved = 0,
     Resolving = 1,

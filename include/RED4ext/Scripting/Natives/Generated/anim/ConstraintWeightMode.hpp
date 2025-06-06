@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class ConstraintWeightMode : uint32_t
+namespace anim {
+enum class ConstraintWeightMode : int32_t
 {
     Static = 0,
     FloatTrack = 1,

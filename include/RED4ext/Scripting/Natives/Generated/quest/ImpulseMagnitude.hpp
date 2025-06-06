@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class ImpulseMagnitude : uint32_t
+namespace quest {
+enum class ImpulseMagnitude : int32_t
 {
     Any = 0,
     Low = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class EasingType : uint8_t
+namespace scn {
+enum class EasingType : int8_t
 {
     Linear = 0,
     SinusoidalEaseInOut = 1,

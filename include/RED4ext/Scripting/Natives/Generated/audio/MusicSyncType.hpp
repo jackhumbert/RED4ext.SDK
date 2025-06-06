@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class MusicSyncType : uint32_t
+namespace audio {
+enum class MusicSyncType : int32_t
 {
     Bar = 0,
     Beat = 1,

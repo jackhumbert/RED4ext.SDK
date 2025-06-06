@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace rend { 
-enum class ScreenshotMode : uint32_t
+namespace rend {
+enum class ScreenshotMode : int32_t
 {
     NONE = 0,
     NORMAL = 1,

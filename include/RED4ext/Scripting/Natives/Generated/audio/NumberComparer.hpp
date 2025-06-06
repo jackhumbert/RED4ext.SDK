@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class NumberComparer : uint8_t
+namespace audio {
+enum class NumberComparer : int8_t
 {
     Equal = 0,
     NotEqual = 1,

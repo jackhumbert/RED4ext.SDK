@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class EChildOrder : uint8_t
+namespace ink {
+enum class EChildOrder : int8_t
 {
     Forward = 0,
     Backward = 1,

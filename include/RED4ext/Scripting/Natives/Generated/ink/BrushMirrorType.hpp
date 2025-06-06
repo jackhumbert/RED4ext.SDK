@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class BrushMirrorType : uint8_t
+namespace ink {
+enum class BrushMirrorType : int8_t
 {
     NoMirror = 0,
     Horizontal = 1,

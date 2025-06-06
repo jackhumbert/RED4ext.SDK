@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class FinalConfigurationVisibility : uint32_t
+namespace ink {
+enum class FinalConfigurationVisibility : int32_t
 {
     VisibleOnlyInFinal = 0,
     HiddenOnlyInFinal = 1,

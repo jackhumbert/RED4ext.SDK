@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class SpawnedVehicleType : uint32_t
+namespace quest {
+enum class SpawnedVehicleType : int32_t
 {
     EntityReferenced = 0,
     AnyCar = 1,

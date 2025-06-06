@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::ui { 
-enum class EWorldMapDistrictView : uint32_t
+namespace game::ui {
+enum class EWorldMapDistrictView : int32_t
 {
     None = 0,
     Districts = 1,

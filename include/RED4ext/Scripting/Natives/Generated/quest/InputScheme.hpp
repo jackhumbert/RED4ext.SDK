@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class InputScheme : uint32_t
+namespace quest {
+enum class InputScheme : int32_t
 {
     Legacy = 0,
     Agile = 1,

@@ -19,6 +19,7 @@ struct WorldTransform;
 namespace ent {
 struct Entity;
 struct IComponentState;
+
 struct IComponent : IScriptable
 {
     static constexpr const char* NAME = "entIComponent";
@@ -141,7 +142,7 @@ struct IComponent : IScriptable
 
     CName name; // 40
     CName appearanceName; // 48 "player"
-    Entity* entity; // 50
+    Entity* entity; // 50 owner
     ent::IComponentState* replicatedState; // 58
     CRUID id; // 60
     ResourcePath appearancePath;
@@ -158,6 +159,8 @@ struct IComponent : IScriptable
     bool isReplicable; // 8C
     uint8_t unk8D[0x90 - 0x8D]; // 8D
 };
+RED4EXT_ASSERT_SIZE(IComponent, 0x90);
+RED4EXT_ASSERT_OFFSET(IComponent, isEnabled, 0x8B);
  //char (*__kaboom)[sizeof(IComponent)] = 1;
 } // namespace ent
 } // namespace RED4ext

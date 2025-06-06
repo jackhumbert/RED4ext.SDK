@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class InterruptCapability : uint32_t
+namespace scn {
+enum class InterruptCapability : int32_t
 {
     None = 0,
     Interruptable = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class LifePath : uint32_t
+namespace game::data {
+enum class LifePath : int32_t
 {
     Corporate = 0,
     Nomad = 1,

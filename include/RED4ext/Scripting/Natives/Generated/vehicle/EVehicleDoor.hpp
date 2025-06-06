@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class EVehicleDoor : uint32_t
+namespace vehicle {
+enum class EVehicleDoor : int32_t
 {
     seat_front_left = 0,
     seat_front_right = 1,

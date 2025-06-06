@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class WeaponEvolution : uint32_t
+namespace game::data {
+enum class WeaponEvolution : int32_t
 {
     Blade = 0,
     Blunt = 1,

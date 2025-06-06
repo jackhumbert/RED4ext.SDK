@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace AI { 
-enum class ParameterizationType : uint32_t
+namespace AI {
+enum class ParameterizationType : int32_t
 {
     BehaviorArgument = 0,
     CustomValue = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn::dev { 
-enum class EventType : uint32_t
+namespace scn::dev {
+enum class EventType : int32_t
 {
     DebugMessage = 0,
     NodeFailed = 1,

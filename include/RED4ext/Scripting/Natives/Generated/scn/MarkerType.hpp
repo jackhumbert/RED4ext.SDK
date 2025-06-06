@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class MarkerType : uint32_t
+namespace scn {
+enum class MarkerType : int32_t
 {
     Local = 0,
     Global = 1,

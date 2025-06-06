@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class SmartObjectType : uint32_t
+namespace game {
+enum class SmartObjectType : int32_t
 {
     Default = 0,
     LadderUp = 1,

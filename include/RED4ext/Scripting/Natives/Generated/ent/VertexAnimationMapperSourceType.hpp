@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ent { 
-enum class VertexAnimationMapperSourceType : uint32_t
+namespace ent {
+enum class VertexAnimationMapperSourceType : int32_t
 {
     FloatTrack = 0,
     TranslationX = 1,

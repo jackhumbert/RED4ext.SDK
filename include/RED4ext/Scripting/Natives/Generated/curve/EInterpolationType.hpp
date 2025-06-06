@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace curve { 
-enum class EInterpolationType : uint8_t
+namespace curve {
+enum class EInterpolationType : int8_t
 {
     EIT_Constant = 0,
     EIT_Linear = 1,

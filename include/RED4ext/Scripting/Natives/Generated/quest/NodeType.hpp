@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class NodeType : uint32_t
+namespace quest {
+enum class NodeType : int32_t
 {
     Equip = 0,
     Unequip = 1,

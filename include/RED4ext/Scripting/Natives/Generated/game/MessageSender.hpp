@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class MessageSender : uint32_t
+namespace game {
+enum class MessageSender : int32_t
 {
     NPC = 0,
     Player = 1,

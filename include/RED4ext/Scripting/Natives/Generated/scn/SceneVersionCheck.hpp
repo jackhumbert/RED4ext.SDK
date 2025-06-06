@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class SceneVersionCheck : uint8_t
+namespace scn {
+enum class SceneVersionCheck : int8_t
 {
     OlderOrEqual = 0,
     Equal = 1,

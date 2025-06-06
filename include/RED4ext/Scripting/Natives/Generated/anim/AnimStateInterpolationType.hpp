@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class AnimStateInterpolationType : uint8_t
+namespace anim {
+enum class AnimStateInterpolationType : int8_t
 {
     Linear = 0,
     EaseIn = 1,

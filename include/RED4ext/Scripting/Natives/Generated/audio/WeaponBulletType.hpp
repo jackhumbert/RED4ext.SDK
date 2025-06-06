@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class WeaponBulletType : uint32_t
+namespace audio {
+enum class WeaponBulletType : int32_t
 {
     standard = 0,
     sniper = 1,

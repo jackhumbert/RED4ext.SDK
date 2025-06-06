@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class UIGameContextRequestType : uint32_t
+namespace quest {
+enum class UIGameContextRequestType : int32_t
 {
     Push = 0,
     Pop = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class TutorialScreenMode : uint8_t
+namespace quest {
+enum class TutorialScreenMode : int8_t
 {
     Undefined = 0,
     Fullscreen = 1,

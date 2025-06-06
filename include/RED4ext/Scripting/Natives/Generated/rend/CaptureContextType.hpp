@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace rend { 
-enum class CaptureContextType : uint32_t
+namespace rend {
+enum class CaptureContextType : int32_t
 {
     SceneGamedef = 0,
     AnimViewer = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class EffectTriggerPositioningType : uint32_t
+namespace game {
+enum class EffectTriggerPositioningType : int32_t
 {
     PlayerRoot = 0,
     CameraRoot = 1,

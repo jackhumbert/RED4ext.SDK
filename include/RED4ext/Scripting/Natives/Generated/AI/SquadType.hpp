@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace AI { 
-enum class SquadType : uint32_t
+namespace AI {
+enum class SquadType : int32_t
 {
     Community = 0,
     Combat = 4,

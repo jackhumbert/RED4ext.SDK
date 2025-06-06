@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::interactions::vis { 
-enum class EVisualizerType : uint32_t
+namespace game::interactions::vis {
+enum class EVisualizerType : int32_t
 {
     Device = 0,
     Dialog = 1,

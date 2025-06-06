@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class CombinedStatOperation : uint32_t
+namespace game {
+enum class CombinedStatOperation : int32_t
 {
     Addition = 0,
     Subtraction = 1,

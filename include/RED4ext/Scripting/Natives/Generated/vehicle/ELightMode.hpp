@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class ELightMode : uint32_t
+namespace vehicle {
+enum class ELightMode : int32_t
 {
     Off = 0,
     On = 1,

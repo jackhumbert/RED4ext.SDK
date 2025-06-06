@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace grs { 
-enum class HeistStatus : uint32_t
+namespace grs {
+enum class HeistStatus : int32_t
 {
     Waiting = 0,
     Starting = 1,

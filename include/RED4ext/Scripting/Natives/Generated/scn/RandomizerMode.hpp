@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class RandomizerMode : uint8_t
+namespace scn {
+enum class RandomizerMode : int8_t
 {
     Random = 0,
     IgnoreLastUsed = 1,

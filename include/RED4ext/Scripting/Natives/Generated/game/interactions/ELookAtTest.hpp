@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::interactions { 
-enum class ELookAtTest : uint32_t
+namespace game::interactions {
+enum class ELookAtTest : int32_t
 {
     Targeting = 0,
     Interaction = 1,

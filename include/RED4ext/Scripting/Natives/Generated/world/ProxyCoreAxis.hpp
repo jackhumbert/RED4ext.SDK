@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class ProxyCoreAxis : uint8_t
+namespace world {
+enum class ProxyCoreAxis : int8_t
 {
     X = 0,
     Y = 1,

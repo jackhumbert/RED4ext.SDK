@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace AI::behavior { 
-enum class CompletionStatus : uint32_t
+namespace AI::behavior {
+enum class CompletionStatus : int32_t
 {
     FAILURE = 0,
     SUCCESS = 1,

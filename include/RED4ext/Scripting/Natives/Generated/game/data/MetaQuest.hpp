@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class MetaQuest : uint32_t
+namespace game::data {
+enum class MetaQuest : int32_t
 {
     MetaQuest1 = 0,
     MetaQuest2 = 1,

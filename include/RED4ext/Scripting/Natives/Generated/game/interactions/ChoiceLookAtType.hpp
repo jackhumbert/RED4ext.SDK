@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::interactions { 
-enum class ChoiceLookAtType : uint32_t
+namespace game::interactions {
+enum class ChoiceLookAtType : int32_t
 {
     Root = 0,
     Slot = 1,

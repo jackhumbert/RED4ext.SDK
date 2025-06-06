@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class CommunityRegistryItemAreaNodeType : uint8_t
+namespace world {
+enum class CommunityRegistryItemAreaNodeType : int8_t
 {
     Regular = 0,
     Streamable = 1,

@@ -7,13 +7,13 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class PlayerCoverDirection : uint32_t
+namespace game {
+enum class PlayerCoverDirection : int32_t
 {
+    None = -1,
     Up = 0,
     Left = 1,
     Right = 2,
-    None = 4294967295,
 };
 } // namespace game
 using gamePlayerCoverDirection = game::PlayerCoverDirection;

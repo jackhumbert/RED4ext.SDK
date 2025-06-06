@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class BriefingSequencePlayerFunction : uint32_t
+namespace quest {
+enum class BriefingSequencePlayerFunction : int32_t
 {
     StartSequence = 0,
     ChangeSequence = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class ProxyGroupingNormals : uint8_t
+namespace world {
+enum class ProxyGroupingNormals : int8_t
 {
     Around_Core_Axis = 0,
     Around_All_Axes = 1,

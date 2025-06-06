@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class BrushTileType : uint8_t
+namespace ink {
+enum class BrushTileType : int8_t
 {
     NoTile = 0,
     Horizontal = 1,

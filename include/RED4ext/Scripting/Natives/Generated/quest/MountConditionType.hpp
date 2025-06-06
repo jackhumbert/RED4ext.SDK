@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class MountConditionType : uint8_t
+namespace quest {
+enum class MountConditionType : int8_t
 {
     OnMount = 0,
     OnUnmount = 1,

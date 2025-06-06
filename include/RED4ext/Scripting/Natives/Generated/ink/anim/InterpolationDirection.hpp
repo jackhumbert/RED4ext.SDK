@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink::anim { 
-enum class InterpolationDirection : uint8_t
+namespace ink::anim {
+enum class InterpolationDirection : int8_t
 {
     To = 0,
     From = 1,

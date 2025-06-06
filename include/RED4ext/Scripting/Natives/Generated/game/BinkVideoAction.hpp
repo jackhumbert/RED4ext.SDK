@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class BinkVideoAction : uint8_t
+namespace game {
+enum class BinkVideoAction : int8_t
 {
     Undefined = 0,
     Start = 1,

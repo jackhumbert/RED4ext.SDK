@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class ProxyMeshTexRes : uint8_t
+namespace world {
+enum class ProxyMeshTexRes : int8_t
 {
     RES_64 = 0,
     RES_128 = 1,

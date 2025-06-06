@@ -9,6 +9,15 @@
 #include <smmintrin.h> // SSE4.1
 #include <immintrin.h> //avx2
 
+#include <RED4ext/Scripting/Natives/Quaternion.hpp>
+
+namespace RED4ext
+{
+RED4EXT_ASSERT_SIZE(Quaternion, 0x10);
+} // namespace RED4ext
+
+/*
+
 #include <cstdint>
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Scripting/Natives/Generated/Vector3.hpp>
@@ -149,5 +158,6 @@ struct __declspec(align(0x10)) Quaternion
 };
 RED4EXT_ASSERT_SIZE(Quaternion, 0x10);
 } // namespace RED4ext
+*/
 
 // clang-format on

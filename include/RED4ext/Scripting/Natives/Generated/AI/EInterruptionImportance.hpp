@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace AI { 
-enum class EInterruptionImportance : uint32_t
+namespace AI {
+enum class EInterruptionImportance : int32_t
 {
     Undefined = 0,
     Casual = 1,

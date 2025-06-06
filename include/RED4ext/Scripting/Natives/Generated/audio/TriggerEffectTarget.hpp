@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class TriggerEffectTarget : uint8_t
+namespace audio {
+enum class TriggerEffectTarget : int8_t
 {
     L2 = 0,
     R2 = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink::anim { 
-enum class LoopType : uint8_t
+namespace ink::anim {
+enum class LoopType : int8_t
 {
     None = 0,
     Cycle = 1,

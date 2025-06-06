@@ -43,8 +43,9 @@ struct BenchmarkSummary : IScriptable
     float time; // 17C
     uint32_t frameNumber; // 180
     uint8_t upscalingType; // 184
-    bool DLAAEnabled; // 185
-    uint8_t unk186[0x188 - 0x186]; // 186
+    uint8_t frameGenerationType; // 185
+    bool DLAAEnabled; // 186
+    uint8_t unk187[0x188 - 0x187]; // 187
     float DLAASharpness; // 188
     bool DLSSEnabled; // 18C
     bool DLSSDEnabled; // 18D
@@ -52,32 +53,40 @@ struct BenchmarkSummary : IScriptable
     int32_t DLSSQuality; // 190
     float DLSSSharpness; // 194
     bool DLSSFrameGenEnabled; // 198
-    bool FSR2Enabled; // 199
+    bool DLSSMultiFrameGenEnabled; // 199
     uint8_t unk19A[0x19C - 0x19A]; // 19A
-    int32_t FSR2Quality; // 19C
-    float FSR2Sharpness; // 1A0
-    bool XeSSEnabled; // 1A4
-    uint8_t unk1A5[0x1A8 - 0x1A5]; // 1A5
-    int32_t XeSSQuality; // 1A8
-    float XeSSSharpness; // 1AC
-    bool DRSEnabled; // 1B0
-    uint8_t unk1B1[0x1B4 - 0x1B1]; // 1B1
-    uint32_t DRSTargetFPS; // 1B4
-    uint32_t DRSMinimalResolutionPercentage; // 1B8
-    uint32_t DRSMaximalResolutionPercentage; // 1BC
-    bool CASSharpeningEnabled; // 1C0
-    bool FSREnabled; // 1C1
-    uint8_t unk1C2[0x1C4 - 0x1C2]; // 1C2
-    int32_t FSRQuality; // 1C4
-    bool rayTracingEnabled; // 1C8
-    bool rayTracedReflections; // 1C9
-    bool rayTracedSunShadows; // 1CA
-    bool rayTracedLocalShadows; // 1CB
-    int32_t rayTracedLightingQuality; // 1CC
-    bool rayTracedPathTracingEnabled; // 1D0
-    uint8_t unk1D1[0x1D8 - 0x1D1]; // 1D1
+    int32_t DLSSMultiFrameGenFrameToGenerate; // 19C
+    bool FSR2Enabled; // 1A0
+    uint8_t unk1A1[0x1A4 - 0x1A1]; // 1A1
+    int32_t FSR2Quality; // 1A4
+    float FSR2Sharpness; // 1A8
+    bool FSR3Enabled; // 1AC
+    uint8_t unk1AD[0x1B0 - 0x1AD]; // 1AD
+    int32_t FSR3Quality; // 1B0
+    float FSR3Sharpness; // 1B4
+    bool FSR3FrameGenEnabled; // 1B8
+    bool XeSSEnabled; // 1B9
+    uint8_t unk1BA[0x1BC - 0x1BA]; // 1BA
+    int32_t XeSSQuality; // 1BC
+    float XeSSSharpness; // 1C0
+    bool DRSEnabled; // 1C4
+    uint8_t unk1C5[0x1C8 - 0x1C5]; // 1C5
+    uint32_t DRSTargetFPS; // 1C8
+    uint32_t DRSMinimalResolutionPercentage; // 1CC
+    uint32_t DRSMaximalResolutionPercentage; // 1D0
+    bool CASSharpeningEnabled; // 1D4
+    bool FSREnabled; // 1D5
+    uint8_t unk1D6[0x1D8 - 0x1D6]; // 1D6
+    int32_t FSRQuality; // 1D8
+    bool rayTracingEnabled; // 1DC
+    bool rayTracedReflections; // 1DD
+    bool rayTracedSunShadows; // 1DE
+    bool rayTracedLocalShadows; // 1DF
+    int32_t rayTracedLightingQuality; // 1E0
+    bool rayTracedPathTracingEnabled; // 1E4
+    uint8_t unk1E5[0x1E8 - 0x1E5]; // 1E5
 };
-RED4EXT_ASSERT_SIZE(BenchmarkSummary, 0x1D8);
+RED4EXT_ASSERT_SIZE(BenchmarkSummary, 0x1E8);
 } // namespace world
 using worldBenchmarkSummary = world::BenchmarkSummary;
 } // namespace RED4ext

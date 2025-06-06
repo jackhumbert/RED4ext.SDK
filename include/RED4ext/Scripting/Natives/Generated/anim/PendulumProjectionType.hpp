@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class PendulumProjectionType : uint32_t
+namespace anim {
+enum class PendulumProjectionType : int32_t
 {
     Disabled = 0,
     ShortestPathRotational = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class SwitchWeaponModes : uint32_t
+namespace quest {
+enum class SwitchWeaponModes : int32_t
 {
     PrimaryWeapon = 0,
     SecondaryWeapon = 1,

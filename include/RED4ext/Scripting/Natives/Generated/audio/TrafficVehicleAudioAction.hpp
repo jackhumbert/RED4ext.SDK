@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class TrafficVehicleAudioAction : uint32_t
+namespace audio {
+enum class TrafficVehicleAudioAction : int32_t
 {
     StartEngine = 0,
     StopEngine = 1,

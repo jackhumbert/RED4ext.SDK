@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace rend { 
-enum class ResolutionMultiplier : uint32_t
+namespace rend {
+enum class ResolutionMultiplier : int32_t
 {
     X1 = 1,
     X2 = 2,

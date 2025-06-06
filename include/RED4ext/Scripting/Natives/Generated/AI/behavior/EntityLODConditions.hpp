@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace AI::behavior { 
-enum class EntityLODConditions : uint32_t
+namespace AI::behavior {
+enum class EntityLODConditions : int32_t
 {
     Crowd = 0,
     Cinematic = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class SaveLockReason : uint32_t
+namespace game {
+enum class SaveLockReason : int32_t
 {
     Nothing = 0,
     Combat = 1,

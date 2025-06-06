@@ -7,14 +7,15 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::ui { 
-enum class PatchIntro : uint32_t
+namespace game::ui {
+enum class PatchIntro : int32_t
 {
     Patch1500_NextGen = 0,
     Patch1600 = 1,
     Patch2000 = 2,
     Patch2000_EP1 = 3,
     Patch2100 = 4,
+    Patch2200 = 5,
 };
 } // namespace game::ui
 using gameuiPatchIntro = game::ui::PatchIntro;

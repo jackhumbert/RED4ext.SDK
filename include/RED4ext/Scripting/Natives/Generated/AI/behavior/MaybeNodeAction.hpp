@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace AI::behavior { 
-enum class MaybeNodeAction : uint32_t
+namespace AI::behavior {
+enum class MaybeNodeAction : int32_t
 {
     Succeed = 0,
     Fail = 1,

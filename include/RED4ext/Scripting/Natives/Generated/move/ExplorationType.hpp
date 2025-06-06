@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace move { 
-enum class ExplorationType : uint32_t
+namespace move {
+enum class ExplorationType : int32_t
 {
     None = 0,
     Ladder = 1,

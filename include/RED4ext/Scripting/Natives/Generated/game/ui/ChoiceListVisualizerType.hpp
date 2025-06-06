@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::ui { 
-enum class ChoiceListVisualizerType : uint32_t
+namespace game::ui {
+enum class ChoiceListVisualizerType : int32_t
 {
     Interaction = 0,
     Dialog = 1,

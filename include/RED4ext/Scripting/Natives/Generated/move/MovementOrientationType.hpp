@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace move { 
-enum class MovementOrientationType : uint32_t
+namespace move {
+enum class MovementOrientationType : int32_t
 {
     NotSet = 0,
     Forward = 1,

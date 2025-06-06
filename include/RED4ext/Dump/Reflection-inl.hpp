@@ -37,13 +37,24 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
     std::unordered_map<std::string, std::vector<std::string>> prefixHierarchy;
 
     // Trim the preceeding lower-case suffix, this seems to be either a namespace or directory, or both
-    auto GetPrefix = [](const std::string& aInput) -> std::string {
+    auto GetPrefix = [](const std::string& aInput) -> std::string
+    {
         size_t i = 0;
 
-        // Special case for AI
-        if (aInput.size() >= 2 && aInput[0] == 'A' && aInput[1] == 'I')
+        static constexpr std::pair<std::string_view, bool> uniqueNamespaces[] = {
+            {"AI", false}, {"GpuApi", true}, {"GpuWrapApiVertexPacking", true}, {"GpuWrapApi", true}};
+
+        for (const auto& [name, isSpecialCase] : uniqueNamespaces)
         {
-            i = 2;
+            if (aInput.size() >= name.size() && aInput.starts_with(name))
+            {
+                i = name.size();
+
+                if (isSpecialCase)
+                {
+                    return aInput.substr(0, i);
+                }
+            }
         }
 
         // Special case of "in", this will break directory layout for "ink", "interop", etc..
@@ -67,56 +78,69 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
     };
 
     // First pass gather all properties and descriptors
-    rttiSystem->types.for_each([&descriptorMap, GetPrefix, &prefixHierarchy,
-                                aPropertyHolders](RED4ext::CName aName, RED4ext::CBaseRTTIType*& aType) {
-        if (aType->GetType() == RED4ext::ERTTIType::Class)
+    rttiSystem->types.for_each(
+        [&descriptorMap, GetPrefix, &prefixHierarchy, aPropertyHolders](RED4ext::CName aName,
+                                                                        RED4ext::CBaseRTTIType*& aType)
         {
-            auto classType = static_cast<const RED4ext::CClass*>(aType);
-            if (classType->flags.isNative)
+            if (aType->GetType() == RED4ext::ERTTIType::Class)
             {
-                ClassDependencyBuilder builder;
-                builder.pType = classType;
+                // ClassDependencyBuilder builder;
+                // builder.pType = classType;
 
-                for (uint32_t i = 0; i < classType->allProps.size; ++i)
+                // for (uint32_t i = 0; i < classType->allProps.size; ++i)
+                // {
+                //     auto prop = classType->allProps.entries[i];
+                //     if (!prop->flags.inValueHolder)
+
+                // start new
+
+                auto classType = static_cast<const RED4ext::CClass*>(aType);
+                if (classType->flags.isNative)
                 {
-                    auto prop = classType->allProps.entries[i];
-                    if (!prop->flags.inValueHolder)
+                    ClassDependencyBuilder builder;
+                    builder.pType = classType;
+
+                    for (uint32_t i = 0; i < classType->unk118.size; ++i)
+                // end new
                     {
-                        builder.mPropertyMap.emplace(prop->valueOffset, prop);
+                        auto prop = classType->unk118.entries[i];
+                        if (!prop->flags.inValueHolder)
+                        {
+                            builder.mPropertyMap.emplace(prop->valueOffset, prop);
+                        }
+                        else if (aPropertyHolders)
+                        {
+                            builder.mHolderPropertyMap.emplace(prop->valueOffset, prop);
+                        }
                     }
-                    else if (aPropertyHolders)
-                    {
-                        builder.mHolderPropertyMap.emplace(prop->valueOffset, prop);
-                    }
+
+                    descriptorMap.emplace(classType, builder);
                 }
-
-                descriptorMap.emplace(classType, builder);
             }
-        }
 
-        switch (aType->GetType())
-        {
-        case RED4ext::ERTTIType::Class:
-        case RED4ext::ERTTIType::Enum:
-        case RED4ext::ERTTIType::BitField:
-        {
-            std::string prefix = GetPrefix(aName.ToString());
-            if (!prefix.empty())
+            switch (aType->GetType())
             {
-                prefixHierarchy[prefix] = std::vector<std::string>();
+            case RED4ext::ERTTIType::Class:
+            case RED4ext::ERTTIType::Enum:
+            case RED4ext::ERTTIType::BitField:
+            {
+                std::string prefix = GetPrefix(aName.ToString());
+                if (!prefix.empty())
+                {
+                    prefixHierarchy[prefix] = std::vector<std::string>();
+                }
+                break;
             }
-            break;
-        }
-        default:
-            break;
-        }
-    });
+            default:
+                break;
+            }
+        });
 
     // Build a mapped list of nested prefixes
     for (auto& [prefix, children] : prefixHierarchy)
     {
-        // Special case for localization (prevents loc::alization namespace)
-        if (prefix != "localization")
+        // Special case for localization (prevents loc::alization and rend::er namespaces)
+        if (prefix != "localization" && prefix != "render")
         {
             for (auto i = 0; i < prefix.size(); ++i)
             {
@@ -194,9 +218,8 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
             if (it != prefixHierarchy.end())
             {
                 pathPrefix = std::accumulate(it->second.begin(), it->second.end(), std::string(),
-                                             [](const std::string& a, const std::string& b) -> std::string {
-                                                 return a + (a.length() > 0 ? "/" : "") + b;
-                                             });
+                                             [](const std::string& a, const std::string& b) -> std::string
+                                             { return a + (a.length() > 0 ? "/" : "") + b; });
             }
 
             pathPrefix += "/";
@@ -252,7 +275,8 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
     };
 
     // Remove the prefix from the class
-    auto SanitizeType = [GetPrefix](const RED4ext::CBaseRTTIType* aType) -> std::string {
+    auto SanitizeType = [GetPrefix](const RED4ext::CBaseRTTIType* aType) -> std::string
+    {
         auto name = aType->GetName();
         std::string fullName = name.ToString();
         auto prefix = GetPrefix(fullName);
@@ -260,7 +284,8 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
     };
 
     // Convert the prefixes into a namespace
-    auto GetNamespace = [&prefixHierarchy](const std::string& aPrefix) -> std::string {
+    auto GetNamespace = [&prefixHierarchy](const std::string& aPrefix) -> std::string
+    {
         std::string ns;
         if (!aPrefix.empty())
         {
@@ -268,9 +293,8 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
             if (it != prefixHierarchy.end())
             {
                 ns = std::accumulate(it->second.begin(), it->second.end(), std::string(),
-                                     [](const std::string& a, const std::string& b) -> std::string {
-                                         return a + (a.length() > 0 ? "::" : "") + b;
-                                     });
+                                     [](const std::string& a, const std::string& b) -> std::string
+                                     { return a + (a.length() > 0 ? "::" : "") + b; });
             }
         }
 
@@ -307,12 +331,13 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
                                      {"CBaseEngine", "GameEngine"},
                                      {"BaseGameEngine", "GameEngine"},
                                      {"CGameEngine", "GameEngine"},
-                                     {"UpdateBucketEnum", "SystemUpdate"}};
+                                     {"UpdateBucketEnum", "SystemUpdate"},
+                                     {"worldGlobalNodeRef", "NativeTypes"}};
 
     std::regex invalidChars(INVALID_CHARACTERS);
     std::regex invalidKeywords(INVALID_KEYWORDS);
-    NameSantizer nameSanitizer = [invalidChars, invalidKeywords](const std::string& input,
-                                                                 bool& modify) -> std::string {
+    NameSantizer nameSanitizer = [invalidChars, invalidKeywords](const std::string& input, bool& modify) -> std::string
+    {
         modify = std::regex_search(input, invalidChars) || std::regex_search(input, invalidKeywords);
         std::string output = std::regex_replace(std::regex_replace(input, invalidChars, "_"), invalidKeywords, "$&_");
         if (!input.empty() && isdigit(input[0])) // Starting with a number is invalid, prefix it
@@ -359,38 +384,6 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
         builder.ToFileDescriptor(fileDescriptor, SanitizeType, QualifiedType, GetGeneratedPath, GetOverridePath,
                                  IsHandleCompatible, fixedMapping, aVerbose);
 
-        for (auto& dep : builder.mDirect)
-        {
-            // Don't emit files for the fixed mappings
-            auto depName = dep->GetName();
-
-            it = fixedMapping.find(depName);
-            if (it != fixedMapping.end())
-            {
-                continue;
-            }
-
-            switch (dep->GetType())
-            {
-            case RED4ext::ERTTIType::Enum:
-            {
-                EnumFileDescriptor enumFd(static_cast<const RED4ext::CEnum*>(dep), SanitizeType, QualifiedType,
-                                          GetGeneratedPath);
-                enumFd.EmitFile(aOutPath, nameSanitizer);
-                break;
-            }
-            case RED4ext::ERTTIType::BitField:
-            {
-                BitfieldFileDescriptor bfFd(static_cast<const RED4ext::CBitfield*>(dep), SanitizeType, QualifiedType,
-                                            GetGeneratedPath);
-                bfFd.EmitFile(aOutPath, nameSanitizer);
-                break;
-            }
-            default:
-                break;
-            }
-        }
-
         for (auto& inc : fileDescriptor.includes)
         {
             includeCollector.emplace(inc);
@@ -398,6 +391,37 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
 
         fileDescriptor.EmitFile(aOutPath, nameSanitizer);
     }
+
+    rttiSystem->types.for_each(
+        [&aOutPath, SanitizeType, &QualifiedType, GetGeneratedPath, nameSanitizer](RED4ext::CName aName,
+                                                                                   RED4ext::CBaseRTTIType*& aType)
+        {
+            RED4EXT_UNUSED_PARAMETER(aName);
+
+            switch (aType->GetType())
+            {
+            case RED4ext::ERTTIType::Enum:
+            {
+                auto pEnum = static_cast<const RED4ext::CEnum*>(aType);
+                if (!pEnum->flags.isScripted)
+                {
+                    EnumFileDescriptor enumFd(pEnum, SanitizeType, QualifiedType, GetGeneratedPath);
+                    enumFd.EmitFile(aOutPath, nameSanitizer);
+                }
+                break;
+            }
+            case RED4ext::ERTTIType::BitField:
+            {
+                auto pEnum = static_cast<const RED4ext::CBitfield*>(aType);
+                if (!pEnum->flags.isScripted)
+                {
+                    BitfieldFileDescriptor bfFd(pEnum, SanitizeType, QualifiedType, GetGeneratedPath);
+                    bfFd.EmitFile(aOutPath, nameSanitizer);
+                }
+                break;
+            }
+            }
+        });
 
     EmitBulkGenerated(aOutPath, includeCollector);
 }
@@ -513,7 +537,7 @@ RED4EXT_INLINE void EnumFileDescriptor::EmitFile(std::filesystem::path aOutPath,
     if (nsIndex != std::string::npos)
     {
         auto ns = nameQualified.substr(0, nsIndex - 1);
-        o << "namespace " << ns << " { " << std::endl;
+        o << "namespace " << ns << " {" << std::endl;
         o << "enum class " << name;
     }
     else
@@ -525,24 +549,24 @@ RED4EXT_INLINE void EnumFileDescriptor::EmitFile(std::filesystem::path aOutPath,
 
     switch (size)
     {
-    case sizeof(uint8_t):
+    case sizeof(int8_t):
     {
-        o << "uint8_t";
+        o << "int8_t";
         break;
     }
-    case sizeof(uint16_t):
+    case sizeof(int16_t):
     {
-        o << "uint16_t";
+        o << "int16_t";
         break;
     }
-    case sizeof(uint32_t):
+    case sizeof(int32_t):
     {
-        o << "uint32_t";
+        o << "int32_t";
         break;
     }
-    case sizeof(uint64_t):
+    case sizeof(int64_t):
     {
-        o << "uint64_t";
+        o << "int64_t";
         break;
     }
     default:
@@ -559,24 +583,24 @@ RED4EXT_INLINE void EnumFileDescriptor::EmitFile(std::filesystem::path aOutPath,
 
         switch (size)
         {
-        case sizeof(uint8_t):
+        case sizeof(int8_t):
         {
-            o << static_cast<uint32_t>(static_cast<uint8_t>(ev.first));
+            o << static_cast<int32_t>(static_cast<int8_t>(ev.first));
             break;
         }
-        case sizeof(uint16_t):
+        case sizeof(int16_t):
         {
-            o << static_cast<uint16_t>(ev.first);
+            o << static_cast<int16_t>(ev.first);
             break;
         }
-        case sizeof(uint32_t):
+        case sizeof(int32_t):
         {
-            o << static_cast<uint32_t>(ev.first);
+            o << static_cast<int32_t>(ev.first);
             break;
         }
-        case sizeof(uint64_t):
+        case sizeof(int64_t):
         {
-            o << static_cast<uint64_t>(ev.first);
+            o << static_cast<int64_t>(ev.first);
             break;
         }
         default:
@@ -692,7 +716,7 @@ RED4EXT_INLINE void BitfieldFileDescriptor::EmitFile(std::filesystem::path aOutP
     if (nsIndex != std::string::npos)
     {
         auto ns = nameQualified.substr(0, nsIndex - 1);
-        o << "namespace " << ns << " { " << std::endl;
+        o << "namespace " << ns << " {" << std::endl;
         o << "struct " << name;
     }
     else

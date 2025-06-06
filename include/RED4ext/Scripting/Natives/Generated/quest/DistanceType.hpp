@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class DistanceType : uint32_t
+namespace quest {
+enum class DistanceType : int32_t
 {
     Nearest = 0,
     Furthest = 1,

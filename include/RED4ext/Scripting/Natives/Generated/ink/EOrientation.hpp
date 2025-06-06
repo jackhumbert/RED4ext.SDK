@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class EOrientation : uint8_t
+namespace ink {
+enum class EOrientation : int8_t
 {
     Horizontal = 0,
     Vertical = 1,

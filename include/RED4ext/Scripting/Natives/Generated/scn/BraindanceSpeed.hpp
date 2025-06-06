@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class BraindanceSpeed : uint8_t
+namespace scn {
+enum class BraindanceSpeed : int8_t
 {
     Any = 0,
     Slow = 1,

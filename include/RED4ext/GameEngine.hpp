@@ -7,7 +7,8 @@
 #include <RED4ext/DynArray.hpp>
 #include <RED4ext/Handle.hpp>
 #include <RED4ext/HashMap.hpp>
-//#include <RED4ext/Scripting/Natives/GameInstance.hpp>
+#include <RED4ext/Scripting/Natives/Generated/rend/SingleScreenShotData.hpp>
+#include <RED4ext/Scripting/Natives/Generated/services/GameServices.hpp>
 
 namespace RED4ext
 {
@@ -130,7 +131,7 @@ struct CBaseEngine
     virtual void sub_A8() = 0;                       // A8
     virtual void sub_B0() = 0;                       // B0
     // uses CBaseEngine string
-    virtual void sub_B8() = 0;
+    virtual void TakeScreenshot(const rend::SingleScreenShotData& acData, bool a2 = false) = 0; // B8
     virtual void sub_C0() = 0;                       // C0
     virtual void sub_C8(CGameOptions& aOptions) = 0; // C8
     virtual void sub_D0() = 0;                       // D0
@@ -157,7 +158,7 @@ struct CBaseEngine
     int8_t unk34;                              // 34
     uint64_t scriptsTimestamp;                 // 38
     int8_t unk40;                              // 40
-    SharedMutex terminationLock;               // 41
+    SharedSpinLock terminationLock;            // 41
     int32_t unk44;                             // 44
     int8_t terminating;                        // 48
     int8_t unk49;                              // 49
@@ -211,12 +212,16 @@ struct CBaseEngine
     int64_t unk2C0;                            // 2C0
     int64_t unk2C8;                            // 2C8
     int32_t unk2D0;                            // 2D0
+    bool isEP1;                                // 2D4 - IsEP1()
+    int64_t unk2D8;                            // 2D8
+    int64_t unk2E0;                            // 2E0
 };
 RED4EXT_ASSERT_SIZE(CBaseEngine, 0x2D8);
 RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsLoaded, 0x54);
 RED4EXT_ASSERT_OFFSET(CBaseEngine, unkD0, 0xD0);
 RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsValidationErrors, 0x90);
 RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsBlobPath, 0x150);
+RED4EXT_ASSERT_OFFSET(CBaseEngine, isEP1, 0x2D4);
 
 struct BaseGameEngine : CBaseEngine
 {
@@ -359,7 +364,7 @@ struct CGameEngine : BaseGameEngine
     int32_t unk300;            // 300
     int32_t unk304;            // 304
     CGameFramework* framework; // 308
-    int64_t unk310;            // 310
+    services::GameServices* gameServices; // 310
     int64_t unk318;            // 318
     int64_t unk320;            // 320
     int64_t unk328;            // 328
@@ -367,6 +372,7 @@ struct CGameEngine : BaseGameEngine
     Unk338 * unk338;           // 338
     int32_t unk340;            // 340
     int64_t unk348;            // 348
+
 };
 RED4EXT_ASSERT_SIZE(CGameEngine, 0x350);
 RED4EXT_ASSERT_OFFSET(CGameEngine, framework, 0x308);

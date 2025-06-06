@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class SmartObjectPointType : uint32_t
+namespace game {
+enum class SmartObjectPointType : int32_t
 {
     Entry = 0,
     Exit = 1,

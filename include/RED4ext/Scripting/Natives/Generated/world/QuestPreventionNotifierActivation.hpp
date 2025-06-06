@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class QuestPreventionNotifierActivation : uint8_t
+namespace world {
+enum class QuestPreventionNotifierActivation : int8_t
 {
     OnFootOnly = 0,
     InVehicleOnly = 1,

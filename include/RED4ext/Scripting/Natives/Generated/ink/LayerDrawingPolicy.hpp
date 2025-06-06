@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class LayerDrawingPolicy : uint32_t
+namespace ink {
+enum class LayerDrawingPolicy : int32_t
 {
     InOrder = 0,
     InParallel = 1,

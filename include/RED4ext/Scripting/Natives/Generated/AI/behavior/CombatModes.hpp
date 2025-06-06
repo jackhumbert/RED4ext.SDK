@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace AI::behavior { 
-enum class CombatModes : uint8_t
+namespace AI::behavior {
+enum class CombatModes : int8_t
 {
     Default = 0,
     LowFPS = 1,

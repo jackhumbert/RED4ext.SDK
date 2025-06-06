@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class MuppetMoveStyle : uint32_t
+namespace game {
+enum class MuppetMoveStyle : int32_t
 {
     Invalid = 0,
     Walk = 1,

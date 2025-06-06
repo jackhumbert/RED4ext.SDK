@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class DialogLineType : uint32_t
+namespace scn {
+enum class DialogLineType : int32_t
 {
     None = 0,
     Regular = 1,

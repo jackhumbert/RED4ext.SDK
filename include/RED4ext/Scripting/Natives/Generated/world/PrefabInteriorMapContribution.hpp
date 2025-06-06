@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class PrefabInteriorMapContribution : uint8_t
+namespace world {
+enum class PrefabInteriorMapContribution : int8_t
 {
     Auto = 0,
     Include = 1,

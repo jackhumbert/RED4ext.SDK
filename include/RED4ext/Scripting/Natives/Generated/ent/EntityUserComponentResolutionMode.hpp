@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ent { 
-enum class EntityUserComponentResolutionMode : uint8_t
+namespace ent {
+enum class EntityUserComponentResolutionMode : int8_t
 {
     Select = 0,
     Suppress = 1,

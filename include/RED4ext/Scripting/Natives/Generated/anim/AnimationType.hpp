@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class AnimationType : uint8_t
+namespace anim {
+enum class AnimationType : int8_t
 {
     Normal = 0,
     AdditiveFromRefPose = 1,

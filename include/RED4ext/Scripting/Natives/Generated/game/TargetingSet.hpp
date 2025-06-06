@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class TargetingSet : uint32_t
+namespace game {
+enum class TargetingSet : int32_t
 {
     Visible = 0,
     ClearlyVisible = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace rend::dim { 
-enum class EPreset : uint32_t
+namespace rend::dim {
+enum class EPreset : int32_t
 {
     _228x128 = 0, // 228x128
     _456x256 = 1, // 456x256

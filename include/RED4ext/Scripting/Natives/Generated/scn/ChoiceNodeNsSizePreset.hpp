@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class ChoiceNodeNsSizePreset : uint8_t
+namespace scn {
+enum class ChoiceNodeNsSizePreset : int8_t
 {
     small_ = 0, // small
     normal = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class EInterpolationType : uint32_t
+namespace anim {
+enum class EInterpolationType : int32_t
 {
     Lerp = 0,
     Slerp = 1,

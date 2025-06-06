@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class DisplayMode : uint32_t
+namespace ink {
+enum class DisplayMode : int32_t
 {
     Invalid = 0,
     Basic = 1,

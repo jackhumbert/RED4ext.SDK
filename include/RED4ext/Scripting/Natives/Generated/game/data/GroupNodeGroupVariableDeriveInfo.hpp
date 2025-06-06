@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class GroupNodeGroupVariableDeriveInfo : uint8_t
+namespace game::data {
+enum class GroupNodeGroupVariableDeriveInfo : int8_t
 {
     FullyDerived = 0,
     TypeDerived = 1,

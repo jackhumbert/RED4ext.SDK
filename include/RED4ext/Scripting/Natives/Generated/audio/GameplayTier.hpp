@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace audio { 
-enum class GameplayTier : uint32_t
+namespace audio {
+enum class GameplayTier : int32_t
 {
     Undefined = 0,
     Tier1_FullGameplay = 1,

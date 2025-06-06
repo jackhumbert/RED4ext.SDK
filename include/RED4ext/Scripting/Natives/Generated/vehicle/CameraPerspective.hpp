@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class CameraPerspective : uint8_t
+namespace vehicle {
+enum class CameraPerspective : int8_t
 {
     FPP = 0,
     TPPClose = 1,

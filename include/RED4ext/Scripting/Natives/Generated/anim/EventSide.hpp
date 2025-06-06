@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class EventSide : uint32_t
+namespace anim {
+enum class EventSide : int32_t
 {
     Left = 0,
     Right = 1,

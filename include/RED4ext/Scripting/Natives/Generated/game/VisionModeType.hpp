@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class VisionModeType : uint32_t
+namespace game {
+enum class VisionModeType : int32_t
 {
     Default = 0,
     Focus = 1,

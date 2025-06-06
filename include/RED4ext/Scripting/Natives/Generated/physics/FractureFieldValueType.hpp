@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace physics { 
-enum class FractureFieldValueType : uint8_t
+namespace physics {
+enum class FractureFieldValueType : int8_t
 {
     FFVT_Impulse = 0,
     FFVT_Velocity = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class MovingPlatformLoopType : uint32_t
+namespace game {
+enum class MovingPlatformLoopType : int32_t
 {
     NoLooping = 0,
     Bounce = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class DrillingState : uint32_t
+namespace quest {
+enum class DrillingState : int32_t
 {
     Undefined = 0,
     Started = 1,

@@ -16,6 +16,13 @@ struct CClass;
 struct BaseStream;
 struct CString;
 
+struct PostLoadParams
+{
+    bool disablePreInitialization; // 00
+    uint8_t pad01[0x8 - 0x1];      // 01
+};
+RED4EXT_ASSERT_SIZE(PostLoadParams, 0x8);
+
 struct ISerializable
 {
     //static constexpr const char* NAME = "ISerializable";
@@ -43,6 +50,8 @@ struct ISerializable
     /// @pattern 40 53 48 83 EC 20 48 8D 05 7B DA EC 02 48 8B D9 48 89 01 33 C0 48 89 41 08 48 89 41 10 48 89 41
     //ISerializable() = default;
 
+    ISerializable();
+
     // 1.6  RVA: 0x1AFD70 / 1768816
     /// @pattern 40 53 48 83 EC 50 4C 8B C2 48 8B D9 48 85 D2 0F 84 C5 00 00 00 48 8B 42 10 0F 57 C0 66 0F 7F 44
     void __fastcall SetOwner(ISerializable *owner);
@@ -54,7 +63,7 @@ struct ISerializable
     virtual Memory::IAllocator* GetAllocator();                                         // 10 GetInnerTypeMemoryPool
     virtual ~ISerializable() = default;                                                 // 18 ~Type
     virtual void sub_20(Handle<ISerializable>* a1);                                     // 20
-    virtual void sub_28();                                                              // 28 OnPostLoad
+    virtual void PostLoad(const PostLoadParams& aParams);                               // 28 OnPostLoad
     virtual bool sub_30();                                                              // 30 OnPropertyPreChange
     virtual void sub_38();                                                              // 38 OnPropertyPostChange
     virtual bool sub_40(BaseStream* aStream);                                           // 40 OnSerialize
@@ -85,10 +94,24 @@ struct ISerializable
 
     WeakHandle<ISerializable> ref;   // 00 - Initialized in Handle ctor
     WeakHandle<ISerializable> unk18; // 18 - Owner/parent
-    uint64_t unk28;                  // 28 - Incremental ID set in ISerializable ctor, can be zero
+    uint64_t unk28;                  // 28 - Incremental ID set in ISerializable ctor, can be zero. Global incremental ID, used in serialization
+
 };
 RED4EXT_ASSERT_SIZE(ISerializable, 0x30);
 } // namespace RED4ext
+
+/**
+ * @brief Adds default implementation for generated/imported class.
+ * Allows ISerializable class to be used without Handle<> and RTTI construction.
+ * Some ISerializables are used as structs, without initilializing ref counter.
+ */
+#ifndef RED4EXT_IMPL_NATIVE_TYPE
+#define RED4EXT_IMPL_NATIVE_TYPE()                                                                                     \
+    CClass* GetNativeType() override                                                                                   \
+    {                                                                                                                  \
+        return CRTTISystem::Get()->GetClass(NAME);                                                                     \
+    }
+#endif
 
 #ifdef RED4EXT_HEADER_ONLY
 #include <RED4ext/ISerializable-inl.hpp>

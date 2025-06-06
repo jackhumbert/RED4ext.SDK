@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class EntityReferenceType : uint8_t
+namespace game {
+enum class EntityReferenceType : int8_t
 {
     EntityRef = 0,
     Tag = 1,

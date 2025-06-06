@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class EAnchor : uint8_t
+namespace ink {
+enum class EAnchor : int8_t
 {
     TopLeft = 0,
     TopCenter = 1,

@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class District : uint32_t
+namespace game::data {
+enum class District : int32_t
 {
     ArasakaWaterfront = 0,
     ArasakaWaterfront_AbandonedWarehouse = 1,

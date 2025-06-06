@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class LineType : uint8_t
+namespace ink {
+enum class LineType : int8_t
 {
     RegularPatternSpacing = 0,
     LoosePatternSpacing = 1,

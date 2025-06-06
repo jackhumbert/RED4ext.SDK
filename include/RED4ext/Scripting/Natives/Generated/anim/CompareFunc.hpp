@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace anim { 
-enum class CompareFunc : uint32_t
+namespace anim {
+enum class CompareFunc : int32_t
 {
     Equal = 0,
     NotEqual = 1,

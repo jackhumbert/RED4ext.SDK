@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::ui { 
-enum class EClueDescriptorMode : uint32_t
+namespace game::ui {
+enum class EClueDescriptorMode : int32_t
 {
     Invalid = 0,
     Add = 1,

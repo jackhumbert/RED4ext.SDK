@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace vehicle { 
-enum class EState : uint32_t
+namespace vehicle {
+enum class EState : int32_t
 {
     Default = 1,
     On = 2,

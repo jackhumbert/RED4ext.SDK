@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace AI::behavior { 
-enum class SystemVariableExpressionTypes : uint32_t
+namespace AI::behavior {
+enum class SystemVariableExpressionTypes : int32_t
 {
     IsFPSLow = 0,
 };

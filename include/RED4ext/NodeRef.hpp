@@ -9,7 +9,7 @@ namespace RED4ext
 {
 struct NodeRef
 {
-    static constexpr auto GlobalRoot = FNV1a64("$"); // NodeRef("$")
+    static constexpr auto GlobalRoot = FNV1a64("$");   // NodeRef("$")
     static constexpr auto RelativeRoot = FNV1a64("~"); // NodeRef("~")
 
     constexpr NodeRef(uint64_t aHash = 0) noexcept
@@ -113,6 +113,18 @@ struct NodeRef
     uint64_t hash;
 };
 RED4EXT_ASSERT_SIZE(NodeRef, 0x8);
+
+namespace world
+{
+struct GlobalNodeRef : NodeRef
+{
+    using NodeRef::NodeRef;
+};
+RED4EXT_ASSERT_SIZE(GlobalNodeRef, 0x8);
+} // namespace world
+
+using GlobalNodeRef = world::GlobalNodeRef;
+using worldGlobalNodeRef = world::GlobalNodeRef;
 
 template<typename T>
 struct HashMapHash<T, std::enable_if_t<std::is_same_v<T, NodeRef>>>

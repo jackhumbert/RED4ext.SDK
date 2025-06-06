@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class VehicleCommandType : uint8_t
+namespace quest {
+enum class VehicleCommandType : int8_t
 {
     Move_On_Spline = 0, // Move On Spline
     Follow = 1,

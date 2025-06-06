@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace quest { 
-enum class BriefingPlayerType : uint32_t
+namespace quest {
+enum class BriefingPlayerType : int32_t
 {
     Fullscreen = 0,
     Hud = 1,

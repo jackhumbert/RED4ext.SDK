@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class NPCStanceState : uint32_t
+namespace game::data {
+enum class NPCStanceState : int32_t
 {
     Any = 0,
     Cover = 1,

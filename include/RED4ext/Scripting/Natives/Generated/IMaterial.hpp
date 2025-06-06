@@ -4,6 +4,14 @@
 
 // This file is generated from the Game's Reflection data
 
+#include <RED4ext/Scripting/Natives/IMaterial.hpp>
+
+namespace RED4ext
+{
+RED4EXT_ASSERT_SIZE(IMaterial, 0x78);
+} // namespace RED4ext
+
+/*
 #include <cstdint>
 #include <RED4ext/Common.hpp>
 #include <RED4ext/NativeTypes.hpp>
@@ -23,5 +31,6 @@ struct IMaterial : CResource
 };
 RED4EXT_ASSERT_SIZE(IMaterial, 0x78);
 } // namespace RED4ext
+*/
 
 // clang-format on

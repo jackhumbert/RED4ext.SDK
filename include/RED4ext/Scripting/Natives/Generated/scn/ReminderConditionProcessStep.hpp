@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class ReminderConditionProcessStep : uint32_t
+namespace scn {
+enum class ReminderConditionProcessStep : int32_t
 {
     ReminderA = 0,
     ReminderB = 1,

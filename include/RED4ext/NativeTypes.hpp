@@ -2,8 +2,10 @@
 
 #include <array>
 #include <cstdint>
+#include <limits>
 #include <string_view>
 
+#include <RED4ext/Buffer.hpp>
 #include <RED4ext/CName.hpp>
 #include <RED4ext/CString.hpp>
 #include <RED4ext/Common.hpp>
@@ -12,7 +14,8 @@
 #include <RED4ext/InstanceType.hpp>
 #include <RED4ext/NodeRef.hpp>
 #include <RED4ext/ResourceReference.hpp>
-#include <RED4ext/Unks.hpp>
+#include <RED4ext/Scripting/Natives/Generated/curve/EInterpolationType.hpp>
+#include <RED4ext/Scripting/Natives/Generated/curve/ESegmentsLinkType.hpp>
 
 namespace RED4ext
 {
@@ -77,10 +80,19 @@ struct TweakDBID
         name.tdbOffsetBE[2] = 0;
     }
 
-    constexpr TweakDBID(const char* aName) noexcept
+    constexpr TweakDBID(const char* aName, size_t aLength = 0) noexcept
     {
-        name.hash = CRC32(aName, 0);
-        name.length = static_cast<uint8_t>(std::char_traits<char>::length(aName));
+        if (aLength <= 0)
+        {
+            name.hash = CRC32(aName, 0);
+            name.length = static_cast<uint8_t>(std::char_traits<char>::length(aName));
+        }
+        else
+        {
+            name.hash = CRC32(reinterpret_cast<const uint8_t*>(aName), aLength, 0);
+            name.length = static_cast<uint8_t>(aLength);
+        }
+
         name.tdbOffsetBE[0] = 0;
         name.tdbOffsetBE[1] = 0;
         name.tdbOffsetBE[2] = 0;
@@ -137,9 +149,14 @@ struct Variant
     Variant() noexcept = default;
     Variant(const CBaseRTTIType* aType);
     Variant(const CBaseRTTIType* aType, const ScriptInstance aData);
-    Variant(const CName& aTypeName, const ScriptInstance aData);
+    Variant(CName aTypeName);
+    Variant(CName aTypeName, const ScriptInstance aData);
     Variant(const Variant& aOther);
+    Variant(Variant&& aOther) noexcept;
     ~Variant();
+
+    Variant& operator=(const Variant& aRhs);
+    Variant& operator=(Variant&& aRhs) noexcept;
 
     bool IsEmpty() const noexcept;
     bool IsInlined() const noexcept;
@@ -162,41 +179,6 @@ struct Variant
     };
 };
 RED4EXT_ASSERT_SIZE(Variant, 0x18);
-
-struct RawBuffer
-{
-    void* data;         // 00
-    uint32_t size;      // 08
-    uint32_t alignment; // 0C
-    Unk530 unk10;       // 10
-};
-RED4EXT_ASSERT_SIZE(RawBuffer, 0x20);
-
-struct DataBuffer
-{
-    RawBuffer buffer; // 00
-    uint64_t unk20;   // 20 - Pointer to something
-};
-RED4EXT_ASSERT_SIZE(DataBuffer, 0x28);
-
-struct SharedDataBuffer
-{
-    int64_t unk00; // 00
-};
-RED4EXT_ASSERT_SIZE(SharedDataBuffer, 0x8);
-
-struct DeferredDataBuffer
-{
-    int64_t unk00;    // 00
-    int64_t unk08;    // 08
-    RawBuffer buffer; // 10
-    int64_t unk30;    // 30
-    int8_t unk38;     // 38
-    int64_t unk40;    // 40
-    int64_t unk48;    // 48
-    int64_t unk50;    // 50
-};
-RED4EXT_ASSERT_SIZE(DeferredDataBuffer, 0x58);
 
 struct gamedataLocKeyWrapper
 {
@@ -250,17 +232,56 @@ template<typename T, uint32_t MAX_LEN>
 using NativeArray = std::array<T, MAX_LEN>;
 
 template<typename T>
+struct CurvePoint
+{
+    float point;
+    T value;
+};
+
+template<typename T>
+struct CurveBuffer
+{
+    [[nodiscard]] float* GetPoints() noexcept;
+    [[nodiscard]] T* GetValues() noexcept;
+
+    uint32_t size;         // 00
+    uint32_t unk04;        // 04
+    uint32_t pointsOffset; // 08
+    uint32_t valuesOffset; // 0C
+    // float points[size]; // 10h
+    // T values[size];     // 10h + size * sizeof(float)
+};
+RED4EXT_ASSERT_SIZE(CurveBuffer<float>, 0x10);
+RED4EXT_ASSERT_OFFSET(CurveBuffer<float>, size, 0x00);
+RED4EXT_ASSERT_OFFSET(CurveBuffer<float>, pointsOffset, 0x08);
+RED4EXT_ASSERT_OFFSET(CurveBuffer<float>, valuesOffset, 0x0C);
+
+template<typename T>
 struct CurveData
 {
-    uint64_t unk00; // 00
-    uint64_t unk08; // 08
-    uint64_t unk10; // 10
-    uint64_t unk18; // 18
-    uint64_t unk20; // 20
-    uint64_t unk28; // 28
-    uint64_t unk30; // 30
+    [[nodiscard]] CurveBuffer<T>* GetCurve() const noexcept;
+    [[nodiscard]] uint32_t GetSize() const noexcept;
+
+    [[nodiscard]] CurvePoint<T> GetPoint(uint32_t aIndex) const noexcept;
+    void SetPoint(uint32_t aIndex, const CurvePoint<T>& acPoint) noexcept;
+    void SetPoint(uint32_t aIndex, float aPoint, const T& acValue) noexcept;
+
+    void Resize(uint32_t aNewSize) noexcept;
+
+    [[nodiscard]] inline CurvePoint<T> operator[](uint32_t aIndex) const noexcept;
+
+    CName name;                                  // 00
+    RawBuffer buffer;                            // 08
+    CBaseRTTIType* valueType;                    // 40
+    curve::EInterpolationType interpolationType; // 48
+    curve::ESegmentsLinkType linkType;           // 49
 };
 RED4EXT_ASSERT_SIZE(CurveData<float>, 0x38);
+RED4EXT_ASSERT_OFFSET(CurveData<float>, name, 0x00);
+RED4EXT_ASSERT_OFFSET(CurveData<float>, buffer, 0x08);
+RED4EXT_ASSERT_OFFSET(CurveData<float>, valueType, 0x28);
+RED4EXT_ASSERT_OFFSET(CurveData<float>, interpolationType, 0x30);
+RED4EXT_ASSERT_OFFSET(CurveData<float>, linkType, 0x31);
 
 template<typename T>
 struct ScriptRef

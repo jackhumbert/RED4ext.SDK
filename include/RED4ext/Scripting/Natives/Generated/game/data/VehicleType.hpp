@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class VehicleType : uint32_t
+namespace game::data {
+enum class VehicleType : int32_t
 {
     Bike = 0,
     Car = 1,

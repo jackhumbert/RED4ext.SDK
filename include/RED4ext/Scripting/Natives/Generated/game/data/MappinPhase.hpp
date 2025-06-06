@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game::data { 
-enum class MappinPhase : uint32_t
+namespace game::data {
+enum class MappinPhase : int32_t
 {
     CompletedPhase = 0,
     DefaultPhase = 1,

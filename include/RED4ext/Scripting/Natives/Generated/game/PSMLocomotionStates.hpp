@@ -7,9 +7,10 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class PSMLocomotionStates : uint32_t
+namespace game {
+enum class PSMLocomotionStates : int32_t
 {
+    Any = -1,
     Default = 0,
     Crouch = 1,
     Sprint = 2,
@@ -23,7 +24,6 @@ enum class PSMLocomotionStates : uint32_t
     SlideFall = 11,
     CrouchSprint = 12,
     CrouchDodge = 13,
-    Any = 4294967295,
 };
 } // namespace game
 using gamePSMLocomotionStates = game::PSMLocomotionStates;

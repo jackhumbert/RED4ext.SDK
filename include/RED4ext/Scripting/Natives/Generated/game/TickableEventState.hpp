@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace game { 
-enum class TickableEventState : uint32_t
+namespace game {
+enum class TickableEventState : int32_t
 {
     Idle = 0,
     FirstTick = 1,

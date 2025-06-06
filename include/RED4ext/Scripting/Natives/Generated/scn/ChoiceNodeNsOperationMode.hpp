@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace scn { 
-enum class ChoiceNodeNsOperationMode : uint8_t
+namespace scn {
+enum class ChoiceNodeNsOperationMode : int8_t
 {
     attachToActor = 0,
     attachToProp = 1,

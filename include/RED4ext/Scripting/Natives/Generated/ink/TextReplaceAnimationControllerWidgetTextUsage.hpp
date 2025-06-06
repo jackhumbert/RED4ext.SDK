@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace ink { 
-enum class TextReplaceAnimationControllerWidgetTextUsage : uint8_t
+namespace ink {
+enum class TextReplaceAnimationControllerWidgetTextUsage : int8_t
 {
     BaseText = 0,
     TargetText = 1,

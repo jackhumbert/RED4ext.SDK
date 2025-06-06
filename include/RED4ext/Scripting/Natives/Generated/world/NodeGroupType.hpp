@@ -7,8 +7,8 @@
 #include <cstdint>
 namespace RED4ext
 {
-namespace world { 
-enum class NodeGroupType : uint8_t
+namespace world {
+enum class NodeGroupType : int8_t
 {
     RegularGroup = 0,
     PrefabVariant = 1,
