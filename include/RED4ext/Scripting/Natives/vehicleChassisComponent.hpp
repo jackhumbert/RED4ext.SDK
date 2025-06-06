@@ -104,7 +104,7 @@ struct ChassisComponent : ent::IPlacedComponent, ent::ITransformAttachable
     physics::ProxyID proxyID; // 160
     physics::ProxyID proxyID_PlayerOnly; // 168
     physics::ProxyCacheID proxyCacheID; // 16C
-    SharedMutex sharedMutex;
+    SharedSpinLock sharedMutex;
     uint32_t unk170;
     // colliders that have chassis_bottom tag - seems to extend past 32bits
     // 1 << shape_index

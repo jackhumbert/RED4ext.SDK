@@ -89,7 +89,7 @@ struct __declspec(align(0x10)) GeometryCache : CResource
     HashMap<uint64_t, uint64_t> unk120; // 120
     HashMap<uint64_t, uint64_t> unk150; // 150
     // for unk120
-    SharedMutex unk180;
+    SharedSpinLock unk180;
     uint64_t unk188;
 };
 RED4EXT_ASSERT_SIZE(GeometryCache, 0x190);

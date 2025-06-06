@@ -4,7 +4,7 @@
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Scripting/Natives/Generated/Transform.hpp>
 #include <RED4ext/Scripting/Natives/Generated/Vector3.hpp>
-#include <RED4ext/Scripting/Natives/Generated/physics/ProxyType.hpp>
+#include <RED4ext/Scripting/Natives/physicsProxyType.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/SimulationType.hpp>
 
 #include <cstdint>

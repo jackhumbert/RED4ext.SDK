@@ -13,7 +13,7 @@ struct ScriptGameInstance
      * @brief Construct an instance of "ScriptGameInstance" native type.
      * @param aInstance The instance pointer, if NULL it will be retrived automatically from CGameFramework.
      */
-    ScriptGameInstance(GameInstance* aInstance = nullptr);
+    ScriptGameInstance(IGameInstance* aInstance = nullptr);
 
     IGameInstance* instance;
     int8_t unk8;

@@ -24,7 +24,7 @@ struct EffectBlackboard : IScriptable
     void __fastcall SetValue(CName parameterName, float clampedValue);
     
     Map<CName, float> unk40;
-    SharedMutex unk68;
+    SharedSpinLock unk68;
 };
 RED4EXT_ASSERT_SIZE(EffectBlackboard, 0x70);
 } // namespace world

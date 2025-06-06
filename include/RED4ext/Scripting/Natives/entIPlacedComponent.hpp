@@ -20,11 +20,43 @@ struct __declspec(align(0x10)) IPlacedComponent : ent::IComponent
     static constexpr const char* NAME = "entIPlacedComponent";
     static constexpr const char* ALIAS = "IPlacedComponent";
 
-    Handle<ent::ITransformBinding> parentTransform; // 90
-    uint8_t unkA0[0xC0 - 0xA0];                     // A0
-    WorldTransform localTransform;                  // C0
-    WorldTransform worldTransform;                  // E0
-    uint8_t unkE0[0x120 - 0x100];                   // 100
+    /// @pattern 48 83 EC 48 4C 8B C9 E8 4C 01 00 00 0F 28 0D ? ? ? ? 48 8D 0D (vft:rel) 49 89 09 48 8D 05
+    /// @eval vft
+    static constexpr const uintptr_t VFT = entIPlacedComponent_VFT_Addr;
+
+    // creates ent::HardAttachment with this as source, 0x238
+    virtual Handle<ent::ITransformAttachment>* CreateTransformAttachment(Handle<ent::ITransformAttachment>* aAttachment, 
+                                                                         CName name,
+                                                                         Handle<void>* aDestination);
+    // unkB2 = 1
+    virtual void OnAttach(void*) override;
+    // unkB2 = 1
+    // unkA0 clear
+    virtual bool OnDetach(void*) override;
+    // debug related? formats name to [%hs]
+    virtual void sub_238();
+    // get bounding box maybe?
+    virtual void sub_240(Box* boundingBox) = 0;
+    virtual void GetFlags();
+
+    struct UnkA0 {
+        uint64_t unk00[4];
+    };
+
+    Handle<ITransformBinding> parentTransform; // 90
+    // reated to Transform Attachements - double Handle struct
+    DynArray<UnkA0> unkA0;
+    uint8_t unkB0;
+    // set based on arg passed to UpdateBindings
+    uint8_t unkB1;
+    // related to unkA0 updates?
+    // hasUpdate?
+    uint8_t unkB2;
+    uint8_t unkB3[5];
+    uint64_t unkB8;
+    WorldTransform localTransform; // C0
+    WorldTransform worldTransform; // E0
+    Box bounds; // 100
 };
 RED4EXT_ASSERT_SIZE(IPlacedComponent, 0x120);
 } // namespace ent

@@ -23,7 +23,7 @@ struct RuntimeSystemEntity : world::IRuntimeSystem
     uint64_t unk50;
     uint64_t unk58;
     DynArray<ent::Factory> factories;
-    SharedMutex unk70;
+    SharedSpinLock unk70;
     // uint64_t unk78;
     HashMap<uint64_t, uint64_t> unk80;
 };

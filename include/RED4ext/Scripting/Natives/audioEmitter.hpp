@@ -30,7 +30,7 @@ struct GameParameterStorage {
 
     DynArray<GameParameter> gameParameters; // 00
     DynArray<CName> switchGroups; // 10
-    SharedMutex gameParameterMutex; // 20
+    SharedSpinLock gameParameterMutex; // 20
     uint8_t unk[7];
 };
 RED4EXT_ASSERT_SIZE(GameParameterStorage, 0x28); 
@@ -55,7 +55,7 @@ struct Emitters {
     Emitter emitters[0x3000];
     HashMap<CName, DynArray<CName>>::NodeList nodeList;
     HashMap<ent::EntityID, Emitter> entities;
-    SharedMutex entitiesMutex;
+    SharedSpinLock entitiesMutex;
 };
 struct EmitterPosition
 {
@@ -76,7 +76,7 @@ struct EmitterPositions
     HashMap<CName, CName> entities;
     Map<CName, uint32_t> unk48;
     uint64_t unk70;
-    SharedMutex entitiesMutex;
+    SharedSpinLock entitiesMutex;
 };
 
 } // namespace RED4ext::audio

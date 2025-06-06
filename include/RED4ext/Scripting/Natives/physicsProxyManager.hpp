@@ -51,7 +51,7 @@ struct ProxyManager
         uint8_t unk1;
     };
 
-    SharedMutex unk0000;
+    SharedSpinLock unk0000;
     uint64_t unk0008[1023];
     uint32_t unk2000;
     uint32_t unk2004;
@@ -82,7 +82,7 @@ struct ProxyManager
     // used to index ProxyCacheManager.140, ProxyCacheManager.unk38
     StaticArray<ProxyCacheID, 0xFFFF> proxyCacheIDs;
     // mutex for unk2E2058 & unk2E2068
-    SharedMutex unk2E2054;
+    SharedSpinLock unk2E2054;
     // ProxyID storage? size 4 bytes
     DynArray<ProxyID> unk2E2058;
     // index'd by ProxyID.index

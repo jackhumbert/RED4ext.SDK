@@ -216,7 +216,7 @@ struct CBaseEngine
     int64_t unk2D8;                            // 2D8
     int64_t unk2E0;                            // 2E0
 };
-RED4EXT_ASSERT_SIZE(CBaseEngine, 0x2D8);
+RED4EXT_ASSERT_SIZE(CBaseEngine, 0x2E8);
 RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsLoaded, 0x54);
 RED4EXT_ASSERT_OFFSET(CBaseEngine, unkD0, 0xD0);
 RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsValidationErrors, 0x90);
@@ -239,7 +239,7 @@ struct BaseGameEngine : CBaseEngine
 
     int64_t unk2D8;          // 2D8
 };
-RED4EXT_ASSERT_SIZE(BaseGameEngine, 0x2E0);
+RED4EXT_ASSERT_SIZE(BaseGameEngine, 0x2F0);
 // RED4EXT_ASSERT_OFFSET(BaseGameEngine, watchdogThread, 0x2D8);
 
 struct CGameFramework
@@ -357,21 +357,19 @@ struct CGameEngine : BaseGameEngine
     /// @pattern 48 89 5C 24 18 48 89 6C 24 20 56 48 83 EC 60 48 8B F1 48 8B DA 0F B6 4A 32 E8 A2 64 22 00 48 8B
     // static void __fastcall InitializeGameFramework(uint64_t * a1, uint64_t a2);
 
-    int64_t unk2E0;            // 2E0
-    int64_t unk2E8;            // 2E8
-    int64_t unk2F0;            // 2F0
-    int64_t unk2F8;            // 2F8
-    int32_t unk300;            // 300
-    int32_t unk304;            // 304
-    CGameFramework* framework; // 308
+    int64_t unk2F0;                       // 2F0
+    int64_t unk2F8;                       // 2F8
+    int32_t unk300;                       // 300
+    int32_t unk304;                       // 304
+    CGameFramework* framework;            // 308
     services::GameServices* gameServices; // 310
-    int64_t unk318;            // 318
-    int64_t unk320;            // 320
-    int64_t unk328;            // 328
-    int64_t unk330;            // 330
-    Unk338 * unk338;           // 338
-    int32_t unk340;            // 340
-    int64_t unk348;            // 348
+    int64_t unk318;                       // 318
+    int64_t unk320;                       // 320
+    int64_t unk328;                       // 328
+    int64_t unk330;                       // 330
+    int64_t unk338;                       // 338
+    int32_t unk340;                       // 340
+    int64_t unk348;                       // 348
 
 };
 RED4EXT_ASSERT_SIZE(CGameEngine, 0x350);

@@ -301,7 +301,7 @@ struct CClass : CBaseRTTIType
     int16_t eventTypeId;                         // 2C0 - Assigned to event classes only
     int32_t unk2C4;                              // 2C4
     SharedSpinLock unk2C8;                       // 2C8 propsLock
-    uint8_t unk2C9;                              // 2C9 classSetupState
+    uint8_t classSetupState;                     // 2C9
 };
 RED4EXT_ASSERT_SIZE(CClass, 0x2D0);
 RED4EXT_ASSERT_OFFSET(CClass, parent, 0x10);

@@ -25,7 +25,7 @@ struct __declspec(align(0x10)) SectorEntry
     uint8_t unk31;
     // status of loading?
     uint8_t unk32;
-    SharedMutex unk33;
+    SharedSpinLock unk33;
     uint8_t unk34[0x40 - 0x34]; // 33
 };
 RED4EXT_ASSERT_SIZE(SectorEntry, 0x40);

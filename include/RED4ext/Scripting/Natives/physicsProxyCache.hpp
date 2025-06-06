@@ -77,7 +77,7 @@ struct ProxyCacheManager
         uint64_t unk20[4];
         uint8_t unk40[6];
         // mutex for systemKeys
-        SharedMutex unk46;
+        SharedSpinLock unk46;
         DynArray<Handle<BaseProxy>> systemKeys;
         uint8_t state;
         uint64_t unk60[26];
@@ -85,7 +85,7 @@ struct ProxyCacheManager
         Vector3 offset;
     };
 
-    SharedMutex unk00;
+    SharedSpinLock unk00;
     // All Fs initially
     Handle<void*> unk08;
     // All Fs initially

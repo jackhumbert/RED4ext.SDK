@@ -68,7 +68,7 @@ struct MoveSystem : vehicle::IMoveSystem
   RED4ext::DynArray<void*> unk58;
   RED4ext::DynArray<void*> unk68;
   uint64_t unk78[2];
-  RED4ext::SharedMutex unk88;
+  RED4ext::SharedSpinLock unk88;
 };
 RED4EXT_ASSERT_SIZE(MoveSystem, 0x90);
 } // namespace vehicle

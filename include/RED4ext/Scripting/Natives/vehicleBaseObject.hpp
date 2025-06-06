@@ -201,7 +201,7 @@ struct Unk588 {
     void * unk370;
     uint32_t unk378;
     uint32_t unk37C;
-    RED4ext::SharedMutex unk380;
+    RED4ext::SharedSpinLock unk380;
 };
 
 // RED4EXT_ASSERT_SIZE(Unk588, 0x388);
@@ -480,8 +480,8 @@ struct BaseObject : game::Object
     Vector4 worldPosition_related;
     uint64_t unk390;
     Movement *movement;                     // 398
-    // uint64_t aiVehicleAgent_related;
-    Ref<AI::Archetype> archetype;  // 3A0
+    uint64_t aiVehicleAgent_related;
+    // Ref<AI::Archetype> archetype;  // 3A0 ??
     void * unk3A8;
     void * unk3B0;
     action::ActionInterface actionInterface; // 3B8

@@ -12,7 +12,7 @@ namespace RED4ext::physics {
 // previously GeoThing
 struct ProxyHelper
 {
-    inline ProxyHelper(ProxyID proxyID, SharedMutex * sharedMutex) {
+    inline ProxyHelper(ProxyID proxyID, SharedSpinLock * sharedMutex) {
         Create(this, proxyID);
         mutex = sharedMutex;
     }
@@ -108,6 +108,6 @@ struct ProxyHelper
     uint32_t unk14;
     // 0x18
     // assigned on creation, usually stored in the component struct
-    RED4ext::SharedMutex * mutex;
+    RED4ext::SharedSpinLock * mutex;
 };
 }

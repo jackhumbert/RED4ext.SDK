@@ -117,8 +117,8 @@ struct CallbackManager
     DynArray<CallbackInstance> callbackInstances; //38
     DynArray<Handle<IScriptable>> listeners; // 48
     uint16_t lastUnk1C; // 58
-    SharedMutex mutex1; // 5A
-    SharedMutex mutex2; // 5B
+    SharedSpinLock mutex1; // 5A
+    SharedSpinLock mutex2; // 5B
 };
 // ASSERT 0x60 etc
 

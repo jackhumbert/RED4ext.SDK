@@ -159,7 +159,7 @@ struct VehicleSystem : IVehicleSystem, VehicleInterface2, VehicleInterface3
     uint32_t unk206A4;
     uint64_t unk206A8[28];
     uint8_t unk20788;
-    SharedMutex unk20789;
+    SharedSpinLock unk20789;
     uint8_t unk2078A;
     uint8_t unk2078B;
     uint8_t unk2078C;
@@ -169,10 +169,10 @@ struct VehicleSystem : IVehicleSystem, VehicleInterface2, VehicleInterface3
     // Map<uint32_t, RED4ext::vehicle::Unk588> unk20790;
     Map<uint32_t, uint64_t> unk20790;
     uint64_t unk207B8[4];
-    SharedMutex unk207D8;
+    SharedSpinLock unk207D8;
     DynArray<uint64_t> unk207E0;
     uint64_t unk207F0[19];
-    SharedMutex unk20888;
+    SharedSpinLock unk20888;
     uint64_t unk20890[6];
     uint8_t unk208C0[0x20A80-133312];
 };

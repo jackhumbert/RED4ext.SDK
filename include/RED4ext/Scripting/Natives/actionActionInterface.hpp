@@ -58,9 +58,9 @@ struct ActionInterface {
     void *listeners[16];
     uint32_t unk60count;
     uint32_t unkE4;
-    SharedMutex actionsMutex;
-    SharedMutex mutex2;
-    SharedMutex listenersMutex;
+    SharedSpinLock actionsMutex;
+    SharedSpinLock mutex2;
+    SharedSpinLock listenersMutex;
     uint8_t unkEB;
     uint32_t unkEC;
 };

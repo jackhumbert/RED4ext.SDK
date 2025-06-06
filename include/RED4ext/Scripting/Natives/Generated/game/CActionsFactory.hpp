@@ -32,7 +32,7 @@ struct CActionsFactory : game::IActionsFactory
     void __fastcall AddActionTypeManual(action::Type type_1, CreateAction_t func);
 
     action::ActionBase *unk48;
-    SharedMutex actionIdMUTX;
+    SharedSpinLock actionIdMUTX;
     action::ActionBase *actionCleanup[70];
     uint64_t unk288;
     uint64_t unk290;

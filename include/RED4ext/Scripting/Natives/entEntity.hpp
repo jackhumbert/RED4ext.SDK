@@ -193,7 +193,7 @@ struct Entity : IScriptable
     // isReplicated = unk148 != 0
     void * unk148;                              // 148 net::IEntityState* ?
     float updatingTransform;                    // 150
-    ECustomCameraTarget customCameraTarget = 0; // 154
+    ECustomCameraTarget customCameraTarget = ECustomCameraTarget::ECCTV_All; // 154
     int8_t controllingPeerID = -1;              // 155
     EntityStatus status;                        // 156 prev EntityState
     uint8_t unk157;                             // 157

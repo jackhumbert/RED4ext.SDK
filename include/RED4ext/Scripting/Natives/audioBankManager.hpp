@@ -27,7 +27,7 @@ struct BankManager {
 
     HashMap<CName, uint32_t> vehicleBanks;
     HashMap<CName, void *> loadedBanks;
-    SharedMutex loadedBanksMutex;
+    SharedSpinLock loadedBanksMutex;
     HashMap<CName, Handle<CName>> vehicleBanksAdditional;
     uint64_t unk30[33];
     uint64_t unk1A0;

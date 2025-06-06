@@ -99,7 +99,7 @@ struct Thing {
     audio::GameParameterStorage *globalParameters;
     uint64_t *unk168[8];
     uint64_t unk169[12];
-    SharedMutex unk208;
+    SharedSpinLock unk208;
     uint64_t unk210[2];
 };
 

@@ -100,10 +100,10 @@ RED4EXT_INLINE void Dump(std::filesystem::path aOutPath, std::filesystem::path a
                     ClassDependencyBuilder builder;
                     builder.pType = classType;
 
-                    for (uint32_t i = 0; i < classType->unk118.size; ++i)
+                    for (uint32_t i = 0; i < classType->allProps.size; ++i)
                 // end new
                     {
-                        auto prop = classType->unk118.entries[i];
+                        auto prop = classType->allProps.entries[i];
                         if (!prop->flags.inValueHolder)
                         {
                             builder.mPropertyMap.emplace(prop->valueOffset, prop);

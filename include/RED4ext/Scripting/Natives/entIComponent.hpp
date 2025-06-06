@@ -154,7 +154,7 @@ struct IComponent : IScriptable
     Flags flags;
     uint8_t unk89;
     // mutex for attachements
-    SharedMutex unk8A;
+    SharedSpinLock unk8A;
     bool isEnabled; // 8B
     bool isReplicable; // 8C
     uint8_t unk8D[0x90 - 0x8D]; // 8D

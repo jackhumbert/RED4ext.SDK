@@ -11,6 +11,7 @@
 #include <RED4ext/Scripting/Natives/gamePSInterface.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/PersistentState.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/Object.hpp>
+#include <RED4ext/RTTITypes.hpp>
 
 namespace RED4ext
 {
