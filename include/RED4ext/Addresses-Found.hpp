@@ -21940,6 +21940,7 @@
 #define entISourceBinding_Class_Addr 0x439B0E8
 #define entISourceBinding_Class_VFT_Addr 0x2B77EF0
 #define entISourceBinding_Class_p_Addr 0x33A31C8
+#define entITransformAttachable_VFT_Addr 0x2FCFF40
 #define entITransformAttachment_Class_Addr 0x439A588
 #define entITransformAttachment_Class_VFT_Addr 0x2B77EF0
 #define entITransformAttachment_Class_p_Addr 0x33A31A0

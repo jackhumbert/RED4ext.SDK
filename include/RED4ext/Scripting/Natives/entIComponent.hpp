@@ -88,15 +88,15 @@ struct IComponent : IScriptable
     // runtime*;
     // unk158
     // }
-    virtual bool OnDetach(void*);                                       // 190
-    virtual void sub_198(void * entityUnk158) { };                      // 198 called before entity->sub_168()
+    virtual bool OnDetach(void* ComponentAttachContext);                                       // 190
+    virtual void OnEntityLODUpdated(void* entityUnk158) { };                      // 198 called before entity->sub_168()
     virtual void sub_1A0() { };
     virtual void OnPostSnapshotApplied() { };                           // 1A8
     virtual void sub_1B0() { };
-    virtual void Attachment_1(Handle<IAttachment>*) { };                // 1B8
-    virtual void Attachment_2(Handle<IAttachment>*) { };                // 1C0
-    virtual void Attachment_3(Handle<IAttachment>*) { };                // 1C8
-    virtual void Attachment_4(Handle<IAttachment>*) { };                // 1D0
+    virtual void OnIncomingAttachmentAdded(Handle<IAttachment>*) { };                // 1B8
+    virtual void OnIncomingAttachmentRemoved(Handle<IAttachment>*) { };                // 1C0
+    virtual void OnOutgoingAttachmentAdded(Handle<IAttachment>*) { };                // 1C8
+    virtual void OnOutgoingAttachmentRemoved(Handle<IAttachment>*) { };                // 1D0
     virtual bool sub_1D8() { return true; };
     // maybe enable/disable?
     // called from Toggle when (flags & 2) == 0
@@ -117,9 +117,8 @@ struct IComponent : IScriptable
     // 1.52 RVA: 0x103E040 / 17031232
     /// @pattern 48 89 51 50 C3
     void __fastcall SetEntity(Entity *);
-
-    // 2.1
-    /// @pattern 48 89 5C 24 08 48 89 74 24 10 48 89 7C 24 18 41 56 48 83 EC 20 48 8B 72 20 4C 8B F1 48 F7 46 48
+    
+    /// @hash 2884771210
     uint64_t *__fastcall InitializeReplicated(CompInit *a2);
 
     // 16 bits i think

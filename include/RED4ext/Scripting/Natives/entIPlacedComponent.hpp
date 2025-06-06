@@ -19,7 +19,7 @@ struct __declspec(align(0x10)) IPlacedComponent : ent::IComponent
 {
     static constexpr const char* NAME = "entIPlacedComponent";
     static constexpr const char* ALIAS = "IPlacedComponent";
-    
+
     /// @hash 2545682969:idata
     static constexpr const uintptr_t VFT = entIPlacedComponent_VFT_Addr;
 
@@ -33,10 +33,10 @@ struct __declspec(align(0x10)) IPlacedComponent : ent::IComponent
     // unkA0 clear
     virtual bool OnDetach(void*) override;
     // debug related? formats name to [%hs]
-    virtual void sub_238();
+    virtual void sub_238(); // RenderDebugName(rend::IDebugDrawer &)
     // get bounding box maybe?
     virtual void sub_240(Box* boundingBox) = 0;
-    virtual void GetFlags();
+    virtual void GetFlags(); // GetDebugRenderColor
 
     struct UnkA0 {
         uint64_t unk00[4];
