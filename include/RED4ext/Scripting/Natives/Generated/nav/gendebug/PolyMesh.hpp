@@ -21,6 +21,8 @@ struct __declspec(align(0x10)) PolyMesh : ISerializable
     static constexpr const char* NAME = "navgendebugPolyMesh";
     static constexpr const char* ALIAS = NAME;
 
+      virtual CClass* GetNativeType() override;
+
     DynArray<Vector3> vertices; // 30
     DynArray<nav::gendebug::CompactPolygon> polygons; // 40
     Box bounds; // 50

@@ -5,6 +5,7 @@
 #include <RED4ext/Callback.hpp>
 #include <RED4ext/Common.hpp>
 #include <RED4ext/JobQueue.hpp>
+#include <RED4ext/Scripting/Natives/Generated/UpdateBucketEnum.hpp>
 
 namespace RED4ext
 {
@@ -86,13 +87,13 @@ enum class UpdateTickGroup : uint8_t
     Unknown,
 };
 
-enum class UpdateBucketEnum : uint8_t
-{
-    Vehicle = 0,
-    Character = 1,
-    AttachedObject = 2,
-    BucketCount = 3,
-};
+// enum class UpdateBucketEnum : uint8_t
+// {
+//     Vehicle = 0,
+//     Character = 1,
+//     AttachedObject = 2,
+//     BucketCount = 3,
+// };
 
 enum class UpdateBucketMask : uint8_t
 {

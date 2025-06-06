@@ -7,27 +7,29 @@
 #include <RED4ext/CString.hpp>
 #include <RED4ext/ISerializable.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/ActionReplicatedState.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/EActionFlags.hpp>
+#include <RED4ext/Scripting/Natives/Generated/game/EActionStatus.hpp>
 
 namespace RED4ext {
 
 namespace game {
 
-enum class EActionStatus : uint32_t
-{
-  STATUS_INVALID = 0,
-  STATUS_BOUND = 1,
-  STATUS_READY = 2,
-  STATUS_PROGRESS = 3,
-  STATUS_COMPLETE = 4,
-  STATUS_FAILURE = 5,
-};
+// enum class EActionStatus : uint32_t
+// {
+//   STATUS_INVALID = 0,
+//   STATUS_BOUND = 1,
+//   STATUS_READY = 2,
+//   STATUS_PROGRESS = 3,
+//   STATUS_COMPLETE = 4,
+//   STATUS_FAILURE = 5,
+// };
 
-enum class EActionFlags : uint16_t
-{
-    NONE = 0,
-    USE_ANIMATION = 1,
-    USE_MOVEMENT = 2
-};
+// enum class EActionFlags : uint16_t
+// {
+//     NONE = 0,
+//     USE_ANIMATION = 1,
+//     USE_MOVEMENT = 2
+// };
 
 } // namespace game
 

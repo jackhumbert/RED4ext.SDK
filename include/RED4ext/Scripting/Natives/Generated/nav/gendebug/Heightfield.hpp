@@ -20,6 +20,8 @@ struct __declspec(align(0x10)) Heightfield : ISerializable
 {
     static constexpr const char* NAME = "navgendebugHeightfield";
     static constexpr const char* ALIAS = NAME;
+    
+    virtual CClass* GetNativeType() override;
 
     Box bounds; // 30
     float cellSize; // 50

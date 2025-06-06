@@ -7,8 +7,8 @@
 #include <cstdint>
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Scripting/Natives/physicsProxyType.hpp>
-#include <RED4ext/Scripting/Natives/physicsStateValue.hpp>
 #include <RED4ext/Scripting/Natives/physicsProxyCache.hpp>
+#include <RED4ext/Scripting/Natives/Generated/physics/StateValue.hpp>
 
 namespace RED4ext {
 namespace ent { struct Entity; struct IComponent; }

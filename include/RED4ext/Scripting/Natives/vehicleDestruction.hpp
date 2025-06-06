@@ -10,22 +10,24 @@
 namespace RED4ext::vehicle
 {
 
+struct BaseObject;
+
 struct Destruction
 {
-    RED4ext::Handle unk00;
+    Handle<void> unk00;
     uint64_t unk10[26];
-    RED4ext::DynArray unkE0;
-    RED4ext::DynArray unkF0;
+    DynArray<void*> unkE0;
+    DynArray<void*> unkF0;
     uint64_t unk100[51];
-    RED4ext::DynArray unk298;
-    RED4ext::Handle unk2A8;
+    DynArray<void*> unk298;
+    Handle<void> unk2A8;
     uint64_t unk2B8;
     void *unk2C0[96];
     uint32_t unk5C0;
     uint64_t unk5C8;
-    RED4ext::DynArray unk5D0;
+    DynArray<void*> unk5D0;
     uint64_t unk5E0[2];
-    RED4ext::vehicle::BaseObject *vehicle;
+    BaseObject *vehicle;
     uint64_t unk5F8;
 };
 RED4EXT_ASSERT_SIZE(Destruction, 0x600);

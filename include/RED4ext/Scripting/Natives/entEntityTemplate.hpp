@@ -32,7 +32,7 @@ struct EntityTemplate : res::StreamedResource
     virtual void sub_20(Handle<ISerializable>*) override;
 
     // read from redpackage, maybe
-    virtual void sub_28() override;
+    virtual void PostLoad(const PostLoadParams& aParams) override; // 28 OnPostLoad
 
     DynArray<ent::TemplateInclude> includes; // 40
     DynArray<ent::TemplateAppearance> appearances; // 50

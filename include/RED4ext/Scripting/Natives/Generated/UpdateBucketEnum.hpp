@@ -12,6 +12,7 @@ enum class UpdateBucketEnum : int8_t
     Vehicle = 0,
     Character = 1,
     AttachedObject = 2,
+    BucketCount = 3
 };
 } // namespace RED4ext
 

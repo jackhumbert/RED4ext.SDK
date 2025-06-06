@@ -7,7 +7,7 @@
 #include <cstdint>
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Scripting/Natives/Generated/vehicle/CarBaseObject.hpp>
-#include <RED4ext/Scripting/Natives/Generated/vehicleArmedCarBaseObject.hpp>
+#include <RED4ext/Scripting/Natives/vehicleArmedCarBaseObject.hpp>
 
 namespace RED4ext
 {

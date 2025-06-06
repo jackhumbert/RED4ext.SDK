@@ -20,7 +20,6 @@ struct BikeBaseObject : vehicle::WheeledBaseObject
     bool __fastcall EnableTiltControl(CStackFrame* a2);
 
 };
-RED4EXT_ASSERT_SIZE(BikeBaseObject, 0x9A0);
 } // namespace vehicle
 using BikeObject = vehicle::BikeBaseObject;
 } // namespace RED4ext

@@ -73,7 +73,7 @@ struct ProxyHelper
 
     // 1.6  RVA: 0x446C80 / 4484224
     /// @pattern 48 89 5C 24 10 57 48 83 EC 20 8B 02 49 8B D8 48 8D 54 24 30 89 44 24 30 48 8B F9 E8 70 00 00 00
-    ProxyHelper* __fastcall GetThingWithLock(ProxyID* proxyID, SharedMutex* a3);
+    ProxyHelper* __fastcall GetThingWithLock(ProxyID* proxyID, SharedSpinLock* a3);
 
     // 1.6  RVA: 0x44CA20 / 4508192
     /// @pattern 48 89 5C 24 08 48 89 74 24 18 F3 0F 11 4C 24 10 57 48 83 EC 50 8B 41 10 41 0F B6 F9 40 80 F7 01

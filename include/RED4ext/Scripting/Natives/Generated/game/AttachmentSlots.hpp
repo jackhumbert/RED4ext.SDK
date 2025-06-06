@@ -34,7 +34,7 @@ struct AttachmentSlots : ent::IComponent
     DynArray<void*> unkD0;
     DynArray<AnimParamSlotsOption> animParams;
     DynArray<void*> unkF0;
-    SharedMutex unk100;
+    SharedSpinLock unk100;
     uint8_t padding[7];
     uint64_t unk108[2];
 };

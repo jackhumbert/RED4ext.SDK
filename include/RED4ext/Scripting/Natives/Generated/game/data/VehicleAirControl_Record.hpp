@@ -24,6 +24,7 @@ struct VehicleAirControl_Record : game::data::TweakDBRecord
     uint8_t anglePID[3];
     uint8_t flippedOverRecoveryPID[3];
     uint8_t massReference[3];
+    uint8_t unk[3][64/3];
 };
 RED4EXT_ASSERT_SIZE(VehicleAirControl_Record, 0xA0);
 } // namespace game::data

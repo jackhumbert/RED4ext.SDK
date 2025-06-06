@@ -22,7 +22,7 @@ struct __declspec(align(0x10)) ArmedCarBaseObject : vehicle::CarBaseObject
     virtual uint8_t sub_338() override;                                     // 338 return 0u8
     virtual uint64_t sub_340(DynArray<void*> *) override;                   // 340 dynArray at A00
     virtual void sub_350() override;                                        // 350 update blackboard to 1
-    virtual void sub_358() override;                                        // 358 update blackboard to -1
+    virtual void sub_358(Handle<ISerializable>*) override;                  // 358 update blackboard to -1
     virtual void LoadWeapons(DynArray<void*>) override;                     // 388 
     virtual void sub_390(uint32_t weaponIndex) override;                    // 390
     virtual void sub_398() override;                                        // 398

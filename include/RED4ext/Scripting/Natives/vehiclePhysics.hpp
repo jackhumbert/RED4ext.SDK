@@ -500,6 +500,8 @@ struct WheeledPhysics : Physics
     float stuckTimeout;                             // D8C
     UnkD10* unkD10;                                 // D90
     uint64_t unkD18;                                // D98
+
+    uint8_t unk[64]; // place somewhere
 };
 #pragma pack(pop)
 RED4EXT_ASSERT_SIZE(WheeledPhysics, 0xDA0);

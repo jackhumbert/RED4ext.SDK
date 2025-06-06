@@ -2,25 +2,27 @@
 
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Scripting/Natives/Generated/ink/InputEvent.hpp>
+#include <RED4ext/Scripting/Natives/Generated/EInputAction.hpp>
+#include <RED4ext/Scripting/Natives/Generated/ink/CharacterEventType.hpp>
 
 namespace RED4ext
 {
-enum class EInputAction : uint32_t
-{
-    IACT_None,
-    IACT_Press,
-    IACT_Release,
-    IACT_Axis,
-};
+// enum class EInputAction : uint32_t
+// {
+//     IACT_None,
+//     IACT_Press,
+//     IACT_Release,
+//     IACT_Axis,
+// };
 
-enum class inkCharacterEventType : uint8_t
-{
-    CharInput,
-    MoveCaretForward,
-    MoveCaretBackward,
-    Delete,
-    Backspace,
-};
+// enum class inkCharacterEventType : uint8_t
+// {
+//     CharInput,
+//     MoveCaretForward,
+//     MoveCaretBackward,
+//     Delete,
+//     Backspace,
+// };
 
 namespace ink
 {

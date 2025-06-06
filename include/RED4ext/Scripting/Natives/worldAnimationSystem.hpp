@@ -7,6 +7,7 @@
 #include <RED4ext/Scripting/Natives/Generated/appearance/AppearanceResource.hpp>
 #include <RED4ext/Scripting/Natives/Generated/ent/RagdollComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/world/IRuntimeSystem.hpp>
+#include <RED4ext/Scripting/Natives/Generated/UpdateBucketEnum.hpp>
 #include <RED4ext/Scripting/Natives/animAnimatedObject.hpp>
 #include <RED4ext/Scripting/Natives/animMetaRig.hpp>
 #include <RED4ext/Scripting/Natives/animRig.hpp>

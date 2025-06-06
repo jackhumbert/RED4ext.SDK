@@ -11,6 +11,7 @@
 #include <RED4ext/Scripting/Natives/Generated/physics/SimulationType.hpp>
 #include <RED4ext/Scripting/Natives/physicsStateValue.hpp>
 // #include <RED4ext/Scripting/Natives/physicsProxyManager.hpp>
+#include <RED4ext/Scripting/Natives/Generated/physics/StateValue.hpp>
 
 namespace RED4ext {
 namespace physics {

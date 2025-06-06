@@ -21,6 +21,8 @@ struct VehicleFxWheelsDecals_Record : game::data::TweakDBRecord
     uint8_t wet_material_overrides[3];
     uint8_t rain_material_overrides[3];
     uint8_t smear_materials[3];
+
+    uint8_t unk[32];
 };
 RED4EXT_ASSERT_SIZE(VehicleFxWheelsDecals_Record, 0x78);
 } // namespace game::data

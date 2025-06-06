@@ -15,7 +15,7 @@ struct IScriptable : ISerializable
     /// @hash 1180173983:idata
     static constexpr const uintptr_t VFT = IScriptable_VFT_Addr;
 
-    // virtual CClass* GetNativeType() override;
+    virtual CClass* GetNativeType() override;
     IScriptable();
 
     ~IScriptable() override;

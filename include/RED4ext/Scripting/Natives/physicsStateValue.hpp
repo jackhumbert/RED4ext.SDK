@@ -46,73 +46,73 @@ namespace RED4ext::physics
 //     Radius = 0x1E,
 // };
 
-enum class StateValue : uint32_t {
-    // KinematicTarget
-    Position = 0x1,
-    // GlobalPose
-    Rotation = 0x2,
-    // GlobalPoseAndWake
-    Transform = 0x3,
-    LinearVelocity = 0x4,
-    AngularVelocity = 0x5,
-    LinearSpeed = 0x6,
-    LinearDamping = 0x7,
-    AngularDamping = 0x8,
-    Displacement = 0x9,
-    TouchesGround = 0xA,
-    TouchesWalls = 0xB,
-    // addForce
-    ImpulseAccumulator = 0xC,
-    IsSleeping = 0xD,
-    LinearAndAngularVelocity = 0xF,
-    // MassAndUpdateInertia
-    Mass = 0x10,
-    MassSpaceInertiaTensor = 0x11,
-    Volume = 0x12,
-    unk13 = 0x13,
-    IsSimulated = 0x14,
-    // eKINEMATIC
-    IsKinematic = 0x15,
-    // eDISABLE_GRAVITY
-    Gravity = 0x16,
-    // IsQueryOnly?
-    hasOneFlag = 0x17,
-    // used in PhysicalSystemKey->sub_50 to get unk35
-    unk18 = 0x18,
-    getNbShapes = 0x19,
-    unk1D = 0x1D,
-    unk1E = 0x1E,
-    // related to sleep?
-    unk1A = 0x1A,
-    TimeDeltaOverride = 0x1B,
-    Radius = 0x1E,
-    SimulationAndQueryData = 0x1F,
-    SimulationFilter = 0x20,
-    QueryFilter = 0x21,
-    shape_LocalPose = 0x22,
-    // also used for GetLocalCenterOfMass
-    Bounds = 0x23,
-    Dimensions = 0x24,
-    BoundsCenter = 0x25,
-    CMassLocalPose = 0x26,
-    // another bounding box?
-    unk27 = 0x27,
-    setSize = 0x28,
-    // IsQueryable
-    IsQueryable = 0x29,
-    // eSIMULATION_SHAPE
-    SimulationShape = 0x2A,
-    // cloth
-    unk2B = 0x2B,
-    // cloth
-    unk3B = 0x3B,
-    unk42 = 0x42,
-    unk46 = 0x46,
-    shape_NbMaterials = 0x47,
-    shape_Materials = 0x48,
-    // eENABLE_CCD & eENABLE_CCD_MAX_CONTACT_IMPULSE
-    RigidBodyFlag4and64 = 0x49,
-    unk4A = 0x4A
-};
+// enum class StateValue : uint32_t {
+//     // KinematicTarget
+//     Position = 0x1,
+//     // GlobalPose
+//     Rotation = 0x2,
+//     // GlobalPoseAndWake
+//     Transform = 0x3,
+//     LinearVelocity = 0x4,
+//     AngularVelocity = 0x5,
+//     LinearSpeed = 0x6,
+//     LinearDamping = 0x7,
+//     AngularDamping = 0x8,
+//     Displacement = 0x9,
+//     TouchesGround = 0xA,
+//     TouchesWalls = 0xB,
+//     // addForce
+//     ImpulseAccumulator = 0xC,
+//     IsSleeping = 0xD,
+//     LinearAndAngularVelocity = 0xF,
+//     // MassAndUpdateInertia
+//     Mass = 0x10,
+//     MassSpaceInertiaTensor = 0x11,
+//     Volume = 0x12,
+//     unk13 = 0x13,
+//     IsSimulated = 0x14,
+//     // eKINEMATIC
+//     IsKinematic = 0x15,
+//     // eDISABLE_GRAVITY
+//     Gravity = 0x16,
+//     // IsQueryOnly?
+//     hasOneFlag = 0x17,
+//     // used in PhysicalSystemKey->sub_50 to get unk35
+//     unk18 = 0x18,
+//     getNbShapes = 0x19,
+//     unk1D = 0x1D,
+//     unk1E = 0x1E,
+//     // related to sleep?
+//     unk1A = 0x1A,
+//     TimeDeltaOverride = 0x1B,
+//     Radius = 0x1E,
+//     SimulationAndQueryData = 0x1F,
+//     SimulationFilter = 0x20,
+//     QueryFilter = 0x21,
+//     shape_LocalPose = 0x22,
+//     // also used for GetLocalCenterOfMass
+//     Bounds = 0x23,
+//     Dimensions = 0x24,
+//     BoundsCenter = 0x25,
+//     CMassLocalPose = 0x26,
+//     // another bounding box?
+//     unk27 = 0x27,
+//     setSize = 0x28,
+//     // IsQueryable
+//     IsQueryable = 0x29,
+//     // eSIMULATION_SHAPE
+//     SimulationShape = 0x2A,
+//     // cloth
+//     unk2B = 0x2B,
+//     // cloth
+//     unk3B = 0x3B,
+//     unk42 = 0x42,
+//     unk46 = 0x46,
+//     shape_NbMaterials = 0x47,
+//     shape_Materials = 0x48,
+//     // eENABLE_CCD & eENABLE_CCD_MAX_CONTACT_IMPULSE
+//     RigidBodyFlag4and64 = 0x49,
+//     unk4A = 0x4A
+// };
 
 }

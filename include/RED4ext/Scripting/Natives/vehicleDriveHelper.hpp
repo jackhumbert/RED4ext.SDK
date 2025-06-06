@@ -7,10 +7,10 @@ namespace RED4ext {
 namespace vehicle {
 
 // E9 FB C3 65 FF CC CC CC
-constexpr uintptr_t DriveHelper_GetNativeType = 0x141D12EF0 - RED4ext::Addresses::ImageBase;
+// constexpr uintptr_t DriveHelper_GetNativeType = 0x141D12EF0 - RED4ext::Addresses::ImageBase;
 
 // 40 53 48 83 EC 20 48 8D  05 8B 28 70 01 48 8B D9
-constexpr uintptr_t DriveHelper_dtor = 0x141D30500 - RED4ext::Addresses::ImageBase;
+// constexpr uintptr_t DriveHelper_dtor = 0x141D30500 - RED4ext::Addresses::ImageBase;
 
 struct DriveHelper {
   virtual RED4ext::CClass *GetNativeType();
