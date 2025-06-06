@@ -20,17 +20,7 @@ struct BaseProxy {
     // 1.6  RVA: 0x313A550
     // 1.61hf1 RVA: 0x3142700
 
-    /// @pattern
-    ///     /vft
-    ///     /vft(physicsBaseProxy_Process)
-    ///     /vft
-    ///     /vft
-    ///     /vft(null)                         // sub_20
-    ///     /vft(null)                         // sub_28
-    ///     /vft(null)                         // sub_30
-    ///     /vft(null)                         // sub_38
-    ///     /vft(null)                         // sub_40
-    ///     /vft(pure)                         // sub_48
+    /// @hash 1619396603:idata
     static constexpr const uintptr_t VFT = physicsBaseProxy_VFT_Addr;
 
     virtual void sub_00();

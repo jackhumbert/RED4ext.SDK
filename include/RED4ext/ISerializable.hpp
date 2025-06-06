@@ -28,36 +28,24 @@ struct ISerializable
     //static constexpr const char* NAME = "ISerializable";
     //static constexpr const char* ALIAS = NAME;
 
-    /// @pattern
-    ///     /vft(ISerializable_GetNativeType)                                           // GetNativeType
-    ///     /vft(ISerializable_GetNativeType)                                           // GetType
-    ///     /vft                                                                        // GetAllocator
-    ///     /vft                                                                        // dstr
-    ///     /vft(null)                                                                  // sub_20
-    ///     /vft(null)                                                                  // sub_28
-    ///     /vft                                                                        // sub_30
-    ///     /vft(null)                                                                  // sub_38
-    ///     /vft(ISerializable_OnSerialize)                                             // sub_40
-    ///     /vft(ISerializable_OnSerializeToText)                                       // sub_48
-    ///     /vft(ISerializable_OnSerializeFromText)                                     // sub_50
-    /// @segment rdata
-    /// @nth 0/0
+    /// @hash 1447167853:idata
     static constexpr const uintptr_t VFT = ISerializable_VFT_Addr;
+
+
+    /// @hash 7934707:data
+    static constexpr const uintptr_t CLASS = ISerializable_CLASS_Addr;
 
     // static const CClass* CLASS = reinterpret_cast<CClass *>(reinterpret_cast<uintptr_t>(GetModuleHandle(nullptr)) + ISerializable_Class_Addr);
 
-    // 1.52 RVA: 0x1AB240 / 1749568
-    /// @pattern 40 53 48 83 EC 20 48 8D 05 7B DA EC 02 48 8B D9 48 89 01 33 C0 48 89 41 08 48 89 41 10 48 89 41
+    /// @hash 1841498206
     //ISerializable() = default;
 
     ISerializable();
 
-    // 1.6  RVA: 0x1AFD70 / 1768816
-    /// @pattern 40 53 48 83 EC 50 4C 8B C2 48 8B D9 48 85 D2 0F 84 C5 00 00 00 48 8B 42 10 0F 57 C0 66 0F 7F 44
+    /// @hash 453578078
     void __fastcall SetOwner(ISerializable *owner);
 
-    /// @pattern /mov(ISerializable_Class_p) /retn
-    /// @noimpl 1
+    /// @hash 1562711220
     virtual CClass* GetNativeType() = 0;                                                // 00 GetNativeClass
     virtual CClass* GetType();                                                          // 08 GetClass
     virtual Memory::IAllocator* GetAllocator();                                         // 10 GetInnerTypeMemoryPool

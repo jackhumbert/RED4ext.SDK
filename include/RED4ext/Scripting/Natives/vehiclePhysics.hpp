@@ -54,18 +54,11 @@ struct UnkC8 {
 RED4EXT_ASSERT_SIZE(UnkC8, 0x70);
 
 #pragma pack(push, 1)
+
+// vehicle::SuspensionBase
 struct Physics
 {
-    // after "VehicleTeleportationIfFallsUnderWorld" string
-    // 1.6  RVA: 0x3497B78
-    // 1.61 RVA: 0x349CDC8
-    // 1.61hf1 RVA: 0x349FF08
-    /// @pattern 56 65 68 69 63 6C 65 54 65 6C 65 70 6F 72 74 61 74 69 6F 6E 49 66 46 61 6C 6C 73 55 6E 64 65 72
-    /// @offset -40
-
-    // 2.1 RVA: 0x2AA4290
-    /// @pattern 40 53 48 83 EC 20 48 8B D9 48 8D 05 (fn:rel) 48 89 01 33 C9 B8 00 00 80 3F 88 4B 50 48 89 4B
-    /// @eval fn
+    /// @hash 3054439199:idata
     static constexpr const uintptr_t VFT = vehiclePhysics_VFT_Addr;
 
     virtual ~Physics();                                     // 00
@@ -224,11 +217,8 @@ RED4EXT_ASSERT_SIZE(Physics, 0xE0);
 
 struct UnkD10 {
 
-    // 1.6 RVA: 0x1D3E8E0 / 30664928
-    /// @pattern 85 D2 0F 84 C2 01 00 00 48 8B C4 48 89 70 18 57 48 83 EC 70 48 89 58 08 8B FA 48 89 68 10 48 8B
-
-    // post 2.0
-    /// @pattern 85 D2 0F 84 88 00 00 00 48 83 EC 38 0F 29 74 24 20 44 8B CA 0F 57 F6 4C 8B D1 45 33 DB 4D 8B C2
+    // constuctor for query result
+    /// @hash 859061493
     void __fastcall Reset(int numWheels);
 
     struct Wheel {
@@ -284,9 +274,7 @@ RED4EXT_ASSERT_SIZE(UnkD10, 0x3410);
 
 struct WheeledPhysics : Physics 
 {
-    // 2.0 RVA: 0x2AA40E0
-    /// @pattern 48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 20 8B FA 48 8B D9 E8 ? ? ? ? 33 F6 48 8D 05 (fn:rel)
-    /// @eval fn
+    /// @hash 4127657236:idata
     static constexpr const uintptr_t VFT = vehicleWheeledPhysics_VFT_Addr;
 
     // 1.52 RVA: 0x1D0DB70 / 30464880
@@ -521,18 +509,8 @@ RED4EXT_ASSERT_SIZE(WheeledPhysics, 0xDA0);
 
 struct CarPhysics : WheeledPhysics
 {
-    // pre 2.0
-    // a little after "VehiclePassenger" string
-    // 1.6  RVA: 0x34980C0
-    // 1.61 RVA: 0x349D310
-    // 1.61hf1 RVA: 0x34A0450
-    /// @pattern 56 65 68 69 63 6C 65 50 61 73 73 65 6E 67 65 72 00 00 00 00 3B DF 7F 3F 00 00 C8 C1 00 00 00 00
-    /// @offset -48
-
-    // post 2.0
-    /// @pattern 40 53 48 83 EC 20 BA 04 00 00 00 48 8B D9 E8 ? ? ? ? 33 D2 48 8D 05 (fn:rel) 48 89 03 48
-    /// @eval fn
-    // static constexpr const uintptr_t VFT = vehicleCarPhysics_VFT_Addr;
+    /// @hash 2824866490:idata
+    static constexpr const uintptr_t VFT = vehicleCarPhysics_VFT_Addr;
 
 // overrides
 
@@ -653,16 +631,7 @@ RED4EXT_ASSERT_SIZE(CarPhysics, 0xF10);
 
 struct BikePhysics : WheeledPhysics
 {
-    // a little after "BikeHackTiltCalcValue" string
-    // 1.6  RVA: 0x3431A30
-    // 1.61 RVA: 0x349D130
-    // 1.61hf1 RVA: 0x34A0270
-    /// @pattern 42 69 6B 65 48 61 63 6B 54 69 6C 74 43 61 6C 63 56 61 6C 75 65 00 00 00
-    /// @offset -30
-
-    // post 2.0
-    /// @pattern 40 53 48 83 EC 20 BA 02 00 00 00 48 8B D9 E8 ? ? ? ? 33 C9 C6 83 E0 0D 00 00 01 48 8D 05 (fn:rel)
-    /// @eval fn
+    /// @hash 3020491551:idata
     static constexpr const uintptr_t VFT = vehicleBikePhysics_VFT_Addr;
 
     virtual ~BikePhysics() override;
@@ -682,13 +651,7 @@ struct BikePhysics : WheeledPhysics
     /// @pattern 48 89 5C 24 08 57 48 83 EC 20 BA 02 00 00 00 48 8B D9 E8 49 99 00 00 33 FF 48 8D 05 00 D8 72 01
     // BikePhysics();
 
-    // 1.52 RVA: 0x1D06B00 / 30436096
-    // 1.61 RVA: 0x1D33630
-    // static constexpr const uintptr_t AnimationUpdateAddr = 0x1D33630;
-    /// @pattern 48 89 5C 24 10 57 48 83 EC 40 48 8B 81 20 0D 00 00 48 8B D9 F3 0F 10 81 E4 00 00 00 0F 57 05
-
-    // 2.0
-    /// @pattern 48 89 5C 24 10 57 48 83 EC 40 48 8B 81 A0 0D 00 00 48 8B D9 F3 0F 10 81 F4 00 00 00 0F 57 05 99
+    /// @hash 3191280029
     __int64 __fastcall AnimationUpdate();
 
     BikeBaseObject* bikeObject;
@@ -714,14 +677,7 @@ RED4EXT_ASSERT_SIZE(BikePhysics, 0xE40);
 
 struct TankPhysics : Physics
 {
-    // pre 2.0
-    // after VehicleSystem_NPCCollision
-    /// @pattern 56 65 68 69 63 6C 65 53 79 73 74 65 6D 5F 4E 50 43 43 6F 6C 6C 69 73 69 6F 6E 00 00 00 00 00 00
-    /// @offset -64
-
-    // post 2.0
-    /// @pattern 40 53 48 83 EC 20 48 8B D9 E8 ? ? ? ? 33 C9 48 8D 05 (fn:rel) 48 89 03 B8 CD CC 4C 3F 48
-    /// @eval fn
+    /// @hash 3053062962:idata
     static constexpr const uintptr_t VFT = vehicleTankPhysics_VFT_Addr;
     
     virtual ~TankPhysics() override;

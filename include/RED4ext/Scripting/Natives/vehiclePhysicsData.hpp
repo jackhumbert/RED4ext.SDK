@@ -15,7 +15,10 @@
 namespace RED4ext
 {
 namespace vehicle { 
+
 struct BaseObject;
+
+// vehicle::RigidBody
 struct PhysicsData
 {
     static constexpr const char* NAME = "vehiclePhysicsData";
@@ -46,20 +49,10 @@ struct PhysicsData
     // void __fastcall LoadPhysicsStructFromTweaks(Handle<game::data::VehicleDriveModelData_Record> *a2);
 
     // adds to force & computes torque
-    // 1.6  RVA: 0x1D0D2E0 / 30462688
-    // 1.61hf1 RVA: 0x1D0DDA0 / 30465440
-    /// @pattern 48 83 EC 28 F3 41 0F 10 00 F3 0F 58 01 F3 0F 10 0D ? ? ? 01 0F 29 74 24 10 C7 44 24 0C 00 00
-
-    // post 2.0
-    /// @pattern F3 41 0F 10 00 F3 0F 58 01 F3 0F 11 01 F3 41 0F 10 48 04 F3 0F 58 49 04 F3 0F 11 49 04 F3 41 0F
+    /// @hash 611586815
     void __fastcall ApplyForceAtPosition(RED4ext::Vector3 *position, RED4ext::Vector3 *force);
 
-    // 1.6  RVA: 0x1D0CCE0 / 30461152
-    // 1.61hf1 RVA: 0x1D0D7A0 / 30463904
-    /// @pattern 48 83 EC 28 F3 0F 10 42 08 F3 0F 5C 81 78 01 00 00 F3 0F 10 1A F3 0F 5C 99 70 01 00 00 F3 0F 10
-
-    // post 2.0
-    /// @pattern 48 83 EC 38 4D 8B C8 4C 8B C2 48 8D 54 24 20 E8 38 00 00 00 F3 0F 10 44 24 20 F3 0F 58 41 0C F3
+    /// @hash 3303544265
     void __fastcall ApplyTorqueAtPosition(RED4ext::Vector3 *position, RED4ext::Vector3 *torque);
 
 

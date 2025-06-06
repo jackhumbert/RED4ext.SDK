@@ -25,48 +25,7 @@ struct __declspec(align(0x10)) ICollider : ISerializable
     static constexpr const char* NAME = "physicsICollider";
     static constexpr const char* ALIAS = NAME;
 
-    /// @pattern
-    /// /vft(physicsICollider_GetNativeType)
-    /// /vft(physicsICollider_GetNativeType)
-    /// /vft
-    /// /vft
-    /// /vft(null)
-    /// /vft(null)
-    /// /vft
-    /// /vft(null)
-    /// /vft(ISerializable_OnSerialize)
-    /// /vft(ISerializable_OnSerializeToText)
-    /// /vft(ISerializable_OnSerializeFromText)
-    /// /vft(ret(0))
-    /// /vft
-    /// /vft(ret(0))
-    /// /vft
-    /// /vft
-    /// /vft(ret(0))
-    /// /vft(null)
-    /// /vft(ret(0))
-    /// /vft(ret(0))
-    /// /vft
-    /// /vft
-    /// /vft
-    /// /vft
-    /// /vft
-    /// /vft
-    /// /vft
-    /// /vft(pure)
-    /// /vft(pure)
-    /// /vft(pure)
-    /// /vft(pure)
-    /// /vft(pure)
-    /// /vft(pure)
-    /// /vft(physicsICollider_sub_108)
-    /// /vft
-    /// /vft
-    /// /vft(ret(0))
-    /// /vft(null)
-    /// /vft(pure)
-    /// /vft(null)
-    /// /vft(pure)
+    /// @hash 2046757127:idata
     static constexpr const uintptr_t VFT = physicsICollider_VFT_Addr;
 
     // 2.1  RVA: 0x1B7958

@@ -12,6 +12,8 @@
 namespace RED4ext
 {
 namespace physics { 
+
+// vehicle::Wheel
 struct VehiclePhysicsInsert1
 {
     static constexpr const char* NAME = "physicsVehiclePhysicsInsert1";
