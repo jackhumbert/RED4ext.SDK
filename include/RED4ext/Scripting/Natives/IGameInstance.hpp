@@ -23,7 +23,7 @@ struct IGameInstance // : IDynamicStorage
     virtual world::RuntimeInfo* GetRuntimeInfo();                   // 10
     virtual Memory::IAllocator* GetAllocator();                     // 18
     // sub_20: break
-    virtual void sub_20(uint8_t*, uint64_t, uint32_t*);
+    virtual void CreateSystems(uint8_t*, uint64_t, uint32_t*);
     // sub_28: Calls game::IGameSystem::RegisterUpdates() for each system
     virtual bool RegisterUpdates(world::RuntimeInfo **runtimeInfo);
     // sub_30: break

@@ -7646,9 +7646,7 @@
 #define GetCurrentPatrolSpotActionPath_VFT_Addr 0x2B10C10
 #define GetFollowTarget_Class_VFT_Addr 0x2F89B70
 #define GetFollowTarget_VFT_Addr 0x2B10C10
-#define GetGameSystemsData_Addr                                                                                        \
-    0 _Pragma("message(__FILE__ \"(\" __LINE_STR__ \") : Warning: GetGameSystemsData_Addr"                             \
-              "is 0 - Zoltan found no matches for RED4ext::GetGameSystemsData\")")
+#define GetGameSystemsData_Addr 0xDD719C
 #define GetOffAVDelayedEvent_Class_VFT_Addr 0x2F89B70
 #define GetOffAVDelayedEvent_VFT_Addr 0x2A4FE20
 #define GetOffThePsychoSquadAV_Class_VFT_Addr 0x2F89B70
@@ -38858,6 +38856,9 @@
 #define physicsFilterData_Class_Addr 0x3F8D228
 #define physicsFilterData_Class_VFT_Addr 0x2F9D608
 #define physicsFilterData_Class_p_Addr 0x339D2F8
+#define physicsFilterData_LoadPreset_Addr                                                                              \
+    0 _Pragma("message(__FILE__ \"(\" __LINE_STR__ \") : Warning: physicsFilterData_LoadPreset_Addr"                   \
+              "is 0 - Zoltan found no matches for RED4ext::physics::FilterData::LoadPreset\")")
 #define physicsFilterData_VFT_Addr 0x2A5F748
 #define physicsFractureFieldParams_Class_Addr 0x3F8C990
 #define physicsFractureFieldParams_Class_VFT_Addr 0x2AF4FA8

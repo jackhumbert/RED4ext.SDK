@@ -41,15 +41,8 @@ struct GameSystemData
   bool onServer;
 };
 
-// look for base\\systems\\game_systems_startup.csv
-// 1.52 RVA: 0x2D028A0 / 47196320
-// 1.6 RVA: 0x2D5BCD0 / 47561936
-// inits array, calls LoadGameSystemsData
-/// @pattern 40 53 48 83 EC 20 48 8B D9 48 8D 4C 24 30 E8 ?  ?  ?  FD 48 8B D0 48 8B CB E8 ?  ?  ?  FD 48 8D
-/// @nth 6/7
-
-// post 2.0
-/// @pattern 48 89 5C 24 08 48 89 7C 24 18 55 48 8D 6C 24 A9 48 81 EC F0 00 00 00 48 8B 05 56 F3 63 02 48 8B
+// void game::GameSystemsSetup::LoadConfigFile(void)
+/// @hash 2463305925
 DynArray<GameSystemData> *__fastcall GetGameSystemsData(DynArray<GameSystemData> *gameSystemsData);
 
 // 1.52 RVA: 0x2D028E0 / 47196384
@@ -64,7 +57,8 @@ struct GameInstance : IGameInstance
     virtual ~GameInstance() override;                                      // 00
     // creates some systems, calls systems' sub_190, sub198
     // calls GetGameSystemsData
-    virtual void sub_20(uint8_t*, uint64_t, uint32_t*) override;           // 20
+    // job::Counter CreateSystems(game::InstanceInitInfo const &)
+    virtual void CreateSystems(uint8_t*, uint64_t, uint32_t*) override;           // 20
     // calls parent func, then sets unk130 & unk138 from the struct the runtimeInfo is in
     virtual bool RegisterUpdates(world::RuntimeInfo **runtimeInfo) override;                // 28
     virtual void* GetUnk130() override;                               // 30

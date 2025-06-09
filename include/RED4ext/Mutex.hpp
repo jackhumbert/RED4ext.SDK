@@ -24,7 +24,16 @@ struct Mutex
     void unlock();
 
 private:
-    CRITICAL_SECTION m_cs;
+    // this causes zoltan to stack overflow, so a manually-defined struct is a work-around
+    // CRITICAL_SECTION m_cs;
+    struct {
+        void * debug;
+        LONG LockCount;
+        LONG RecursionCount;
+        HANDLE OwningThread;        // from the thread's ClientId->UniqueThread
+        HANDLE LockSemaphore;
+        ULONG_PTR SpinCount;        // force size on 64-bit systems when packed
+    } m_cs;
 };
 RED4EXT_ASSERT_SIZE(Mutex, 40);
 } // namespace RED4ext

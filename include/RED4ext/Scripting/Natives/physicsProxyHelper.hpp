@@ -96,11 +96,13 @@ struct ProxyHelper
     // 1.6  RVA: 0x446D90 / 4484496
     // 2.1 switches the order of some instructions in the ?
     /// @pattern 48 8B 51 18 ? ? ? ? ? ? ? 86 02 C3
-    inline void Unlock() {
-        if (mutex) {
-            mutex->state = 0;
-        }
-    }
+    void Unlock();
+
+    // inline void Unlock() {
+    //     if (mutex) {
+    //         mutex->state = 0;
+    //     }
+    // }
 
     ProxyCache * proxyCache;
     ProxyCacheEntry * proxyCacheEntry;
