@@ -141016,10 +141016,10 @@ RED4EXT_INLINE RED4ext::ent::Entity* RED4ext::physics::ProxyID::GetEntity() {
     return call(this);
 }
 
-RED4EXT_INLINE RED4ext::physics::BaseProxy* RED4ext::physics::ProxyID::GetProxy() {
-    using physicsProxyID_GetProxy_t = RED4ext::physics::BaseProxy* (*)(RED4ext::physics::ProxyID*);
+RED4EXT_INLINE RED4ext::physics::BaseProxy* RED4ext::physics::ProxyID::GetProxy(RED4ext::physics::ProxyID a1) {
+    using physicsProxyID_GetProxy_t = RED4ext::physics::BaseProxy* (*)(RED4ext::physics::ProxyID);
     RED4ext::RelocFunc<physicsProxyID_GetProxy_t> call(physicsProxyID_GetProxy_Addr);
-    return call(this);
+    return call(a1);
 }
 
 RED4EXT_INLINE float RED4ext::physics::VehiclePhysicsInsert1::SinMath(float a1) {

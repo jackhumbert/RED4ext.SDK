@@ -215,6 +215,7 @@ RED4EXT_ASSERT_SIZE(Physics, 0xE0);
 //char (*__kaboom)[sizeof(Physics)] = 1;
 //char (*__kaboom2)[offsetof(Physics, unk08)] = 1;
 
+// vehicle::WheelSuspensionBase::WheelQueryResult
 struct UnkD10 {
 
     // constuctor for query result
@@ -445,7 +446,8 @@ struct WheeledPhysics : Physics
     physics::VehiclePhysicsInsert1 insert1[4];
     uint32_t insert1Count;
     uint32_t unk5C4[3];
-    physics::VehiclePhysicsInsert2 insert2[4];
+    // WheelRuntimeData
+    physics::VehiclePhysicsInsert2 insert2[4];          // 5E0
     uint8_t insert2Count;
     uint8_t unkB91;
     uint8_t unkB92;
@@ -495,18 +497,19 @@ struct WheeledPhysics : Physics
     float slopeTractionReductionMax;                // C8C
     float slopeTractionReductionFactor;             // C90
     uint8_t unkC94[212];                            // C94
-    DynArray<uintptr_t> driveHelpers;               // D68
+    uint8_t unk2_21_new[32];                        
+    DynArray<uintptr_t> driveHelpers;               // D68 DA8
     uint8_t unkD78[20];                             // D78
     float stuckTimeout;                             // D8C
-    UnkD10* unkD10;                                 // D90
+    UnkD10* unkD10;                                 // D90 DD0
     uint64_t unkD18;                                // D98
 
-    uint8_t unk[64]; // place somewhere
+    // uint8_t unk[64]; // place somewhere
 };
 #pragma pack(pop)
-RED4EXT_ASSERT_SIZE(WheeledPhysics, 0xDA0);
+RED4EXT_ASSERT_SIZE(WheeledPhysics, 0xDE0);
 // RED4EXT_ASSERT_SIZE(WheeledPhysics, 0xD20);
-// RED4EXT_ASSERT_OFFSET(WheeledPhysics, driveHelpers, 0xCE8);
+RED4EXT_ASSERT_OFFSET(WheeledPhysics, insert2[0], 0x5E0);
 //char (*__kaboom)[offsetof(WheeledPhysics, unkC40)] = 1;
 
 struct CarPhysics : WheeledPhysics
@@ -632,7 +635,7 @@ struct CarPhysics : WheeledPhysics
     uint64_t unkF08;
 };
 // RED4EXT_ASSERT_OFFSET(CarPhysics, unkE78, 0xE78);
-RED4EXT_ASSERT_SIZE(CarPhysics, 0xF10);
+RED4EXT_ASSERT_SIZE(CarPhysics, 0xF50);
 
 struct BikePhysics : WheeledPhysics
 {
@@ -679,7 +682,7 @@ struct BikePhysics : WheeledPhysics
     uint64_t unkE00[8];
 };
 // RED4EXT_ASSERT_OFFSET(BikePhysics, callbackRelated, 0xD28);
-RED4EXT_ASSERT_SIZE(BikePhysics, 0xE40);
+RED4EXT_ASSERT_SIZE(BikePhysics, 0xE80);
 
 struct TankPhysics : Physics
 {

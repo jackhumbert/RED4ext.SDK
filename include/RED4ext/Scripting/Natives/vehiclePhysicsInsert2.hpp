@@ -12,6 +12,8 @@
 namespace RED4ext
 {
 namespace physics { 
+
+// vehicle::WheelRuntimeData
 struct VehiclePhysicsInsert2
 {
     static constexpr const char* NAME = "physicsVehiclePhysicsInsert2";
@@ -24,6 +26,8 @@ struct VehiclePhysicsInsert2
     // 1.6 RVA: 0x1D50CA0 / 30739616
     /// @pattern F3 0F 11 89 60 01 00 00 F3 0F 11 89 5C 01 00 00 C7 81 68 01 00 00 00 00 00 00 C3
     // void __fastcall SetsUnk160Unk15C(float a2);
+
+    // vehicle::WheelContact, size 0xA0
 
     RED4ext::Vector3 worldPosition;
     RED4ext::Vector3 unk0C;
@@ -41,6 +45,8 @@ struct VehiclePhysicsInsert2
     RED4ext::Vector4 unk74;
     RED4ext::Vector3 unk84;
     RED4ext::Vector4 unk90;
+
+    // WheelRuntimeData start
     RED4ext::CName physMaterial;
     int32_t unkA8[3];
     float relatedToInAir;
@@ -76,7 +82,15 @@ struct VehiclePhysicsInsert2
     float unk164;
     float unk168;
     float unk16C;
+
+    float unk170;
+    float unk174;
+
+    float unk178;
+    float unk17C;
+    float unk180;
+    float unk184;
 };
-// RED4EXT_ASSERT_SIZE(VehiclePhysicsInsert2, 0x170);
+RED4EXT_ASSERT_SIZE(VehiclePhysicsInsert2, 0x188);
 } // namespace physics
 } // namespace RED4ext

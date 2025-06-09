@@ -52,6 +52,7 @@ struct PhysicsData
     /// @hash 611586815
     void __fastcall ApplyForceAtPosition(RED4ext::Vector3 *position, RED4ext::Vector3 *force);
 
+    // void vehicle::RigidBody::ApplyAngularImpulse(Vector3 const &, Vector3 const &)
     /// @hash 3303544265
     void __fastcall ApplyTorqueAtPosition(RED4ext::Vector3 *position, RED4ext::Vector3 *torque);
 

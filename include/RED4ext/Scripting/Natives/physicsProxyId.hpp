@@ -51,7 +51,7 @@ struct ProxyID
 
     // physics::IProxy * physics::proxy_internal::ResolveProxy(physics::ProxyID)
     /// @hash 1570510966
-    BaseProxy * __fastcall GetProxy();
+    static BaseProxy * __fastcall GetProxy(physics::ProxyID);
 
     // 2.0  RVA: 0x93CBF4
     /// @pattern 40 53 48 83 EC 30 44 8B C1 48 8D 54 24 20 48 8B 0D ? ? ? ? E8 ? ? ? ? 48 8B 5C 24 20 48 85 DB 74 04 48 83 C3 08
