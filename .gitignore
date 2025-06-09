@@ -368,3 +368,4 @@ premake/premake5.exe
 
 # Some generated types are excluded by Git because of their names, it should not happen.
 !include/RED4ext/Scripting/Natives/Generated/**
+include/Guesser.exe.i64
