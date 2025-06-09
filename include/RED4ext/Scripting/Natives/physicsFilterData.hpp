@@ -22,8 +22,7 @@ struct FilterData : ISerializable
 
     RED4EXT_IMPL_NATIVE_TYPE();
 
-    // 2.0
-    /// @pattern 48 83 EC 28 4C 8B D1 48 89 54 24 30 48 8B 0D ? ? ? ? 4C 8D 44 24 30 48 8B 49 50 E8 43 93 07
+    /// @hash 3094614336
     void __fastcall LoadPreset(CName name);
 
     QueryFilter queryFilter;                   // 30

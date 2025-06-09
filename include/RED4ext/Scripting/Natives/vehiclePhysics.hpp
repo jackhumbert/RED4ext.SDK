@@ -588,6 +588,9 @@ struct CarPhysics : WheeledPhysics
 
     // post 2.0
     /// @pattern 48 8B C4 48 89 58 10 57 48 81 EC B0 00 00 00 0F 29 70 E8 48 8B F9 48 8B 89 A0 0D 00 00 0F 29 78
+
+    // void vehicle::CarSuspension::UpdateAnimVars(float)
+    /// @hash 2879787320
     int64_t __fastcall AnimationUpdate(float);
 
     CarBaseObject* carObject; // DA0

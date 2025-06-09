@@ -24675,6 +24675,9 @@
 #ifndef IScriptable_Class_p_Addr
 #define IScriptable_Class_p_Addr 0x331C188
 #endif
+#ifndef IScriptable_GetNativeType_Addr
+#define IScriptable_GetNativeType_Addr 0x18E3580
+#endif
 #ifndef IScriptable_VFT_Addr
 #define IScriptable_VFT_Addr 0x2A47200
 #endif
@@ -115848,6 +115851,7 @@
 #define physicsFilterData_Class_p_Addr 0x339D2F8
 #endif
 #ifndef physicsFilterData_LoadPreset_Addr
+#define physicsFilterData_LoadPreset_Addr 0x4ACF90
 #endif
 #ifndef physicsFilterData_VFT_Addr
 #define physicsFilterData_VFT_Addr 0x2A5F748
@@ -116126,6 +116130,7 @@
 #ifndef physicsProxyID_GetNbShapes_Addr
 #endif
 #ifndef physicsProxyID_GetProxy_Addr
+#define physicsProxyID_GetProxy_Addr 0x308DB4
 #endif
 #ifndef physicsProxyID_ProcessProxyDesc_Addr
 #endif
@@ -132030,6 +132035,7 @@
 #define vehicleCarBaseObject_VFT_Addr 0x2AEB300
 #endif
 #ifndef vehicleCarPhysics_AnimationUpdate_Addr
+#define vehicleCarPhysics_AnimationUpdate_Addr 0x1F6EB8
 #endif
 #ifndef vehicleCarPhysics_VFT_Addr
 #define vehicleCarPhysics_VFT_Addr 0x3061F60
@@ -140854,6 +140860,7 @@
 #include <RED4ext/Relocation.hpp>
 #include <RED4ext/RTTITypes.hpp>
 #include <RED4ext/Scripting/Natives/GameInstance.hpp>
+#include <RED4ext/Scripting/IScriptable.hpp>
 #include <RED4ext/ISerializable.hpp>
 #include <RED4ext/CommonFunctions.hpp>
 #include <RED4ext/Scripting/Natives/UpdateManager.hpp>
@@ -140868,6 +140875,7 @@
 #include <RED4ext/Scripting/Natives/gameIGameSystem.hpp>
 #include <RED4ext/Scripting/Natives/physicsBaseProxy.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/ColliderSphere.hpp>
+#include <RED4ext/Scripting/Natives/physicsFilterData.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/ICollider.hpp>
 #include <RED4ext/Scripting/Natives/physicsProxyCache.hpp>
 #include <RED4ext/Scripting/Natives/physicsProxyHelper.hpp>
@@ -140954,6 +140962,12 @@ RED4EXT_INLINE RED4ext::Handle<RED4ext::physics::ColliderSphere>* RED4ext::physi
     return call(a1, a2);
 }
 
+RED4EXT_INLINE void RED4ext::physics::FilterData::LoadPreset(RED4ext::CName a1) {
+    using physicsFilterData_LoadPreset_t = void (*)(RED4ext::physics::FilterData*, RED4ext::CName);
+    RED4ext::RelocFunc<physicsFilterData_LoadPreset_t> call(physicsFilterData_LoadPreset_Addr);
+    return call(this, a1);
+}
+
 RED4EXT_INLINE void* RED4ext::physics::ProxyCache::GetDataFromCache(uint32_t a1) {
     using physicsProxyCache_GetDataFromCache_t = void* (*)(RED4ext::physics::ProxyCache*, uint32_t);
     RED4ext::RelocFunc<physicsProxyCache_GetDataFromCache_t> call(physicsProxyCache_GetDataFromCache_Addr);
@@ -141002,6 +141016,12 @@ RED4EXT_INLINE RED4ext::ent::Entity* RED4ext::physics::ProxyID::GetEntity() {
     return call(this);
 }
 
+RED4EXT_INLINE RED4ext::physics::BaseProxy* RED4ext::physics::ProxyID::GetProxy() {
+    using physicsProxyID_GetProxy_t = RED4ext::physics::BaseProxy* (*)(RED4ext::physics::ProxyID*);
+    RED4ext::RelocFunc<physicsProxyID_GetProxy_t> call(physicsProxyID_GetProxy_Addr);
+    return call(this);
+}
+
 RED4EXT_INLINE float RED4ext::physics::VehiclePhysicsInsert1::SinMath(float a1) {
     using physicsVehiclePhysicsInsert1_SinMath_t = float (*)(RED4ext::physics::VehiclePhysicsInsert1*, float);
     RED4ext::RelocFunc<physicsVehiclePhysicsInsert1_SinMath_t> call(physicsVehiclePhysicsInsert1_SinMath_Addr);
@@ -141018,6 +141038,12 @@ RED4EXT_INLINE int64_t RED4ext::vehicle::BikePhysics::AnimationUpdate() {
     using vehicleBikePhysics_AnimationUpdate_t = int64_t (*)(RED4ext::vehicle::BikePhysics*);
     RED4ext::RelocFunc<vehicleBikePhysics_AnimationUpdate_t> call(vehicleBikePhysics_AnimationUpdate_Addr);
     return call(this);
+}
+
+RED4EXT_INLINE int64_t RED4ext::vehicle::CarPhysics::AnimationUpdate(float a1) {
+    using vehicleCarPhysics_AnimationUpdate_t = int64_t (*)(RED4ext::vehicle::CarPhysics*, float);
+    RED4ext::RelocFunc<vehicleCarPhysics_AnimationUpdate_t> call(vehicleCarPhysics_AnimationUpdate_Addr);
+    return call(this, a1);
 }
 
 RED4EXT_INLINE RED4ext::vehicle::Effects::SmearFxLookup* RED4ext::vehicle::Effects::GetSmearFxForMaterial(RED4ext::CName a1, bool a2) {

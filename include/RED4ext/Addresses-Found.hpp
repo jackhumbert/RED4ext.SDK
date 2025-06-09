@@ -8281,6 +8281,7 @@
 #define IScriptable_Class_Addr 0x34A4518
 #define IScriptable_Class_VFT_Addr 0x2AAC5C8
 #define IScriptable_Class_p_Addr 0x331C188
+#define IScriptable_GetNativeType_Addr 0x18E3580
 #define IScriptable_VFT_Addr 0x2A47200
 #define ISerializable_CLASS_Addr 0x331BF98
 #define ISerializable_Class_Addr 0x349FCF0
@@ -38856,9 +38857,7 @@
 #define physicsFilterData_Class_Addr 0x3F8D228
 #define physicsFilterData_Class_VFT_Addr 0x2F9D608
 #define physicsFilterData_Class_p_Addr 0x339D2F8
-#define physicsFilterData_LoadPreset_Addr                                                                              \
-    0 _Pragma("message(__FILE__ \"(\" __LINE_STR__ \") : Warning: physicsFilterData_LoadPreset_Addr"                   \
-              "is 0 - Zoltan found no matches for RED4ext::physics::FilterData::LoadPreset\")")
+#define physicsFilterData_LoadPreset_Addr 0x4ACF90
 #define physicsFilterData_VFT_Addr 0x2A5F748
 #define physicsFractureFieldParams_Class_Addr 0x3F8C990
 #define physicsFractureFieldParams_Class_VFT_Addr 0x2AF4FA8
@@ -39021,9 +39020,7 @@
 #define physicsProxyID_GetNbShapes_Addr                                                                                \
     0 _Pragma("message(__FILE__ \"(\" __LINE_STR__ \") : Warning: physicsProxyID_GetNbShapes_Addr"                     \
               "is 0 - Zoltan found no matches for RED4ext::physics::ProxyID::GetNbShapes\")")
-#define physicsProxyID_GetProxy_Addr                                                                                   \
-    0 _Pragma("message(__FILE__ \"(\" __LINE_STR__ \") : Warning: physicsProxyID_GetProxy_Addr"                        \
-              "is 0 - Zoltan found no matches for RED4ext::physics::ProxyID::GetProxy\")")
+#define physicsProxyID_GetProxy_Addr 0x308DB4
 #define physicsProxyID_ProcessProxyDesc_Addr                                                                           \
     0 _Pragma("message(__FILE__ \"(\" __LINE_STR__ \") : Warning: physicsProxyID_ProcessProxyDesc_Addr"                \
               "is 0 - Zoltan found no matches for RED4ext::physics::ProxyID::ProcessProxyDesc\")")
@@ -44460,9 +44457,7 @@
 #define vehicleCarBaseObject_Class_VFT_Addr 0x2D0AD88
 #define vehicleCarBaseObject_Class_p_Addr 0x33A87E8
 #define vehicleCarBaseObject_VFT_Addr 0x2AEB300
-#define vehicleCarPhysics_AnimationUpdate_Addr                                                                         \
-    0 _Pragma("message(__FILE__ \"(\" __LINE_STR__ \") : Warning: vehicleCarPhysics_AnimationUpdate_Addr"              \
-              "is 0 - Zoltan found no matches for RED4ext::vehicle::CarPhysics::AnimationUpdate\")")
+#define vehicleCarPhysics_AnimationUpdate_Addr 0x1F6EB8
 #define vehicleCarPhysics_VFT_Addr 0x3061F60
 #define vehicleChangeAlarmEvent_Class_Addr 0x45E1F08
 #define vehicleChangeAlarmEvent_Class_VFT_Addr 0x2D0D600

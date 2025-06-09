@@ -8,11 +8,11 @@
 #include <RED4ext/RTTITypes.hpp>
 #include <RED4ext/Relocation.hpp>
 
-// RED4EXT_INLINE RED4ext::CClass* RED4ext::IScriptable::GetNativeType()
-// {
-//     RelocFunc<decltype(&RED4ext::IScriptable::GetNativeType)> call(VFT, 0x00);
-//     return call(this);
-// }
+RED4EXT_INLINE RED4ext::CClass* RED4ext::IScriptable::GetNativeType()
+{
+    RelocFunc<decltype(&RED4ext::IScriptable::GetNativeType)> call(VFT, 0x00);
+    return call(this);
+}
 
 RED4EXT_INLINE RED4ext::IScriptable::IScriptable()
     : valueHolder(nullptr)

@@ -21,6 +21,7 @@ struct ImageWidget;
 struct IWidgetController;
 struct Widget;
 struct WidgetLibraryResource;
+struct VirtualWindow;
 
 struct HudWidgetSpawnEntry
 {

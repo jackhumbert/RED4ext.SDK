@@ -42,6 +42,14 @@ struct Vector3
         return {X + aOther.X, Y + aOther.Y, Z + aOther.Z};
     }
 
+    Vector3& operator+=(const Vector3& aOther)
+    {
+        this->X += aOther.X;
+        this->Y += aOther.Y;
+        this->Z += aOther.Z;
+        return *this;
+    }
+
     inline Vector3 operator-() const
     {
         return {-X, -Y, -Z};
