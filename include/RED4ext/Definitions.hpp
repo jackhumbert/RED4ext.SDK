@@ -141034,10 +141034,10 @@ RED4EXT_INLINE void RED4ext::vehicle::BaseObject::UnsetPhysicsStates() {
     return call(this);
 }
 
-RED4EXT_INLINE int64_t RED4ext::vehicle::BikePhysics::AnimationUpdate() {
-    using vehicleBikePhysics_AnimationUpdate_t = int64_t (*)(RED4ext::vehicle::BikePhysics*);
+RED4EXT_INLINE int64_t RED4ext::vehicle::BikePhysics::AnimationUpdate(float a1) {
+    using vehicleBikePhysics_AnimationUpdate_t = int64_t (*)(RED4ext::vehicle::BikePhysics*, float);
     RED4ext::RelocFunc<vehicleBikePhysics_AnimationUpdate_t> call(vehicleBikePhysics_AnimationUpdate_Addr);
-    return call(this);
+    return call(this, a1);
 }
 
 RED4EXT_INLINE int64_t RED4ext::vehicle::CarPhysics::AnimationUpdate(float a1) {

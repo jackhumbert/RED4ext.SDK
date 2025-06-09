@@ -656,8 +656,9 @@ struct BikePhysics : WheeledPhysics
     /// @pattern 48 89 5C 24 08 57 48 83 EC 20 BA 02 00 00 00 48 8B D9 E8 49 99 00 00 33 FF 48 8D 05 00 D8 72 01
     // BikePhysics();
 
+    // void vehicle::BikeSuspension::UpdateAnimVars(float)
     /// @hash 3191280029
-    __int64 __fastcall AnimationUpdate();
+    __int64 __fastcall AnimationUpdate(float);
 
     BikeBaseObject* bikeObject;
     Handle<void> callbackRelated;
