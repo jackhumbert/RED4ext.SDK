@@ -56,7 +56,7 @@ struct CameraManager : IScriptable
     uint32_t activeCameraType; 
     float SensitivityConfig_Base_pad; 
     float SensitivityConfig_Base_mouse; 
-    vehicle::TPPCameraData data;
+    vehicle::TPPCameraComponent::CameraPreset data;
     void * photoModeCamera; // 120,  0x35500400, 0XFFFFFFFFFFFFFFFF, 8,  0XFFFFFFFFFFFFFFFF, 0,  0x000009);
     void * unk128; // 128,  0x30000400, -1, 8);
     float unk130; // 130,  0x80000400, -1, 4);

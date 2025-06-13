@@ -145,7 +145,7 @@ enum class EInputKey : int32_t
     IK_F22 = 133,
     IK_F23 = 134,
     IK_F24 = 135,
-    IK_Pad_First = 136,
+    IK_Pad_First = 136, // [ IsPadKey
     IK_Pad_A_CROSS = 136,
     IK_Pad_B_CIRCLE = 137,
     IK_Pad_X_SQUARE = 138,
@@ -160,13 +160,13 @@ enum class EInputKey : int32_t
     IK_Pad_RightThumb = 147,
     IK_Pad_LeftShoulder = 148,
     IK_Pad_RightShoulder = 149,
-    IK_Pad_LeftTrigger = 150,
+    IK_Pad_LeftTrigger = 150, // [ IsKey exclusion
     IK_Pad_RightTrigger = 151,
     IK_Pad_LeftAxisX = 152,
     IK_Pad_LeftAxisY = 153,
     IK_Pad_RightAxisX = 154,
-    IK_Pad_RightAxisY = 155,
-    IK_Pad_Last = 155,
+    IK_Pad_RightAxisY = 155, // IsKey exclusion ]
+    IK_Pad_Last = 155, // IsPadKey ]
     IK_NumLock = 156,
     IK_ScrollLock = 157,
     IK_Unknown9E = 158,
@@ -239,10 +239,10 @@ enum class EInputKey : int32_t
     IK_UnknownE1 = 225,
     IK_IntlBackslash = 226,
     IK_MouseHover = 227,
-    IK_MouseX = 228,
+    IK_MouseX = 228, // [ IsRelative, then 0x33E0000007 mask
     IK_MouseY = 229,
     IK_MouseZ = 230,
-    IK_MouseW = 231,
+    IK_MouseW = 231, // [ IsRelative mask exclusion
     IK_JoyU = 232,
     IK_JoyV = 233,
     IK_JoySlider1 = 234,
@@ -266,19 +266,26 @@ enum class EInputKey : int32_t
     IK_NoName = 252,
     IK_UnknownFD = 253,
     IK_UnknownFE = 254,
-    IK_PS4_OPTIONS = 255,
-    IK_PS4_TOUCH_PRESS = 256,
-    IK_Pad_Fake_LeftAxis = 262,
+    IK_PS4_OPTIONS = 255, // [ IsPadKey
+    IK_PS4_TOUCH_PRESS = 256, // IsRelative mask exclusion ]
+    // 257, 
+    // 258,
+    // 259,
+    // 260,
+    // 261, IsPadKey ] 
+    IK_Pad_Fake_LeftAxis = 262, // [ IsPadKey
     IK_Pad_Fake_RightAxis = 263,
     IK_Pad_Fake_RelativeLeftAxis = 264,
-    IK_Pad_Fake_RelativeRightAxis = 265,
+    IK_Pad_Fake_RelativeRightAxis = 265, // IsRelative ]
     IK_Pad_Fake_DigitLeftRight = 266,
-    IK_Pad_Fake_DigitUpDown = 267,
+    IK_Pad_Fake_DigitUpDown = 267, // IsPadKey ] 
     IK_STADIA_CAPTURE = 268,
     IK_SWITCH_CAPTURE = 269,
     IK_CAPTURE = 270,
     IK_Last = 271,
     IK_Count = 272,
+
+    // ButtonGroups are >= 300
 };
 } // namespace RED4ext
 

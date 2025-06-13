@@ -58,31 +58,6 @@ struct TPPCameraSmoothQuaternion
   Quaternion deltaValue;
 };
 
-
-struct TPPCameraData
-{
-    RED4ext::Vector4 linearVelocity;
-    RED4ext::Quaternion orientation;
-    float yawDelta;
-    float pitchDelta;
-    uint8_t isUsingMouse;
-    uint8_t unk29;
-    uint8_t unk2A;
-    uint8_t unk2B;
-    float unk2C;
-    uint8_t isInAir;
-    uint8_t unk31[7];
-    float unk38;
-    float unk3C;
-    RED4ext::Vector4 angularVelocity;
-    float affectsPitch;
-    uint8_t unk54;
-    uint8_t unk55;
-    uint8_t unk56;
-    uint8_t unk57;
-    void *cameraSystem;
-};
-
 struct TPPCameraUpdate
 {
   TPPCameraPreset *preset;
@@ -93,12 +68,35 @@ struct TPPCameraUpdate
   Vector4 locationFromOffset;
 };
 
-
 struct __declspec(align(0x10)) TPPCameraComponent : public game::CameraComponent
 {
     static constexpr const char* NAME = "vehicleTPPCameraComponent";
     static constexpr const char* ALIAS = NAME;
     static constexpr const uintptr_t VFT = vehicleTPPCameraComponent_VFT_Addr;
+
+    struct CameraPreset
+    {
+        RED4ext::Vector4 linearVelocity;
+        RED4ext::Quaternion orientation;
+        float yawDelta;
+        float pitchDelta;
+        uint8_t isUsingMouse;
+        uint8_t unk29;
+        uint8_t unk2A;
+        uint8_t unk2B;
+        float unk2C;
+        uint8_t isInAir;
+        uint8_t unk31[7];
+        float unk38;
+        float unk3C;
+        RED4ext::Vector4 angularVelocity;
+        float affectsPitch;
+        uint8_t unk54;
+        uint8_t unk55;
+        uint8_t unk56;
+        uint8_t unk57;
+        void *cameraSystem;
+    };
 
 // virtual overrides
 
@@ -174,7 +172,7 @@ struct __declspec(align(0x10)) TPPCameraComponent : public game::CameraComponent
     void __fastcall GetYaw(float *yaw, Vector4 *a3, float isInAir);
 
     Handle<BaseObject> vehicle;
-    TPPCameraData data;
+    CameraPreset data;
     void* runtimePhysicsSystem;
     uint64_t unk318;
     // position set in Target::sub_58, orientation set in Update()
