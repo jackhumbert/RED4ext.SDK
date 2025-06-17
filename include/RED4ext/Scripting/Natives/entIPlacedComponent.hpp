@@ -21,7 +21,7 @@ struct __declspec(align(0x10)) IPlacedComponent : ent::IComponent
     static constexpr const char* ALIAS = "IPlacedComponent";
 
     /// @hash 2545682969:idata
-    static constexpr const uintptr_t VFT = entIPlacedComponent_VFT_Addr;
+    static constexpr const uint32_t VFT = 2545682969;
 
     // creates ent::HardAttachment with this as source, 0x238
     virtual Handle<ent::ITransformAttachment>* CreateTransformAttachment(Handle<ent::ITransformAttachment>* aAttachment, 

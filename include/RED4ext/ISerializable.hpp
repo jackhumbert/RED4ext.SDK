@@ -4,6 +4,7 @@
 
 #include <RED4ext/Common.hpp>
 #include <RED4ext/Handle.hpp>
+#include <RED4ext/Relocation.hpp>
 
 namespace RED4ext
 {
@@ -29,11 +30,10 @@ struct ISerializable
     //static constexpr const char* ALIAS = NAME;
 
     /// @hash 1447167853:idata
-    static constexpr const uintptr_t VFT = ISerializable_VFT_Addr;
-
+    // static constexpr const uintptr_t VFT = ISerializable_VFT_Addr;
 
     /// @hash 7934707:data
-    static constexpr const uintptr_t CLASS = ISerializable_CLASS_Addr;
+    // static constexpr const uintptr_t CLASS = ISerializable_CLASS_Addr;
 
     // static const CClass* CLASS = reinterpret_cast<CClass *>(reinterpret_cast<uintptr_t>(GetModuleHandle(nullptr)) + ISerializable_Class_Addr);
 

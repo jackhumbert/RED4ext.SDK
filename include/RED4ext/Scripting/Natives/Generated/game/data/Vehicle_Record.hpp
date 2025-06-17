@@ -18,7 +18,7 @@ struct Vehicle_Record : game::data::SpawnableObject_Record
 {
     static constexpr const char* NAME = "gamedataVehicle_Record";
     static constexpr const char* ALIAS = "Vehicle_Record";
-    static constexpr const uintptr_t VFT = gamedataVehicle_Record_VFT_Addr;
+    static constexpr const uint32_t VFT = 3338931071;
 
     /// @pattern 48 89 5C 24 10 57 48 83 EC 40 0F B7 81 93 00 00 00 4C 8B C9 4C 8B 05 3D 9F 65 03 48 8B DA 0F B6
     // Handle<VehicleDriveModelData_Record> * __fastcall GetVehDriveModelDataAIHandle(Handle<VehicleDriveModelData_Record> *);

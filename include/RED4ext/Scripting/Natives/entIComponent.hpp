@@ -26,7 +26,7 @@ struct IComponent : IScriptable
     static constexpr const char* ALIAS = "IComponent";
 
     /// @hash 1586431952:idata
-    static constexpr const uintptr_t VFT = entIComponent_VFT_Addr;
+    static constexpr const uintptr_t VFT = 1586431952;
 
     //virtual CClass* GetNativeType() override
     //{

@@ -9,8 +9,9 @@
 
 RED4EXT_INLINE RED4ext::CClass* RED4ext::game::IGameSystem::GetNativeType()
 {
-    RED4ext::RelocFunc<decltype(&RED4ext::game::IGameSystem::GetNativeType)> call(VFT, 0x000);
-    return call(this);
+    using func_t = CClass* (*)(RED4ext::game::IGameSystem*);
+    static UniversalRelocFunc<func_t> func(VFT, 0);
+    return func(this);
 }
 
 RED4EXT_INLINE void RED4ext::game::IGameSystem::OnWorldAttached(RED4ext::world::RuntimeScene* aScene)

@@ -219,6 +219,11 @@ public:
     {
     }
 
+    UniversalRelocFunc(uint32_t aVftHash, uintptr_t aSubOffset)
+        : m_address(*reinterpret_cast<T*>(Resolve(aVftHash) + aSubOffset))
+    {
+    }
+
     inline operator T() const
     {
         return m_address;

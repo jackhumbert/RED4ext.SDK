@@ -104,7 +104,7 @@ RED4EXT_ASSERT_OFFSET(CRTTISystem, nativeToScript, 0x180);
 /// @pattern 48 8D 0D (ptr:rel) C6 05 D5 (init:rel) E8 (:rel)
 /// @nth 0/0
 /// @eval ptr
-extern const CRTTISystem * rtti;
+// extern const CRTTISystem * rtti;
 
 struct RTTIRegistrator
 {

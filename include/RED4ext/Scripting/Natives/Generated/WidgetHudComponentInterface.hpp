@@ -36,7 +36,7 @@ struct __declspec(align(0x10)) WidgetHudComponentInterface : WidgetBaseComponent
 
     static constexpr const char* NAME = "WidgetHudComponentInterface";
     static constexpr const char* ALIAS = NAME;
-    static constexpr const uintptr_t VFT = WidgetHudComponentInterface_VFT_Addr;
+    static constexpr const uint32_t VFT = 4101049622;
 
     // something with world::ui::IWidgetGameControllerType
     virtual void * sub_258(void *) override;

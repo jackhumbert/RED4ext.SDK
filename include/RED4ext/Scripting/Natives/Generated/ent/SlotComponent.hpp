@@ -21,7 +21,7 @@ struct __declspec(align(0x10)) SlotComponent : ent::IPlacedComponent
     static constexpr const char* NAME = "entSlotComponent";
     static constexpr const char* ALIAS = "SlotComponent";
     
-    static constexpr const uintptr_t VFT = entSlotComponent_VFT_Addr;
+    static constexpr const uint32_t VFT = 2108229929;
 
     // creates ent::SlotAttachment
     virtual Handle<ent::ITransformAttachment>* CreateTransformAttachment(Handle<ent::ITransformAttachment>* aAttachment, 

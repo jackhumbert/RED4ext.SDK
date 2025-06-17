@@ -72,7 +72,7 @@ struct __declspec(align(0x10)) TPPCameraComponent : public game::CameraComponent
 {
     static constexpr const char* NAME = "vehicleTPPCameraComponent";
     static constexpr const char* ALIAS = NAME;
-    static constexpr const uintptr_t VFT = vehicleTPPCameraComponent_VFT_Addr;
+    static constexpr const uint32_t VFT = 1345328297;
 
     struct CameraPreset
     {

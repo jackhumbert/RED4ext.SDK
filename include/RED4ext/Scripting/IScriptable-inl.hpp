@@ -8,24 +8,28 @@
 #include <RED4ext/RTTITypes.hpp>
 #include <RED4ext/Relocation.hpp>
 
-RED4EXT_INLINE RED4ext::CClass* RED4ext::IScriptable::GetNativeType()
+namespace RED4ext
 {
-    RelocFunc<decltype(&RED4ext::IScriptable::GetNativeType)> call(VFT, 0x00);
-    return call(this);
+
+RED4EXT_INLINE CClass* IScriptable::GetNativeType()
+{
+    using func_t = CClass* (*)(ISerializable*);
+    static UniversalRelocFunc<func_t> func(VFT, 0);
+    return func(this);
 }
 
-RED4EXT_INLINE RED4ext::IScriptable::IScriptable()
+RED4EXT_INLINE IScriptable::IScriptable()
     : valueHolder(nullptr)
     , nativeType(nullptr)
 {
 }
 
-RED4EXT_INLINE RED4ext::IScriptable::~IScriptable()
+RED4EXT_INLINE IScriptable::~IScriptable()
 {
     DestructValueHolder();
 }
 
-RED4EXT_INLINE RED4ext::CClass* RED4ext::IScriptable::GetType()
+RED4EXT_INLINE CClass* IScriptable::GetType()
 {
     if (nativeType)
     {
@@ -35,36 +39,36 @@ RED4EXT_INLINE RED4ext::CClass* RED4ext::IScriptable::GetType()
     return GetNativeType();
 }
 
-RED4EXT_INLINE void RED4ext::IScriptable::sub_D8(int64_t a1, int64_t a2)
+RED4EXT_INLINE void IScriptable::sub_D8(int64_t a1, int64_t a2)
 {
-    // RelocFunc<decltype(&RED4ext::IScriptable::sub_D8)> call(VFT, 0xD8);
+    // RelocFunc<decltype(&IScriptable::sub_D8)> call(VFT, 0xD8);
     // call(this, a1, a2);
     using func_t = void (*)(ISerializable*, int64_t, int64_t);
     static UniversalRelocFunc<func_t> func(Detail::AddressHashes::IScriptable_sub_D8);
     func(this, a1, a2);
 }
 
-RED4EXT_INLINE void RED4ext::IScriptable::sub_E0()
+RED4EXT_INLINE void IScriptable::sub_E0()
 {
 }
 
-RED4EXT_INLINE void RED4ext::IScriptable::sub_E8()
+RED4EXT_INLINE void IScriptable::sub_E8()
 {
 }
 
-RED4EXT_INLINE void RED4ext::IScriptable::sub_F0()
+RED4EXT_INLINE void IScriptable::sub_F0()
 {
 }
 
-RED4EXT_INLINE void RED4ext::IScriptable::sub_F8()
+RED4EXT_INLINE void IScriptable::sub_F8()
 {
 }
 
-RED4EXT_INLINE void RED4ext::IScriptable::sub_100()
+RED4EXT_INLINE void IScriptable::sub_100()
 {
 }
 
-RED4EXT_INLINE void* RED4ext::IScriptable::GetValueHolder()
+RED4EXT_INLINE void* IScriptable::GetValueHolder()
 {
     if (valueHolder)
     {
@@ -81,19 +85,19 @@ RED4EXT_INLINE void* RED4ext::IScriptable::GetValueHolder()
     return valueHolder;
 }
 
-RED4EXT_INLINE void RED4ext::IScriptable::DestructValueHolder()
+RED4EXT_INLINE void IScriptable::DestructValueHolder()
 {
     using func_t = void* (*)(IScriptable*);
     static UniversalRelocFunc<func_t> func(Detail::AddressHashes::IScriptable_DestructValueHolder);
     func(this);
 }
 
-RED4EXT_INLINE RED4ext::IScriptable::operator const RED4ext::WeakHandle<RED4ext::IScriptable>&() const noexcept
+RED4EXT_INLINE IScriptable::operator const WeakHandle<IScriptable>&() const noexcept
 {
     return *reinterpret_cast<const WeakHandle<IScriptable>*>(&ref);
 }
 
-RED4EXT_INLINE RED4ext::IScriptable::operator RED4ext::Handle<RED4ext::IScriptable>() noexcept
+RED4EXT_INLINE IScriptable::operator Handle<IScriptable>() noexcept
 {
     if (ref.instance)
     {
@@ -103,4 +107,6 @@ RED4EXT_INLINE RED4ext::IScriptable::operator RED4ext::Handle<RED4ext::IScriptab
     {
         return Handle<IScriptable>(this);
     }
+}
+
 }

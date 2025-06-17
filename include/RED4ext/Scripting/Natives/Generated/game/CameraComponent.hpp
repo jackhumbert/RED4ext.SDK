@@ -25,7 +25,7 @@ struct __declspec(align(0x10)) CameraComponent : public ent::BaseCameraComponent
 {
     static constexpr const char* NAME = "gameCameraComponent";
     static constexpr const char* ALIAS = "CameraComponent";
-    static constexpr const uintptr_t VFT = gameCameraComponent_VFT_Addr;
+    static constexpr const uint32_t VFT = 2579302947;
 
     // uint8_t unk1E0[0x1E8 - 0x1E0]; // 1E0
     CName animParamFovOverrideWeight; // 1E8

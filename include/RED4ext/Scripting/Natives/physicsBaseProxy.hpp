@@ -21,7 +21,7 @@ struct BaseProxy {
     // 1.61hf1 RVA: 0x3142700
 
     /// @hash 1619396603:idata
-    static constexpr const uintptr_t VFT = physicsBaseProxy_VFT_Addr;
+    // static constexpr const uintptr_t VFT = physicsBaseProxy_VFT_Addr;
 
     virtual void sub_00();
     // iterates through physicsSystemResource->bodies

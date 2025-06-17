@@ -48,7 +48,7 @@ struct Entity : IScriptable
 {
     static constexpr const char* NAME = "entEntity";
     static constexpr const char* ALIAS = "Entity";
-    static constexpr const uintptr_t VFT = entEntity_VFT_Addr;
+    static constexpr const uint32_t VFT = 1078593105;
     
     // Setup callbacks:
     // entity->OnRequestComponents(void *)

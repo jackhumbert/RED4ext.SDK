@@ -21,7 +21,7 @@ struct Component : ent::IComponent, PSInterface
 {
     static constexpr const char* NAME = "gameComponent";
     static constexpr const char* ALIAS = "GameComponent";
-    static constexpr const uintptr_t VFT = gameComponent_VFT_Addr;
+    static constexpr const uint32_t VFT = 331746781;
 
 // overridden virtuals
 

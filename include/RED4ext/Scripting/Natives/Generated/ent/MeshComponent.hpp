@@ -27,7 +27,7 @@ struct __declspec(align(0x10)) MeshComponent : ent::IVisualComponent
 {
     static constexpr const char* NAME = "entMeshComponent";
     static constexpr const char* ALIAS = "MeshComponent";
-    static constexpr const uintptr_t VFT = entMeshComponent_VFT_Addr;
+    static constexpr const uint32_t VFT = 2080246036;
 
     // gets unk140
     virtual bool sub_258(Handle<void*> unk);

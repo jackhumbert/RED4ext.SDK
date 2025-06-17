@@ -12,7 +12,7 @@ struct IUpdatableSystem : IScriptable
     static constexpr const char* NAME = "IUpdatableSystem";
     static constexpr const char* ALIAS = NAME;
 
-    static constexpr const uintptr_t VFT = IUpdatableSystem_VFT_Addr;
+    // static constexpr const uintptr_t VFT = IUpdatableSystem_VFT_Addr;
 
     // virtual CClass* GetNativeType() override;
     virtual ~IUpdatableSystem() override = default;

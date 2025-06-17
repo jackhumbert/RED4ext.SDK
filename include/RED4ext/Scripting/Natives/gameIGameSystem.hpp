@@ -22,8 +22,8 @@ struct IGameSystem : IUpdatableSystem
     static constexpr const char* NAME = "gameIGameSystem";
     static constexpr const char* ALIAS = "IGameSystem";
 
-    /// @pattern /vft(gameIGameSystem_GetNativeType)
-    static constexpr const uintptr_t VFT = gameIGameSystem_VFT_Addr;
+    /// @hash 1854670959
+    static constexpr const uint32_t VFT = 1854670959;
 
     // arg to sub_190
     struct HighLow
@@ -37,7 +37,7 @@ struct IGameSystem : IUpdatableSystem
     /// @pattern 40 53 48 83 EC 20 48 8B D9 E8 22 B8 F8 FF 48 8D 05 4B 92 6C 02 48 C7 43 40 00 00 00 00 48 89 03
     //IGameSystem();
 
-    /// @pattern /mov(gameIGameSystem_Class_p) /retn
+    /// @hash 2606044598
     virtual CClass* GetNativeType() override;     
     virtual ~IGameSystem() override = default;
 

@@ -13,7 +13,7 @@ struct CClass;
 struct IScriptable : ISerializable
 {
     /// @hash 1180173983:idata
-    static constexpr const uintptr_t VFT = IScriptable_VFT_Addr;
+    static constexpr const uint32_t VFT = 1180173983;
 
     /// @hash 820581350
     virtual CClass* GetNativeType() override;

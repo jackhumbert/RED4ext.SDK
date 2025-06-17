@@ -14,7 +14,7 @@ struct CarBaseObject : vehicle::WheeledBaseObject
 {
     static constexpr const char* NAME = "vehicleCarBaseObject";
     static constexpr const char* ALIAS = "CarObject";
-    static constexpr const uintptr_t VFT = vehicleCarBaseObject_VFT_Addr;
+    static constexpr const uint32_t VFT = 2073038931;
 
     virtual void sub_148(uintptr_t a1, uintptr_t a2) override;      // checks populationSpawnParameter, sets vehicleREcord
     virtual void sub_270() override;                                // 270 

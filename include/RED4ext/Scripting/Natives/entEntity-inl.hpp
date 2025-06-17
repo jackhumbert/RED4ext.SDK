@@ -11,7 +11,7 @@ namespace ent
 
 RED4EXT_INLINE uintptr_t Entity::CopyComponentsToStorage(EntityDefinition* definition, void* a2)
 {
-    RelocFunc<decltype(&Entity::CopyComponentsToStorage)> call(VFT, 0x1A8);
+    UniversalRelocFunc<decltype(&Entity::CopyComponentsToStorage)> call(VFT, 0x1A8);
     return call(this, definition, a2);
 }
     
@@ -34,13 +34,13 @@ RED4EXT_INLINE uint8_t __fastcall Entity::sub_128() {
 }
 
 // RED4EXT_INLINE bool __fastcall Entity::sub_130() {
-//     RelocFunc<decltype(&Entity::sub_130)> call(VFT, 0x128);
+//     UniversalRelocFunc<decltype(&Entity::sub_130)> call(VFT, 0x128);
 //     return call(this);
 // }
 
 RED4EXT_INLINE void Entity::sub_130()
 {
-    RelocFunc<decltype(&Entity::sub_130)> call(VFT, 0x130);
+    UniversalRelocFunc<decltype(&Entity::sub_130)> call(VFT, 0x130);
     call(this);
 }
 
@@ -49,7 +49,7 @@ RED4EXT_INLINE void Entity::sub_130()
 // 1.61hf1 RVA: 0x1046F30
 //RED4EXT_INLINE uint64_t Entity::SetupEntityAndComponents(EntityDefinition* definition)
 //{
-//    RelocFunc<decltype(&Entity::SetupEntityAndComponents)> call(0x1046F30);
+//    UniversalRelocFunc<decltype(&Entity::SetupEntityAndComponents)> call(0x1046F30);
 //    return call(this, definition);
 //}
 

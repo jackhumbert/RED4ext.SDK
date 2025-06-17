@@ -26,7 +26,7 @@ struct __declspec(align(0x10)) ICollider : ISerializable
     static constexpr const char* ALIAS = NAME;
 
     /// @hash 2046757127:idata
-    static constexpr const uintptr_t VFT = physicsICollider_VFT_Addr;
+    static constexpr const uint32_t VFT = 2046757127;
 
     // 2.1  RVA: 0x1B7958
     /// @pattern 45 33 C0 48 8D 05 EE 9D 85 02 48 89 01 4C 89 41 08 4C 89 41 10 41 8D 40 01 4C 89 41 18 4C 89 41

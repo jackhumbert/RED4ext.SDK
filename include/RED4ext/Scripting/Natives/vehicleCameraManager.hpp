@@ -23,7 +23,7 @@ struct CameraManager : IScriptable
 {
     static constexpr const char* NAME = "vehicleCameraManager";
     static constexpr const char* ALIAS = "VehicleCameraManager";
-    static constexpr const uintptr_t VFT = vehicleCameraManager_VFT_Addr;
+    static constexpr const uint32_t VFT = 1323962179;
 
     // 1.52 RVA: 0x1C6C270 / 29803120
     /// @pattern 48 89 5C 24 20 55 56 57 48 8B EC 48 83 EC 60 48 8B F9 48 8B F2 48 8B 49 50 48 85 C9 74 05 E8 6D

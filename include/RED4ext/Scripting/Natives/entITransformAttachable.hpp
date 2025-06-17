@@ -12,7 +12,7 @@ namespace RED4ext::ent {
 struct ITransformAttachable {
 
     /// @hash 3227782038:idata
-    static constexpr const uintptr_t VFT = entITransformAttachable_VFT_Addr;
+    static constexpr const uint32_t VFT = 3227782038;
 
     virtual ~ITransformAttachable() = default;
     // called from OnSimulate_PushDirtyTransformData when flags & 0x40 or unk38 == 2

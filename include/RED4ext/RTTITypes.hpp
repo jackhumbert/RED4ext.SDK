@@ -30,7 +30,7 @@ struct RawBuffer;
 
 
 /// @hash 313197496
-constexpr const uintptr_t purecall = purecall_Addr;
+// constexpr const uintptr_t purecall = purecall_Addr;
 
 /// @pattern 40 53 48 83 EC 20 48 8D 05 6F 36 FA 00 48 8B D9 48 89 01 F6 C2 01 74 0A BA 10 00 00 00 E8 42 A2
 /// @noimpl 1
@@ -60,7 +60,7 @@ enum class ERTTIType : uint8_t
 struct CBaseRTTIType
 {
     /// @hash 1056048699:idata
-    static constexpr const uintptr_t VFT = CBaseRTTIType_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CBaseRTTIType_VFT_Addr;
     
     CBaseRTTIType();
     virtual ~CBaseRTTIType() = default; // 00
@@ -135,7 +135,7 @@ RED4EXT_ASSERT_SIZE(CBaseRTTIType, 0x10);
 struct CClass : CBaseRTTIType
 {
     /// @hash 1609435112
-    static constexpr const uintptr_t VFT = CClass_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CClass_VFT_Addr;
 
     struct Flags
     {
@@ -485,7 +485,7 @@ RED4EXT_ASSERT_OFFSET(CRTTIBaseArrayType, innerType, 0x10);
 struct CRTTIArrayType : CRTTIBaseArrayType
 {
     /// @hash 1619986417:idata
-    static constexpr const uintptr_t VFT = CRTTIArrayType_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CRTTIArrayType_VFT_Addr;
 
     CName name;            // 18
     CBaseRTTIType* parent; // 20
@@ -499,7 +499,7 @@ RED4EXT_ASSERT_OFFSET(CRTTIArrayType, parent, 0x20);
 struct CRTTIStaticArrayType : CRTTIBaseArrayType
 {
     /// @hash 2635074137:idata
-    static constexpr const uintptr_t VFT = CRTTIStaticArrayType_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CRTTIStaticArrayType_VFT_Addr;
 
     int32_t size;       // 18
     uint32_t pad1C;     // 1C
@@ -514,7 +514,7 @@ RED4EXT_ASSERT_OFFSET(CRTTIStaticArrayType, computedName, 0x28);
 struct CRTTINativeArrayType : CRTTIBaseArrayType
 {
     /// @hash 2630290008:idata
-    static constexpr const uintptr_t VFT = CRTTINativeArrayType_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CRTTINativeArrayType_VFT_Addr;
 
     int32_t size;       // 18
     uint32_t pad1C;     // 1C
@@ -530,7 +530,7 @@ RED4EXT_ASSERT_OFFSET(CRTTINativeArrayType, computedName, 0x28);
 struct CRTTIPointerType : CBaseRTTIType
 {
     /// @hash 1956514003:idata
-    static constexpr const uintptr_t VFT = CRTTIPointerType_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CRTTIPointerType_VFT_Addr;
 
     CBaseRTTIType* innerType; // 10
     CName name;               // 18
@@ -573,7 +573,7 @@ RED4EXT_ASSERT_OFFSET(CRTTIScriptReferenceType, name, 0x20);
 struct CRTTIHandleType : CBaseRTTIType
 {
     /// @hash 1743915070:idata
-    static constexpr const uintptr_t VFT = CRTTIHandleType_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CRTTIHandleType_VFT_Addr;
 
     virtual CBaseRTTIType* GetInnerType() const = 0;   // C0
     virtual void sub_C8(void* aUnk1, void* aUnk2) = 0; // C8
@@ -592,7 +592,7 @@ RED4EXT_ASSERT_OFFSET(CRTTIHandleType, computedName, 0x20);
 struct CRTTIWeakHandleType : CBaseRTTIType
 {
     /// @hash 2392721862:idata
-    static constexpr const uintptr_t VFT = CRTTIWeakHandleType_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CRTTIWeakHandleType_VFT_Addr;
 
     virtual CBaseRTTIType* GetInnerType() const = 0;   // C0
     virtual void sub_C8(void* aUnk1, void* aUnk2) = 0; // C8
@@ -611,7 +611,7 @@ RED4EXT_ASSERT_OFFSET(CRTTIWeakHandleType, computedName, 0x20);
 struct CRTTIResourceReferenceType : CBaseRTTIType
 {
     /// @hash 3913223369:idata
-    static constexpr const uintptr_t VFT = CRTTIResourceReferenceType_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CRTTIResourceReferenceType_VFT_Addr;
 
     CName name;               // 10
     CName computedName;       // 18
@@ -625,7 +625,7 @@ RED4EXT_ASSERT_OFFSET(CRTTIResourceReferenceType, innerType, 0x20);
 struct CRTTIResourceAsyncReferenceType : CBaseRTTIType
 {
     /// @hash 850136775:idata
-    static constexpr const uintptr_t VFT = CRTTIResourceAsyncReferenceType_VFT_Addr;
+    // static constexpr const uintptr_t VFT = CRTTIResourceAsyncReferenceType_VFT_Addr;
 
     CName name;               // 10
     CName computedName;       // 18

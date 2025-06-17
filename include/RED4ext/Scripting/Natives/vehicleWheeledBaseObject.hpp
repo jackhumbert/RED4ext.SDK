@@ -15,7 +15,7 @@ struct WheeledBaseObject : vehicle::BaseObject
 {
     static constexpr const char* NAME = "vehicleWheeledBaseObject";
     static constexpr const char* ALIAS = "WheeledObject";
-    static constexpr const uintptr_t VFT = vehicleWheeledBaseObject_VFT_Addr;
+    static constexpr const uint32_t VFT = 3377402363;
 
 // overrides
     virtual void Attach(void *) override;                   // 
