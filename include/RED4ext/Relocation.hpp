@@ -206,6 +206,44 @@ private:
                                              bool aQueryPluginInfo = true);
 };
 
+
+/**
+ * @brief Represent a native struct, use this to relocate its address at runtime.
+ * @tparam T The type.
+ */
+template<typename T>
+class UniversalRelocFundamental : private UniversalRelocBase
+{
+public:
+    UniversalRelocFundamental(uint32_t aHash)
+        : m_address(Resolve(aHash))
+    {
+        m_pointer = reinterpret_cast<T*>(malloc(sizeof(T)));
+        memset(m_pointer, 0, sizeof(T));
+        // assign m_address to vft
+        *(uintptr_t*)m_pointer = m_address;
+    }
+
+    ~UniversalRelocFundamental() {
+        free(m_pointer);
+    }
+
+    inline operator T*() const
+    {
+        return m_pointer;
+    }
+
+    inline T* operator->() const
+    {
+        return m_pointer;
+    }
+
+private:
+    uintptr_t m_address;
+    T * m_pointer;
+};
+
+
 /**
  * @brief Represent a native function, use this to relocate its address at runtime.
  * @tparam T The type.

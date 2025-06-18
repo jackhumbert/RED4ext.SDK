@@ -14,7 +14,8 @@
 #include <RED4ext/Relocation.hpp>
 
 #define RTTICLASS(name) RED4ext::RelocPtr<RED4ext::CClass>(name##_Class_Addr)
-#define RTTITYPE(name) RED4ext::RelocFundamental<RED4ext::CBaseRTTIType>(name##_Type_VFT_Addr)
+// #define RTTITYPE(name) RED4ext::UniversalRelocFundamental<RED4ext::CBaseRTTIType>(name##_Type_VFT_Addr)
+#define RTTITYPE(hash) RED4ext::UniversalRelocFundamental<RED4ext::CBaseRTTIType>(hash)
 
 namespace RED4ext
 {
