@@ -13,8 +13,7 @@ namespace RED4ext
 
 RED4EXT_INLINE CClass* IScriptable::GetNativeType()
 {
-    using func_t = CClass* (*)(ISerializable*);
-    static UniversalRelocFunc<func_t> func(VFT, 0);
+    static UniRelocFunc<decltype(&IScriptable::GetNativeType)> func(VFT, 0);
     return func(this);
 }
 
@@ -41,10 +40,7 @@ RED4EXT_INLINE CClass* IScriptable::GetType()
 
 RED4EXT_INLINE void IScriptable::sub_D8(int64_t a1, int64_t a2)
 {
-    // RelocFunc<decltype(&IScriptable::sub_D8)> call(VFT, 0xD8);
-    // call(this, a1, a2);
-    using func_t = void (*)(ISerializable*, int64_t, int64_t);
-    static UniversalRelocFunc<func_t> func(Detail::AddressHashes::IScriptable_sub_D8);
+    UniRelocFunc<decltype(&IScriptable::sub_D8)> func(VFT, 0xD8);
     func(this, a1, a2);
 }
 

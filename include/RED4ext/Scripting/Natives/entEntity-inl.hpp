@@ -11,8 +11,8 @@ namespace ent
 
 RED4EXT_INLINE uintptr_t Entity::CopyComponentsToStorage(EntityDefinition* definition, void* a2)
 {
-    UniversalRelocFunc<decltype(&Entity::CopyComponentsToStorage)> call(VFT, 0x1A8);
-    return call(this, definition, a2);
+    static UniRelocFunc<decltype(&Entity::CopyComponentsToStorage)> func(VFT, 0x1A8);
+    return func(this, definition, a2);
 }
     
 RED4EXT_INLINE float __fastcall Entity::sub_110() {
@@ -40,8 +40,8 @@ RED4EXT_INLINE uint8_t __fastcall Entity::sub_128() {
 
 RED4EXT_INLINE void Entity::sub_130()
 {
-    UniversalRelocFunc<decltype(&Entity::sub_130)> call(VFT, 0x130);
-    call(this);
+    static UniRelocFunc<decltype(&Entity::sub_130)> func(VFT, 0x130);
+    func(this);
 }
 
 

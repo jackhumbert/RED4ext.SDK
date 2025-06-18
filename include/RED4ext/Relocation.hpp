@@ -260,6 +260,23 @@ private:
     T* m_address;
 };
 
+template<typename T>
+class UniRelocFunc
+{
+};
+
+template<typename R, typename... Args>
+class UniRelocFunc<R (*)(Args...)> : public UniversalRelocFunc<R (*)(Args...)>
+{
+    using UniversalRelocFunc<R (*)(Args...)>::UniversalRelocFunc;
+};
+
+template<typename C, typename R, typename... Args>
+class UniRelocFunc<R (C::*)(Args...)> : public UniversalRelocFunc<R (*)(C*, Args...)>
+{
+    using UniversalRelocFunc<R (*)(C*, Args...)>::UniversalRelocFunc;
+};
+
 /**
  * @brief Represent a native virtual table, use this to relocate its address at runtime.
  * @tparam T The type.
