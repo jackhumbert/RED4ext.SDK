@@ -40,7 +40,7 @@ RED4EXT_INLINE CClass* IScriptable::GetType()
 
 RED4EXT_INLINE void IScriptable::sub_D8(int64_t a1, int64_t a2)
 {
-    UniRelocFunc<decltype(&IScriptable::sub_D8)> func(VFT, 0xD8);
+    static UniRelocFunc<decltype(&IScriptable::sub_D8)> func(VFT, 0xD8);
     func(this, a1, a2);
 }
 

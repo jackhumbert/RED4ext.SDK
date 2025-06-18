@@ -18,7 +18,7 @@ struct Drive : ActionBase
 
     // a setup maybe
     inline virtual bool sub_88(move::Component* moveComponent, vehicle::AutonomousData* autonomousData);/* {
-        RelocFunc<decltype(&Drive::sub_88)> call(VFT, 0x88);
+        static UniRelocFunc<decltype(&Drive::sub_88)> call(VFT, 0x88);
         return call(this, moveComponent, autonomousData);
     }*/
     virtual void sub_90(uint64_t, uint64_t);

@@ -35,7 +35,7 @@ struct IComponent : IScriptable
 
     inline virtual void* sub_C0(void* a1) override
     {
-        RelocFunc<decltype(&IComponent::sub_C0)> call(VFT, 0xC0);
+        static UniRelocFunc<decltype(&IComponent::sub_C0)> call(VFT, 0xC0);
         return call(this, a1);
     }
 

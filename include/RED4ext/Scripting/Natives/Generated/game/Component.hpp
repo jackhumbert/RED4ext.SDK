@@ -26,28 +26,28 @@ struct Component : ent::IComponent, PSInterface
 // overridden virtuals
 
     inline virtual Memory::IAllocator* GetAllocator() override {
-        RelocFunc<decltype(&Component::GetAllocator)> call(VFT, 0x10);
+        static UniRelocFunc<decltype(&Component::GetAllocator)> call(VFT, 0x10);
         return call(this);
     }
 
     inline virtual Handle<game::PersistentState>* sub_150(Handle<game::PersistentState>* a1) override {
-        RelocFunc<decltype(&Component::sub_150)> call(VFT, 0x150);
+        static UniRelocFunc<decltype(&Component::sub_150)> call(VFT, 0x150);
         return call(this, a1);
     }
 
     inline virtual void OnAttach(void* a1) override {
-        RelocFunc<decltype(&Component::OnAttach)> call(VFT, 0x180);
+        static UniRelocFunc<decltype(&Component::OnAttach)> call(VFT, 0x180);
         return call(this, a1);
     }
 
     inline virtual bool OnDetach(void* a1) override {
-        RelocFunc<decltype(&Component::OnDetach)> call(VFT, 0x190);
+        static UniRelocFunc<decltype(&Component::OnDetach)> call(VFT, 0x190);
         return call(this, a1);
     }
 
     // checks to make sure entity is gameObject
     inline virtual void sub_218(void* a1) override {
-        RelocFunc<decltype(&Component::sub_218)> call(VFT, 0x218);
+        static UniRelocFunc<decltype(&Component::sub_218)> call(VFT, 0x218);
         return call(this, a1);
     }
 
@@ -55,7 +55,7 @@ struct Component : ent::IComponent, PSInterface
 
     // sets the persisent state
     inline virtual void sub_230(Handle<game::PersistentState>* a1) {
-        RelocFunc<decltype(&Component::sub_230)> call(VFT, 0x230);
+        static UniRelocFunc<decltype(&Component::sub_230)> call(VFT, 0x230);
         return call(this, a1);
     }
 
