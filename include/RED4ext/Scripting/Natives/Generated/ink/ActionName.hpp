@@ -17,7 +17,9 @@ struct ActionName : IScriptable
     static constexpr const char* NAME = "inkActionName";
     static constexpr const char* ALIAS = NAME;
 
-    uint8_t unk40[0x58 - 0x40]; // 40
+    CName name; // 40
+    uint64_t unk48; // some handle?
+    uint64_t unk50; // 50
 };
 RED4EXT_ASSERT_SIZE(ActionName, 0x58);
 } // namespace ink
