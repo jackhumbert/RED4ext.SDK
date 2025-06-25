@@ -12,6 +12,7 @@ namespace RED4ext
 {
 namespace user
 {
+// userSettings::VarName
 struct SettingsVarName : user::SettingsVar
 {
     static constexpr const char* NAME = "userSettingsVarName";
