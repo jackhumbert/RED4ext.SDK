@@ -83,7 +83,7 @@ enum class EConfigVarImportPolicy : char
 //     bool(__fastcall* HasRequestedValue)(RuntimeSettingsVar*);
 //     bool(__fastcall* HasDefaultValue)(RuntimeSettingsVar*);
 //     void(__fastcall* RestoreDefault)(RuntimeSettingsVar*);
-//     void(__fastcall* UpdateValue)(RuntimeSettingsVar*, int*);
+//     void(__fastcall* SetRequestedValue)(RuntimeSettingsVar*, int*);
 //     void(__fastcall* sub_38)();
 //     void(__fastcall* sub_40)();
 //     void(__fastcall* sub_48)();
@@ -94,6 +94,7 @@ enum class EConfigVarImportPolicy : char
 /// @pattern 40 53 48 83 EC 20 65 48 8B 04 25 58 00 00 00 8B 0D EB DF FF 01 BA 9C 07 00 00 48 8B 0C C8 8B 04
 void* __fastcall GetSettings();
 
+// InGameConfig::Var
 #pragma pack(push, 1)
 struct RuntimeSettingsVar
 {
@@ -135,14 +136,14 @@ struct RuntimeSettingsVar
         return this;
     }
     virtual bool __fastcall WasModifiedSinceLastSave() = 0;
-    virtual bool __fastcall HasChange() = 0;
-    virtual bool __fastcall IsDefault() = 0;
+    virtual bool __fastcall HasChange() = 0; // HasRequestedValue
+    virtual bool __fastcall IsDefault() = 0; // HasDefaultValue
     virtual bool __fastcall RestoreDefault(uint8_t) = 0;
-    virtual void __fastcall UpdateValue(void* value) = 0;
-    virtual void __fastcall ApplyChange() = 0;
-    virtual void __fastcall RevertChange() = 0;
-    virtual void __fastcall ChangeWasWritten() = 0;
-    virtual void __fastcall UpdateAll(void* value) = 0;
+    virtual void __fastcall SetRequestedValue(void* value) = 0; // InternalSetRequestedValue
+    virtual void __fastcall AcceptChange() = 0; // InternalAcceptValue
+    virtual void __fastcall RejectChange() = 0; // InternalRejectValue
+    virtual void __fastcall MarkAsSaved() = 0; // InternalMarkAsSaved
+    virtual void __fastcall LoadValue(void* value) = 0; // InternalLoadValue
 
     CName name = CName();            // 08
     CName groupPath = CName();       // 10
@@ -215,14 +216,14 @@ struct RuntimeSettingsVarBool : public RuntimeSettingsVar
             {
                 if (!a1)
                 {
-                    UpdateValue(&defaultValue);
+                    SetRequestedValue(&defaultValue);
                     // UserSettings = GetUserSettings();
                     // AddSettingsDataToSettings(UserSettings, a1);
                 }
                 return !wasDefault;
             }
         UpdateImmediately:
-            UpdateValue(&defaultValue);
+            SetRequestedValue(&defaultValue);
             // v9 = GetUserSettings();
             // sub_7FF62769C390(v9, a1);
             return !wasDefault;
@@ -234,17 +235,17 @@ struct RuntimeSettingsVarBool : public RuntimeSettingsVar
         case RED4ext::user::EConfigVarUpdatePolicy::Immediately:
             goto UpdateImmediately;
         case RED4ext::user::EConfigVarUpdatePolicy::ConfirmationRequired:
-            UpdateValue(&defaultValue);
+            SetRequestedValue(&defaultValue);
             // v8 = GetUserSettings();
             // SettingsConfirmChange_0(v8, a1);
             break;
         case RED4ext::user::EConfigVarUpdatePolicy::RestartRequired:
-            UpdateValue(&defaultValue);
+            SetRequestedValue(&defaultValue);
             // v7 = GetUserSettings();
             // SettingsRestartRequired_0(v7, a1);
             break;
         case RED4ext::user::EConfigVarUpdatePolicy::LoadLastCheckpointRequired:
-            UpdateValue(&defaultValue);
+            SetRequestedValue(&defaultValue);
             // v6 = GetUserSettings();
             // SettingsLoadLastCheckpoint_0(v6, a1);
             break;
@@ -257,27 +258,27 @@ struct RuntimeSettingsVarBool : public RuntimeSettingsVar
         return !wasDefault;
     }
 
-    virtual void __fastcall UpdateValue(void* value) override
+    virtual void __fastcall SetRequestedValue(void* value) override
     {
         valueInput = *(uint8_t*)value;
     }
 
-    virtual void __fastcall ApplyChange() override
+    virtual void __fastcall AcceptChange() override
     {
         valueValidated = valueInput;
     }
 
-    virtual void __fastcall RevertChange() override
+    virtual void __fastcall RejectChange() override
     {
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall ChangeWasWritten() override
+    virtual void __fastcall MarkAsSaved() override
     {
         valueWrittenToFile = valueValidated;
     }
 
-    virtual void __fastcall UpdateAll(void* value) override
+    virtual void __fastcall LoadValue(void* value) override
     {
         valueWrittenToFile = *(uint8_t*)value;
         valueInput = *(uint8_t*)value;
@@ -343,14 +344,14 @@ struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
             {
                 if (!a1)
                 {
-                    UpdateValue((int*)&defaultValue);
+                    SetRequestedValue((int*)&defaultValue);
                     // UserSettings = GetUserSettings();
                     // AddSettingsDataToSettings(UserSettings, a1);
                 }
                 return !wasDefault;
             }
         UpdateImmediately:
-            UpdateValue((int*)&defaultValue);
+            SetRequestedValue((int*)&defaultValue);
             // v9 = GetUserSettings();
             // sub_7FF62769C390(v9, a1);
             return !wasDefault;
@@ -362,17 +363,17 @@ struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
         case RED4ext::user::EConfigVarUpdatePolicy::Immediately:
             goto UpdateImmediately;
         case RED4ext::user::EConfigVarUpdatePolicy::ConfirmationRequired:
-            UpdateValue((int*)&defaultValue);
+            SetRequestedValue((int*)&defaultValue);
             // v8 = GetUserSettings();
             // SettingsConfirmChange_0(v8, a1);
             break;
         case RED4ext::user::EConfigVarUpdatePolicy::RestartRequired:
-            UpdateValue((int*)&defaultValue);
+            SetRequestedValue((int*)&defaultValue);
             // v7 = GetUserSettings();
             // SettingsRestartRequired_0(v7, a1);
             break;
         case RED4ext::user::EConfigVarUpdatePolicy::LoadLastCheckpointRequired:
-            UpdateValue((int*)&defaultValue);
+            SetRequestedValue((int*)&defaultValue);
             // v6 = GetUserSettings();
             // SettingsLoadLastCheckpoint_0(v6, a1);
             break;
@@ -385,27 +386,27 @@ struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
         return !wasDefault;
     }
 
-    virtual void __fastcall UpdateValue(void* value) override
+    virtual void __fastcall SetRequestedValue(void* value) override
     {
         valueInput = *(float*)value;
     }
 
-    virtual void __fastcall ApplyChange() override
+    virtual void __fastcall AcceptChange() override
     {
         valueValidated = valueInput;
     }
 
-    virtual void __fastcall RevertChange() override
+    virtual void __fastcall RejectChange() override
     {
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall ChangeWasWritten() override
+    virtual void __fastcall MarkAsSaved() override
     {
         valueWrittenToFile = valueValidated;
     }
 
-    virtual void __fastcall UpdateAll(void* value) override
+    virtual void __fastcall LoadValue(void* value) override
     {
         valueWrittenToFile = *(float*)value;
         valueInput = *(float*)value;
@@ -493,14 +494,14 @@ struct RuntimeSettingsVarInt : public RuntimeSettingsVar
             {
                 if (!a1)
                 {
-                    UpdateValue(&defaultValue);
+                    SetRequestedValue(&defaultValue);
                     // UserSettings = GetUserSettings();
                     // AddSettingsDataToSettings(UserSettings, a1);
                 }
                 return !wasDefault;
             }
         UpdateImmediately:
-            UpdateValue(&defaultValue);
+            SetRequestedValue(&defaultValue);
             // v9 = GetUserSettings();
             // sub_7FF62769C390(v9, a1);
             return !wasDefault;
@@ -512,17 +513,17 @@ struct RuntimeSettingsVarInt : public RuntimeSettingsVar
         case RED4ext::user::EConfigVarUpdatePolicy::Immediately:
             goto UpdateImmediately;
         case RED4ext::user::EConfigVarUpdatePolicy::ConfirmationRequired:
-            UpdateValue(&defaultValue);
+            SetRequestedValue(&defaultValue);
             // v8 = GetUserSettings();
             // SettingsConfirmChange_0(v8, a1);
             break;
         case RED4ext::user::EConfigVarUpdatePolicy::RestartRequired:
-            UpdateValue(&defaultValue);
+            SetRequestedValue(&defaultValue);
             // v7 = GetUserSettings();
             // SettingsRestartRequired_0(v7, a1);
             break;
         case RED4ext::user::EConfigVarUpdatePolicy::LoadLastCheckpointRequired:
-            UpdateValue(&defaultValue);
+            SetRequestedValue(&defaultValue);
             // v6 = GetUserSettings();
             // SettingsLoadLastCheckpoint_0(v6, a1);
             break;
@@ -535,27 +536,27 @@ struct RuntimeSettingsVarInt : public RuntimeSettingsVar
         return !wasDefault;
     }
 
-    virtual void __fastcall UpdateValue(void* value) override
+    virtual void __fastcall SetRequestedValue(void* value) override
     {
         valueInput = *(int32_t*)value;
     }
 
-    virtual void __fastcall ApplyChange() override
+    virtual void __fastcall AcceptChange() override
     {
         valueValidated = valueInput;
     }
 
-    virtual void __fastcall RevertChange() override
+    virtual void __fastcall RejectChange() override
     {
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall ChangeWasWritten() override
+    virtual void __fastcall MarkAsSaved() override
     {
         valueWrittenToFile = valueValidated;
     }
 
-    virtual void __fastcall UpdateAll(void* value) override
+    virtual void __fastcall LoadValue(void* value) override
     {
         valueWrittenToFile = *(int32_t*)value;
         valueInput = *(int32_t*)value;
@@ -634,14 +635,14 @@ struct RuntimeSettingsVarIntList : public RuntimeSettingsVar
                 {
                     if (!a1)
                     {
-                        UpdateValue(&defaultValue);
+                        SetRequestedValue(&defaultValue);
                         // UserSettings = GetUserSettings();
                         // AddSettingsDataToSettings(UserSettings, a1);
                     }
                     return !wasDefault;
                 }
             UpdateImmediately:
-                UpdateValue(&defaultValue);
+                SetRequestedValue(&defaultValue);
                 // v9 = GetUserSettings();
                 // sub_7FF62769C390(v9, a1);
                 return !wasDefault;
@@ -653,17 +654,17 @@ struct RuntimeSettingsVarIntList : public RuntimeSettingsVar
             case RED4ext::user::EConfigVarUpdatePolicy::Immediately:
                 goto UpdateImmediately;
             case RED4ext::user::EConfigVarUpdatePolicy::ConfirmationRequired:
-                UpdateValue(&defaultValue);
+                SetRequestedValue(&defaultValue);
                 // v8 = GetUserSettings();
                 // SettingsConfirmChange_0(v8, a1);
                 break;
             case RED4ext::user::EConfigVarUpdatePolicy::RestartRequired:
-                UpdateValue(&defaultValue);
+                SetRequestedValue(&defaultValue);
                 // v7 = GetUserSettings();
                 // SettingsRestartRequired_0(v7, a1);
                 break;
             case RED4ext::user::EConfigVarUpdatePolicy::LoadLastCheckpointRequired:
-                UpdateValue(&defaultValue);
+                SetRequestedValue(&defaultValue);
                 // v6 = GetUserSettings();
                 // SettingsLoadLastCheckpoint_0(v6, a1);
                 break;
@@ -677,27 +678,27 @@ struct RuntimeSettingsVarIntList : public RuntimeSettingsVar
         return !wasDefault;
     }
 
-    virtual void __fastcall UpdateValue(void* value) override
+    virtual void __fastcall SetRequestedValue(void* value) override
     {
         valueInput = *(uint32_t*)value;
     }
 
-    virtual void __fastcall ApplyChange() override
+    virtual void __fastcall AcceptChange() override
     {
         valueValidated = valueInput;
     }
 
-    virtual void __fastcall RevertChange() override
+    virtual void __fastcall RejectChange() override
     {
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall ChangeWasWritten() override
+    virtual void __fastcall MarkAsSaved() override
     {
         valueWrittenToFile = valueValidated;
     }
 
-    virtual void __fastcall UpdateAll(void* value) override
+    virtual void __fastcall LoadValue(void* value) override
     {
         valueWrittenToFile = *(uint32_t*)value;
         valueInput = *(uint32_t*)value;
@@ -800,14 +801,14 @@ struct RuntimeSettingsVarNameList : RuntimeSettingsVar
                 {
                     if (!a1)
                     {
-                        UpdateValue(&defaultValue);
+                        SetRequestedValue(&defaultValue);
                         // UserSettings = GetUserSettings();
                         // AddSettingsDataToSettings(UserSettings, a1);
                     }
                     return !wasDefault;
                 }
             UpdateImmediately:
-                UpdateValue(&defaultValue);
+                SetRequestedValue(&defaultValue);
                 // v9 = GetUserSettings();
                 // sub_7FF62769C390(v9, a1);
                 return !wasDefault;
@@ -819,17 +820,17 @@ struct RuntimeSettingsVarNameList : RuntimeSettingsVar
             case RED4ext::user::EConfigVarUpdatePolicy::Immediately:
                 goto UpdateImmediately;
             case RED4ext::user::EConfigVarUpdatePolicy::ConfirmationRequired:
-                UpdateValue(&defaultValue);
+                SetRequestedValue(&defaultValue);
                 // v8 = GetUserSettings();
                 // SettingsConfirmChange_0(v8, a1);
                 break;
             case RED4ext::user::EConfigVarUpdatePolicy::RestartRequired:
-                UpdateValue(&defaultValue);
+                SetRequestedValue(&defaultValue);
                 // v7 = GetUserSettings();
                 // SettingsRestartRequired_0(v7, a1);
                 break;
             case RED4ext::user::EConfigVarUpdatePolicy::LoadLastCheckpointRequired:
-                UpdateValue(&defaultValue);
+                SetRequestedValue(&defaultValue);
                 // v6 = GetUserSettings();
                 // SettingsLoadLastCheckpoint_0(v6, a1);
                 break;
@@ -843,28 +844,28 @@ struct RuntimeSettingsVarNameList : RuntimeSettingsVar
         return !wasDefault;
     }
 
-    virtual void __fastcall UpdateValue(void* value) override
+    virtual void __fastcall SetRequestedValue(void* value) override
     {
         valueInput = *(uint32_t*)value;
     }
 
-    virtual void __fastcall ApplyChange() override
+    virtual void __fastcall AcceptChange() override
     {
         valueValidated = valueInput;
     }
 
-    virtual void __fastcall RevertChange() override
+    virtual void __fastcall RejectChange() override
     {
         valueInput = valueValidated;
     }
 
-    virtual void __fastcall ChangeWasWritten() override
+    virtual void __fastcall MarkAsSaved() override
     {
         valueWrittenToFile = valueValidated;
     }
 
     // like this in FloatList, NameList, StringList, IntList
-    virtual void __fastcall UpdateAll(void* aValue) override
+    virtual void __fastcall LoadValue(void* aValue) override
     {
         if (!bitfield.isDynamic || values.size)
         {

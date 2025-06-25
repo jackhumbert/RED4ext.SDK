@@ -18,6 +18,7 @@ struct InputEvent : ink::Event
     static constexpr const char* ALIAS = NAME;
 
     uint8_t unk68[0x90 - 0x68]; // 68
+    // Handle<ink::ActionName> unk70;
 };
 RED4EXT_ASSERT_SIZE(InputEvent, 0x90);
 } // namespace ink
