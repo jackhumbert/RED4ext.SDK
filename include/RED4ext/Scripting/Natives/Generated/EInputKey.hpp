@@ -268,11 +268,11 @@ enum class EInputKey : int32_t
     IK_UnknownFE = 254,
     IK_PS4_OPTIONS = 255, // [ IsPadKey
     IK_PS4_TOUCH_PRESS = 256, // IsRelative mask exclusion ]
-    // 257, 
-    // 258,
-    // 259,
-    // 260,
-    // 261, IsPadKey ] 
+    IK_PS4_TOUCH_SWIPE_X = 257, 
+    IK_PS4_TOUCH_SWIPE_Y = 258,
+    IK_PS4_TOUCH_PAN_X = 259,
+    IK_PS4_TOUCH_PAN_Y = 260,
+    IK_PS4_TOUCH_PINCH = 261, // IsPadKey ] 
     IK_Pad_Fake_LeftAxis = 262, // [ IsPadKey
     IK_Pad_Fake_RightAxis = 263,
     IK_Pad_Fake_RelativeLeftAxis = 264,
