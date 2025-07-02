@@ -36,7 +36,7 @@ struct __declspec(align(0x10)) WidgetHudComponent : WidgetHudComponentInterface,
 {
     static constexpr const char* NAME = "WidgetHudComponent";
     static constexpr const char* ALIAS = NAME;
-    static constexpr const uintptr_t VFT = WidgetHudComponent_VFT_Addr;
+    static constexpr const uint32_t VFT = 1246893262;
 };
 RED4EXT_ASSERT_SIZE(WidgetHudComponent, 0x210);
 } // namespace RED4ext

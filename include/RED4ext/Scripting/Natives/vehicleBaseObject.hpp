@@ -237,7 +237,7 @@ enum PhysicsState
 };
 
 // #pragma pack(push, 1)
-struct BaseObject : game::Object
+struct BaseObject : game::Object, IHookable
 {
     static constexpr const char* NAME = "vehicleBaseObject";
     static constexpr const char* ALIAS = "VehicleObject";
@@ -325,7 +325,9 @@ struct BaseObject : game::Object
     /// @pattern 48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 20 48 8B F9 48 8B 89 B0 02 00 00 48 85 C9 74 05 E8
     // 2.1
     /// @pattern 48 89 5C 24 08 57 48 83 EC 20 48 8B 81 C8 02 00 00 33 DB 48 8B F9 48 85 C0 74 0A C7 80 A0 00 00
-    void UnsetPhysicsStates();
+    void ForceEnablePhysics() {
+      Hook<void, 2793083181>();
+    }
 
     // 1.52 RVA: 0x1C4D3A0 / 29676448
     /// @pattern 48 8B 81 B8 02 00 00 F3 0F 10 80 BC 01 00 00 C3

@@ -7,6 +7,7 @@
 #include <RED4ext/DynArray.hpp>
 #include <RED4ext/SharedMutex.hpp>
 #include <RED4ext/Scripting/Natives/actionActionBase.hpp>
+#include <RED4ext/Relocation.hpp>
 
 namespace RED4ext
 {
@@ -14,7 +15,7 @@ namespace game { struct Object; }
 namespace action {
 
 #pragma pack(push, 1)
-struct ActionInterface {
+struct ActionInterface : IHookable {
     virtual ~ActionInterface();
 
     // 1.52 RVA: 0x1B21550 / 28448080
@@ -36,7 +37,9 @@ struct ActionInterface {
     /// @pattern 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 41 54 41 55 41 56 41 57 48 83 EC 20 48 8D A9 E8
     // 2.1
     /// @pattern 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 41 56 41 57 48 83 EC 20 48 8D B9 E8 00 00 00 41
-    __int64 __fastcall EndActions();
+    void EndActions() {
+        Hook<void, 61607255>();
+    }
 
     // 1.52 RVA: 0x1B4D2E0 / 28627680
     /// @pattern 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 48 83 EC 20 48 8B F1 41 0F B6 F8 48 81 C1 E8 00

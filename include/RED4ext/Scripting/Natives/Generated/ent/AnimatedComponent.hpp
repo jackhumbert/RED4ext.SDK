@@ -29,7 +29,7 @@ struct __declspec(align(0x10)) AnimatedComponent : ent::ISkinableComponent
 {
     static constexpr const char* NAME = "entAnimatedComponent";
     static constexpr const char* ALIAS = "AnimatedComponent";
-    static constexpr const uintptr_t VFT = entAnimatedComponent_VFT_Addr;
+    static constexpr const uint32_t VFT = 2799438506;
 
 
     // 1.6  RVA: 0xFDBD50 / 16629072

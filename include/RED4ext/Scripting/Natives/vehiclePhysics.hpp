@@ -58,8 +58,7 @@ RED4EXT_ASSERT_SIZE(UnkC8, 0x70);
 // vehicle::SuspensionBase
 struct Physics
 {
-    /// @hash 3054439199:idata
-    static constexpr const uintptr_t VFT = vehiclePhysics_VFT_Addr;
+    static constexpr const uint32_t VFT = 3054439199;
 
     virtual ~Physics();                                     // 00
     virtual uint64_t SetVehicle(BaseObject *);              // 08
@@ -275,8 +274,7 @@ RED4EXT_ASSERT_SIZE(UnkD10, 0x3410);
 
 struct WheeledPhysics : Physics 
 {
-    /// @hash 4127657236:idata
-    static constexpr const uintptr_t VFT = vehicleWheeledPhysics_VFT_Addr;
+    static constexpr const uint32_t VFT = 4127657236;
 
     // 1.52 RVA: 0x1D0DB70 / 30464880
     /// @pattern 40 56 41 56 48 83 EC 38 48 89 5C 24 58 4C 8B F1 48 89 7C 24 68 4C 89 7C 24 30 8B F2 E8 1F C9 FD
@@ -514,8 +512,7 @@ RED4EXT_ASSERT_OFFSET(WheeledPhysics, insert2[0], 0x5E0);
 
 struct CarPhysics : WheeledPhysics
 {
-    /// @hash 2824866490:idata
-    static constexpr const uintptr_t VFT = vehicleCarPhysics_VFT_Addr;
+    static constexpr const uint32_t VFT = 2824866490;
 
 // overrides
 
@@ -639,8 +636,7 @@ RED4EXT_ASSERT_SIZE(CarPhysics, 0xF50);
 
 struct BikePhysics : WheeledPhysics
 {
-    /// @hash 3020491551:idata
-    static constexpr const uintptr_t VFT = vehicleBikePhysics_VFT_Addr;
+    static constexpr const uint32_t VFT = 3020491551;
 
     virtual ~BikePhysics() override;
     virtual uint64_t SetVehicle(vehicle::BaseObject *) override;
@@ -686,8 +682,7 @@ RED4EXT_ASSERT_SIZE(BikePhysics, 0xE80);
 
 struct TankPhysics : Physics
 {
-    /// @hash 3053062962:idata
-    static constexpr const uintptr_t VFT = vehicleTankPhysics_VFT_Addr;
+    static constexpr const uint32_t VFT = 3053062962;
     
     virtual ~TankPhysics() override;
     virtual uint64_t SetVehicle(vehicle::BaseObject *) override;

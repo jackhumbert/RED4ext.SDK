@@ -15,7 +15,7 @@ namespace RED4ext
 {
 namespace physics
 {
-struct FilterData : ISerializable
+struct FilterData : ISerializable, IHookable
 {
     static constexpr const char* NAME = "physicsFilterData";
     static constexpr const char* ALIAS = NAME;
@@ -23,7 +23,9 @@ struct FilterData : ISerializable
     RED4EXT_IMPL_NATIVE_TYPE();
 
     /// @hash 3094614336
-    void __fastcall LoadPreset(CName name);
+    void LoadPreset(CName name) {
+        Hook<void, 3094614336>(name);
+    }
 
     QueryFilter queryFilter;                   // 30
     SimulationFilter simulationFilter;         // 40

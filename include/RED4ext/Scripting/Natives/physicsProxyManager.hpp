@@ -20,7 +20,9 @@ struct ProxyManager
     // inlined in 2.0
     // bool __fastcall TestUnk2E2068(ProxyID *proxyID);
 
-    static ProxyManager * Get();
+    inline static ProxyManager * Get() {
+        return RED4ext::UniversalRelocPtr<ProxyManager *>(37956006);
+    }
 
     // 1.6  RVA: 0x46A560 / 4629856
     /// @pattern 48 89 5C 24 08 57 48 83 EC 30 8B 02 4C 8D 44 24 48 48 8B DA 89 44 24 48 48 8D 54 24 20 48 8B F9
@@ -103,7 +105,7 @@ RED4EXT_ASSERT_OFFSET(ProxyManager, unk2E2068, 0x2E2068);
 
 /// @pattern 8B 50 30 48 8B 0D (ptr:rel) E8 (test:rel) 84 C0 0F ? ? ? ? ? 48 8B 03
 /// @eval ptr
-extern ProxyManager * proxyManager;
+// static inline ProxyManager * proxyManager = RED4ext::UniversalRelocPtr<ProxyManager *>(37956006);
 
 }
 

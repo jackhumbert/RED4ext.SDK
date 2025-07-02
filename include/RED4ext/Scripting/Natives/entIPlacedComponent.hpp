@@ -4,6 +4,8 @@
 #include <RED4ext/Handle.hpp>
 #include <RED4ext/Scripting/Natives/Generated/WorldTransform.hpp>
 #include <RED4ext/Scripting/Natives/Generated/ent/IComponent.hpp>
+#include <RED4ext/Scripting/Natives/Generated/ent/ITransformAttachment.hpp>
+#include <RED4ext/Scripting/Natives/Box.hpp>
 #include <cstdint>
 
 namespace RED4ext
@@ -24,7 +26,7 @@ struct __declspec(align(0x10)) IPlacedComponent : ent::IComponent
     static constexpr const uint32_t VFT = 2545682969;
 
     // creates ent::HardAttachment with this as source, 0x238
-    virtual Handle<ent::ITransformAttachment>* CreateTransformAttachment(Handle<ent::ITransformAttachment>* aAttachment, 
+    virtual Handle<ITransformAttachment>* CreateTransformAttachment(Handle<ITransformAttachment>* aAttachment, 
                                                                          CName name,
                                                                          Handle<void>* aDestination);
     // unkB2 = 1

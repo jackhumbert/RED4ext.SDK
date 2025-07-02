@@ -12,6 +12,7 @@
 #include <RED4ext/Scripting/Natives/physicsStateValue.hpp>
 // #include <RED4ext/Scripting/Natives/physicsProxyManager.hpp>
 #include <RED4ext/Scripting/Natives/Generated/physics/StateValue.hpp>
+#include <RED4ext/Relocation.hpp>
 
 namespace RED4ext {
 namespace physics {
@@ -51,7 +52,9 @@ struct ProxyID
 
     // physics::IProxy * physics::proxy_internal::ResolveProxy(physics::ProxyID)
     /// @hash 1570510966
-    static BaseProxy * __fastcall GetProxy(physics::ProxyID);
+    static BaseProxy * GetProxy(physics::ProxyID id) {
+        return IHookable::StaticHook<BaseProxy *, 1570510966>(id);
+    }
 
     // 2.0  RVA: 0x93CBF4
     /// @pattern 40 53 48 83 EC 30 44 8B C1 48 8D 54 24 20 48 8B 0D ? ? ? ? E8 ? ? ? ? 48 8B 5C 24 20 48 85 DB 74 04 48 83 C3 08

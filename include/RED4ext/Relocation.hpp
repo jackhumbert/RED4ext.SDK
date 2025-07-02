@@ -336,6 +336,27 @@ private:
     uintptr_t* m_address;
 };
 
+class IHookable {
+public:
+  template<typename R, uint32_t Hash, typename... Args>
+  inline R Hook(Args... args) {
+    static auto func = UniversalRelocFunc<R (*)(IHookable *, Args...)>(Hash);
+    return func(this, std::forward<Args>(args)...);
+  }
+
+  template<typename R, uint32_t Hash, typename... Args>
+  inline R Hook(Args... args) const {
+    static auto func = UniversalRelocFunc<R (*)(IHookable const *, Args...)>(Hash);
+    return func(this, std::forward<Args>(args)...);
+  }
+
+  template<typename R, uint32_t Hash, typename... Args>
+  static inline R StaticHook(Args... args) {
+    static auto func = UniversalRelocFunc<R (*)(Args...)>(Hash);
+    return func(std::forward<Args>(args)...);
+  }
+};
+
 } // namespace RED4ext
 
 #ifdef RED4EXT_HEADER_ONLY

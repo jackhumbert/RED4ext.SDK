@@ -43,7 +43,9 @@ struct GameSystemData
 
 // void game::GameSystemsSetup::LoadConfigFile(void)
 /// @hash 2463305925
-DynArray<GameSystemData> *__fastcall GetGameSystemsData(DynArray<GameSystemData> *gameSystemsData);
+inline DynArray<GameSystemData> *__fastcall GetGameSystemsData(DynArray<GameSystemData> *gameSystemsData) {
+  return IHookable::StaticHook<DynArray<GameSystemData> *, 2463305925>(gameSystemsData);
+}
 
 // 1.52 RVA: 0x2D028E0 / 47196384
 // loads gameSystems from base\systems\game_systems_startup.csv

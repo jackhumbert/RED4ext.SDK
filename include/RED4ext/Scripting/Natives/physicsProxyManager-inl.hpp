@@ -6,8 +6,11 @@
 
 #include <RED4ext/Relocation.hpp>
 
-RED4ext::physics::ProxyManager * RED4ext::physics::proxyManager = *reinterpret_cast<RED4ext::physics::ProxyManager **>(reinterpret_cast<uintptr_t>(GetModuleHandle(nullptr)) + physics_proxyManager_Addr);
+using namespace RED4ext::physics;
 
-RED4ext::physics::ProxyManager * RED4ext::physics::ProxyManager::Get() {
-  return proxyManager;
-}
+// ProxyManager * proxyManager = *reinterpret_cast<ProxyManager **>(reinterpret_cast<uintptr_t>(GetModuleHandle(nullptr)) + physics_proxyManager_Addr);
+// ProxyManager * RED4ext::physics::proxyManager = RED4ext::UniversalRelocPtr<ProxyManager *>(37956006);
+
+// ProxyManager * RED4ext::physics::ProxyManager::Get() {
+//   return proxyManager;
+// }

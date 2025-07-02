@@ -16,7 +16,7 @@ namespace RED4ext
 {
 namespace ent
 {
-struct __declspec(align(0x10)) SlotComponent : ent::IPlacedComponent
+struct __declspec(align(0x10)) SlotComponent : ent::IPlacedComponent, IHookable
 {
     static constexpr const char* NAME = "entSlotComponent";
     static constexpr const char* ALIAS = "SlotComponent";
@@ -45,14 +45,18 @@ struct __declspec(align(0x10)) SlotComponent : ent::IPlacedComponent
     /// @nth 0/2
 
     /// @hash 688524786
-    __int64 __fastcall GetSlotIndex(CName slotName);
+    __int64 GetSlotIndex(CName slotName) {
+        return Hook<__int64, 688524786>(slotName);
+    }
 
     // 1.6 RVA: 0x115CAC0 / 18205376
     /// @pattern 48 89 5C 24 10 48 89 74 24 18 57 48 83 EC 20 49 8B D9 49 8B F8 48 8B F1 85 D2 78 72 3B 91 2C 01
     bool __fastcall GetSlotLocalTransform(int slotIndex, WorldTransform *offset, WorldTransform *transform);
 
     /// @hash 2420184407
-    bool __fastcall GetLocalSlotTransformFromIndex(int slotIndex, Transform *transform);
+    bool GetLocalSlotTransformFromIndex(int slotIndex, Transform *transform) {
+        return Hook<bool, 2420184407>(slotIndex, transform);
+    }
 
     struct Unk140 {
         Handle<IComponent> unk00;

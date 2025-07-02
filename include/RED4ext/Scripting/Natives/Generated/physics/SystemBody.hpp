@@ -24,7 +24,7 @@ struct __declspec(align(0x10)) SystemBody : physics::ISystemObject
     static constexpr const char* NAME = "physicsSystemBody";
     static constexpr const char* ALIAS = NAME;
 
-    static constexpr const uintptr_t VFT = physicsSystemBody_VFT_Addr;
+    static constexpr const uint32_t VFT = 2297825699;
 
     DynArray<Handle<physics::ICollider>> collisionShapes; // 38, Setup
     uint8_t unk48[0x49 - 0x48]; // 48
