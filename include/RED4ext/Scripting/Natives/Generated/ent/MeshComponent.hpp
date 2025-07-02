@@ -68,6 +68,8 @@ struct __declspec(align(0x10)) MeshComponent : ent::IVisualComponent
     uint8_t unk1D5[0x1E0 - 0x1D5]; // 1D5
 };
 RED4EXT_ASSERT_SIZE(MeshComponent, 0x1E0);
+RED4EXT_ASSERT_OFFSET(MeshComponent, visualScale, 0x178);
+
 } // namespace ent
 using entMeshComponent = ent::MeshComponent;
 using MeshComponent = ent::MeshComponent;

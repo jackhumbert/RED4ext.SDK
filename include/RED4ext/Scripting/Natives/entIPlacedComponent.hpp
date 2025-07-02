@@ -35,7 +35,7 @@ struct __declspec(align(0x10)) IPlacedComponent : ent::IComponent
     // debug related? formats name to [%hs]
     virtual void sub_238(); // RenderDebugName(rend::IDebugDrawer &)
     // get bounding box maybe?
-    virtual void sub_240(Box* boundingBox) = 0;
+    virtual void OnTransformUpdated(Box & boundingBox) = 0;
     virtual void GetFlags(); // GetDebugRenderColor
 
     struct UnkA0 {

@@ -17,7 +17,9 @@ struct __declspec(align(0x10)) SoundListenerComponent : ent::IPlacedComponent
     static constexpr const char* NAME = "entSoundListenerComponent";
     static constexpr const char* ALIAS = NAME;
 
-    uint8_t unk120[0x130 - 0x120]; // 120
+    // uint8_t unk120[0x130 - 0x120]; // 120
+    Entity * entity;
+    void * audioSystem;
 };
 RED4EXT_ASSERT_SIZE(SoundListenerComponent, 0x130);
 } // namespace ent
