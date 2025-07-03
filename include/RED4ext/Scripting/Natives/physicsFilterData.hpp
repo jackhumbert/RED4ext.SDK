@@ -24,7 +24,11 @@ struct FilterData : ISerializable, IHookable
 
     /// @hash 3094614336
     void LoadPreset(CName name) {
-        Hook<void, 3094614336>(name);
+       StaticHook<void, 3094614336>(this, name);
+    }
+
+    static void * Init(FilterData * filterData) {
+        return StaticHook<void *, 2725251676>(filterData);
     }
 
     QueryFilter queryFilter;                   // 30

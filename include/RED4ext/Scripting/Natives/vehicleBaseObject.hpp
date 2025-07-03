@@ -225,6 +225,7 @@ RED4EXT_ASSERT_SIZE(Unk610, 0x20);
 
 enum PhysicsState
 {
+  Enabled = 0,
   Traffic = 0x1,
   Unk2 = 0x2,
   Unk4 = 0x4,
@@ -326,7 +327,7 @@ struct BaseObject : game::Object, IHookable
     // 2.1
     /// @pattern 48 89 5C 24 08 57 48 83 EC 20 48 8B 81 C8 02 00 00 33 DB 48 8B F9 48 85 C0 74 0A C7 80 A0 00 00
     void ForceEnablePhysics() {
-      Hook<void, 2793083181>();
+      StaticHook<void, 2793083181>(this);
     }
 
     // 1.52 RVA: 0x1C4D3A0 / 29676448

@@ -45,8 +45,8 @@ struct __declspec(align(0x10)) SlotComponent : ent::IPlacedComponent, IHookable
     /// @nth 0/2
 
     /// @hash 688524786
-    __int64 GetSlotIndex(CName slotName) {
-        return Hook<__int64, 688524786>(slotName);
+    int GetSlotIndex(CName slotName) {
+        return StaticHook<int, 688524786>(this, slotName);
     }
 
     // 1.6 RVA: 0x115CAC0 / 18205376
@@ -55,7 +55,7 @@ struct __declspec(align(0x10)) SlotComponent : ent::IPlacedComponent, IHookable
 
     /// @hash 2420184407
     bool GetLocalSlotTransformFromIndex(int slotIndex, Transform *transform) {
-        return Hook<bool, 2420184407>(slotIndex, transform);
+        return StaticHook<bool, 2420184407>(this, slotIndex, transform);
     }
 
     struct Unk140 {
@@ -67,7 +67,7 @@ struct __declspec(align(0x10)) SlotComponent : ent::IPlacedComponent, IHookable
     DynArray<ent::FallbackSlot> fallbackSlots; // 130
     // 0x28 big
     DynArray<Unk140> unk140;
-    HashMap<CName, int32_t> slotIndexLookup;
+    HashMap<CName, int32_t> slotIndexLookup; // 150
     uint64_t animatedComponent;
     uint64_t unk188;
     uintptr_t unk190;

@@ -23,7 +23,7 @@ struct ProxyHelper : IHookable
     // 2.1
     /// @pattern 48 8B C4 88 50 10 53 48 83 EC 50 48 8B 11 48 8B D9 C6 40 E8 00 C7 40 E0 01 00 00 00 48 8D 40 10
     ProxyHelper * SetSimulationShape(bool enabled, uint32_t bodyIndex, unsigned int shapeIndex) {
-        return Hook<ProxyHelper *, 3124696465>(enabled, bodyIndex, shapeIndex);
+        return StaticHook<ProxyHelper *, 3124696465>(this, enabled, bodyIndex, shapeIndex);
     }
     
     // 1.6  RVA: 0x44DB40 / 4512576
@@ -47,7 +47,7 @@ struct ProxyHelper : IHookable
     // 2.1
     /// @pattern 48 8B C4 88 50 10 53 48 83 EC 50 4C 8B 41 08 48 8B D9 48 8B 11 8B 49 10 C6 40 E8 00 C7 40 E0 01
     ProxyHelper* SetIsQueryable(bool enabled, uint32_t bodyIndex, unsigned int shapeIndex) {
-        return Hook<ProxyHelper *, 811668261>(enabled, bodyIndex, shapeIndex);
+        return StaticHook<ProxyHelper *, 811668261>(this, enabled, bodyIndex, shapeIndex);
     }
 
     // 1.6  RVA: 0x44C620 / 4507168
@@ -94,7 +94,7 @@ struct ProxyHelper : IHookable
     // 2.1
     /// @pattern 40 53 48 83 EC 20 48 8B ? 08 48 8B D9 48 85 ? 74 ? 8B ? 48 8B
     bool __fastcall UpdateProxyCache() {
-        return Hook<bool, 200045>();
+        return StaticHook<bool, 200045>(this);
     }
 
     // 2.1
@@ -105,7 +105,7 @@ struct ProxyHelper : IHookable
     // 2.1 switches the order of some instructions in the ?
     /// @pattern 48 8B 51 18 ? ? ? ? ? ? ? 86 02 C3
     void Unlock() {
-        Hook<void, 1189351231>();
+        StaticHook<void, 1189351231>(this);
     }
     
 

@@ -38,7 +38,7 @@ struct ActionInterface : IHookable {
     // 2.1
     /// @pattern 48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 41 56 41 57 48 83 EC 20 48 8D B9 E8 00 00 00 41
     void EndActions() {
-        Hook<void, 61607255>();
+        StaticHook<void, 61607255>(this);
     }
 
     // 1.52 RVA: 0x1B4D2E0 / 28627680
