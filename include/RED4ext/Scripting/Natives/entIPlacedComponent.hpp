@@ -33,7 +33,7 @@ struct __declspec(align(0x10)) IPlacedComponent : ent::IComponent
     virtual void OnAttach(void*) override;
     // unkB2 = 1
     // unkA0 clear
-    virtual bool OnDetach(void*) override;
+    virtual void OnDetach(void*) override;
     // debug related? formats name to [%hs]
     virtual void sub_238(); // RenderDebugName(rend::IDebugDrawer &)
     // get bounding box maybe?

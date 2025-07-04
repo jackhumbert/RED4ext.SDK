@@ -40,7 +40,7 @@ struct Component : ent::IComponent, PSInterface
         return call(this, a1);
     }
 
-    inline virtual bool OnDetach(void* a1) override {
+    inline virtual void OnDetach(void* a1) override {
         static UniRelocFunc<decltype(&Component::OnDetach)> call(VFT, 0x190);
         return call(this, a1);
     }

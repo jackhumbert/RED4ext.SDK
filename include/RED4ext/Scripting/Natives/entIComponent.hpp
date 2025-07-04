@@ -88,7 +88,7 @@ struct IComponent : IScriptable
     // runtime*;
     // unk158
     // }
-    virtual bool OnDetach(void* ComponentAttachContext);                                       // 190
+    virtual void OnDetach(void* ComponentAttachContext);                                       // 190
     virtual void OnEntityLODUpdated(void* entityUnk158) { };                      // 198 called before entity->sub_168()
     virtual void sub_1A0() { };
     virtual void OnPostSnapshotApplied() { };                           // 1A8
@@ -108,7 +108,7 @@ struct IComponent : IScriptable
     virtual uint64_t OnRenderSelection(uint64_t);                       // 1F8
     virtual void sub_200() { };
     virtual void OnRequestComponents(void *) { };                       // 208         
-    virtual void PostInitialize(void*) { };                             // 210
+    virtual void OnTakeControl(void*) { };                             // 210
     virtual void sub_218(void*) { };
     virtual const char * GetBucketString();                             // 220
     // called on initialize components

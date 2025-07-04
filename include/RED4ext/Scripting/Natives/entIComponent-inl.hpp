@@ -49,7 +49,7 @@ RED4EXT_INLINE void IComponent::OnAttach(void* a1) {
     return func(this, a1);
 }
 
-RED4EXT_INLINE bool IComponent::OnDetach(void *a1) {
+RED4EXT_INLINE void IComponent::OnDetach(void *a1) {
     static UniRelocFunc<decltype(&IComponent::OnDetach)> func(VFT, 0x190);
     return func(this, a1);
 }

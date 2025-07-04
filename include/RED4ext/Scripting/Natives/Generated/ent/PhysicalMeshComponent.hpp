@@ -41,7 +41,7 @@ struct __declspec(align(0x10)) PhysicalMeshComponent : ent::MeshComponent, ent::
     virtual void OnAttach(void * a2);
 
     // proxyID & Stuff
-    virtual bool OnDetach(void *);
+    virtual void OnDetach(void *);
 
     // verify mesh collider stuff
     virtual void sub_218(void *);
