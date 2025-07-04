@@ -76,5 +76,6 @@ struct Collisions {
 		float unk11C; // 10C
 };
 // RED4EXT_ASSERT_SIZE(Collisions, 0x100);
+RED4EXT_ASSERT_OFFSET(Collisions, unkEC, 0xEC);
 
 }

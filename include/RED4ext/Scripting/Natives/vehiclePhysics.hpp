@@ -354,6 +354,14 @@ struct WheeledPhysics : Physics
     /// @pattern 89 54 24 10 55 57 41 57 48 8D AC 24 D0 EF FF FF B8 30 11 00 00 E8 ? ? ? 00 48 2B E0 80 79 20
     void __fastcall SomethingWheelRayTrace(unsigned int wheelIndex_1);
 
+    void ApplyAirResistance(Vector3 const & velocity, float delta) {
+        IHookable::StaticHook<void, 3489929719>(this, velocity, delta);
+    }
+
+    void ApplyLowSpeedResistances(Vector3 const & velocity, float delta) {
+        IHookable::StaticHook<void, 1695226878>(this, velocity, delta);
+    }
+
 // overrides
 
     virtual ~WheeledPhysics() override;
