@@ -32,6 +32,7 @@
 #include <RED4ext/Scripting/Natives/Generated/red/ResourceReferenceScriptToken.hpp>
 #include <RED4ext/Scripting/Natives/gamedataTweakValue.hpp>
 #include <RED4ext/Scripting/Natives/Generated/game/IBlackboard.hpp>
+#include <RED4ext/Scripting/Natives/Generated/ent/IVisualComponent.hpp>
 
 namespace RED4ext
 {
@@ -215,14 +216,6 @@ struct Movement
 
 RED4EXT_ASSERT_SIZE(Movement, 0x28);
 
-struct Unk610
-{
-  Handle<ISerializable> unk00;
-  Handle<ISerializable> unk10;
-};
-
-RED4EXT_ASSERT_SIZE(Unk610, 0x20);
-
 enum PhysicsState
 {
   Enabled = 0,
@@ -235,6 +228,37 @@ enum PhysicsState
   Parked = 0x40,
   PlayerControlledMaybe = 0x80,
   Chase = 0x100,
+};
+
+struct MeshParamsRegistry;
+
+struct SMaterialSetupParameters {
+  DynArray<CName> textureParameters;
+  DynArray<CName> scalarParameters;
+  DynArray<CName> vectorParameters;
+  DynArray<CName> colorParams;
+  DynArray<CName> nameU64Parameters;
+  DynArray<CName> specialResourceParameters;
+};
+
+struct Mesh { 
+    MeshParamsRegistry *meshParamsRegistry;
+    Handle<void> unk08;
+    float unk18;
+    float unk1C;
+    SMaterialSetupParameters materialSetupParams;
+    uint8_t flags;
+    uint8_t unk81;
+    uint32_t unk84;
+    Handle<ent::IVisualComponent> visualComponent;
+    Handle<void> unk98;
+    Handle<void> unkA8;
+};
+
+struct MeshParamsRegistry {
+    uint8_t flags;
+    DynArray<Mesh> meshes;
+    CName currentAppearance;
 };
 
 // #pragma pack(push, 1)
@@ -529,7 +553,7 @@ struct BaseObject : game::Object, IHookable
     Acoustics *acoustics;
     Handle<Autopilot> autopilot;
     Handle<Destruction> destruction;
-    vehicle::Unk610 *unk610;
+    MeshParamsRegistry * meshParamsRegistry;
     float unk618;
     uint8_t permanantStun2;
     uint8_t unk61D;
@@ -598,7 +622,7 @@ struct BaseObject : game::Object, IHookable
     uint64_t unk848;
     Handle<ISerializable> unk850;
     AutonomousData autonomousData; // 860 (870)
-    uint8_t destruction_related;
+    uint8_t destruction_related; // A10
     uint8_t isPlayerControlled;
     uint8_t unkA12;
     uint8_t unkA13;
@@ -806,6 +830,8 @@ struct BaseObject : game::Object, IHookable
 RED4EXT_ASSERT_SIZE(BaseObject, 0xB90);
 RED4EXT_ASSERT_OFFSET(BaseObject, physics, 0x2C8);
 RED4EXT_ASSERT_OFFSET(BaseObject, input, 0x264);
+RED4EXT_ASSERT_OFFSET(BaseObject, meshParamsRegistry, 0x610);
+RED4EXT_ASSERT_OFFSET(BaseObject, destruction_related, 0xA10);
 // char (*__kaboom)[sizeof(BaseObject)] = 1;
 // char (*__kaboom2)[offsetof(BaseObject, physicsSystem)] = 1;
 } // namespace vehicle
