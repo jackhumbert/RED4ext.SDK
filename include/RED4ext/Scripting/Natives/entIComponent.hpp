@@ -100,8 +100,8 @@ struct IComponent : IScriptable
     virtual bool sub_1D8() { return true; };
     // maybe enable/disable?
     // called from Toggle when (flags & 2) == 0
-    // chassis updates gravity when a1 != 0
-    virtual void sub_1E0(bool a1) { };
+    // chassis updates gravity when enabled != 0
+    virtual void OnEnabled(bool enabled) { };
     // called on gather event listeners, after registered
     virtual void sub_1E8(Handle<CallbackManager>*) { };
     virtual void sub_1F0() { };
