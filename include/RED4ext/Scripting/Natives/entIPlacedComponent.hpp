@@ -41,7 +41,8 @@ struct __declspec(align(0x10)) IPlacedComponent : ent::IComponent
     virtual void GetFlags(); // GetDebugRenderColor
 
     struct UnkA0 {
-        uint64_t unk00[4];
+        Handle<ent::Entity> unk00;
+        Handle<ent::Entity> unk10;
     };
 
     Handle<ITransformBinding> parentTransform; // 90

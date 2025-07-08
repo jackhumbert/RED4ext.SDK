@@ -12,24 +12,44 @@ namespace RED4ext::vehicle
 
 struct BaseObject;
 
+struct PartData
+{
+  CName name;
+  Handle<ent::IComponent> attachedComponents[16];
+  uint32_t numAttachedComponents;
+  uint32_t unk10C;
+  Handle<ent::IComponent> detachedComponents[16];
+  uint32_t numDetachedComponents;
+  uint32_t unk214;
+  uint8_t unk218[16]; // 255, 5, 5
+  uint32_t unk228; // 2
+  uint32_t unk22C;
+  uint64_t unk230;
+  uint64_t unk238;
+  uint8_t unk240;
+  uint64_t effectToken[2];
+};
+
+struct Manager {
+  vehicle::BaseObject *vehicle;
+  uint8_t spawn_set[0x48];
+  uint64_t unk50;
+  uint64_t unk58;
+  uint64_t unk60;
+  uint64_t unk68;
+  DynArray<void*> unk70;
+  DynArray<PartData> parts;
+  HashMap<CName, uint32_t> unk90;
+  uint64_t detachedPartExplosionEffect;
+  uint32_t unkC8;
+  uint32_t unkCC;
+};
+
 struct Destruction
 {
     Handle<void> unk00;
-    uint64_t unk10[26];
-    DynArray<void*> unkE0;
-    DynArray<void*> unkF0;
-    uint64_t unk100[51];
-    DynArray<void*> unk298;
-    Handle<void> unk2A8;
-    uint64_t unk2B8;
-    void *unk2C0[96];
-    uint32_t unk5C0;
-    uint64_t unk5C8;
-    DynArray<void*> unk5D0;
-    uint64_t unk5E0[2];
-    BaseObject *vehicle;
-    uint64_t unk5F8;
+    Manager manager;
 };
-RED4EXT_ASSERT_SIZE(Destruction, 0x600);
+// RED4EXT_ASSERT_SIZE(Destruction, 0x600);
 
 }

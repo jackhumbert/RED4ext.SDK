@@ -36,6 +36,11 @@ RED4EXT_ASSERT_SIZE(CGUID, 0x10);
 
 struct CRUID
 {
+    static inline CRUID Next() {
+        static auto counter = UniversalRelocPtr<volatile int64_t>(2027097961).GetAddr();
+        return { .unk00 = (_InterlockedIncrement64(counter) * 4) | 1 };
+    }
+
     int64_t unk00; // 00
 };
 RED4EXT_ASSERT_SIZE(CRUID, 0x8);

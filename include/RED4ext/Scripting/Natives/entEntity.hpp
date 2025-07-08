@@ -9,7 +9,7 @@
 #include <RED4ext/Scripting/Natives/Generated/ECustomCameraTarget.hpp>
 #include <RED4ext/Scripting/Natives/Generated/RenderSceneLayerMask.hpp>
 #include <RED4ext/Scripting/Natives/entComponentsStorage.hpp>
-//#include <RED4ext/Scripting/Natives/Generated/ent/PlaceholderComponent.hpp>
+#include <RED4ext/Scripting/Natives/Generated/ent/PlaceholderComponent.hpp>
 #include <RED4ext/Scripting/Natives/entEntityDefinition.hpp>
 #include <RED4ext/Scripting/Natives/ScriptGameInstance.hpp>
 #include <RED4ext/ResourcePath.hpp>
@@ -184,7 +184,7 @@ struct Entity : IScriptable
     ResourcePath resource;                      // 60 templatePath
     uint64_t unk68;
     ComponentsStorage componentsStorage;        // 70
-    void* placeholder;                          // B0
+    PlaceholderComponent * placeholder;                          // B0
     world::RuntimeScene* runtime;               // B8
     ScriptGameInstance* scriptGameInstance;     // C0
     Handle<void> unkC8;                         // C8
