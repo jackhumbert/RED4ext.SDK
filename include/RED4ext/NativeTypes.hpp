@@ -38,7 +38,9 @@ struct CRUID
 {
     static inline CRUID Next() {
         static auto counter = UniversalRelocPtr<volatile int64_t>(2027097961).GetAddr();
-        return { .unk00 = (_InterlockedIncrement64(counter) * 4) | 1 };
+        auto value = (_InterlockedIncrement64(counter) * 4) | 1;
+        // spdlog::info("Dynamic CRUID: {}", value);
+        return { .unk00 = value };
     }
 
     int64_t unk00; // 00

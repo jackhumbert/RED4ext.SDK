@@ -19,7 +19,7 @@ struct TweakDBRecord : IScriptable
     virtual ~TweakDBRecord() override = default;
 
     virtual void sub_108() { };                    // 108
-    virtual uint32_t GetTweakBaseHash() const { }; // 110 - Murmur3 of record type name
+    virtual uint32_t GetTweakBaseHash() const; // { }; // 110 - Murmur3 of record type name
 
     TweakDBID recordID;
 };

@@ -11,11 +11,13 @@ namespace game::data
 #pragma pack(push, 1)
 struct TweakValue
 {
-  uint32_t unk00;
-  uint8_t unk04;
-  uint8_t unk05;
-  uint32_t unk06;
-  uint16_t unk0A;
+  uint32_t hash;          // 00
+  uint8_t length;         // 04
+  uint8_t tdbOffsetBE[3]; // 05
+  uint8_t spinLock;       // 08
+  uint8_t unk09;
+  uint8_t unk0A;
+  uint8_t unk0B;
 };
 #pragma pack(pop)
 
