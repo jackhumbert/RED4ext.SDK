@@ -155,6 +155,39 @@ struct Entity : IScriptable
     /// @pattern 48 89 5C 24 08 48 89 74 24 10 48 89 7C 24 18 4C 89 64 24 20 55 41 56 41 57 48 8B EC 48 81 EC 80
     void SetRuntime(__int64 a2);
 
+
+    template<class T>
+    Handle<T> GetComponent() {
+        auto rtti = CRTTISystem::Get();
+        Handle<T> result;
+        for (auto const &handle : this->componentsStorage.components) {
+            auto component = handle.GetPtr();
+            if (component->GetNativeType() == rtti->GetClass(T::NAME)) {
+                result.instance = reinterpret_cast<T *>(component);
+                result.refCount = handle.refCount;
+                result.refCount->IncRef();
+                break;
+            }
+        }
+        return result;
+    }
+
+    template<class T>
+    Handle<T> GetComponent(CName name) {
+        auto rtti = CRTTISystem::Get();
+        Handle<T> result;
+        for (auto const &handle : this->componentsStorage.components) {
+            auto component = handle.GetPtr();
+            if (component->GetNativeType() == rtti->GetClass(T::NAME) && component->name == name) {
+                result.instance = reinterpret_cast<T *>(component);
+                result.refCount = handle.refCount;
+                result.refCount->IncRef();
+                break;
+            }
+        }
+        return result;
+    }
+
     enum class ComponentFlags : uint8_t {
         unk1 = 0x1,
         hasAnimatedComponent = 0x2,
