@@ -28,7 +28,7 @@ struct CompiledEffectInfo
     DynArray<Quaternion> relativeRotations; // 30
     DynArray<world::CompiledEffectPlacementInfo> placementInfos; // 40
     DynArray<world::CompiledEffectEventInfo> eventsSortedByRUID; // 50
-    uint8_t unk60[0x68 - 0x60]; // 60
+    uint8_t unk60; // 60
 };
 RED4EXT_ASSERT_SIZE(CompiledEffectInfo, 0x68);
 } // namespace world

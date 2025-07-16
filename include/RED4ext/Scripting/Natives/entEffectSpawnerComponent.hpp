@@ -8,9 +8,11 @@
 #include <RED4ext/Handle.hpp>
 #include <RED4ext/Scripting/Natives/Generated/ent/IVisualComponent.hpp>
 #include <RED4ext/Scripting/Natives/Generated/world/Effect.hpp>
+#include <RED4ext/Scripting/Natives/Generated/world/CompiledEffectInfo.hpp>
 
 namespace RED4ext
 {
+
 namespace ent { struct EffectDesc; }
 
 namespace ent { 
@@ -19,10 +21,44 @@ struct EffectSpawnerComponent : IVisualComponent
     static constexpr const char* NAME = "entEffectSpawnerComponent";
     static constexpr const char* ALIAS = NAME;
 
+    void UpdateCache(world::CompiledEffectInfo const & compiledEffectInfo) {
+        IHookable::StaticHook<void, 3519030832>(this, compiledEffectInfo);
+    }
+
+    void StopAllEffects(bool a2) {
+        IHookable::StaticHook<void, 518525837>(this, a2);
+    }
+
+    struct RunningEffectEntry {
+        uint64_t unk00;
+        uint64_t unk08;
+        WeakHandle<EffectDesc> effect;
+        uint64_t unk20;
+        uint64_t unk28;
+    };
+
+    struct SlotComponentCache {
+        uint64_t unk00;
+        uint64_t unk08;
+        uint64_t unk10;
+    };
+
     DynArray<Handle<EffectDesc>> effectDescs; // 140
-    DynArray<void *> activeEffects; // 150
+    DynArray<RunningEffectEntry> activeEffects; // 150
     DynArray<RaRef<RED4ext::world::Effect>> resources; // 160
-    uint8_t unk150[0x230 - 0x170]; // 170
+    // uint8_t unk150[0x230 - 0x170]; // 170
+    Map<CName, SlotComponentCache> componentCache; // 170
+    Map<CName, WeakHandle<ent::IVisualComponent>> components; // 198
+    WeakHandle<ISerializable> unk1C0; // 1C0 animatedComponentCache
+    DynArray<void *> unk1D0;
+    DynArray<void *> unk1E0;
+    uint64_t unk1F0;
+    uint64_t unk1F8;
+    uint64_t unk200;
+    DynArray<EffectDesc const *> effectPointers; // 208
+    uint64_t unk218;
+    void * effectSpawnerSaveSystem; // 220
+    uint64_t unk228;
 };
 RED4EXT_ASSERT_SIZE(EffectSpawnerComponent, 0x230);
 } // namespace ent

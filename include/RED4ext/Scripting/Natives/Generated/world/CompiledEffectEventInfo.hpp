@@ -20,6 +20,7 @@ struct CompiledEffectEventInfo
     CRUID eventRUID; // 00
     uint64_t placementIndexMask; // 08
     uint64_t componentIndexMask; // 10
+    // 1: Enabled
     uint8_t flags; // 18
     uint8_t unk19[0x20 - 0x19]; // 19
 };
