@@ -553,11 +553,11 @@ struct BaseObject : game::Object, IHookable
     Acoustics *acoustics;
     Handle<Autopilot> autopilot;
     Handle<Destruction> destruction;
-    MeshParamsRegistry * meshParamsRegistry;
-    float unk618;
-    uint8_t permanantStun2;
-    uint8_t unk61D;
-    uint16_t permanantStun1;
+    Handle<MeshParamsRegistry> meshParamsRegistry;
+    // float unk618;
+    // uint8_t permanantStun2;
+    // uint8_t unk61D;
+    // uint16_t permanantStun1;
     float unk620;
     uint8_t unk624;
     uint8_t unk625;
@@ -631,7 +631,6 @@ struct BaseObject : game::Object, IHookable
     uint8_t unkA16;
     uint8_t unkA17;
     uint32_t unkA18[4];
-    uint64_t unkA28_new[2];
     uint64_t unkA28[5];
     uint8_t unkA50;
     uint8_t unkA51;
@@ -662,170 +661,6 @@ struct BaseObject : game::Object, IHookable
     DynArray<void*> unkB30;
     uint64_t unkB40[4];
     HashMap<uint32_t, void*> unkB60;
-
-    /* pre-2.0
-    world::RuntimeSystemPhysics* physicsSystem;
-    // resets when isOnGround, counts up otherwise
-    float airTimer;
-    bool isOnGround;
-    uint8_t unk24D[3];
-    PhysicsState physicsState;
-    float acceleration;
-    float deceleration;
-    float handbrake;
-    float strafeY;
-    float strafeX;
-    float turnInput;
-    float leanFB;
-    float rockFB;
-    uint8_t shootPrimary;
-    uint8_t shootSecondary;
-    uint8_t shootTertiary;
-    uint8_t vehicleCameraInverse;
-    float cameraX;
-    float cameraY;
-    float cameraMouseX;
-    float cameraMouseY;
-    uint8_t cycleLights;
-    uint8_t horn;
-    uint8_t unk28A;
-    uint8_t unk28B;
-    float unk28C;
-    float unk290;
-    float unk294;
-    float unk298;
-    float unk29C;
-    float unk2A0;
-    float unk2A4;
-    float unk2A8;
-    float unk2AC;
-    Physics* physics;             // 2B0
-    PhysicsData* physicsData; // 2B8
-    Handle<void> curveSetData;
-    Handle<ChassisComponent> chassis;
-    float unk2E0[16];
-    uint64_t chassisType;
-    uint64_t unk328;
-    WorldTransform worldTransform;
-    Vector3 unk350;
-    float unk35C;
-    uint8_t unk360;
-    uint8_t unk361;
-    uint8_t unk362;
-    uint8_t unk363;
-    float unk364;
-    Unk368 *unk368;
-    CName unk370;
-    Handle<move::Component> moveComponent;
-    action::ActionInterface actionInterface; // 388
-    Handle<void> baseDrivingParams[4];
-    Handle<game::interactions::Component> interactionsComponent;
-    Handle<game::interactions::Component> passengerInteractions;
-    Handle<Controller> vehicleController;
-    Handle<PersistentDataPS> PersistentDataPS;
-    Handle<CameraManager> cameraManager;
-    game::VehicleSystem* vehicleSystem;
-    Handle<game::IBlackboard> blackboard;
-    Handle<void> blackboard2;
-    Handle<void> controllerMaybe;
-    uint64_t unk540;
-    Handle<game::Puppet> drivingPuppet;
-    Handle<game::Puppet> mountedPuppet;
-    Collisions* collisions; // 568
-    Effects* Effects;       // 570
-    AirControl* airControl; // 578
-    Acoustics* acoustics;   // 580
-    Unk588* unk588;         // 588
-    void* unk590;
-    void* destructionParams;
-    void* unk5A0;
-    void* unk5A8;
-    float turnX;
-    float turnXRelated2;
-    float turnXRelated;
-    float deltaTurnX;
-    Handle<game::OccupantSlotComponent> occupantSlotComponent;
-    uint64_t unkTweakRecord; // 1488 0x5D0
-    Handle<game::data::Vehicle_Record> vehicleRecord;
-    float unk5E8;
-    float unk5EC;
-    float unk5F0;
-    float unk5F4;
-    float unk5F8;
-    uint8_t permanantStun2;
-    // gravity related
-    uint8_t unk5FD;
-    uint16_t permanantStun1;
-    float unk600;
-    uint8_t unk604;
-    uint8_t unk605;
-    uint8_t unk606;
-    uint8_t unk607;
-    // timer that counts down to zero (min value)
-    float unk608;
-    // added to on collision
-    int32_t unk60C;
-    uint8_t important;
-    uint8_t ignoreImpulses;
-    uint8_t unk612;
-    uint8_t unk613;
-    uint8_t unk614;
-    // was summoned maybe?
-    uint8_t unk615;
-    uint8_t highPriorityDriving;
-    uint8_t unk617;
-    DynArray<void*> uiComponents;
-    float unk628;
-    float unk62C;
-    // updated & compared to each other - some bigger struct
-    float unk630;
-    float unk634;
-    Vector4 unk638;
-    Vector4 unk648;
-    Vector4 unk658;
-    Matrix unk668;
-    float unk6A8[10];
-    // comes from unk588 maybe
-    RED4ext::Transform unk6D0;
-    uint64_t unk6F0[2];
-    float max_tolerance_radius;
-    float acc_pid_p;
-    float acc_pid_i;
-    float acc_pid_d;
-    uint64_t unk710[10];
-    AutonomousData autonomousData;
-    uint8_t hasDestructionParams;
-    uint8_t unk8B1;
-    uint8_t unk8B2;
-    uint8_t unk8B3;
-    float unk8B4[5];
-    DynArray<void*> unk8C8;
-    uint64_t unk8D8[2];
-    Vector3 unk8E8;
-    float unk8F4;
-    DynArray<Handle<ent::Entity>> projectiles;
-    uint8_t updatingProjectiles;
-    uint8_t unk909;
-    uint8_t unk90A;
-    uint8_t unk90B;
-    float unk90C;
-    uint32_t unk910[8];
-    uint8_t meleeHonkDelay[3];
-    uint8_t meleeHonkDuration[3];
-    uint8_t collisionHonkDelay[3];
-    uint8_t collisionHonkDuration[3];
-    uint8_t collisionHonkUpperThreshold[3];
-    uint8_t unk93F;
-    DynArray<Weapon> weapons;
-    Vector3 tracePosition;
-    uint8_t unk95C;
-    uint8_t unk95D;
-    uint8_t unk95E;
-    uint8_t unk95F;
-    uint64_t unk960;
-    DynArray<void*> puppets;
-    uint64_t unk978;
-    */
 };
 // #pragma pack(pop)
 RED4EXT_ASSERT_SIZE(BaseObject, 0xBA0);
@@ -839,7 +674,8 @@ RED4EXT_ASSERT_OFFSET(BaseObject, isOnGround, 0x25C);
 RED4EXT_ASSERT_OFFSET(BaseObject, physics, 0x2C8);
 RED4EXT_ASSERT_OFFSET(BaseObject, input, 0x264);
 RED4EXT_ASSERT_OFFSET(BaseObject, meshParamsRegistry, 0x610);
-RED4EXT_ASSERT_OFFSET(BaseObject, destruction_related, 0xA10);
+RED4EXT_ASSERT_OFFSET(BaseObject, autonomousData, 0x860);
+RED4EXT_ASSERT_OFFSET(BaseObject, destruction_related, 0xA20);
 // char (*__kaboom)[sizeof(BaseObject)] = 1;
 // char (*__kaboom2)[offsetof(BaseObject, physicsSystem)] = 1;
 }
