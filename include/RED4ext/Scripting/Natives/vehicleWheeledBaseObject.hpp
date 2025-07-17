@@ -65,7 +65,7 @@ struct WheeledBaseObject : vehicle::BaseObject
     float tireOnVehicleDamageImpulseScalor;
     uint64_t unkBC8[3];
 };
-RED4EXT_ASSERT_SIZE(WheeledBaseObject, 0xBE0);
+RED4EXT_ASSERT_SIZE(WheeledBaseObject, 0xBF0);
 } // namespace vehicle
 using WheeledObject = vehicle::WheeledBaseObject;
 } // namespace RED4ext

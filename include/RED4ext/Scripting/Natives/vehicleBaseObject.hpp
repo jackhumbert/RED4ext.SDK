@@ -631,6 +631,7 @@ struct BaseObject : game::Object, IHookable
     uint8_t unkA16;
     uint8_t unkA17;
     uint32_t unkA18[4];
+    uint64_t unkA28_new[2];
     uint64_t unkA28[5];
     uint8_t unkA50;
     uint8_t unkA51;
@@ -827,7 +828,7 @@ struct BaseObject : game::Object, IHookable
     */
 };
 // #pragma pack(pop)
-RED4EXT_ASSERT_SIZE(BaseObject, 0xB90);
+RED4EXT_ASSERT_SIZE(BaseObject, 0xBA0);
 RED4EXT_ASSERT_OFFSET(BaseObject, physics, 0x2C8);
 RED4EXT_ASSERT_OFFSET(BaseObject, input, 0x264);
 RED4EXT_ASSERT_OFFSET(BaseObject, meshParamsRegistry, 0x610);
