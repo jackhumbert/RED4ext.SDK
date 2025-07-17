@@ -48,40 +48,54 @@ struct MappinsContainerController : game::ui::ProjectedHUDGameController
 
     uint64_t unk148[3];
     ink::WidgetPath spawnContainerPath; // 178
-    void* binkSystem;
-    void* questSystem;
-    uint64_t gpsQuestPathWidget[3]; // 198
-    uint64_t gpsPlayerTrackedPathWidget[3]; // 1B0
-    Handle<void> controllerSubtype; // 1C8
-    DynArray<void*> unk1C0; // 1D8
 
-    WeakHandle<game::mappins::QuestMappin> questMappin; // 1E8
-    DynArray<Vector4> questMappinPoints; // 1F8
-    uint64_t hasQuestMappin; // 208
-    WeakHandle<game::mappins::IMappin> poiMappin; // 210
-    DynArray<Vector4> poiMappinPoints; // 220
-    uint64_t hasPoiMappin; // 230
-    uint64_t unk220; // 240
-    volatile signed __int8 needsUpdateMaybe; // 248
-    Handle<void> callback; // 250
-    Handle<void> callback2; // 260
-    Handle<void> callback3; // 270
-    Handle<void> callback4; // 280
-    uint32_t psmVision; // 288
-    uint32_t psmCombat; // 28C
-    uint32_t psmZone; // 290
-    GameplayTier tier; // 294
-    uint32_t braindance;
-    uint32_t unk284;
-    void* unk288[4];
-    volatile signed __int8 mappinsNeedUpdatingMaybe;
-    DynArray<Handle<game::mappins::RuntimeMappin>> mappins;
-    Handle<void> insert;
+//     void* binkSystem;
+//     void* questSystem;
+//     uint64_t gpsQuestPathWidget[3]; // 198
+//     uint64_t gpsPlayerTrackedPathWidget[3]; // 1B0
+//     Handle<void> controllerSubtype; // 1C8
+//     DynArray<void*> unk1C0; // 1D8
+
+//     WeakHandle<game::mappins::QuestMappin> questMappin; // 1E8
+//     DynArray<Vector4> questMappinPoints; // 1F8
+//     uint64_t hasQuestMappin; // 208
+//     WeakHandle<game::mappins::IMappin> poiMappin; // 210
+//     DynArray<Vector4> poiMappinPoints; // 220
+//     uint64_t hasPoiMappin; // 230
+//     uint64_t unk220; // 240
+//     volatile signed __int8 needsUpdateMaybe; // 248
+//     Handle<void> callback; // 250
+//     Handle<void> callback2; // 260
+//     Handle<void> callback3; // 270
+//     Handle<void> callback4; // 280
+//     uint32_t psmVision; // 288
+//     uint32_t psmCombat; // 28C
+//     uint32_t psmZone; // 290
+//     GameplayTier tier; // 294
+//     uint32_t braindance;
+//     uint32_t unk284;
+//     void* unk288[4];
+//     volatile signed __int8 mappinsNeedUpdatingMaybe;
+//     DynArray<Handle<game::mappins::RuntimeMappin>> mappins;
+//     Handle<void> insert;
+// };
+// RED4EXT_ASSERT_SIZE(MappinsContainerController, 0x2E8);
+// RED4EXT_ASSERT_OFFSET(MappinsContainerController, questMappinPoints, 0x1E0 + 0x18);
+// RED4EXT_ASSERT_OFFSET(MappinsContainerController, poiMappinPoints, 0x208 + 0x18);
+
+    uint8_t unk188[0x198 - 0x188]; // 188
+    ink::LinePatternWidgetReference gpsQuestPathWidget; // 198
+    ink::LinePatternWidgetReference gpsPlayerTrackedPathWidget; // 1B0
+    ink::LinePatternWidgetReference gpsDelamainPathWidget; // 1C8
+    ink::LinePatternWidgetReference autodrivePathWidget; // 1E0
+    uint8_t unk1F8[0x2E0 - 0x1F8]; // 1F8
+    game::PSMVision psmVision; // 2E0
+    game::PSMCombat psmCombat; // 2E4
+    game::PSMZones psmZone; // 2E8
+    GameplayTier tier; // 2EC
+    uint8_t unk2F0[0x340 - 0x2F0]; // 2F0
 };
-RED4EXT_ASSERT_SIZE(MappinsContainerController, 0x2E8);
-RED4EXT_ASSERT_OFFSET(MappinsContainerController, questMappinPoints, 0x1E0 + 0x18);
-RED4EXT_ASSERT_OFFSET(MappinsContainerController, poiMappinPoints, 0x208 + 0x18);
-
+RED4EXT_ASSERT_SIZE(MappinsContainerController, 0x340);
 } // namespace game::ui
 using gameuiMappinsContainerController = game::ui::MappinsContainerController;
 using MappinsContainerController = game::ui::MappinsContainerController;

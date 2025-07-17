@@ -41,9 +41,9 @@ struct CActionsFactory : game::IActionsFactory
     HashMap<uint64_t, uint64_t> actions;
     uint32_t totalSize;
     uint32_t unk2D4;
-    uint8_t unk2D8[0x2F0 - 0x2D8]; // 2D8
+    uint8_t unk2D8[0x2F8 - 0x2D8]; // 2D8
 };
-RED4EXT_ASSERT_SIZE(CActionsFactory, 0x2F0);
+RED4EXT_ASSERT_SIZE(CActionsFactory, 0x2F8);
 } // namespace game
 using gameCActionsFactory = game::CActionsFactory;
 } // namespace RED4ext

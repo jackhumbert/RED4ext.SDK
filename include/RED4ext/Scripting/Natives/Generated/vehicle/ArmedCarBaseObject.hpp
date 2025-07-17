@@ -18,9 +18,9 @@ namespace vehicle
 //     static constexpr const char* NAME = "vehicleArmedCarBaseObject";
 //     static constexpr const char* ALIAS = NAME;
 
-//     uint8_t unkC30[0xCF0 - 0xC30]; // C30
+//     uint8_t unkC30[0xD00 - 0xC40]; // C40
 // };
-RED4EXT_ASSERT_SIZE(ArmedCarBaseObject, 0xCF0);
+RED4EXT_ASSERT_SIZE(ArmedCarBaseObject, 0xD00);
 } // namespace vehicle
 using vehicleArmedCarBaseObject = vehicle::ArmedCarBaseObject;
 } // namespace RED4ext

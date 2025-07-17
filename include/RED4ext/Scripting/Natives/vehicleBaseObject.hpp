@@ -829,14 +829,20 @@ struct BaseObject : game::Object, IHookable
 };
 // #pragma pack(pop)
 RED4EXT_ASSERT_SIZE(BaseObject, 0xBA0);
+RED4EXT_ASSERT_OFFSET(BaseObject, isOnGround, 0x25C);
+// RED4EXT_ASSERT_OFFSET(BaseObject, acceleration, 0x264);
+// RED4EXT_ASSERT_OFFSET(BaseObject, deceleration, 0x268);
+// RED4EXT_ASSERT_OFFSET(BaseObject, isReversing, 0x2A3);
+// RED4EXT_ASSERT_OFFSET(BaseObject, burnout, 0x2BC);
+// RED4EXT_ASSERT_OFFSET(BaseObject, archetype, 0x3A0);
+// RED4EXT_ASSERT_OFFSET(BaseObject, isVehicleOnStateLocked, 0x6D2);
 RED4EXT_ASSERT_OFFSET(BaseObject, physics, 0x2C8);
 RED4EXT_ASSERT_OFFSET(BaseObject, input, 0x264);
 RED4EXT_ASSERT_OFFSET(BaseObject, meshParamsRegistry, 0x610);
 RED4EXT_ASSERT_OFFSET(BaseObject, destruction_related, 0xA10);
 // char (*__kaboom)[sizeof(BaseObject)] = 1;
 // char (*__kaboom2)[offsetof(BaseObject, physicsSystem)] = 1;
-} // namespace vehicle
-
+}
 
 //     uint8_t unk240[0x25C - 0x240]; // 240
 //     bool isOnGround;               // 25C
