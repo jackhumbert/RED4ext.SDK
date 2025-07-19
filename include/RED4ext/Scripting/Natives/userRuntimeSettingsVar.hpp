@@ -119,11 +119,11 @@ struct RuntimeSettingsVar
         bitfield = (ConfigVarFlags)0ui32;
     }
 
-    virtual RED4ext::Memory::IAllocator* __fastcall GetAllocator(RuntimeSettingsVar*)
+    virtual RED4ext::Memory::IAllocator* __fastcall GetAllocator(RuntimeSettingsVar*) // 00
     {
         return new Memory::DefaultAllocator();
     }
-    virtual RuntimeSettingsVar* __fastcall Deinitialize(bool shouldFree)
+    virtual RuntimeSettingsVar* __fastcall Deinitialize(bool shouldFree) // 08
     {
         if (displayNameKeys.capacity)
         {
@@ -135,35 +135,38 @@ struct RuntimeSettingsVar
         }
         return this;
     }
-    virtual bool __fastcall WasModifiedSinceLastSave() = 0;
-    virtual bool __fastcall HasChange() = 0; // HasRequestedValue
-    virtual bool __fastcall IsDefault() = 0; // HasDefaultValue
-    virtual bool __fastcall RestoreDefault(uint8_t) = 0;
-    virtual void __fastcall SetRequestedValue(void* value) = 0; // InternalSetRequestedValue
-    virtual void __fastcall AcceptChange() = 0; // InternalAcceptValue
-    virtual void __fastcall RejectChange() = 0; // InternalRejectValue
-    virtual void __fastcall MarkAsSaved() = 0; // InternalMarkAsSaved
-    virtual void __fastcall LoadValue(void* value) = 0; // InternalLoadValue
+    virtual bool __fastcall WasModifiedSinceLastSave() = 0; // 10
+    virtual bool __fastcall HasChange() = 0; // 18 HasRequestedValue
+    virtual bool __fastcall IsDefault() = 0; // 20 HasDefaultValue
+    virtual bool __fastcall RestoreDefault(uint8_t) = 0; // 28
+    virtual void __fastcall SetRequestedValue(void* value) = 0; // 30 InternalSetRequestedValue
+    virtual void __fastcall AcceptChange() = 0; // 38 InternalAcceptValue
+    virtual void __fastcall RejectChange() = 0; // 40 InternalRejectValue
+    virtual void __fastcall MarkAsSaved() = 0; // 48 InternalMarkAsSaved
+    virtual void __fastcall LoadValue(void* value) = 0; // 50 InternalLoadValue
 
     CName name = CName();            // 08
     CName groupPath = CName();       // 10
     CName displayName = CName();     // 18
     DynArray<CName> displayNameKeys; // 20
     CName description = CName();     // 30
+    CName warning = CName();         // 38 new in 2.3, messed up all other struct sizes, but MS doesn't use those
     EConfigVarType type;             // 38
     EConfigVarUpdatePolicy updatePolicy = EConfigVarUpdatePolicy::Immediately;
     EConfigVarImportPolicy importPolicy = EConfigVarImportPolicy::ReadValue;
-    uint8_t unk3B;
-    ConfigVarFlags bitfield;
-    uint32_t order;
+    uint8_t unk3B;                  // 43
+    ConfigVarFlags bitfield;        // 44
+    uint32_t order;                 // 48
     // last update flag
-    uint8_t unk44;
+    uint8_t unk44;                  // 4C
     // assigned to in init
-    uint8_t unk45;
-    uint8_t unk46;
-    uint8_t unk47;
+    uint8_t unk45;                  // 4D
+    uint8_t unk46;                  // 4E
+    uint8_t unk47;                  // 4F
+    uint32_t unk50_new;             // 50 new in 2.3, maybe?
 };
-RED4EXT_ASSERT_SIZE(RuntimeSettingsVar, 0x48);
+// RED4EXT_ASSERT_SIZE(RuntimeSettingsVar, 0x48);
+RED4EXT_ASSERT_SIZE(RuntimeSettingsVar, 0x54);
 // char (*__kaboom)[sizeof(RuntimeSettingsVar)] = 1;
 
 struct RuntimeSettingsVarBool : public RuntimeSettingsVar
@@ -291,7 +294,7 @@ struct RuntimeSettingsVarBool : public RuntimeSettingsVar
     uint8_t valueWrittenToFile;
     uint32_t unk4C;
 };
-RED4EXT_ASSERT_SIZE(RuntimeSettingsVarBool, 0x50);
+// RED4EXT_ASSERT_SIZE(RuntimeSettingsVarBool, 0x50);
 // char (*__kaboom)[sizeof(RuntimeSettingsVarBool)] = 1;
 
 struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
@@ -422,7 +425,7 @@ struct RuntimeSettingsVarFloat : public RuntimeSettingsVar
     float stepValue;          // 60
     uint32_t unk64;           // 64
 };
-RED4EXT_ASSERT_SIZE(RuntimeSettingsVarFloat, 0x68);
+// RED4EXT_ASSERT_SIZE(RuntimeSettingsVarFloat, 0x68);
 
 struct RuntimeSettingsVarFloatList : public RuntimeSettingsVar
 {
@@ -442,7 +445,7 @@ struct RuntimeSettingsVarFloatList : public RuntimeSettingsVar
     DynArray<float> values;        // 60
     DynArray<CName> displayValues; // 70
 };
-RED4EXT_ASSERT_SIZE(RuntimeSettingsVarFloatList, 0x80);
+// RED4EXT_ASSERT_SIZE(RuntimeSettingsVarFloatList, 0x80);
 
 struct RuntimeSettingsVarInt : public RuntimeSettingsVar
 {
@@ -572,7 +575,7 @@ struct RuntimeSettingsVarInt : public RuntimeSettingsVar
     uint32_t stepValue;
     uint32_t unk64;
 };
-RED4EXT_ASSERT_SIZE(RuntimeSettingsVarInt, 0x68);
+// RED4EXT_ASSERT_SIZE(RuntimeSettingsVarInt, 0x68);
 
 struct RuntimeSettingsVarIntList : public RuntimeSettingsVar
 {
@@ -714,7 +717,7 @@ struct RuntimeSettingsVarIntList : public RuntimeSettingsVar
     DynArray<int32_t> values;      // 60
     DynArray<CName> displayValues; // 70
 };
-RED4EXT_ASSERT_SIZE(RuntimeSettingsVarIntList, 0x80);
+// RED4EXT_ASSERT_SIZE(RuntimeSettingsVarIntList, 0x80);
 
 struct RuntimeSettingsVarName : RuntimeSettingsVar
 {
@@ -731,7 +734,7 @@ struct RuntimeSettingsVarName : RuntimeSettingsVar
     CName valueInput;
     CName valueWrittenToFile;
 };
-RED4EXT_ASSERT_SIZE(RuntimeSettingsVarName, 0x68);
+// RED4EXT_ASSERT_SIZE(RuntimeSettingsVarName, 0x68);
 
 struct RuntimeSettingsVarNameList : RuntimeSettingsVar
 {
@@ -888,7 +891,7 @@ struct RuntimeSettingsVarNameList : RuntimeSettingsVar
     DynArray<CName> values;        // 60
     DynArray<CName> displayValues; // 70
 };
-RED4EXT_ASSERT_SIZE(RuntimeSettingsVarNameList, 0x80);
+// RED4EXT_ASSERT_SIZE(RuntimeSettingsVarNameList, 0x80);
 
 struct RuntimeSettingsVarStringList : RuntimeSettingsVar
 {
@@ -907,7 +910,7 @@ struct RuntimeSettingsVarStringList : RuntimeSettingsVar
     DynArray<CString> values;      // 78
     DynArray<CName> displayValues; // 88
 };
-RED4EXT_ASSERT_SIZE(RuntimeSettingsVarStringList, 0x98);
+// RED4EXT_ASSERT_SIZE(RuntimeSettingsVarStringList, 0x98);
 #pragma pack(pop)
 } // namespace user
 } // namespace RED4ext
