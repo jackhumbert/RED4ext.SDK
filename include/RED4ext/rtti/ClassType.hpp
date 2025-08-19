@@ -20,7 +20,8 @@ struct CClassFunction;
 struct CClassStaticFunction;
 struct Variant;
 
-namespace rtti {
+namespace rtti 
+{
 
 struct ClassType : IType
 {

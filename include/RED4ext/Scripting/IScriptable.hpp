@@ -4,7 +4,7 @@
 
 #include <RED4ext/Handle.hpp>
 #include <RED4ext/ISerializable.hpp>
-#include <RED4ext/rtti/ClassType.hpp>
+#include <RED4ext/RTTI/ClassType.hpp>
 
 namespace RED4ext
 {

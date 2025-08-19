@@ -9,7 +9,7 @@
 #include <RED4ext/HashMap.hpp>
 #include <RED4ext/Scripting/Natives/Generated/rend/SingleScreenShotData.hpp>
 #include <RED4ext/Scripting/Natives/Generated/services/GameServices.hpp>
-#include <RED4ext/rtti/IType.hpp>
+#include <RED4ext/RTTI/IType.hpp>
 
 namespace RED4ext
 {

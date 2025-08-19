@@ -1,12 +1,12 @@
 #pragma once
 
 #ifdef RED4EXT_STATIC_LIB
-#include <RED4ext/Scripting/CProperty.hpp>
+#include <RED4ext/RTTI/Property.hpp>
 #endif
 
 #include <RED4ext/CNamePool.hpp>
 
-RED4EXT_INLINE RED4ext::CProperty::CProperty(CBaseRTTIType* aType, const char* aName, CClass* aParent,
+RED4EXT_INLINE RED4ext::rtti::Property::Property(IType* aType, const char* aName, ClassType* aParent,
                                              uint32_t aValueOffset, const char* aGroup, Flags aFlags)
     : type(aType)
     , parent(aParent)
@@ -28,15 +28,15 @@ RED4EXT_INLINE RED4ext::CProperty::CProperty(CBaseRTTIType* aType, const char* a
     group = CNamePool::Add(aGroup);
 }
 
-RED4EXT_INLINE RED4ext::CProperty* RED4ext::CProperty::Create(CBaseRTTIType* aType, const char* aName, CClass* aParent,
+RED4EXT_INLINE RED4ext::rtti::Property* RED4ext::rtti::Property::Create(IType* aType, const char* aName, ClassType* aParent,
                                                               uint32_t aValueOffset, const char* aGroup, Flags aFlags)
 {
     Memory::RTTIPropertyAllocator allocator;
-    auto prop = allocator.Alloc<CProperty>();
+    auto prop = allocator.Alloc<Property>();
     if (!prop)
     {
         return nullptr;
     }
 
-    return new (prop) CProperty(aType, aName, aParent, aValueOffset, aGroup, aFlags);
+    return new (prop) Property(aType, aName, aParent, aValueOffset, aGroup, aFlags);
 }

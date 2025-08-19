@@ -1,7 +1,7 @@
 #pragma once
 
 #ifdef RED4EXT_STATIC_LIB
-#include <RED4ext/rtti/ClassType.hpp>
+#include <RED4ext/RTTI/ClassType.hpp>
 #endif
 
 #include <RED4ext/CNamePool.hpp>

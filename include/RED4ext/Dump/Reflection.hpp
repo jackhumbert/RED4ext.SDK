@@ -7,7 +7,7 @@
 #include <unordered_set>
 
 #include <RED4ext/CName.hpp>
-#include <RED4ext/rtti/ClassType.hpp>
+#include <RED4ext/RTTI/ClassType.hpp>
 
 namespace RED4ext
 {

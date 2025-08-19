@@ -10,8 +10,8 @@
 #include <RED4ext/InstanceType.hpp>
 #include <RED4ext/Map.hpp>
 #include <RED4ext/Utils.hpp>
-#include <RED4ext/rtti/IType.hpp>
-#include <RED4ext/rtti/ClassType.hpp>
+#include <RED4ext/RTTI/IType.hpp>
+#include <RED4ext/RTTI/ClassType.hpp>
 
 namespace RED4ext
 {

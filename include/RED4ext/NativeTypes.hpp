@@ -16,7 +16,7 @@
 #include <RED4ext/ResourceReference.hpp>
 #include <RED4ext/Scripting/Natives/Generated/curve/EInterpolationType.hpp>
 #include <RED4ext/Scripting/Natives/Generated/curve/ESegmentsLinkType.hpp>
-#include <RED4ext/rtti/IType.hpp>
+#include <RED4ext/RTTI/IType.hpp>
 
 namespace RED4ext
 {

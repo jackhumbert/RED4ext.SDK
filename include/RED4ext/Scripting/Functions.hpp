@@ -7,7 +7,7 @@
 #include <RED4ext/InstanceType.hpp>
 #include <RED4ext/Memory/Allocators.hpp>
 #include <RED4ext/Scripting/Script.hpp>
-#include <RED4ext/rtti/IType.hpp>
+#include <RED4ext/RTTI/IType.hpp>
 
 namespace RED4ext
 {

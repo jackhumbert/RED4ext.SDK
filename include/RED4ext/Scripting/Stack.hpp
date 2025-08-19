@@ -4,7 +4,7 @@
 
 #include <RED4ext/InstanceType.hpp>
 #include <RED4ext/Scripting/Functions.hpp>
-#include <RED4ext/rtti/CLassType.hpp>
+#include <RED4ext/RTTI/CLassType.hpp>
 
 namespace RED4ext
 {
