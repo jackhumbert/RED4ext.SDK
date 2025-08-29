@@ -15,6 +15,14 @@ namespace RED4ext
 
 namespace ent { struct EffectDesc; }
 
+
+struct EffectSpawnerComponentTransformProvider {
+    virtual void GetMemoryPool() {}
+
+    Handle<EffectSpawnerComponentTransformProvider> handle; // 08
+    ent::IComponent * component; // 18
+};
+
 namespace ent { 
 struct EffectSpawnerComponent : IVisualComponent
 {
@@ -42,7 +50,6 @@ struct EffectSpawnerComponent : IVisualComponent
         uint64_t unk08;
         uint64_t unk10;
     };
-
     DynArray<Handle<EffectDesc>> effectDescs; // 140
     DynArray<RunningEffectEntry> activeEffects; // 150
     DynArray<RaRef<RED4ext::world::Effect>> resources; // 160
@@ -52,11 +59,12 @@ struct EffectSpawnerComponent : IVisualComponent
     WeakHandle<ISerializable> unk1C0; // 1C0 animatedComponentCache
     DynArray<void *> unk1D0;
     DynArray<void *> unk1E0;
-    uint64_t unk1F0;
-    uint64_t unk1F8;
-    uint64_t unk200;
+    uint32_t unk1F0;
+    uint32_t unk1F4;
+    WeakHandle<EffectSpawnerComponentTransformProvider> transformProvider;
     DynArray<EffectDesc const *> effectPointers; // 208
-    uint64_t unk218;
+    uint32_t unk218;
+    uint32_t unk21C;
     void * effectSpawnerSaveSystem; // 220
     uint64_t unk228;
 };
