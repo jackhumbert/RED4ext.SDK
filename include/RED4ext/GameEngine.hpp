@@ -100,52 +100,56 @@ struct CBaseEngine
     };
     RED4EXT_ASSERT_SIZE(Unk110, 0x10);
 
-    virtual CBaseRTTIType* GetNativeType() = 0;      // 00
-    virtual CBaseRTTIType* GetParentType() = 0;      // 08
-    virtual Memory::IAllocator* GetAllocator() = 0;  // 10
-    virtual ~CBaseEngine() = 0;                      // 18
-    // checks unkF8 against 5, 4
-    virtual void sub_20() = 0;
-    // checks unkF8 against 4, 5
-    virtual void sub_28() = 0;
-    // something with SystemMenuPause CName
-    virtual void sub_30() = 0;
-    virtual void Terminate(int32_t aExitStatus) = 0;
-    // increment unk44, etc
-    virtual void sub_40() = 0;
-    // decrement unk44, etc
-    virtual void sub_48() = 0;                       // 48
-    // call sub_D0, various prop things
-    virtual void sub_50() = 0;
-    virtual void sub_58() = 0;                       // 58
-    virtual void sub_60() = 0;                       // 60
-    // create unk98
-    virtual void sub_68() = 0;
-    virtual void sub_70() = 0;                       // 70
-    virtual void sub_78() = 0;                       // 78
-    virtual void sub_80() = 0;                       // 80
-    virtual void sub_88(uint64_t a2, char a3) = 0;    // 88
-    virtual void sub_90(int a2, CString *a3, uint64_t a4) = 0; // 90
-    virtual void sub_98() = 0;                       // 98
-    virtual void sub_A0() = 0;                       // A0
-    virtual void sub_A8() = 0;                       // A8
-    virtual void sub_B0() = 0;                       // B0
+    // 2.5 inserted 4 slots before Terminate (was 38) and 1 more before TakeScreenshot (was B8).
+    // Notes from 2.31 on sub_40..sub_B0 are kept on CGameEngine with their old offsets; the
+    // exact position of the 5th inserted slot is unknown, so those haven't been re-placed.
+    virtual CBaseRTTIType* GetNativeType() = 0;     // 00
+    virtual CBaseRTTIType* GetParentType() = 0;     // 08
+    virtual Memory::IAllocator* GetAllocator() = 0; // 10
+    virtual ~CBaseEngine() = 0;                     // 18
+    // 2.31: checks unkF8 against 5, 4
+    virtual void sub_20() = 0;                      // 20
+    // 2.31: checks unkF8 against 4, 5
+    virtual void sub_28() = 0;                      // 28
+    // 2.31: something with SystemMenuPause CName
+    virtual void sub_30() = 0;                      // 30
+    virtual void sub_38() = 0;                      // 38
+    virtual void sub_40() = 0;                      // 40
+    virtual void sub_48() = 0;                      // 48
+    virtual void sub_50() = 0;                      // 50
+    virtual void Terminate(int32_t aExitStatus) = 0; // 58
+    virtual void sub_60() = 0;                      // 60
+    virtual void sub_68() = 0;                      // 68
+    virtual void sub_70() = 0;                      // 70
+    virtual void sub_78() = 0;                      // 78
+    virtual void sub_80() = 0;                      // 80
+    virtual void sub_88() = 0;                      // 88
+    virtual void sub_90() = 0;                      // 90
+    virtual void sub_98() = 0;                      // 98
+    virtual void sub_A0() = 0;                      // A0
+    virtual void sub_A8() = 0;                      // A8
+    virtual void sub_B0() = 0;                      // B0
+    virtual void sub_B8() = 0;                      // B8
+    virtual void sub_C0() = 0;                      // C0
+    virtual void sub_C8() = 0;                      // C8
+    virtual void sub_D0() = 0;                      // D0
+    virtual void sub_D8() = 0;                      // D8
     // uses CBaseEngine string
-    virtual void TakeScreenshot(const rend::SingleScreenShotData& acData, bool a2 = false) = 0; // B8
-    virtual void sub_C0() = 0;                       // C0
-    virtual void sub_C8(CGameOptions& aOptions) = 0; // C8
-    virtual void sub_D0() = 0;                       // D0
+    virtual void TakeScreenshot(const rend::SingleScreenShotData& acData, bool a2 = false) = 0; // E0 (2.31: B8)
+    virtual void sub_E8() = 0;                       // E8 (2.31: C0)
+    virtual void sub_F0(CGameOptions& aOptions) = 0; // F0 (2.31: C8)
+    virtual void sub_F8() = 0;                       // F8 (2.31: D0)
     // Load everything
-    virtual void sub_D8(int64_t a2) = 0;
+    virtual void sub_100(int64_t a2) = 0;            // 100 (2.31: D8)
     // register some Initialization callbacks: GameServicesAsync
     // Physics, LoadRenderResources, Recorder, Animation, DebugServer
     // DebugNetwork, Finialization
-    virtual void sub_E0(uint64_t a2, uint64_t a3, uint64_t a4) = 0;                       // E0
-    virtual void sub_E8() = 0;                       // E8
-    virtual void sub_F0() = 0;                       // F0
-    virtual void sub_F8() = 0;                       // F8
+    virtual void sub_108(uint64_t a2, uint64_t a3, uint64_t a4) = 0; // 108 (2.31: E0)
+    virtual void sub_110() = 0;                      // 110 (2.31: E8)
+    virtual void sub_118() = 0;                      // 118 (2.31: F0)
+    virtual void sub_120() = 0;                      // 120 (2.31: F8)
     // doesn't actually exist, start of an interface
-    // virtual void sub_100() = 0;                      // 100
+    // virtual void sub_128() = 0;                   // 128 (2.31: 100)
 
     double unk8;                               // 08
     float unk10;                               // 10
@@ -174,73 +178,77 @@ struct CBaseEngine
     int16_t unk5A;                             // 5A
     int32_t interopStartingPort;               // 5C
     int64_t unk60;                             // 60
-    int64_t unk68;                             // 68
-    CString scriptsCompilationErrors;          // 70
-    DynArray<CString> scriptsValidationErrors; // 90
-    int64_t unkA0;                             // A0
-    audio::Thing* audioThing;                  // A8
-    int64_t unkB0;                             // B0
-    int64_t unkB8;                             // B8
-    uint8_t padC0[0x10];                       // C0
-    UnkD0* unkD0;                              // D0
-    double unkD8;                              // D8
-    double unkE0;                              // E0
-    int32_t unkE8;                             // E8
-    int64_t unkF0;                             // F0
-    int64_t unkF8;                             // F8
-    int64_t unk100;                            // 100
-    volatile EEngineState engineState;         // 108
-    int32_t unk10C;                            // 10C
-    int32_t unk110;                            // 110
-    Unk108* unk118;                            // 118
-    Unk110 unk120;                             // 120
-    CString buildString;                       // 130
-    CString scriptsBlobPath;                   // 150
-    int32_t unk170;                            // 170
-    int8_t unk174;                             // 174
-    int64_t unk178;                            // 178
-    int64_t unk180;                            // 180
-    int64_t unk188;                            // 188
-    int64_t unk190;                            // 190
-    int8_t unk198[178];                        // 198
-    int32_t unk24C;                            // 24C
-    int8_t unk250[64];                         // 250
-    DynArray<void*> unk290;                    // 290
-    DynArray<void*> unk2A0;                    // 2A0
-    int64_t unk2B0;                            // 2B0
-    int64_t unk2B8;                            // 2B8
-    int64_t unk2C0;                            // 2C0
-    int64_t unk2C8;                            // 2C8
-    int32_t unk2D0;                            // 2D0
-    bool isEP1;                                // 2D4 - IsEP1()
-    int64_t unk2D8;                            // 2D8
-    int64_t unk2E0;                            // 2E0
+    DynArray<void*> unk68;                     // 68 - DynArray<red::AbsolutePath>, script mod blobs (-LoadScriptMods)
+    int64_t unk78;                             // 78
+    int64_t unk80;                             // 80
+    int64_t unk88;                             // 88
+    CString scriptsCompilationErrors;          // 90
+    DynArray<CString> scriptsValidationErrors; // B0
+    int64_t unkA0;                             // C0
+    audio::Thing* audioThing;                  // C8
+    int64_t unkB0;                             // D0
+    int64_t unkB8;                             // D8
+    uint8_t padC0[0x10];                       // E0
+    UnkD0* unkD0;                              // F0
+    double unkD8;                              // F8
+    double unkE0;                              // 100
+    int32_t unkE8;                             // 108
+    int64_t unkF0;                             // 110
+    int64_t unkF8;                             // 118
+    int64_t unk100;                            // 120
+    volatile EEngineState engineState;         // 128
+    int32_t unk10C;                            // 12C
+    int32_t unk110;                            // 130
+    Unk108* unk118;                            // 138
+    Unk110 unk120;                             // 140
+    CString buildString;                       // 150
+    CString scriptsBlobPath;                   // 170
+    int32_t unk170;                            // 190
+    int8_t unk174;                             // 194
+    int64_t unk178;                            // 198
+    int64_t unk180;                            // 1A0
+    int64_t unk188;                            // 1A8
+    int64_t unk190;                            // 1B0
+    int8_t unk198[178];                        // 1B8
+    int32_t unk24C;                            // 26C
+    int8_t unk250[64];                         // 270
+    DynArray<void*> unk290;                    // 2B0
+    DynArray<void*> unk2A0;                    // 2C0
+    int64_t unk2B0;                            // 2D0
+    int64_t unk2B8;                            // 2D8
+    int64_t unk2C0;                            // 2E0
+    int64_t unk2C8;                            // 2E8
+    int32_t unk2D0;                            // 2F0
+    bool isEP1;                                // 2F4 - IsEP1()
+    CString unk2F8Path;                        // 2F8 - red::AbsolutePath
+    int64_t unk2D8;                            // 318
+    int64_t unk2E0;                            // 320
 };
-RED4EXT_ASSERT_SIZE(CBaseEngine, 0x2E8);
+RED4EXT_ASSERT_SIZE(CBaseEngine, 0x328);
 RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsLoaded, 0x54);
-RED4EXT_ASSERT_OFFSET(CBaseEngine, unkD0, 0xD0);
-RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsValidationErrors, 0x90);
-RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsBlobPath, 0x150);
-RED4EXT_ASSERT_OFFSET(CBaseEngine, isEP1, 0x2D4);
+RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsCompilationErrors, 0x90);
+RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsValidationErrors, 0xB0);
+RED4EXT_ASSERT_OFFSET(CBaseEngine, unkD0, 0xF0);
+RED4EXT_ASSERT_OFFSET(CBaseEngine, engineState, 0x128);
+RED4EXT_ASSERT_OFFSET(CBaseEngine, scriptsBlobPath, 0x170);
+RED4EXT_ASSERT_OFFSET(CBaseEngine, isEP1, 0x2F4);
 
 struct BaseGameEngine : CBaseEngine
 {
     // static constexpr const uintptr_t VFT = 0x3374328;
 
-    virtual CBaseRTTIType* GetNativeType() override;      // 00
-    virtual CBaseRTTIType* GetParentType() override;      // 08
-    virtual ~BaseGameEngine() override;                   // 18
-    virtual void sub_50() override;
-    virtual void sub_60() override;
-    virtual void sub_D8(int64_t a2) override;
+    virtual CBaseRTTIType* GetNativeType() override; // 00
+    virtual CBaseRTTIType* GetParentType() override; // 08
+    virtual ~BaseGameEngine() override;              // 18
+    // 2.31 also overrode sub_50 and sub_60; their 2.5 slots are unknown
+    virtual void sub_100(int64_t a2) override;       // 100 (2.31: D8)
     // register Initialization callbacks: BaseInitialization, VirtualRUIDs
     // LoadTweakDB, Blackboard, EnumerateWorlds, PSClassBindings
-    virtual void sub_E0(uint64_t a2, uint64_t a3, uint64_t a4) override;
+    virtual void sub_108(uint64_t a2, uint64_t a3, uint64_t a4) override; // 108 (2.31: E0)
 
-    int64_t unk2D8;          // 2D8
+    int64_t unk2E8; // 328
 };
-RED4EXT_ASSERT_SIZE(BaseGameEngine, 0x2F0);
-// RED4EXT_ASSERT_OFFSET(BaseGameEngine, watchdogThread, 0x2D8);
+RED4EXT_ASSERT_SIZE(BaseGameEngine, 0x330);
 
 struct CGameFramework
 {
@@ -318,34 +326,30 @@ struct CGameEngine : BaseGameEngine
 {
     // static constexpr const uintptr_t VFT = 0x3591C30;
 
-    virtual CBaseRTTIType* GetNativeType() override;      // 00
-    virtual CBaseRTTIType* GetParentType() override;      // 08
-    virtual ~CGameEngine() override;                      // 18
+    virtual CBaseRTTIType* GetNativeType() override; // 00
+    virtual CBaseRTTIType* GetParentType() override; // 08
+    virtual ~CGameEngine() override;                 // 18
     virtual void sub_20() override;
     virtual void sub_28() override;
-    virtual void sub_50() override;
-    // gets unk318
-    virtual void sub_78() override;
-    // gets unk328
-    virtual void sub_80() override;
-    // something with unk308
-    virtual void sub_88(uint64_t a2, char a3) override;
-    // more with unk308
-    virtual void sub_90(int a2, CString *a3, uint64_t a4) override;
-    // more unk308
-    virtual void sub_98() override;
+    // 2.31 notes on overrides in the sub_40..sub_B0 range, which shifted by 0x20 or 0x28 in 2.5:
+    //   sub_50: (no notes)
+    //   sub_78: gets unk318
+    //   sub_80: gets unk328
+    //   sub_88(uint64_t a2, char a3): something with unk308
+    //   sub_90(int a2, CString* a3, uint64_t a4): more with unk308
+    //   sub_98: more unk308
     // creates game services (servicesGameServicesWin)
-    virtual void sub_C0() override;    
+    virtual void sub_E8() override;                  // E8 (2.31: C0)
     // something unk300
-    virtual void sub_D0() override;
+    virtual void sub_F8() override;                  // F8 (2.31: D0)
     // initializes sound, input & viewport
-    virtual void sub_D8(int64_t a2) override;
+    virtual void sub_100(int64_t a2) override;       // 100 (2.31: D8)
     // register Initialization callbacks: BaseEngineRegularSystemInitialization
     // FreeCamera, RegisterNativeFunctions, ScriptsDebugger, GameFramework
     // EnumerateGameDefs, InkSystem
-    virtual void sub_E0(uint64_t a2, uint64_t a3, uint64_t a4) override;
+    virtual void sub_108(uint64_t a2, uint64_t a3, uint64_t a4) override; // 108 (2.31: E0)
     // do nothing with unk308
-    virtual void sub_E8() override;
+    virtual void sub_110() override;                 // 110 (2.31: E8)
 
     static CGameEngine* Get();
 
@@ -357,23 +361,22 @@ struct CGameEngine : BaseGameEngine
     /// @pattern 48 89 5C 24 18 48 89 6C 24 20 56 48 83 EC 60 48 8B F1 48 8B DA 0F B6 4A 32 E8 A2 64 22 00 48 8B
     // static void __fastcall InitializeGameFramework(uint64_t * a1, uint64_t a2);
 
-    int64_t unk2F0;                       // 2F0
-    int64_t unk2F8;                       // 2F8
-    int32_t unk300;                       // 300
-    int32_t unk304;                       // 304
-    CGameFramework* framework;            // 308
-    services::GameServices* gameServices; // 310
-    int64_t unk318;                       // 318
-    int64_t unk320;                       // 320
-    int64_t unk328;                       // 328
-    int64_t unk330;                       // 330
-    int64_t unk338;                       // 338
-    int32_t unk340;                       // 340
-    int64_t unk348;                       // 348
-
+    int64_t unk2F0;                       // 330
+    int64_t unk2F8;                       // 338
+    int32_t unk300;                       // 340
+    int32_t unk304;                       // 344
+    CGameFramework* framework;            // 348
+    services::GameServices* gameServices; // 350
+    int64_t unk318;                       // 358
+    int64_t unk320;                       // 360
+    int64_t unk328;                       // 368
+    int64_t unk330;                       // 370
+    int64_t unk338;                       // 378
+    int32_t unk340;                       // 380
+    int64_t unk348;                       // 388
 };
-RED4EXT_ASSERT_SIZE(CGameEngine, 0x350);
-RED4EXT_ASSERT_OFFSET(CGameEngine, framework, 0x308);
+RED4EXT_ASSERT_SIZE(CGameEngine, 0x390);
+RED4EXT_ASSERT_OFFSET(CGameEngine, framework, 0x348);
 } // namespace RED4ext
 
 #ifdef RED4EXT_HEADER_ONLY
