@@ -19,6 +19,8 @@ struct __declspec(align(0x10)) TankBaseObject : vehicle::BaseObject
 
     uint8_t unkBA0[0xC00 - 0xBA0]; // BA0
 };
+// 2.5: upstream #232 has TankBaseObject at 0xC20. Kept at the 2.31 size until the vehicle
+// layout in vehicleBaseObject.hpp is re-verified on 2.5.
 RED4EXT_ASSERT_SIZE(TankBaseObject, 0xC00);
 } // namespace vehicle
 using vehicleTankBaseObject = vehicle::TankBaseObject;

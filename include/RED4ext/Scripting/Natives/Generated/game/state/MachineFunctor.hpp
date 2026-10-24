@@ -17,11 +17,10 @@ struct MachineFunctor : IScriptable
     static constexpr const char* NAME = "gamestateMachineFunctor";
     static constexpr const char* ALIAS = "StateFunctor";
 
-    uint8_t unk40[0x60 - 0x40]; // 40
-    bool enterConditionEnabled; // 60
-    uint8_t unk61[0x68 - 0x61];
+    // 2.31: bool enterConditionEnabled at 0x60 (size was 0x68); not re-verified on 2.5
+    uint8_t unk40[0x78 - 0x40]; // 40
 };
-RED4EXT_ASSERT_SIZE(MachineFunctor, 0x68);
+RED4EXT_ASSERT_SIZE(MachineFunctor, 0x78);
 } // namespace game::state
 using gamestateMachineFunctor = game::state::MachineFunctor;
 using StateFunctor = game::state::MachineFunctor;

@@ -268,6 +268,10 @@ struct BaseObject : game::Object, IHookable
     static constexpr const char* ALIAS = "VehicleObject";
     static constexpr const uint32_t VFT = 1274679101;
 
+// 2.5: NOT YET RE-VERIFIED. This is the 2.31 layout. Upstream #232 has BaseObject
+// at 0xBC0 with fields shifted +0x8 by 0x2AB (isReversing), +0x10 by 0x3B0
+// (archetype) and +0x20 by 0x6F2 (isVehicleOnStateLocked), so most fields below
+// are at the wrong offsets on 2.5 until checked in the 2.5 IDB.
 // overridden virtuals
 
     /// @pattern /mov(vehicleBaseObject_Class_p) /retn

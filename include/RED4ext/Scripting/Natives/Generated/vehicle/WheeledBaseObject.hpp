@@ -18,6 +18,8 @@ namespace vehicle
 //     static constexpr const char* NAME = "vehicleWheeledBaseObject";
 //     static constexpr const char* ALIAS = "WheeledObject";
 
+// 2.5: upstream #232 has WheeledBaseObject at 0xC10. Our layout lives in the hand-written
+// vehicle*.hpp headers and is still the 2.31 one, pending re-verification on 2.5.
 //     uint8_t unkB90[0xBF0 - 0xBA0]; // BA0
 // };
 RED4EXT_ASSERT_SIZE(WheeledBaseObject, 0xBF0);

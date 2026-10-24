@@ -19,6 +19,8 @@ struct __declspec(align(0x10)) PreventionAVObject : vehicle::AVBaseObject
 
     uint8_t unkBA0[0xBB0 - 0xBA0]; // BA0
 };
+// 2.5: upstream #232 has PreventionAVObject at 0xBD0. Kept at the 2.31 size until the vehicle
+// layout in vehicleBaseObject.hpp is re-verified on 2.5.
 RED4EXT_ASSERT_SIZE(PreventionAVObject, 0xBB0);
 } // namespace vehicle
 using vehiclePreventionAVObject = vehicle::PreventionAVObject;

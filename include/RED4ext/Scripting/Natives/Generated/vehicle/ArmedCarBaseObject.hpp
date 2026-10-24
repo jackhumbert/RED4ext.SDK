@@ -18,6 +18,8 @@ namespace vehicle
 //     static constexpr const char* NAME = "vehicleArmedCarBaseObject";
 //     static constexpr const char* ALIAS = NAME;
 
+// 2.5: upstream #232 has ArmedCarBaseObject at 0xD20. Our layout lives in the hand-written
+// vehicle*.hpp headers and is still the 2.31 one, pending re-verification on 2.5.
 //     uint8_t unkC30[0xD00 - 0xC40]; // C40
 // };
 RED4EXT_ASSERT_SIZE(ArmedCarBaseObject, 0xD00);

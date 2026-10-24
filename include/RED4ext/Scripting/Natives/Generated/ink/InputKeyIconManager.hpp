@@ -36,11 +36,11 @@ struct InputKeyIconManager : ISerializable
         Map<uint32_t, ink::InputIconPartData> parts;
     };
 
-    uint8_t unk30[0x68 - 0x30]; // 30
-    Map<input::EInputDevice, InputDeviceTextureData> inputDevices; // 68
-    uint8_t unk90[0x1E8 - 0x90]; // 90
+    // 2.31: Map<input::EInputDevice, InputDeviceTextureData> inputDevices at 0x68
+    // (size was 0x1E8); not re-verified on 2.5
+    uint8_t unk30[0x200 - 0x30]; // 30
 };
-RED4EXT_ASSERT_SIZE(InputKeyIconManager, 0x1E8);
+RED4EXT_ASSERT_SIZE(InputKeyIconManager, 0x200);
 } // namespace ink
 using inkInputKeyIconManager = ink::InputKeyIconManager;
 } // namespace RED4ext

@@ -13,6 +13,8 @@ namespace RED4ext
 {
 namespace vehicle
 {
+// 2.5: upstream #232 has BikeBaseObject at 0xC10. Our layout lives in the hand-written
+// vehicle*.hpp headers and is still the 2.31 one, pending re-verification on 2.5.
 // struct __declspec(align(0x10)) BikeBaseObject : vehicle::WheeledBaseObject
 // {
 //     static constexpr const char* NAME = "vehicleBikeBaseObject";

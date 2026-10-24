@@ -8,6 +8,8 @@
 
 namespace RED4ext
 {
+// 2.5: upstream #232 has BaseObject at 0xBC0. Kept at the 2.31 size until the vehicle
+// layout in vehicleBaseObject.hpp is re-verified on 2.5.
 RED4EXT_ASSERT_SIZE(vehicle::BaseObject, 0xBA0);
 using vehicleBaseObject = vehicle::BaseObject;
 using VehicleObject = vehicle::BaseObject;
