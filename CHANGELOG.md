@@ -50,6 +50,10 @@ and this project adheres to
 - Fix `RawBuffer` move construction and move assignment (#218).
 - Fix address hashes for 2.5: `UpdateRegistrar::RegisterUpdate`, `DeferredDataBuffer::LoadCopyAsync`,
   `ISerializable::sub_C0` and `ResourceToken` I/O context destruction.
+- Fix `CRTTISystem` size for 2.5 (`0x2A8`): add the function and property proxy arrays and their locks.
+- Fix `GameInstance` size (`0x140`): add the net and replication session pointers at `0x130` and `0x138`.
+- Fix `PostLoadParams` size (`0x10`): add the second flag and the loading context pointer at `0x08`.
+- Fix `EditorObjectID` members at `0x10` and `0x18`, which are `CName`s.
 
 ## [1.0.0] - 2026-03-09
 

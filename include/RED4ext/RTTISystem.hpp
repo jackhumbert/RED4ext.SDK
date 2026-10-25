@@ -87,7 +87,7 @@ struct CRTTISystem : IRTTISystem
     HashMap<CName, uint32_t> typeAsyncIds;           // 70
     HashMap<CName, CGlobalFunction*> funcs;          // A0
     HashMap<uint64_t, CGlobalFunction*> funcsByHash; // D0
-    HashMap<void*, void*> unkF8;                     // F8
+    HashMap<void*, void*> unkF8;                     // 100
     DynArray<void*> unk130;                          // 130
     DynArray<void*> unk140;                          // 140
     HashMap<CName, CName> scriptToNative;            // 150
@@ -98,12 +98,23 @@ struct CRTTISystem : IRTTISystem
     Mutex unk1E0;                                    // 1E0
     SharedSpinLock typesLock;                        // 208
     Mutex rttiRegistratorMutex;                      // 210
+    DynArray<void*> functionProxies;                 // 238 - Function proxies, added in 2.5
+    DynArray<void*> propertyProxies;                 // 248 - Property proxies, added in 2.5
+    Mutex functionProxiesLock;                       // 258
+    Mutex propertyProxiesLock;                       // 280
 };
-RED4EXT_ASSERT_SIZE(CRTTISystem, 0x238);
+RED4EXT_ASSERT_SIZE(CRTTISystem, 0x2A8);
 RED4EXT_ASSERT_OFFSET(CRTTISystem, types, 0x10);
 RED4EXT_ASSERT_OFFSET(CRTTISystem, funcs, 0xA0);
+RED4EXT_ASSERT_OFFSET(CRTTISystem, unkF8, 0x100);
 RED4EXT_ASSERT_OFFSET(CRTTISystem, scriptToNative, 0x150);
 RED4EXT_ASSERT_OFFSET(CRTTISystem, nativeToScript, 0x180);
+RED4EXT_ASSERT_OFFSET(CRTTISystem, strings, 0x1B0);
+RED4EXT_ASSERT_OFFSET(CRTTISystem, rttiRegistratorMutex, 0x210);
+RED4EXT_ASSERT_OFFSET(CRTTISystem, functionProxies, 0x238);
+RED4EXT_ASSERT_OFFSET(CRTTISystem, propertyProxies, 0x248);
+RED4EXT_ASSERT_OFFSET(CRTTISystem, functionProxiesLock, 0x258);
+RED4EXT_ASSERT_OFFSET(CRTTISystem, propertyProxiesLock, 0x280);
 
 struct RTTIRegistrator
 {

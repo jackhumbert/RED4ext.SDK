@@ -141,10 +141,10 @@ RED4EXT_ASSERT_SIZE(ItemID, 0x10);
 
 struct EditorObjectID
 {
-    int64_t unk00; // 00
+    int64_t unk00; // 00 - Resource path hash
     int64_t unk08; // 08
-    int64_t unk10; // 10
-    int64_t unk18; // 18
+    CName unk10;   // 10
+    CName unk18;   // 18
 };
 RED4EXT_ASSERT_SIZE(EditorObjectID, 0x20);
 
