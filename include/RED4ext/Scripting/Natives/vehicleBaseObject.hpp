@@ -268,10 +268,11 @@ struct BaseObject : game::Object, IHookable
     static constexpr const char* ALIAS = "VehicleObject";
     static constexpr const uint32_t VFT = 1274679101;
 
-// 2.5: NOT YET RE-VERIFIED. This is the 2.31 layout. Upstream #232 has BaseObject
-// at 0xBC0 with fields shifted +0x8 by 0x2AB (isReversing), +0x10 by 0x3B0
-// (archetype) and +0x20 by 0x6F2 (isVehicleOnStateLocked), so most fields below
-// are at the wrong offsets on 2.5 until checked in the 2.5 IDB.
+// 2.5 layout (0xBC0, was 0xBA0 on 2.31), checked against the 2.5 IDB by aligning the
+// constructor and ~350 BaseObject methods with their 2.31 versions. 2.5 adds 8 bytes inside
+// input (0x284..0x29B), 8 bytes after chassisType and a handle after drivingParamsPanic.
+// Virtual slots from 0x108 on are +8 against 2.31 (ent::Entity gained a slot at 0x108, declared
+// in entEntity.hpp); the slot comments on the virtuals below are still the 2.31 ones.
 // overridden virtuals
 
     /// @pattern /mov(vehicleBaseObject_Class_p) /retn
@@ -480,7 +481,7 @@ struct BaseObject : game::Object, IHookable
       float turnInput;
       float leanFB;
       float rockFB;
-      uint32_t unk288[3];
+      uint32_t unk288[5]; // 2.5: 8 more bytes somewhere in 0x284..0x29B, which of these moved is unknown
       uint8_t shootPrimary;
       uint8_t shootSecondary;
       uint8_t shootTertiary;
@@ -510,28 +511,30 @@ struct BaseObject : game::Object, IHookable
       float unk2C0;
       uint32_t unk60;
     } input;
-    Physics *physics;                     // 2C8
-    PhysicsData *physicsData;             // 2D0
+    Physics *physics;                     // 2D0
+    PhysicsData *physicsData;             // 2D8
     Handle<ISerializable> curveSetData;
     Handle<ChassisComponent> chassis;
     float unk2F8[16];
-    uint64_t chassisType;
+    uint64_t chassisType;                 // 340
+    uint64_t unk348;                      // 348, new in 2.5
     WorldTransform worldTransform;
     Vector3 unk360;
     float unk36C;
     Vector4 angularVelocity_related;
     Vector4 worldPosition_related;
     uint64_t unk390;
-    Movement *movement;                     // 398
+    Movement *movement;                     // 3A8
     uint64_t aiVehicleAgent_related;
-    // Ref<AI::Archetype> archetype;  // 3A0 ??
+    // Ref<AI::Archetype> archetype;  // 3B0 ??
     void * unk3A8;
     void * unk3B0;
-    action::ActionInterface actionInterface; // 3B8
+    action::ActionInterface actionInterface; // 3C8
     Handle<ISerializable> driving;
     Handle<ISerializable> drivingParamsGeneric;
     Handle<ISerializable> drivingParamsRace;
     Handle<ISerializable> drivingParamsPanic;
+    Handle<ISerializable> unk4F8; // new in 2.5
     Handle<game::interactions::Component> driverInteraction;
     Handle<game::interactions::Component> passengerInteractions;
     Handle<Controller> vehicleController;
@@ -540,8 +543,8 @@ struct BaseObject : game::Object, IHookable
     Handle<game::IPhotoModeSystem> photoModeSystem;
     game::VehicleSystem *vehicleSystem;
     void *godModeSystem;
-    Handle<game::IBlackboard> blackboard_1; // 558
-    Handle<game::IBlackboard> blackboard_2; // 568
+    Handle<game::IBlackboard> blackboard_1; // 578
+    Handle<game::IBlackboard> blackboard_2; // 588
     Handle<ISerializable> unk578;
     uint64_t unk588;
     uint64_t unk590;
@@ -568,8 +571,8 @@ struct BaseObject : game::Object, IHookable
     uint8_t unk626;
     uint8_t unk627;
     Handle<SlotComponent> occupantSlotComponent;
-    TweakDBID vehicleRecord; //  638
-    Handle<game::data::Vehicle_Record> vehicleRecordHandle; // 640
+    TweakDBID vehicleRecord; //  658
+    Handle<game::data::Vehicle_Record> vehicleRecordHandle; // 660
     uint32_t driverCombatType;
     float hitCooldown;
     uint32_t unk658[5];
@@ -625,8 +628,8 @@ struct BaseObject : game::Object, IHookable
     uint64_t unk810[7];
     uint64_t unk848;
     Handle<ISerializable> unk850;
-    AutonomousData autonomousData; // 860 (870)
-    uint8_t destruction_related; // A10
+    AutonomousData autonomousData; // 880
+    uint8_t destruction_related; // A40
     uint8_t isPlayerControlled;
     uint8_t unkA12;
     uint8_t unkA13;
@@ -667,7 +670,7 @@ struct BaseObject : game::Object, IHookable
     HashMap<uint32_t, void*> unkB60;
 };
 // #pragma pack(pop)
-RED4EXT_ASSERT_SIZE(BaseObject, 0xBA0);
+RED4EXT_ASSERT_SIZE(BaseObject, 0xBC0);
 RED4EXT_ASSERT_OFFSET(BaseObject, isOnGround, 0x25C);
 // RED4EXT_ASSERT_OFFSET(BaseObject, acceleration, 0x264);
 // RED4EXT_ASSERT_OFFSET(BaseObject, deceleration, 0x268);
@@ -675,11 +678,21 @@ RED4EXT_ASSERT_OFFSET(BaseObject, isOnGround, 0x25C);
 // RED4EXT_ASSERT_OFFSET(BaseObject, burnout, 0x2BC);
 // RED4EXT_ASSERT_OFFSET(BaseObject, archetype, 0x3A0);
 // RED4EXT_ASSERT_OFFSET(BaseObject, isVehicleOnStateLocked, 0x6D2);
-RED4EXT_ASSERT_OFFSET(BaseObject, physics, 0x2C8);
 RED4EXT_ASSERT_OFFSET(BaseObject, input, 0x264);
-RED4EXT_ASSERT_OFFSET(BaseObject, meshParamsRegistry, 0x610);
-RED4EXT_ASSERT_OFFSET(BaseObject, autonomousData, 0x860);
-RED4EXT_ASSERT_OFFSET(BaseObject, destruction_related, 0xA20);
+RED4EXT_ASSERT_OFFSET(BaseObject, input.shootPrimary, 0x29C);
+RED4EXT_ASSERT_OFFSET(BaseObject, physics, 0x2D0);
+RED4EXT_ASSERT_OFFSET(BaseObject, chassis, 0x2F0);
+RED4EXT_ASSERT_OFFSET(BaseObject, worldTransform, 0x350);
+RED4EXT_ASSERT_OFFSET(BaseObject, actionInterface, 0x3C8);
+RED4EXT_ASSERT_OFFSET(BaseObject, driving, 0x4B8);
+RED4EXT_ASSERT_OFFSET(BaseObject, driverInteraction, 0x508);
+RED4EXT_ASSERT_OFFSET(BaseObject, meshParamsRegistry, 0x630);
+RED4EXT_ASSERT_OFFSET(BaseObject, vehicleRecord, 0x658);
+RED4EXT_ASSERT_OFFSET(BaseObject, autonomousData, 0x880);
+RED4EXT_ASSERT_OFFSET(BaseObject, destruction_related, 0xA40);
+RED4EXT_ASSERT_OFFSET(BaseObject, ignoreImpulses, 0x6B9);
+RED4EXT_ASSERT_OFFSET(BaseObject, weapons, 0xB20);
+RED4EXT_ASSERT_OFFSET(BaseObject, weapon_trace, 0xB34);
 // char (*__kaboom)[sizeof(BaseObject)] = 1;
 // char (*__kaboom2)[offsetof(BaseObject, physicsSystem)] = 1;
 }

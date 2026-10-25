@@ -58,7 +58,7 @@ struct __declspec(align(0x10)) ArmedCarBaseObject : vehicle::CarBaseObject
     uint64_t unkCE0;
     uint64_t unkCE8;
 };
-RED4EXT_ASSERT_SIZE(ArmedCarBaseObject, 0xCF0);
+RED4EXT_ASSERT_SIZE(ArmedCarBaseObject, 0xD10);
 } // namespace vehicle
 using vehicleArmedCarBaseObject = vehicle::ArmedCarBaseObject;
 } // namespace RED4ext

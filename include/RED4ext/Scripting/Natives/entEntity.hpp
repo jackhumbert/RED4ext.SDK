@@ -94,7 +94,10 @@ struct Entity : IScriptable
     };
 
 // new virtuals
+// 2.5 adds sub_108_25 (an empty stub in Entity), so every slot after it is +8 against the 2.31
+// offsets in the comments below.
 
+    virtual void sub_108_25() { }                               // 108 (2.5)
     virtual void sub_108() { }                                  // 108
     virtual float sub_110();                                    // 110 return 1f
     virtual Vector2* sub_118(Vector2* a1, Vector2* a2);         // 118 tick??

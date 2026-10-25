@@ -13,8 +13,6 @@
 
 namespace RED4ext
 {
-// 2.5: upstream #232 has CarBaseObject at 0xC60. Our layout lives in the hand-written
-// vehicle*.hpp headers and is still the 2.31 one, pending re-verification on 2.5.
 namespace vehicle {
 // struct __declspec(align(0x10)) CarBaseObject : vehicle::WheeledBaseObject
 // {
@@ -22,7 +20,7 @@ namespace vehicle {
 //     static constexpr const char* ALIAS = "CarObject";
     // uint8_t unkBE0[0xC40 - 0xBF0]; // BF0
 // };
-RED4EXT_ASSERT_SIZE(CarBaseObject, 0xC40);
+RED4EXT_ASSERT_SIZE(CarBaseObject, 0xC60);
 } // namespace vehicle
 using vehicleCarBaseObject = vehicle::CarBaseObject;
 using CarObject = vehicle::CarBaseObject;
