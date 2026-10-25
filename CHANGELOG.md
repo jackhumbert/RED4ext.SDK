@@ -50,6 +50,10 @@ and this project adheres to
 - Fix `RawBuffer` move construction and move assignment (#218).
 - Fix address hashes for 2.5: `UpdateRegistrar::RegisterUpdate`, `DeferredDataBuffer::LoadCopyAsync`,
   `ISerializable::sub_C0` and `ResourceToken` I/O context destruction.
+- Fix `CBaseGameApplication` vtable: it has 13 slots and no virtual destructor; the deleting destructor is
+  `CGameApplication`'s slot `0x68`. Remove `CBaseGameApplication::sub_68`, `sub_70` and `CGameApplication::sub_78`,
+  which the game does not have.
+- Remove `CBaseInitializationState::sub_40`, which the game does not have.
 
 ## [1.0.0] - 2026-03-09
 

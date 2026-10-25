@@ -31,7 +31,6 @@ struct CBaseInitializationState : IGameState
 {
     virtual void ReadOptions(int64_t a1, CGameOptions* aOptions) = 0; // 30
     virtual CName GetEngineName(int64_t a3) = 0;                      // 38
-    virtual void sub_40() = 0;                                        // 40
 };
 
 struct CInitializationState : IGameState
