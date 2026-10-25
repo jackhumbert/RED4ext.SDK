@@ -63,6 +63,12 @@ and this project adheres to
   `ISerializable::sub_C0` and `ResourceToken` I/O context destruction.
 - Fix `CClass::sub_98` address hash and pass its missing `a5` argument (#235).
 - Fix `ISerializable` destructor not removing the object from the global registry (#238).
+- Fix `CClass::Unserialize` address hash, it pointed to a string literal.
+- Fix `CEnum::FromString` address hash and pass the string as `StringView`, as the game does.
+- Fix `CNamePool::Add(const CString&)`, its address hash pointed to an unrelated function; it now forwards to
+  `CNamePool::Add(const char*)`.
+- Fix `IRenderProxy::sub_00` address hash, it pointed to a vftable.
+- Fix missing `StaticArray` include in `gameIEntityStubSystem.hpp`.
 
 ## [1.0.0] - 2026-03-09
 

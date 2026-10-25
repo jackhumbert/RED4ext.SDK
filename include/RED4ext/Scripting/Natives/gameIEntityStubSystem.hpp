@@ -1,6 +1,7 @@
 #pragma once
 
 #include <RED4ext/Common.hpp>
+#include <RED4ext/Containers/StaticArray.hpp>
 #include <RED4ext/Memory/Allocators.hpp>
 #include <RED4ext/Memory/UniquePtr.hpp>
 #include <RED4ext/NativeTypes.hpp>

@@ -29,7 +29,7 @@ constexpr std::uint32_t CBitfield_FromString = 0xA09B15A8;
 #pragma endregion
 
 #pragma region CClass
-constexpr std::uint32_t CClass_Unserialize = 0xE4AA0CAD;
+constexpr std::uint32_t CClass_Unserialize = 0x5AD61807;
 constexpr std::uint32_t CClass_ToString = 409015031UL;
 constexpr std::uint32_t CClass_sub_80 = 0x11D11B0C;
 constexpr std::uint32_t CClass_sub_88 = 0x4BDF1BB2;
@@ -59,7 +59,7 @@ constexpr std::uint32_t CClassStaticFunction_ctor = 2920426135UL;
 #pragma region CEnum
 constexpr std::uint32_t CEnum_Unserialize = 0x40D317A6;
 constexpr std::uint32_t CEnum_ToString = 0x41A1296;
-constexpr std::uint32_t CEnum_FromString = 0x21CA1EC1;
+constexpr std::uint32_t CEnum_FromString = 0x4BE0143A;
 #pragma endregion
 
 #pragma region CGameEngine
@@ -72,7 +72,6 @@ constexpr std::uint32_t CGlobalFunction_ctor = 0xFA6B24D0;
 
 #pragma region CNamePool
 constexpr std::uint32_t CNamePool_AddCstr = 0xA00C9B;
-constexpr std::uint32_t CNamePool_AddCString = 0xFFD61709;
 constexpr std::uint32_t CNamePool_AddPair = 0xD9840BD8;
 constexpr std::uint32_t CNamePool_Get = 0x68DF07DC;
 #pragma endregion
@@ -128,7 +127,7 @@ constexpr std::uint32_t Handle_DecWeakRef = 0x333B1404;
 #pragma endregion
 
 #pragma region IRenderProxy
-constexpr std::uint32_t IRenderProxy_sub_00 = 302583262UL;
+constexpr std::uint32_t IRenderProxy_sub_00 = 0xA31815D4;
 constexpr std::uint32_t IRenderProxy_sub_08 = 3505328647UL;
 constexpr std::uint32_t IRenderProxy_sub_18 = 2756580845UL;
 constexpr std::uint32_t IRenderProxy_sub_58 = 2462126272UL;
