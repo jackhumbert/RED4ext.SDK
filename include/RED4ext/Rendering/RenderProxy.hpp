@@ -12,7 +12,7 @@ struct IRenderProxy
 {
     using AllocatorType = Memory::RenderProxyAllocator;
 
-    virtual void sub_00();                   // 00
+    virtual void* sub_00();                  // 00 - GetMemoryPool, returns the render proxy pool
     virtual void sub_08();                   // 08
     virtual ~IRenderProxy() = default;       // 10
     virtual uint8_t sub_18();                // 18

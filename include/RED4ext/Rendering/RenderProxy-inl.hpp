@@ -9,10 +9,10 @@
 
 namespace RED4ext
 {
-RED4EXT_INLINE void IRenderProxy::sub_00()
+RED4EXT_INLINE void* IRenderProxy::sub_00()
 {
-    static const UniversalRelocFunc<void (*)(void)> func(Detail::AddressHashes::IRenderProxy_sub_00);
-    func();
+    static const UniversalRelocFunc<void* (*)(IRenderProxy*)> func(Detail::AddressHashes::IRenderProxy_sub_00);
+    return func(this);
 }
 
 RED4EXT_INLINE void IRenderProxy::sub_08()

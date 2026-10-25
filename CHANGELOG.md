@@ -50,6 +50,12 @@ and this project adheres to
 - Fix `RawBuffer` move construction and move assignment (#218).
 - Fix address hashes for 2.5: `UpdateRegistrar::RegisterUpdate`, `DeferredDataBuffer::LoadCopyAsync`,
   `ISerializable::sub_C0` and `ResourceToken` I/O context destruction.
+- Fix `CClass::Unserialize` address hash, it pointed to a string literal.
+- Fix `CEnum::FromString` address hash and pass the string as `StringView`, as the game does.
+- Fix `CNamePool::Add(const CString&)`, its address hash pointed to an unrelated function; it now forwards to
+  `CNamePool::Add(const char*)`.
+- Fix `IRenderProxy::sub_00` address hash, it pointed to a vftable; the slot is the proxy's memory pool getter.
+- Fix missing `StaticArray` include in `gameIEntityStubSystem.hpp`.
 
 ## [1.0.0] - 2026-03-09
 

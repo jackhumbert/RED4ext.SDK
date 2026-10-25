@@ -19,11 +19,7 @@ RED4EXT_INLINE RED4ext::CName RED4ext::CNamePool::Add(const char* aText)
 
 RED4EXT_INLINE RED4ext::CName RED4ext::CNamePool::Add(const CString& aText)
 {
-    CName result;
-
-    static UniversalRelocFunc<CName* (*)(CName&, const CString&)> func(Detail::AddressHashes::CNamePool_AddCString);
-    func(result, aText);
-    return result;
+    return Add(aText.c_str());
 }
 
 RED4EXT_INLINE void RED4ext::CNamePool::Add(const CName& aName, const char* aText)

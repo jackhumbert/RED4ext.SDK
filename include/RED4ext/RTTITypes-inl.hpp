@@ -9,6 +9,7 @@
 #include <RED4ext/Relocation.hpp>
 #include <RED4ext/Scripting/CProperty.hpp>
 #include <RED4ext/Scripting/Functions.hpp>
+#include <RED4ext/StringView.hpp>
 
 RED4EXT_INLINE RED4ext::CClass::CClass(CName aName, uint32_t aSize, Flags aFlags)
     : parent(nullptr)
@@ -367,9 +368,10 @@ RED4EXT_INLINE bool RED4ext::CEnum::ToString(const void* aInstance, CString& aOu
 
 RED4EXT_INLINE bool RED4ext::CEnum::FromString(void* aInstance, const CString& aString) const
 {
-    using func_t = bool (*)(const CEnum*, void*, const CString&);
+    // The game's function takes the string as `red::StringView` by value.
+    using func_t = bool (*)(const CEnum*, void*, StringView);
     static UniversalRelocFunc<func_t> func(Detail::AddressHashes::CEnum_FromString);
-    return func(this, aInstance, aString);
+    return func(this, aInstance, StringView(aString));
 }
 
 RED4EXT_INLINE RED4ext::CBitfield::CBitfield(CName aName, int8_t aActualSize, Flags aFlags)
