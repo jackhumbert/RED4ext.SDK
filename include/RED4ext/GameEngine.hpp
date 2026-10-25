@@ -52,9 +52,15 @@ struct GameInstance
     HashMap<rtti::IType*, Handle<IScriptable>> systemMap;      // 08 - Maps implementation type to instance
     DynArray<Handle<IScriptable>> systemInstances;             // 38
     HashMap<rtti::IType*, rtti::IType*> systemImplementations; // 48 - Maps interface type to implementation type
-    uintptr_t unk78[(0x138 - 0x78) >> 3];                      // 78
+    uintptr_t unk78[(0x130 - 0x78) >> 3];                      // 78
+    void* unk130;                                              // 130 - Net session, returned by slot 0x40
+    void* unk138;                                              // 138 - Replication session, returned by slot 0x38
 };
-RED4EXT_ASSERT_SIZE(GameInstance, 0x138);
+RED4EXT_ASSERT_SIZE(GameInstance, 0x140);
+RED4EXT_ASSERT_OFFSET(GameInstance, systemMap, 0x08);
+RED4EXT_ASSERT_OFFSET(GameInstance, systemInstances, 0x38);
+RED4EXT_ASSERT_OFFSET(GameInstance, systemImplementations, 0x48);
+RED4EXT_ASSERT_OFFSET(GameInstance, unk130, 0x130);
 
 struct CBaseEngine
 {

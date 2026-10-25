@@ -19,9 +19,12 @@ struct CString;
 struct PostLoadParams
 {
     bool disablePreInitialization; // 00
-    uint8_t pad01[0x8 - 0x1];      // 01
+    bool unk01;                    // 01
+    uint8_t pad02[0x8 - 0x2];      // 02
+    const void* loadingContext;    // 08 - The loading context, read by CMesh::OnPostLoad
 };
-RED4EXT_ASSERT_SIZE(PostLoadParams, 0x8);
+RED4EXT_ASSERT_SIZE(PostLoadParams, 0x10);
+RED4EXT_ASSERT_OFFSET(PostLoadParams, loadingContext, 0x8);
 
 struct ISerializable
 {
