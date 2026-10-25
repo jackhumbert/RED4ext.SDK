@@ -139,21 +139,21 @@ struct CBaseGameApplication
     };
     RED4EXT_ASSERT_SIZE(Unk8, 0x188);
 
-    virtual ~CBaseGameApplication(); // 00
-    virtual void sub_8() = 0;        // 08
-    virtual void sub_10() = 0;       // 10
-    virtual void sub_18() = 0;       // 18
-    virtual void sub_20() = 0;       // 20
-    virtual void sub_28() = 0;       // 28
-    virtual void sub_30() = 0;       // 30
-    virtual void sub_38() = 0;       // 38
-    virtual void sub_40() = 0;       // 40
-    virtual void sub_48() = 0;       // 48
-    virtual void sub_50() = 0;       // 50
-    virtual void sub_58() = 0;       // 58
-    virtual void sub_60() = 0;       // 60
-    virtual void sub_68() = 0;       // 68
-    virtual void sub_70() = 0;       // 70
+    // The game's base application class has 13 virtual slots and no virtual destructor; the deleting destructor is
+    // CGameApplication's first slot (0x68).
+    virtual void sub_0() = 0;  // 00
+    virtual void sub_8() = 0;  // 08
+    virtual void sub_10() = 0; // 10
+    virtual void sub_18() = 0; // 18
+    virtual void sub_20() = 0; // 20
+    virtual void sub_28() = 0; // 28
+    virtual void sub_30() = 0; // 30
+    virtual void sub_38() = 0; // 38
+    virtual void sub_40() = 0; // 40
+    virtual void sub_48() = 0; // 48
+    virtual void sub_50() = 0; // 50
+    virtual void sub_58() = 0; // 58
+    virtual void sub_60() = 0; // 60
 
     Unk8 unk8;      // 08
     int64_t unk190; // 190
@@ -166,7 +166,7 @@ RED4EXT_ASSERT_OFFSET(CBaseGameApplication, unk8, 0x08);
 
 struct CGameApplication : CBaseGameApplication
 {
-    virtual void sub_78() = 0; // 78
+    virtual ~CGameApplication() = 0; // 68
 
     CGameOptions options;                 // 1B0
     DynArray<EGameStateType> statesTypes; // 268
