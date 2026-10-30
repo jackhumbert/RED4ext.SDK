@@ -216,6 +216,13 @@ struct Movement
 
 RED4EXT_ASSERT_SIZE(Movement, 0x28);
 
+// The reasons a vehicle's physics is disabled (BaseObject::physicsState, a bit mask; 2.5).
+// TogglePhysics (2592348558) sets or clears one bit and calls ChassisComponent::OnTogglePhysics
+// (2421431546), which makes the chassis kinematic when ShouldChassisBeKinematic (850400227) says so:
+// any bit but Traffic and Asleep. ForceEnablePhysics (2793083181) clears every bit. While a bit
+// other than Asleep is set, PostMove_Common (2709001554) derives the velocity from the position
+// change since the previous frame (worldTransform below) and writes it to the rigid body and the
+// RuntimeData velocity scripts read.
 enum PhysicsState
 {
   Enabled = 0,
@@ -224,10 +231,18 @@ enum PhysicsState
   Unk4 = 0x4,
   Unk8 = 0x8,
   Asleep = 0x10,
-  Unk20 = 0x20,
+  // Set by a teleport (BaseObject::OnTeleport 2250642713) and held until the collision under the
+  // vehicle has streamed in: SuspensionBase::ProcessStreamingHack (1425544322; wheeled 3313309295)
+  // re-checks every 0.1 s, then EnablePhysicsAfterStreamingHack (615454765; wheeled 2797804066)
+  // clears it. For the player's car it also slows game time while streaming is behind.
+  StreamingHold = 0x20,
+  Unk20 = StreamingHold,
   Parked = 0x40,
   PlayerControlledMaybe = 0x80,
   Chase = 0x100,
+  // Gameplay hidden (pause, menus, loading screens): set or cleared every frame by
+  // ProcessPhysicsUpdateRequest (3956677211) from the tick flags.
+  GameplayHidden = 0x400,
 };
 
 struct MeshParamsRegistry;
@@ -285,7 +300,12 @@ struct BaseObject : game::Object, IHookable
     virtual CString* sub_1C0(CString*) override;
     virtual CName* GetAudioResourceName(CName*) override;               // Looks at Acoustics, sub_1D0
     virtual uint64_t OnTakeControl(game::ComponentHelper*) override;    // Something with unk388 & vehicle controller, sub_1F8
-    virtual uint64_t sub_218(WorldTransform*) override;                 // Send & process vehicleTeleportEvent
+    virtual uint64_t sub_218(WorldTransform*) override;                 // Send & process vehicleTeleportEvent. 2.5: vtable slot 0x220,
+                                                                        // vehicle::BaseObject::Teleport (3847493374), called by TeleportationFacility
+                                                                        // (Teleport 3798672630 only queues; TeleportInternal 1200757766 calls this,
+                                                                        // on the mount parent for a mounted entity). Calls OnTeleport (2250642713,
+                                                                        // also the vehicleTeleportEvent handler): sets PhysicsState::StreamingHold,
+                                                                        // zeroes forces and velocities, ResetWithNewTransform, physics->sub_18
 
 // new virtuals
 
@@ -293,6 +313,8 @@ struct BaseObject : game::Object, IHookable
     virtual void sub_270();                                         // 270 loads vehicle weapons
     virtual float sub_278();                                        // 278 sets 694 to 0 
     virtual int32_t sub_280(WorldTransform*);                       // 280 applies worldTransform to placeholder, physics, physicsData, this->worldTransform
+                                                                    // (2.5: slot 0x288, ResetWithNewTransform; ends in SuspensionBase::ForceSetTransform
+                                                                    // 3870038721, a deferred PhysX proxy write)
     virtual uint64_t sub_288() { };                                 // 288
     virtual uint64_t sub_290();                                     // 290 may call 288, actionInterface stuff, driveToPointComplete
     virtual void sub_298(Transform*);                               // 298 calls physics->sub_88
@@ -470,7 +492,7 @@ struct BaseObject : game::Object, IHookable
     RED4ext::world::RuntimeSystemPhysics *physicsSystem;
     float unk248[5];
     bool isOnGround;
-    RED4ext::vehicle::PhysicsState physicsState;
+    RED4ext::vehicle::PhysicsState physicsState; // 260, a mask of PhysicsState bits
     struct Input { // 264
       uint32_t unk264;
       float acceleration;
@@ -518,8 +540,8 @@ struct BaseObject : game::Object, IHookable
     float unk2F8[16];
     uint64_t chassisType;                 // 340
     uint64_t unk348;                      // 348, new in 2.5
-    WorldTransform worldTransform;
-    Vector3 unk360;
+    WorldTransform worldTransform;        // 350, the pose last frame (PostMove stores it; PostMove_Common's velocity is the change from it)
+    Vector3 unk360;                       // 370 in 2.5: the previous derived velocity (PostMove_Common)
     float unk36C;
     Vector4 angularVelocity_related;
     Vector4 worldPosition_related;
@@ -672,6 +694,8 @@ struct BaseObject : game::Object, IHookable
 // #pragma pack(pop)
 RED4EXT_ASSERT_SIZE(BaseObject, 0xBC0);
 RED4EXT_ASSERT_OFFSET(BaseObject, isOnGround, 0x25C);
+RED4EXT_ASSERT_OFFSET(BaseObject, physicsState, 0x260);
+RED4EXT_ASSERT_OFFSET(BaseObject, unk360, 0x370);
 // RED4EXT_ASSERT_OFFSET(BaseObject, acceleration, 0x264);
 // RED4EXT_ASSERT_OFFSET(BaseObject, deceleration, 0x268);
 // RED4EXT_ASSERT_OFFSET(BaseObject, isReversing, 0x2A3);

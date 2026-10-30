@@ -63,7 +63,10 @@ struct Physics
     virtual ~Physics();                                     // 00
     virtual uint64_t SetVehicle(BaseObject *);              // 08
     virtual uint64_t sub_10();                              // 10
-    virtual uint64_t sub_18(TeleportEvent*);                // 18 reponds to vehicleTeleportEvent
+    virtual uint64_t sub_18(TeleportEvent*);                // 18 reponds to vehicleTeleportEvent: SuspensionBase::OnTeleport (4140898061;
+                                                            // WheelSuspensionBase 1998788866). Stores the target as the rescue transform
+                                                            // (used by sub_38) and resets air control; the game's name for this class is
+                                                            // vehicle::SuspensionBase
     virtual uint64_t sub_20();                              // 20 sets mass & inertia tensor
     virtual uint64_t UpdateTransform();                     // 28
     virtual void sub_30(uint32_t *, float*);                // 30
