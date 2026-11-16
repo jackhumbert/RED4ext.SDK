@@ -284,11 +284,9 @@ RED4EXT_INLINE bool RED4ext::CClass::sub_90(int64_t a1, ScriptInstance aInstance
 
 RED4EXT_INLINE bool RED4ext::CClass::sub_98(int64_t a1, ScriptInstance aInstance, CString& a3, int64_t a4, bool a5)
 {
-    RED4EXT_UNUSED_PARAMETER(a5);
-
-    using func_t = bool (*)(const CClass*, int64_t, ScriptInstance, CString&, int64_t);
-    static UniversalRelocFunc<func_t> func(Detail::AddressHashes::CClass_sub_90);
-    return func(this, a1, aInstance, a3, a4);
+    using func_t = bool (*)(const CClass*, int64_t, ScriptInstance, CString&, int64_t, bool);
+    static UniversalRelocFunc<func_t> func(Detail::AddressHashes::CClass_sub_98);
+    return func(this, a1, aInstance, a3, a4, a5);
 }
 
 RED4EXT_INLINE bool RED4ext::CClass::sub_A0(int64_t a1, CString& a2, bool a3)
