@@ -49,7 +49,7 @@ struct ISerializable
     virtual CClass* GetNativeType() = 0;                                                // 00 GetNativeClass
     virtual CClass* GetType();                                                          // 08 GetClass
     virtual Memory::IAllocator* GetAllocator();                                         // 10 GetInnerTypeMemoryPool
-    virtual ~ISerializable() = default;                                                 // 18 ~Type
+    virtual ~ISerializable();                                                           // 18 ~Type
     virtual void sub_20(Handle<ISerializable>* a1);                                     // 20
     virtual void PostLoad(const PostLoadParams& aParams);                               // 28 OnPostLoad
     virtual bool sub_30();                                                              // 30 OnPropertyPreChange
